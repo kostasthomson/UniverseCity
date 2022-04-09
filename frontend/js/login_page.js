@@ -32,10 +32,12 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         const dbResult = this.responseText;
-        if(dbResult!="Done" && dbResult!="not a registered user") {
+        if(dbResult!="Query failed" && dbResult!="not a registered user") {
             const result_array = dbResult.split(",", 3);
             const newUser = new User(result_array[0], result_array[1], result_array[2]);
             newUser.LogData();
+        }else {
+            console.log(dbResult);
         }
     }
 }; 
