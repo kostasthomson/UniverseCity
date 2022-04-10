@@ -60,15 +60,28 @@ var buildEvaluationTable = function buildEvaluationTable(data, titles) {
         colHeader.appendChild(document.createTextNode(titles[i]));
         tr.appendChild(colHeader);
     }
+
     table.appendChild(tr);
+    data.forEach(function(rowData) {
+        tr = document.createElement("tr");
+        for (var i = 0; i < students.length; i++) {
+            var colData = document.createElement("td");
+            colData.appendChild(document.createTextNode(findAverage(students[i].lesson)));
+            if (typeof rowData[i] == "number") {
+                colData.style.textAlign = "right";
+            }
+            tr.appendChild(colData);
+        }
+        table.appendChild(tr);
+    });
     return table;
 }
 
-function findAverage() {
+function findAverage(lessonName) {
     var total = 0;
     var counter = 0;
     for (var i = 0; i < students.length; i++) {
-        if (typeof students[i].studentGrade !== 'undefined') {
+        if (typeof students[i].studentGrade !== 'undefined' && students[i].lesson == lessonName) {
             total += students[i].studentGrade;
             //console.log(JSON.stringify(students[i].studentGrade));
             counter++;
@@ -76,8 +89,7 @@ function findAverage() {
     }
 
     var avg = total / counter;
-    console.log(JSON.stringify(avg + " : " + total + " : " + students.length, null, 2));
-
+    console.log(JSON.stringify("Average: " + avg + " total: " + total + " length: " + students.length, null, 2));
 
     return avg;
 }
