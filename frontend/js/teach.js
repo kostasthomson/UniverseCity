@@ -39,10 +39,7 @@ function myLessons() {
         ul.appendChild(textArea);
 
         li.innerHTML = li.innerHTML + element;
-        console.log(element);
     }
-
-
 }
 
 //adding the lesson in the lesson list
@@ -53,7 +50,6 @@ function addLesson() {
         lessons.push(x);
         myLessons();
     }
-
 }
 
 //delete the lesson from the lesson list 
