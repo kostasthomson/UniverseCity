@@ -1,0 +1,21 @@
+textarea {
+    font-size: 20px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid black;
+    padding: 3px 8px;
+}
+
+th {
+    text-align: left;
+}
+
+body {
+    padding: 50px;
+}
