@@ -3,7 +3,8 @@
 
 //create a dumy arrays for database
 const lessons = ["MethamaticI", "MathematicII", "Statistics"]
-let students = [
+var titles = ["Τα μαθήματα μου", "Μέσος όρος των μαθημάτων μου"]
+var students = [
     { studentName: "ics2111", studentGrade: 7, lesson: "MethamaticI" },
     { studentName: "ics2112", studentGrade: 8, lesson: "MathematicII" },
     { studentName: "ics2113", studentGrade: 7, lesson: "Statistics" },
@@ -18,7 +19,6 @@ let students = [
     { studentName: "ics2122", studentGrade: 7, lesson: "Statistics" },
 ]
 
-let titles = ["Τα μαθήματα μου", "Μέσος όρος των μαθημάτων μου"]
 
 
 var buildTable = function buildTable(data) {
@@ -52,9 +52,17 @@ var buildTable = function buildTable(data) {
     return table;
 };
 
+
+
+
+
+
+
 var buildEvaluationTable = function buildEvaluationTable(data, titles) {
     var table = document.createElement("table");
     var tr = document.createElement("tr");
+    var keys = Object.keys(data[0]);
+
     for (var i = 0; i < titles.length; i++) {
         var colHeader = document.createElement("th");
         colHeader.appendChild(document.createTextNode(titles[i]));
@@ -62,15 +70,23 @@ var buildEvaluationTable = function buildEvaluationTable(data, titles) {
     }
 
     table.appendChild(tr);
+
     data.forEach(function(rowData) {
         tr = document.createElement("tr");
-        for (var i = 0; i < students.length; i++) {
+        for (var i = 2; i < keys.length; i++) {
+            var key = keys[i];
             var colData = document.createElement("td");
-            colData.appendChild(document.createTextNode(findAverage(students[i].lesson)));
-            if (typeof rowData[i] == "number") {
+            var grade = document.createElement("td");
+            colData.appendChild(document.createTextNode(rowData[key]));
+            grade.appendChild(document.createTextNode(rowData[key]));
+
+            var grade = findAverage(rowData[key]);
+            console.log(JSON.stringify(grade));
+
+            if (typeof rowData[key] == "number") {
                 colData.style.textAlign = "right";
             }
-            tr.appendChild(colData);
+            tr.appendChild(colData, grade);
         }
         table.appendChild(tr);
     });
@@ -89,7 +105,7 @@ function findAverage(lessonName) {
     }
 
     var avg = total / counter;
-    console.log(JSON.stringify("Average: " + avg + " total: " + total + " length: " + students.length, null, 2));
+    //console.log(JSON.stringify("Average: " + avg + " total: " + total + " length: " + students.length, null, 2));
 
     return avg;
 }
