@@ -52,10 +52,10 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
                 listItem.setAttribute("id", "seat")
                 listItem.setAttribute("style", "cursor: pointer;")
                 listContainer2.appendChild(listItem);
-             
-                    
             
           }
+     
+
   }
   
   function select_seat(){
@@ -65,8 +65,8 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
 
  
   
-    document.getElementById("chooseButton").addEventListener("click", validateList);
+    document.getElementById("chooseButton").addEventListener("click", validateList,{once:true});
    
     
-    //  document.getElementById("seat").addEventListener("click", select_seat);
+      // document.getElementById("seat").addEventListener("click", select_seat);
    
