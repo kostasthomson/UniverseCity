@@ -1,6 +1,7 @@
 const teacher={
     name:"Αλέξανδρος Χατζηγεωργίου",
-    course:"Τεχνολογία Λογισμικού "
+    course:"Τεχνολογία Λογισμικού ",
+    
 };
 
 document.writeln("Καθηγητής:" +" " + teacher.name + " , " + "Μάθημα:"+ " " +teacher.course);
@@ -28,8 +29,10 @@ function resultsExport(){
    data[4]= document.querySelector('input[name="optradio4"]:checked').value;
    data[5] = document.querySelector('input[name="optradio5"]:checked').value;
    data[6] = document.querySelector('input[name="optradio6"]:checked').value;
-//    data[7] =document.getElementById('textarea1').value;
-//    data[8] =document.getElementById('textarea').value;
+    data[7] =document.getElementById('textarea1').value;
+    data[8] =document.getElementById('textarea').value;
+
+    document.writeln("Καθηγητής:" +" " + teacher.name + " , " + "Μάθημα:"+ " " +teacher.course + "<br>");    
     for(var i=0;i<data.length;i++){
         document.write(data[i]+ "<br>");
        
