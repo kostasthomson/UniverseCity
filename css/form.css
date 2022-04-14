@@ -22,7 +22,8 @@ body {
 }
 
 .form{
-    width: 400px;
+    min-width: 200px;
+    width: 20vw;
     height: auto;
     border-radius: 25px;
     background:#366c77;
@@ -35,13 +36,15 @@ body {
 }
 .img1 {
     padding-bottom: 75px;
+    min-width: 400px;
+    width: 35vw;
 }
 
 .heading{
     opacity: 0;
     text-transform: capitalize;
     text-align: center;
-    font-size: 50px;
+    font-size: calc(20px + 1.5vw);
     font-weight: 300;
     margin-bottom: 50px;
     color: #fff; 
@@ -85,18 +88,6 @@ input:focus::placeholder{
     font-size: 17px;
 }
 
-.link{
-    opacity: 0;
-    text-align: center;
-    text-transform: capitalize;
-    color:rgba(255, 255, 255, 0.5);
-    display: block;
-    margin: 30px auto;
-}
-
-.link:hover{
-    color: #fff;
-}
 
 .alert-box{
     position: absolute;
@@ -116,5 +107,5 @@ input:focus::placeholder{
     color: #ffff;
     font-family: 'roboto', sans-serif;
     text-align: center;
-    transition: 1s;
+    transition: 2s;
 }
