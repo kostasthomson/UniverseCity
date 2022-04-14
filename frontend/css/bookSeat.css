@@ -1,0 +1,48 @@
+#chooseButton{
+  display: flex; 
+  display: inline; 
+  
+ 
+}
+
+#selectcourse{
+ display: flex;
+  
+}
+
+
+#list{
+  display: flex;
+  display:inline;
+  
+   
+ }
+
+ 
+#demo{
+  display:flex;
+  display: inline-block;
+   
+ }
+
+ #seatList{
+   display: flex;
+ }
+
+ #seat{
+   margin: 5px 5px 5px 5px;
+   width: 20px;
+   height: 20px;
+   background-color: #6c6a6c;
+ }
+
+ #seat:hover{
+   background-color: rgb(47, 48, 48);
+ }
+
+ #seat:nth-last-of-type(7){
+  margin-left: 18px;
+}
+#seat:nth-of-type(7){
+  margin-left: 18px;
+}
