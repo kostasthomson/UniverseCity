@@ -1,7 +1,7 @@
 var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ','ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ','ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ'
 ,'ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ','ΑΛΓΟΡΙΘΜΟΙ']}
 
-    var course = {name: 'ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ', capacity: 200}
+    var course = {name: 'ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ', capacity: 196}
 
     function makeList() {
       // Establish the array which acts as a data source for the list
@@ -51,6 +51,7 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
                 listItem.setAttribute("id", "seat")
                 listItem.setAttribute("style", "cursor: pointer;")
                 listContainer2.appendChild(listItem);
+                // listContainer2.appendChild(document.createTextNode(i+1));
                
           }
      
@@ -67,7 +68,7 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
                 listItem.setAttribute("id", "desk")
                
                 listContainer2.appendChild(listItem);
-               
+               listContainer2.appendChild(document.createTextNode("ΕΔΡΑ"));
   }
 
   
