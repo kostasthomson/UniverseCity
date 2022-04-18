@@ -35,6 +35,16 @@
  #seatList{
    display: flex;
    flex-wrap: wrap;
+
+   border-collapse: collapse;
+   padding:0;
+   border:2px solid black;
+   
+   font-size: 24px;
+   border-radius: 10px;
+   display: flex;
+   padding: 5px 5px 5px 5px;
+   
    
  }
 
@@ -68,4 +78,15 @@
   
   transform: rotateX(-45deg);
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+#screen{
+  display: flex;
+  margin-bottom: 40px;
+  margin-right: 500px;
+  margin-left: 500px;
+  -webkit-box-shadow:inset 0px 0px 0px 10px rgb(74, 71, 71);
+    -moz-box-shadow:inset 0px 0px 0px 10px rgb(91, 91, 91);
+    box-shadow:inset 0px 0px 0px 10px #5e5d5d;
+
 }
