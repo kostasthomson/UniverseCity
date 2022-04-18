@@ -39,7 +39,7 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
   }
 
   function theater(capacity){
-          
+          makeDesk();
           let listContainer2 = document.createElement('div'),
           listItem;
           listContainer2.setAttribute("id", "seatList")
@@ -56,6 +56,22 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
      
 
   }
+
+  function makeDesk(){
+    let listContainer2 = document.createElement('div'),
+          listItem;
+          listContainer2.setAttribute("id", "deskList")
+
+          document.getElementById('screen').appendChild(listContainer2);
+          listItem = document.createElement('div');
+                listItem.setAttribute("id", "desk")
+               
+                listContainer2.appendChild(listItem);
+               
+  }
+
+  
+
 
 
 
