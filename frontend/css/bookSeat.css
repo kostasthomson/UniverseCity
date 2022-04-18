@@ -14,35 +14,79 @@
 #list{
   display: flex;
   display:inline;
+ 
   
    
  }
 
  
 #demo{
-  display:flex;
-  display: inline-block;
+   display:flex; 
+  
+  border-left: 1rem;
+  border-right: 35rem; 
+  margin-left: 20rem;
+  margin-right:20rem;
+  flex-wrap: wrap-reverse;
+  
    
  }
 
  #seatList{
    display: flex;
+   flex-wrap: wrap;
+
+   border-collapse: collapse;
+   padding:0;
+   border:2px solid black;
+   
+   font-size: 24px;
+   border-radius: 10px;
+   display: flex;
+   padding: 5px 5px 5px 5px;
+   
+   
  }
 
  #seat{
    margin: 5px 5px 5px 5px;
    width: 20px;
    height: 20px;
-   background-color: #6c6a6c;
+   background-color: #807e80;
+  
  }
+  p {
+  display: flex;
+  margin-left: 2rem;
+  margin-right: 8rem;
+
+}
 
  #seat:hover{
    background-color: rgb(47, 48, 48);
  }
 
- #seat:nth-last-of-type(7){
+/* #seat:nth-of-type(7){
   margin-left: 18px;
+}  */
+
+#deskList{
+  background-color: #827d7d;
+  height: 70px;
+  width: 100%;
+  margin: 30px 0;
+  
+  transform: rotateX(-45deg);
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
 }
-#seat:nth-of-type(7){
-  margin-left: 18px;
+
+#screen{
+  display: flex;
+  margin-bottom: 40px;
+  margin-right: 500px;
+  margin-left: 500px;
+  -webkit-box-shadow:inset 0px 0px 0px 10px rgb(74, 71, 71);
+    -moz-box-shadow:inset 0px 0px 0px 10px rgb(91, 91, 91);
+    box-shadow:inset 0px 0px 0px 10px #5e5d5d;
+
 }

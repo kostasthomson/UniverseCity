@@ -1,7 +1,7 @@
 var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ','ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ','ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ'
 ,'ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ','ΑΛΓΟΡΙΘΜΟΙ']}
 
-    var course = {name: 'ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ', capacity: 40}
+    var course = {name: 'ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ', capacity: 196}
 
     function makeList() {
       // Establish the array which acts as a data source for the list
@@ -39,27 +39,47 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
   }
 
   function theater(capacity){
-          console.log(capacity)
+          makeDesk();
           let listContainer2 = document.createElement('div'),
           listItem;
           listContainer2.setAttribute("id", "seatList")
-      
+
           document.getElementById('demo').appendChild(listContainer2);
-        
+       
           for (var i = 0; i < capacity; ++i) {
-            
                 listItem = document.createElement('div');
                 listItem.setAttribute("id", "seat")
                 listItem.setAttribute("style", "cursor: pointer;")
                 listContainer2.appendChild(listItem);
-            
+                // listContainer2.appendChild(document.createTextNode(i+1));
+               
           }
      
 
   }
+
+  function makeDesk(){
+    let listContainer2 = document.createElement('div'),
+          listItem;
+          listContainer2.setAttribute("id", "deskList")
+
+          document.getElementById('screen').appendChild(listContainer2);
+          listItem = document.createElement('div');
+                listItem.setAttribute("id", "desk")
+               
+                listContainer2.appendChild(listItem);
+               listContainer2.appendChild(document.createTextNode("ΕΔΡΑ"));
+  }
+
   
+
+
+
+
+
+ 
   function select_seat(){
-    document.getElementById("seat").setAttribute("color", "red")
+    document.getElementById("seat").setAttribute("color", "green")
   }
   window.onload = makeList();
 
@@ -68,5 +88,5 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
     document.getElementById("chooseButton").addEventListener("click", validateList,{once:true});
    
     
-      // document.getElementById("seat").addEventListener("click", select_seat);
+      //  document.getElementById("seat").addEventListener("click", select_seat);
    
