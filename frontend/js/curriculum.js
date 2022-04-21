@@ -108,7 +108,7 @@ let epistimi_kai_texnologia = [
     },
     {
         "code_name": "AIC303",
-        "name": "Δίκτυα Υπολογιστών",
+        "name": "Λειτουργικά Συστήματα",
         "option": "Υποχρεωτικό Κορμού",
         "ects": "5",
         "semester": "3"
@@ -245,7 +245,7 @@ let pliroforiaka_sistimata = [
     },
     {
         "code_name": "AIC303",
-        "name": "Δίκτυα Υπολογιστών",
+        "name": "Λειτουργικά Συστήματα",
         "option": "Υποχρεωτικό Κορμού",
         "ects": "5",
         "semester": "3"
