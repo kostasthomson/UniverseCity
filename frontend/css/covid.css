@@ -1,0 +1,35 @@
+#textarea{
+    height: 300px;
+    width: 500px;
+}
+
+#fname{
+    width: 490px;
+    height: 80px;
+}
+
+#sxolia{
+    height: 200px;
+    width: 200px;
+     border-style: solid;
+    float:left;
+    margin: 20px; 
+} 
+
+#sxolia1{
+     float:left;
+    margin: 20px;
+} 
+
+#check{
+ margin-top: 400px;
+}
+
+#delete{
+    margin: 10px;
+}
+
+#submit{
+    margin: 10px;
+}
+
