@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../css/qrCode.css">
+    <link rel="stylesheet" href="../css/qrCode.css" />
   </head>
   <body>
     <script src="../js/html5-qrcode.min.js"></script>
@@ -22,6 +22,7 @@
       function onScanSuccess(qrCodeMessage) {
         document.getElementById("result").innerHTML =
           '<span class="result">' + qrCodeMessage + "</span>";
+          console.log(document.getElementById("result").innerHTML);
       }
       function onScanError(errorMessage) {
         //handle scan error
