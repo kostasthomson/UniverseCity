@@ -1,41 +1,135 @@
-var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ','ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ','ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ'
-,'ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ','ΑΛΓΟΡΙΘΜΟΙ']}
+var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ','ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ','ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ']};
 
-    var course = {name: 'ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ', capacity: 196}
+class Course {
+        constructor(name, code, availableSeats) {
+            this.name = name;
+            this.code = code;
+            this.availableSeats = availableSeats;
+            Classroom;
+        }
 
-    function makeList() {
-      // Establish the array which acts as a data source for the list
-      let listData = user.courses,
-      // Make a container element for the list
-      listContainer = document.createElement('div'),
+        setClassroom(Classroom) {
+            this.Classroom = Classroom;
+        }
+
+        setAvailableSeats(num) {
+            availableSeats = num;
+        }
+
+
+
+        getAvailableSeats() {
+            return availableSeats;
+        }
+    }
+
+   
+
+    // Test Class
+    class Classroom {
+        constructor(name, type, code, floor, capacity) {
+                this.name = name;
+                this.type = type;
+                this.code = code;
+                this.floor = floor;
+                this.capacity = capacity;
+                
+            
+        }
+    
+        
+    }
+
+    class User {
+        constructor(name) {
+            this.name;
+            this.CourseList = [];
+        }
+
+         addCourse(Course) {
+             this.CourseList.push(Course);
+         }
+    }
+
+
+// { Test01
+
+{ 
+  var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 230);
+  var AMF9 = new Classroom('Αμφιθέατρο 9', 'AMF', 09, 01, 90);
+  var ERG334 = new Classroom('Εργαστήριο 334', 'LAB', 334, 03, 36);
+  
+  
+  var AIC101 = new Course('ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΙΚΤΥΟΥ', 'AIC101');
+  AIC101.setClassroom(ERG334);
+  var AIC102 = new Course('ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'AIC102');
+  AIC102.setClassroom(AMF12);
+  var AIC103 = new Course('ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ', 'AIC103');
+  AIC103.setClassroom(AMF12);
+  var AIC104 = new Course('ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ', 'AIC104');
+  AIC104.setClassroom(AMF12);
+  var AIC105 = new Course('ΑΛΓΟΡΙΘΜΟΙ', 'AIC105');
+  AIC105.setClassroom(AMF9);
+
+
+
+  var User01 = new User('User01');
+  User01.addCourse(AIC101);
+  User01.addCourse(AIC102);
+  User01.addCourse(AIC103);
+  User01.addCourse(AIC104);
+  User01.addCourse(AIC105);
+  //console.log(User01);
+}
+  // }
+
+
+  // List Initialization
+  // Establish the array which acts as a data source for the list
+  let listData = [];
+  for (var i = 0; i <User01.CourseList.length; i++) {
+      listData[i] = User01.CourseList[i];
+      //console.log(listData[i]);
+  }
+
+
+  let listContainer = document.createElement('div'),
       // Make the list
       listElement = document.createElement('form'),
       listElement2 = document.createElement('select'),
       // Set up a loop that goes through the items in listItems one at a time
-      numberOfListItems = listData.length,
-      listItem,
-      i;
-  
-      // Add it to the page
+      listItem;
       document.getElementById('list').appendChild(listContainer);
     
       listContainer.appendChild(listElement).appendChild(listElement2);
       listElement2.setAttribute("id", "Myid")
-  
-      for (i = 0; i < numberOfListItems; ++i) {
+
+
+      
+    function makeList() {
+      for (i = 0; i < listData.length; ++i) {
           listItem = document.createElement('option');
   
-          listItem.innerHTML = listData[i];
+          listItem.innerHTML = listData[i].name;
           // Add listItem to the listElement
           listElement2.appendChild(listItem);
       }
   }
 
+  function findCourse(x) {
+    for (i=0; listData.length; i++) {
+        if (listData[i].name == x) {
+             return listData[i].Classroom.capacity;
+        }
+    }
+        return (0)
+  }
+
   function validateList() {
       let x = document.getElementById("Myid").value;
-      // If x is Not a Number or less than one or greater than 10
+      capacity = findCourse(x);
 
-      theater(course.capacity);
+      theater(capacity);
   }
 
   function theater(capacity){
@@ -81,9 +175,12 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
   }
   window.onload = makeList();
 
+
+  
+
  
-   document.getElementById("chooseButton").addEventListener("click", validateList,{once:true});
-   document.getElementById("seat").addEventListener("click", select_seat);
+   document.getElementById("chooseButton").addEventListener("click", validateList);
+  // document.getElementById("seat").addEventListener("click", select_seat);
  
        
 
