@@ -54,10 +54,11 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
                 // listContainer2.appendChild(document.createTextNode(i+1));
                
           }
+         
      
 
   }
-
+  
   function makeDesk(){
     let listContainer2 = document.createElement('div'),
           listItem;
@@ -71,22 +72,19 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
                listContainer2.appendChild(document.createTextNode("ΕΔΡΑ"));
   }
 
-  
 
 
-
-
-
- 
   function select_seat(){
-    document.getElementById("seat").setAttribute("color", "green")
+    
+  
+   
   }
   window.onload = makeList();
 
  
-  
-    document.getElementById("chooseButton").addEventListener("click", validateList,{once:true});
-   
-    
-      //  document.getElementById("seat").addEventListener("click", select_seat);
-   
+   document.getElementById("chooseButton").addEventListener("click", validateList,{once:true});
+   document.getElementById("seat").addEventListener("click", select_seat);
+ 
+       
+
+       
