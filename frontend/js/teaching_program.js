@@ -1,5 +1,5 @@
 var schedule = [
-    {Days: "Δευτέρα", Hours: "9-12", lessons: "MethamaticI" },
+    {Days: "Δευτέρα", Hours: "9-12", lessons: "MethamaticI"},
     {Days: "Δευτέρα", Hours: "12-13", lessons: "MethamaticII" },
     {Days: "Δευτέρα", Hours: "16-18", lessons: "Statistics" },
     {Days: "Τρίτη", Hours: "9-12",  lessons: "MathematicII" },
