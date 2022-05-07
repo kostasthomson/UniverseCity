@@ -23,8 +23,6 @@ class Course {
         }
     }
 
-   
-
     // Test Class
     class Classroom {
         constructor(name, type, code, floor, capacity) {
@@ -33,10 +31,7 @@ class Course {
                 this.code = code;
                 this.floor = floor;
                 this.capacity = capacity;
-                
-            
         }
-    
         
     }
 
@@ -85,7 +80,6 @@ class Course {
 
 
   // List Initialization
-  // Establish the array which acts as a data source for the list
   let listData = [];
   for (var i = 0; i <User01.CourseList.length; i++) {
       listData[i] = User01.CourseList[i];
@@ -94,10 +88,8 @@ class Course {
 
 
   let listContainer = document.createElement('div'),
-      // Make the list
       listElement = document.createElement('form'),
       listElement2 = document.createElement('select'),
-      // Set up a loop that goes through the items in listItems one at a time
       listItem;
       document.getElementById('list').appendChild(listContainer);
     
@@ -132,56 +124,55 @@ class Course {
       theater(capacity);
   }
 
-  function theater(capacity){
-          makeDesk();
-          let listContainer2 = document.createElement('div'),
-          listItem;
-          listContainer2.setAttribute("id", "seatList")
 
-          document.getElementById('demo').appendChild(listContainer2);
-       
-          for (var i = 0; i < capacity; ++i) {
-                listItem = document.createElement('div');
-                listItem.setAttribute("id", "seat")
-                listItem.setAttribute("style", "cursor: pointer;")
-                listContainer2.appendChild(listItem);
-                // listContainer2.appendChild(document.createTextNode(i+1));
-               
-          }
-         
-     
-
+function theater(capacity){
+    makeDesk();
+    let listContainer2 = document.createElement('div'),
+    listItem;
+    listContainer2.setAttribute("id", "seatList")
+    document.getElementById('demo').appendChild(listContainer2);
+ 
+    for (var i = 1; i <=capacity; ++i) {
+          listItem = document.createElement('button');
+          listItem.setAttribute("id", "seat" + i);
+          listItem.setAttribute("class", "seat");
+          listItem.setAttribute('onclick', 'select_seat(id)');
+          listItem.insertAdjacentHTML('afterbegin', i);
+          listItem.setAttribute("style", "cursor: pointer;");
+          listContainer2.appendChild(listItem);    
+    }    
+    
   }
   
   function makeDesk(){
     let listContainer2 = document.createElement('div'),
           listItem;
           listContainer2.setAttribute("id", "deskList")
-
           document.getElementById('screen').appendChild(listContainer2);
           listItem = document.createElement('div');
-                listItem.setAttribute("id", "desk")
-               
-                listContainer2.appendChild(listItem);
-               listContainer2.appendChild(document.createTextNode("ΕΔΡΑ"));
+            listItem.setAttribute("id", "desk") 
+             listContainer2.appendChild(listItem);
+            listContainer2.appendChild(document.createTextNode("ΕΔΡΑ"));
   }
 
-
-
-  function select_seat(){
-    
+  function select_seat(id) {
+   const x=document.getElementById(id);
+   x.style.backgroundColor='green'
   
-   
+   console.log(x.id);
+   occupied(x.id);
   }
+
+  function occupied(x){
+    var occupiedSeats = [];
+    occupiedSeats.push(x);
+    changeColor(occupiedSeats); 
+  }
+
+  function changeColor(seats){
+  
+  }
+
   window.onload = makeList();
-
-
-  
-
- 
-   document.getElementById("chooseButton").addEventListener("click", validateList);
-  // document.getElementById("seat").addEventListener("click", select_seat);
- 
-       
-
-       
+    document.getElementById("chooseButton").addEventListener("click", validateList);
+     

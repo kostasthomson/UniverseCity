@@ -49,10 +49,10 @@
    
  }
 
- #seat{
+ .seat{
    margin: 5px 5px 5px 5px;
-   width: 20px;
-   height: 20px;
+   width: 30px;
+   height: 30px;
    background-color: #807e80;
   
  }
@@ -63,7 +63,7 @@
 
 }
 
- #seat:hover{
+ .seat:hover{
    background-color: rgb(47, 48, 48);
  }
 
@@ -97,9 +97,6 @@
     box-shadow:inset 0px 0px 0px 10px #5e5d5d; */
 
 }
-
-
-
 
 
 
