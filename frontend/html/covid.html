@@ -8,8 +8,8 @@
     <title>Δήλωση Κρούσματος</title>
 </head>
 <body>
-    <label for="fname">*Αρχείο:</label>
-    <input type="text" id="fname" name="fname">
+    <label id="namefile" for="fname" >*Αρχείο:</label>
+    <input type="file" id="fname" name="fname" required>
     
     <br>
     <div id="sxolia1">
@@ -17,17 +17,18 @@
         <input type="text" id="textarea" name="textarea">
     </div>
     <div id="sxolia">
-        Εαν δεν έχετε χρησιμοποιήσει την λειτουργία της Κράτησης Θέσης ή παρακολούθησες άλλο τμήμα <br>
-         ανέφερε τον αριθμό της θέσης σου και την αίθουσα για τις τελευταίες 5 ημέρες.
+        Εαν δεν έχετε χρησιμοποιήσει την λειτουργία της Κράτησης Θέσης ή  έχετε παρακολουθήσει άλλο τμήμα <br>
+         αναφέρετε τον αριθμό της θέσης σας και την αίθουσα για τις τελευταίες 5 ημέρες.
     </div>
     <br>
     <div id="check">
-        <input type="checkbox" name="checke" >
-        Δηλώνω υπεύθυνα ότι διαγνώστηκα θετικός/ή στην νόσο covid το τελευταίο 24ωρο
+        <input id="ck" type="checkbox" name="checke" >
+        Δηλώνω υπεύθυνα ότι διαγνώστηκα θετικός/ή στην νόσο covid το τελευταίο 24ωρο.
         <br>
         <button id="delete">Ακύρωση</button>
         <button id="submit">Υποβολή</button>
     </div>
-    
+    <div id="valid"></div>
+    <script src="../js/covid.js" defer></script>
 </body>
 </html>

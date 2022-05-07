@@ -1,3 +1,5 @@
+
+
 #chooseButton{
   display: flex; 
   display: inline; 
@@ -9,7 +11,6 @@
  display: flex;
   
 }
-
 
 #list{
   display: flex;
@@ -48,10 +49,10 @@
    
  }
 
- #seat{
+ .seat{
    margin: 5px 5px 5px 5px;
-   width: 20px;
-   height: 20px;
+   width: 30px;
+   height: 30px;
    background-color: #807e80;
   
  }
@@ -62,31 +63,40 @@
 
 }
 
- #seat:hover{
+ .seat:hover{
    background-color: rgb(47, 48, 48);
  }
 
-/* #seat:nth-of-type(7){
+ /* #seat:nth-of-type(7){
   margin-left: 18px;
-}  */
+}   */
 
 #deskList{
   background-color: #827d7d;
   height: 70px;
-  width: 100%;
-  margin: 30px 0;
+  width: 150px;
+  margin: 50px 50px 50px 50px;
   
   transform: rotateX(-45deg);
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
 }
 
+#desk{
+  margin: 20px 20px 20px 20px;
+
+ 
+
+}
 #screen{
   display: flex;
   margin-bottom: 40px;
   margin-right: 500px;
   margin-left: 500px;
-  -webkit-box-shadow:inset 0px 0px 0px 10px rgb(74, 71, 71);
+  /* -webkit-box-shadow:inset 0px 0px 0px 10px rgb(74, 71, 71);
     -moz-box-shadow:inset 0px 0px 0px 10px rgb(91, 91, 91);
-    box-shadow:inset 0px 0px 0px 10px #5e5d5d;
+    box-shadow:inset 0px 0px 0px 10px #5e5d5d; */
 
 }
+
+
+
