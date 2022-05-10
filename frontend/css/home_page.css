@@ -2,40 +2,72 @@ body {
     margin: 0;
 }
 
-img {
-    width: 300px;
-    height: 50px;
-    margin: 0;
-    display: block;
+#top-content {
+    justify-content: space-between;
+    display: flex;
 }
 
-ul {
-    width: 60px;
+#notifications-profile {
+    margin-right: .5%;
+    width: 5%;
+    display: inline-flex;
+}
+
+#notification-icon, #profile-icon {
+    cursor: pointer;
+}
+
+#notification-icon {
+    margin: auto;
+    width: 2.2em;
+    height: 2.2em;
+    justify-content: flex-start;
+}
+
+#profile-icon {
+    margin: auto;
+    width: 2.5em;
+    height: 2.5em;
+    justify-content: flex-end;
+}
+
+#logo {
+    width: 18rem;
+    height: 3rem;
+    margin: 0;
+    display: inline-flex;
+}
+
+#menu-options {
+    width: 6em;
     padding: 0;
     margin: 0;
     list-style-type: none;
 }
 
-li {
+.list-menu-option, .temp-button {
     cursor: pointer;
-    padding: 10px 0;
-    margin: 10px 0 0;
 }
 
-iframe {
-    width: 950px;
-    height: 550px;
+.list-menu-option {
+    margin: 0 0 30%;
+    text-align: center;
+}
+
+#html-frame {
+    width: 90rem;
+    height: 50rem;
     border: solid black;
 }
 
 #menu {
-    top: 70px;
-    margin: 10px 80px;
+    top: 10%;
+    margin: 1% 7%;
 }
 
 #content {
-    top: 90px;
-    margin: 10px 0 0 250px;
+    top: 10%;
+    margin: 1rem 0 0 20rem;
 }
 
 #menu, #content {

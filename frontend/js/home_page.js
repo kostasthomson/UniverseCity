@@ -1,30 +1,32 @@
 function start() {
+//reset ul and iframe
     reset();
+//getting user
     const LOGIN_USER = sessionStorage.getItem('user');
-    var user_dependent_names;
-
-    if(LOGIN_USER == 'Student') {
+    const ul = document.getElementById('menu-options');
+    let user_dependent_names;
+    if(LOGIN_USER == users[0]) {
         //students menu
         user_dependent_names = ['Αιτήσεις-Μηνύματα', 'Μαθήματα', 
-                        'Πρόγραμμα Διδασκαλίας', 'Στατιστικά', 'Αξιολόγιση Καθηγητών', 
+                        'Πρόγραμμα Διδασκαλίας', 'Στατιστικά', 'Αξιολόγηση Καθηγητών', 
                         'Erasmus', 'Δήλωση Κρούσματος', 'Δήλωση Θέσης'
                     ];
-    }else if(LOGIN_USER == 'Teacher') {
+    }else if(LOGIN_USER == users[1]) {
         //teachers menu
         user_dependent_names = ['Διαχείριση Μαθημάτων','Πρόγραμμα Διδασκαλίας', 'Εξετάσεις-Βαθμολογίες',
                         'Προβολή Προσωπικής Αξιολόγησης', 'Συστατική Επιλογή',
                         'Erasmus', 'Ανακοινώσεις-Ενημερώσεις'
                     ];
-    }else if(LOGIN_USER == 'Secretariat') {
+    }else if(LOGIN_USER == users[2]) {
         //secretariat menu
         user_dependent_names = ['Ωρολόγιο Πρόγραμμα', 'Ανακοινώσεις', 'Διαχείριση Email', 'Απενεργοποίηση Φοιτητή'];
     }
-
+//create ul according to user
     if(user_dependent_names) {
-        var menu_names = ['Αρχική'];
+        let menu_names = ['Αρχική'];    //home is common to all users
         menu_names = menu_names.concat(user_dependent_names);
-        menu_names.push('Έξοδος');
-        var items = []
+        menu_names.push('Έξοδος');  //exit is common to all users
+        let items = []
         menu_names.forEach(name => {
             items.push(createLiElement(name));
         });
@@ -32,85 +34,103 @@ function start() {
             ul.appendChild(element);
         });
     }
+    const profile_icon = document.getElementById('profile-icon');
+    profile_icon.setAttribute('onclick', "sentToFrame('profile')");
+    const notification_icon = document.getElementById('notification-icon');
+    notification_icon.setAttribute('onclick', "sentToFrame('Ανακοινώσεις')");
 }
 
-function reset() {
-    document.getElementById('ul').innerHTML = '';
-    sentToFrame('');
+
+function setFrameSrc(html_src) {
+    if(html_src) {
+        const frame = document.getElementById('html-frame');
+        frame.contentWindow.location.href = html_src;
+    }
 }
 
 function sentToFrame(value) {
-    sessionStorage.setItem('option', value);
-    frame.contentWindow.location.reload();
+    sessionStorage.setItem('user-option', value);
+    let page_url;
+    switch (value) {
+        case 'profile':
+            page_url = '../html/profile.html'; 
+            break;
+        // case 'Αρχική':
+        //     page_url = '../html/arxikh.html';
+        //     break;
+        case 'Ωρολόγιο Πρόγραμμα':
+            page_url = '../html/programma.html';
+            break;
+        case 'Ανακοινώσεις':
+            page_url = '../html/anakoinoseis.html';
+            break;
+        case 'Διαχείριση Email':
+            page_url = '../html/email.html';
+            break;
+        default:
+            page_url = '../html/arxikh.html';
+            break;
+    }
+    let page = page_url.split('/');
+    let href = document.getElementById('html-frame').contentWindow.location.href.split('/');
+    if(page[page.length-1] != href[href.length-1])
+        setFrameSrc(page_url);
+    // setFrameSrc(page_url);
 }
 
 function createLiElement(context) {
     const li = document.createElement('li');
-    li.setAttribute('onclick', 'sentToFrame(this.innerHTML)');
+    li.setAttribute('class', 'list-menu-option');
+    if(context == 'Έξοδος') {
+        li.setAttribute('onclick', 'LogOut()');
+    }else {
+        li.setAttribute('onclick', 'sentToFrame(this.innerHTML)');
+    }
     li.innerHTML = context;
     return li;
 }
 
-
-function setUser(button) {
-    let user = button.innerHTML.split(" ");
-    sessionStorage.setItem('user', user[2]);
-    start();
+function LogOut() {
+    document.location.href = '../html/Login_Page.html';
 }
 
+function setUser(button) {
+    let user = button.getAttribute('data-user');
+    if(!sessionStorage.getItem('user') || (sessionStorage.getItem('user')!=user)){
+        sessionStorage.setItem('user', user);
+        document.getElementById('html-frame').contentWindow.location.reload();
+        start();
+    }
+    
+}
 
-// BODY
-var body_elements = [];
-// IMAGE
-const img = document.createElement('img');
-img.setAttribute('src', '../../frontend/img/Universecity.png');
-body_elements.push(img);
+function reset() {
+    document.getElementById('menu-options').innerHTML = '';
+    const frame = document.getElementById('html-frame');
+    frame.removeAttribute('src');
+}
 
+function full_reset() {
+    reset();
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('user-option');
+}
 
-    // DEMO BUTTONS
+window.onload = () => {
+    full_reset();
+}
+
+                // DEMO BUTTONS
+//----------------------------------------------------
+const users = ['student', 'teacher', 'secretariat'];
 const button_div = document.createElement('div');
 button_div.setAttribute('id', 'buttons');
 for(let i=1; i<=3; i++) {
-    let user = i==1 ?'Student' :i==2 ?'Teacher' : 'Secretariat'
     const button = document.createElement('button');
+    button.setAttribute('class', 'temp-button');
     button.setAttribute('onclick', 'setUser(this)');
-    button.innerHTML = 'Login as ' + user;
+    button.setAttribute('data-user', users[i-1]);
+    button.innerHTML = 'Login as ' + users[i-1];
     button_div.appendChild(button);
 }
-body_elements.push(button_div);
-
-
-// DIV FOR MENU
-const menu_div = document.createElement('div');
-menu_div.setAttribute('id', 'menu');
-body_elements.push(menu_div);
-// DIV FOR FRAME
-const frame_div = document.createElement('div');
-frame_div.setAttribute('id', 'content');
-body_elements.push(frame_div);
-
-body_elements.forEach(element => {
-    document.body.appendChild(element);
-});
-
-// MENU
-var menu_elements = [];
-
-const ul = document.createElement('ul');
-ul.setAttribute('id', 'ul');
-menu_elements.push(ul);
-
-menu_elements.forEach(element => {
-    menu_div.appendChild(element);
-});
-
-// FRAME
-var frame_elements = [];
-
-const frame = document.createElement('iframe');
-frame.setAttribute('src', './other_files/menu_option.html');
-frame_elements.push(frame);
-
-frame_elements.forEach(element => {
-    frame_div.appendChild(element);
-});
+document.body.appendChild(button_div);

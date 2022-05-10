@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/programma.css">
+    <title>Πρόγραμμα</title>
+</head>
+<body>
+    <h1>Ωρολόγιο Πρόγραμμα</h1>
+    <div id="schedule-view">
+        <table id="program-table">
+            <thead id="table-head">
+            </thead>
+            <tbody id="table-body">
+                <tr id="column-headers">
+                    <th id="column-head-0">Ώρες</th>
+                    <th id="column-head-1">Δευτέρα</th>
+                    <th id="column-head-2">Τρίτη</th>
+                    <th id="column-head-3">Τετάρτη</th>
+                    <th id="column-head-4">Πέμπτη</th>
+                    <th id="column-head-5">Παρασκευή</th>
+                </tr>
+            </tbody>
+            <tfoot id="table-foot">
+            </tfoot>
+        </table>
+    </div>
+    <div id="buttons" >
+        <button id="Save" onclick="save()">Save</button>
+        <button id="Edit" onclick="edit()">Edit</button>
+    </div>
+    <script src="../js/programma.js"></script>
+</body>
+</html>
