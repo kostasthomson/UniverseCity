@@ -6,17 +6,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-   
     <title>Αξιολόγηση Καθηγητών</title>
-
 </head>
  <body>
    
     <!-- Questions --> 
     <p id="myid"></p>
 
-        <form  id="form" action="../../backend/evaluation.php" method="POST">
+        <form  id="form" action="../../backend/evaluation.php" method="get">
+
+            <label for="subjects">Διάλεξε το μάθημα που θέλεις να αξιολογήσεις: </label>
+            <select name="subjects" id="subjs">
+                <option value="Αντικειμενοστρεφής προγραμματισμός">Αντικειμενοστρεφής προγραμματισμός</option>
+                <option value="Διαδικαστικός Προγραμματισμός">Διαδικαστικός Προγραμματισμός</option>
+                <option value="Διδακτική της Πληροφορικής">Διδακτική της Πληροφορικής</option>
+                <option value="Ζαμπονοκοπτική με λέιζερ">Ζαμπονοκοπτική με λέιζερ</option>
+            </select>
+
             <p id="1"> 1.Πόσο ευχαριστημένοι είστε απο την διδασκαλία του μαθήματος; <br>
                 <label for="q1" class="radio-inline">
                     <input  id="1" type="radio" name="optradio1" value="1" > 1
@@ -149,7 +155,7 @@
                 </label>
             </p>
 
-            <button onclick="validateData()"> Υποβολή</button>
+            <input type="submit">
         </form>
     </p>
    
@@ -158,12 +164,12 @@
     
     
 </body>
-<script>
+<!-- <script>
     function validateData(){
         if(!document.getElementById('form').checked) {
             alert("Δεν έχετε συμπληρώσει την φόρμα");
         }
 
     }
-</script>
+</script> -->
 </html>
