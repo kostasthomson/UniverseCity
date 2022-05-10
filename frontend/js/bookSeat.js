@@ -96,7 +96,6 @@ class Course {
       listContainer.appendChild(listElement).appendChild(listElement2);
       listElement2.setAttribute("id", "Myid")
 
-
       
     function makeList() {
       for (i = 0; i < listData.length; ++i) {
@@ -116,12 +115,22 @@ class Course {
     }
         return (0)
   }
-
+ 
   function validateList() {
       let x = document.getElementById("Myid").value;
+      console.log(x);
       capacity = findCourse(x);
-
       theater(capacity);
+        if(x==="ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ"){
+          
+            theater(capacity);
+        }else if(x==="ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ"){
+
+        }else if(x==="ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ"){
+
+        }else if(x==="ΑΛΓΟΡΙΘΜΟΙ"){
+
+        }
   }
 
 
@@ -131,12 +140,11 @@ function theater(capacity){
     listItem;
     listContainer2.setAttribute("id", "seatList")
     document.getElementById('demo').appendChild(listContainer2);
- 
     for (var i = 1; i <=capacity; ++i) {
           listItem = document.createElement('button');
           listItem.setAttribute("id", "seat" + i);
           listItem.setAttribute("class", "seat");
-          listItem.setAttribute('onclick', 'select_seat(id)');
+           listItem.setAttribute('onclick', 'select_seat(id)');
           listItem.insertAdjacentHTML('afterbegin', i);
           listItem.setAttribute("style", "cursor: pointer;");
           listContainer2.appendChild(listItem);    
@@ -154,14 +162,18 @@ function theater(capacity){
              listContainer2.appendChild(listItem);
             listContainer2.appendChild(document.createTextNode("ΕΔΡΑ"));
   }
-
+let selected=[];
   function select_seat(id) {
-   const x=document.getElementById(id);
-   x.style.backgroundColor='green'
-  
-   console.log(x.id);
-   occupied(x.id);
+    const x=document.getElementById(id);
+    selected.push(x.value);
+    if(selected.length==1){
+        x.style.backgroundColor='green';
+
+    }
+    // document.write('You have selected 1 seat');
+    occupied(x.id);
   }
+
 
   function occupied(x){
     var occupiedSeats = [];
