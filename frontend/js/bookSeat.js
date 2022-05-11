@@ -115,22 +115,12 @@ class Course {
     }
         return (0)
   }
- 
+
   function validateList() {
       let x = document.getElementById("Myid").value;
-      console.log(x);
       capacity = findCourse(x);
-      theater(capacity);
-        if(x==="ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ"){
-          
-            theater(capacity);
-        }else if(x==="ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ"){
-
-        }else if(x==="ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ"){
-
-        }else if(x==="ΑΛΓΟΡΙΘΜΟΙ"){
-
-        }
+      console.log(x);
+       theater(capacity);
   }
 
 
@@ -169,21 +159,11 @@ let selected=[];
     if(selected.length==1){
         x.style.backgroundColor='green';
 
+    }else{
+      x.style.backgroundColor='grey';
     }
-    // document.write('You have selected 1 seat');
-    occupied(x.id);
   }
 
-
-  function occupied(x){
-    var occupiedSeats = [];
-    occupiedSeats.push(x);
-    changeColor(occupiedSeats); 
-  }
-
-  function changeColor(seats){
-  
-  }
 
   window.onload = makeList();
     document.getElementById("chooseButton").addEventListener("click", validateList);
