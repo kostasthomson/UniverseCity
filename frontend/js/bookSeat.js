@@ -94,7 +94,7 @@ class Course {
       document.getElementById('list').appendChild(listContainer);
     
       listContainer.appendChild(listElement).appendChild(listElement2);
-      listElement2.setAttribute("id", "Myid")
+      listElement2.setAttribute("id", "SelectCourseList")
 
       
     function makeList() {
@@ -117,7 +117,7 @@ class Course {
   }
 
   function validateList() {
-      let x = document.getElementById("Myid").value;
+      let x = document.getElementById("SelectCourseList").value;
       capacity = findCourse(x);
       console.log(x);
        theater(capacity);
@@ -129,7 +129,7 @@ function theater(capacity){
     let listContainer2 = document.createElement('div'),
     listItem;
     listContainer2.setAttribute("id", "seatList")
-    document.getElementById('demo').appendChild(listContainer2);
+    document.getElementById('seatContainer01').appendChild(listContainer2);
     for (var i = 1; i <=capacity; ++i) {
           listItem = document.createElement('button');
           listItem.setAttribute("id", "seat" + i);
