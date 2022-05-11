@@ -47,7 +47,7 @@ class Course {
     }
 
 
-// { Test01
+
 
 { 
   var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 230);
@@ -76,7 +76,6 @@ class Course {
   User01.addCourse(AIC105);
   //console.log(User01);
 }
-  // }
 
 
   // List Initialization
@@ -120,7 +119,16 @@ class Course {
       let x = document.getElementById("SelectCourseList").value;
       capacity = findCourse(x);
       console.log(x);
+      if (!document.getElementById('seatList')) {
        theater(capacity);
+      }
+      else if(document.getElementById('seatList')) {
+        const element = document.getElementById('seatList');
+        element.remove();
+        const desk_element = document.getElementById('desk');
+        desk_element.remove();
+        theater(capacity);
+      }
   }
 
 
@@ -134,7 +142,7 @@ function theater(capacity){
           listItem = document.createElement('button');
           listItem.setAttribute("id", "seat" + i);
           listItem.setAttribute("class", "seat");
-           listItem.setAttribute('onclick', 'select_seat(id)');
+         //  listItem.setAttribute('onclick', 'select_seat(id)');
           listItem.insertAdjacentHTML('afterbegin', i);
           listItem.setAttribute("style", "cursor: pointer;");
           listContainer2.appendChild(listItem);    
@@ -143,27 +151,35 @@ function theater(capacity){
   }
   
   function makeDesk(){
-    let listContainer2 = document.createElement('div'),
-          listItem;
-          listContainer2.setAttribute("id", "deskList")
-          document.getElementById('screen').appendChild(listContainer2);
-          listItem = document.createElement('div');
-            listItem.setAttribute("id", "desk") 
-             listContainer2.appendChild(listItem);
-            listContainer2.appendChild(document.createTextNode("ΕΔΡΑ"));
+    let deskElement = document.createElement('div');
+          deskElement.setAttribute("id", "desk");
+          deskElement.setAttribute("class", "desk");
+          document.getElementById('screen').appendChild(deskElement);
+          var desk_text = document.createElement('p');
+          desk_text.setAttribute('class', 'desk_text');
+          deskElement.appendChild(desk_text);
+          desk_text.appendChild(document.createTextNode('ΕΔΡΑ'));
   }
-let selected=[];
-  function select_seat(id) {
-    const x=document.getElementById(id);
-    selected.push(x.value);
-    if(selected.length==1){
-        x.style.backgroundColor='green';
+  
+  // Dokimh01 12/05
 
-    }else{
-      x.style.backgroundColor='grey';
-    }
+  const container = document.querySelector('.seatContainer');
+
+  container.addEventListener('click', (e) => {
+      if (e.target.classList.contains('seat') && onlyOneSeat()) {
+      e.target.classList.toggle('selected');
+      }
+      else if(e.target.classList.contains('seat') && (e.target.classList.contains('selected') && !onlyOneSeat())) {
+        e.target.classList.remove('selected');
+      }
+  })
+
+  function onlyOneSeat() {
+      if (document.getElementsByClassName('selected').length>=1) {
+        return false; 
+      }
+        return true;
   }
-
 
   window.onload = makeList();
     document.getElementById("chooseButton").addEventListener("click", validateList);
