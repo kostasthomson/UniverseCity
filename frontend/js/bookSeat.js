@@ -2,12 +2,14 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
 
 // Test classes, todo get data from database with php
 //------------------ TEST CLASSES DECLARATION START ------------------
+
 class Course {
         constructor(name, code, availableSeats) {
             this.name = name;
             this.code = code;
             this.availableSeats = availableSeats;
             Classroom;
+            
         }
 
         setClassroom(Classroom) {
@@ -53,7 +55,7 @@ class User {
 
 //------------------ TEST DATA START ------------------
 { 
-  var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 180);
+  var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 168);
   var AMF9 = new Classroom('Αμφιθέατρο 9', 'AMF', 09, 01, 90);
   var ERG334 = new Classroom('Εργαστήριο 334', 'LAB', 334, 03, 48);
   
@@ -82,6 +84,9 @@ class User {
 
 //------------------ TEST DATA END ------------------
 
+//date
+let dateElement = new Date;
+document.querySelector('.date').insertAdjacentHTML('afterbegin', dateElement.toDateString());
 
   // List Initialization
   let listData = [];
@@ -162,24 +167,24 @@ function theater(capacity, type){ //not final
         document.getElementById('seatContainer01').appendChild(seatBoxContainer);
 
         // Left Container Loop
-        for (var i=1; i<=capacity/2; i++) {
+        for (var i=0; i<capacity; i++) {
             let listItem = document.createElement('button');
-            listItem.setAttribute('id', 'seat'+i);
+            listItem.setAttribute('id', 'seat'+(i+1));
             listItem.setAttribute('class', 'seat');
-            listItem.insertAdjacentHTML('afterbegin', i);
+            listItem.insertAdjacentHTML('afterbegin', i+1);
             listItem.setAttribute('style', 'cursor: pointer;');
-            leftContainer.appendChild(listItem);
+            if(i%14<7){ // 7 seats in each side in each row
+                leftContainer.appendChild(listItem);
+            }
+            else{
+                rightContainer.appendChild(listItem);
+            }
+        }
+        // Forbidden seats
+        for (i=0; i<capacity/12; i++) { //First 14 seats
+            document.getElementById('seat'+(i+1)).classList.toggle('forbidden');
         }
 
-        // Right Container Loop
-        for (i; i<=capacity; i++) {
-            let listItem = document.createElement('button');
-            listItem.setAttribute('id', 'seat'+i);
-            listItem.setAttribute('class', 'seat');
-            listItem.insertAdjacentHTML('afterbegin', i);
-            listItem.setAttribute('style', 'cursor: pointer;');
-            rightContainer.appendChild(listItem);
-        }
     }
     
     // TYPE = LAB (Computer lab) capacity 48?
@@ -244,15 +249,15 @@ function theater(capacity, type){ //not final
 
   // Only one seat can be selected at a time
   container.addEventListener('click', (e) => {
-      if (e.target.classList.contains('seat') && onlyOneSeat()) {
+      if (e.target.classList.contains('seat') && validSeat() && !e.target.classList.contains('forbidden')) {
       e.target.classList.toggle('selected');
       }
-      else if(e.target.classList.contains('seat') && (e.target.classList.contains('selected') && !onlyOneSeat())) {
+      else if(e.target.classList.contains('seat') && (e.target.classList.contains('selected') && !validSeat())) {
         e.target.classList.remove('selected');
       }
   })
 
-  function onlyOneSeat() {
+  function validSeat() {
       if (document.getElementsByClassName('selected').length>=1) {
         return false; 
       }
