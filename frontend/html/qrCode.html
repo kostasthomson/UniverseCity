@@ -6,33 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../css/qrCode.css" />
-    <script src="html5-qrcode.min.js"></script>
+    <!-- <script
+      src="https://unpkg.com/html5-qrcode"
+      type="text/javascript"
+    ></script> -->
   </head>
 
   <body>
-    <div style="width: 500px" id="reader"></div>
+
+
+
+
+
+    <!-- <div style="width: 500px" id="reader"></div>
     <script>
       function onScanSuccess(decodedText, decodedResult) {
         // Handle on success condition with the decoded text or result.
         console.log(`Scan result: ${decodedText}`, decodedResult);
       }
 
+      function onScanError(errorMessage) {
+        // handle on error condition, with error message
+      }
+
       var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
         fps: 10,
         qrbox: 250,
       });
-      html5QrcodeScanner.render(onScanSuccess);
-    </script>
-    <!-- <script src="../js/html5-qrcode.min.js"></script>
-    <div class="row">
-      <div class="col">
-        <div style="width: 500px" id="reader"></div>
-      </div>
-      <div class="col" style="padding: 30px">
-        <h4>SCAN RESULT</h4>
-        <div id="result">Result Here</div>
-      </div>
-    </div>
-    <script src="../js/qrCode.js"></script> -->
+      html5QrcodeScanner.render(onScanSuccess, onScanError);
+    </script> -->
+    
   </body>
 </html>
