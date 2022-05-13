@@ -226,12 +226,69 @@ function theater(capacity, type){ //not final
             rightContainer.appendChild(listItem);
         }
     }
-
-
-
+    let selectBtn = document.getElementById('selectBtn');
+    selectBtn.style.display = 'flex'
     
   }
+
+  // Make select button
+  function makeSelectBtn() {
+    let selectBtn = document.createElement('button');
+    selectBtn.setAttribute('id', 'selectBtn');
+    selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
+    document.getElementById('seatContainer01').append(selectBtn); 
+
+  }
+
+  //todo Yes/No button inside modal (php later)
+  // fix button position
+  // button works only when seat selected!!
+
   
+  function modalHide(selectModal, closeElement) {
+
+        var selectBtn = document.getElementById('selectBtn');
+
+        selectBtn.onclick = function() {
+            selectModal.style.display = 'block';
+        }
+
+        closeElement.onclick = function() {
+            selectModal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == selectModal) {
+                selectModal.style.display = 'none';
+            }
+        }
+    }
+  
+function makeModal() {
+    let selectModal = document.createElement('div');
+    selectModal.setAttribute('id', 'selectModal');
+    selectModal.setAttribute('class', 'modal');
+
+    let modalContent = document.createElement('div');
+    modalContent.setAttribute('class', 'modal-content');
+    
+
+    let closeElement = document.createElement('span');
+    closeElement.setAttribute('class', 'close');
+    closeElement.insertAdjacentHTML('afterbegin','&times;');
+    modalContent.appendChild(closeElement);
+
+    let modalText = document.createElement('p')
+    modalText.setAttribute('class', 'modalText');
+    modalText.insertAdjacentHTML('afterbegin', 'test test test');
+    modalContent.appendChild(modalText);
+
+
+    selectModal.appendChild(modalContent);
+    document.body.append(selectModal);
+    modalHide(selectModal, closeElement);
+    }
+
   function makeDesk(){
     let deskElement = document.createElement('div');
           deskElement.setAttribute("id", "desk");
@@ -265,5 +322,7 @@ function theater(capacity, type){ //not final
   }
 
   window.onload = makeList();
+  window.onload = makeSelectBtn();
+  window.onload = makeModal();
     document.getElementById("chooseButton").addEventListener("click", validateList);
      
