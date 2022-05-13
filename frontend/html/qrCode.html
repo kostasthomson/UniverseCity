@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../css/qrCode.css" />
-</head>
+    <script src="html5-qrcode.min.js"></script>
+  </head>
 
-<body>
-    <script src="../js/html5-qrcode.min.js"></script>
+  <body>
+    <div style="width: 500px" id="reader"></div>
+    <script>
+      function onScanSuccess(decodedText, decodedResult) {
+        // Handle on success condition with the decoded text or result.
+        console.log(`Scan result: ${decodedText}`, decodedResult);
+      }
+
+      var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+        fps: 10,
+        qrbox: 250,
+      });
+      html5QrcodeScanner.render(onScanSuccess);
+    </script>
+    <!-- <script src="../js/html5-qrcode.min.js"></script>
     <div class="row">
-        <div class="col">
-            <div style="width: 500px" id="reader"></div>
-        </div>
-        <div class="col" style="padding: 30px">
-            <h4>SCAN RESULT</h4>
-            <div id="result">Result Here</div>
-        </div>
+      <div class="col">
+        <div style="width: 500px" id="reader"></div>
+      </div>
+      <div class="col" style="padding: 30px">
+        <h4>SCAN RESULT</h4>
+        <div id="result">Result Here</div>
+      </div>
     </div>
-    <script src="../js/qrCode.js"></script>
-</body>
-
+    <script src="../js/qrCode.js"></script> -->
+  </body>
 </html>
