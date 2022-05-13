@@ -23,7 +23,7 @@ function onScanSuccess(qrCodeMessage) {
     alert("Element exists");
   } else {
     alert("Element does not exist");
-  }
+  } 
 }
 function onScanError(errorMessage) {
   //handle scan error
