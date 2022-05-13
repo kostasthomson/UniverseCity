@@ -1,11 +1,15 @@
 var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ','ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ','ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ']};
 
+// Test classes, todo get data from database with php
+//------------------ TEST CLASSES DECLARATION START ------------------
+
 class Course {
         constructor(name, code, availableSeats) {
             this.name = name;
             this.code = code;
             this.availableSeats = availableSeats;
             Classroom;
+            
         }
 
         setClassroom(Classroom) {
@@ -23,8 +27,8 @@ class Course {
         }
     }
 
-    // Test Class
-    class Classroom {
+
+class Classroom {
         constructor(name, type, code, floor, capacity) {
                 this.name = name;
                 this.type = type;
@@ -35,7 +39,7 @@ class Course {
         
     }
 
-    class User {
+class User {
         constructor(name) {
             this.name;
             this.CourseList = [];
@@ -46,18 +50,19 @@ class Course {
          }
     }
 
+//------------------ TEST CLASSES DECLARATION END ------------------
 
-// { Test01
 
+//------------------ TEST DATA START ------------------
 { 
-  var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 230);
+  var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 168);
   var AMF9 = new Classroom('Αμφιθέατρο 9', 'AMF', 09, 01, 90);
-  var ERG334 = new Classroom('Εργαστήριο 334', 'LAB', 334, 03, 36);
+  var ERG334 = new Classroom('Εργαστήριο 334', 'LAB', 334, 03, 48);
   
   
   var AIC101 = new Course('ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΙΚΤΥΟΥ', 'AIC101');
   AIC101.setClassroom(ERG334);
-  var AIC102 = new Course('ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'AIC102');
+  var AIC102 = new Course('ΤΕΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'AIC102');
   AIC102.setClassroom(AMF12);
   var AIC103 = new Course('ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ', 'AIC103');
   AIC103.setClassroom(AMF12);
@@ -76,8 +81,12 @@ class Course {
   User01.addCourse(AIC105);
   //console.log(User01);
 }
-  // }
 
+//------------------ TEST DATA END ------------------
+
+//date
+let dateElement = new Date;
+document.querySelector('.date').insertAdjacentHTML('afterbegin', dateElement.toDateString());
 
   // List Initialization
   let listData = [];
@@ -87,92 +96,233 @@ class Course {
   }
 
 
-  let listContainer = document.createElement('div'),
-      listElement = document.createElement('form'),
-      listElement2 = document.createElement('select'),
-      listItem;
-      document.getElementById('list').appendChild(listContainer);
-    
-      listContainer.appendChild(listElement).appendChild(listElement2);
-      listElement2.setAttribute("id", "Myid")
-
-
-      
+    // List containing the courses
     function makeList() {
+      let formElement = document.createElement('form'),
+      selectElement = document.createElement('select'),
+      listItem;
+      document.getElementById('list').appendChild(formElement).appendChild(selectElement);
+      selectElement.setAttribute("id", "SelectCourseList");
       for (i = 0; i < listData.length; ++i) {
           listItem = document.createElement('option');
   
           listItem.innerHTML = listData[i].name;
-          // Add listItem to the listElement
-          listElement2.appendChild(listItem);
+          // Add listItem to the selectElement
+          selectElement.appendChild(listItem);
       }
   }
 
+
+  // Find Course. Return Classroom item
   function findCourse(x) {
     for (i=0; listData.length; i++) {
         if (listData[i].name == x) {
-             return listData[i].Classroom.capacity;
+             return listData[i].Classroom;
         }
     }
         return (0)
   }
 
-  function validateList() {
-      let x = document.getElementById("Myid").value;
-      capacity = findCourse(x);
 
-      theater(capacity);
+  // Validate List. Check if there is a seat container already drawn
+  function validateList() {
+      let x = document.getElementById("SelectCourseList").value;
+      selectedClassroom = findCourse(x);
+      console.log(x);
+      if (!document.querySelector('.seatBoxContainer')) {
+       theater(selectedClassroom.capacity, selectedClassroom.type);
+      }
+      else if(document.querySelector('.seatBoxContainer')) {
+        const element = document.querySelector('.seatBoxContainer');
+        element.remove();
+        const desk_element = document.querySelector('.desk');
+        desk_element.remove();
+        theater(selectedClassroom.capacity, selectedClassroom.type);
+      }
   }
 
-
-function theater(capacity){
-    makeDesk();
-    let listContainer2 = document.createElement('div'),
-    listItem;
-    listContainer2.setAttribute("id", "seatList")
-    document.getElementById('demo').appendChild(listContainer2);
  
-    for (var i = 1; i <=capacity; ++i) {
-          listItem = document.createElement('button');
-          listItem.setAttribute("id", "seat" + i);
-          listItem.setAttribute("class", "seat");
-          listItem.setAttribute('onclick', 'select_seat(id)');
-          listItem.insertAdjacentHTML('afterbegin', i);
-          listItem.setAttribute("style", "cursor: pointer;");
-          listContainer2.appendChild(listItem);    
-    }    
+
+
+//TEST 01
+
+function theater(capacity, type){ //not final
+    makeDesk();
+    
+    // TYPE = AMF (amphitheater) capacity 180
+    if(type=='AMF') {
+        // main container
+        let seatBoxContainer = document.createElement('div');
+        seatBoxContainer.setAttribute('class', 'seatBoxContainer');
+        // left Container for seats
+        let leftContainer = document.createElement('div');
+        leftContainer.setAttribute('class', 'leftContainer');
+        // right Container for seats
+        let rightContainer = document.createElement('div');
+        rightContainer.setAttribute('class', 'rightContainer');
+
+        seatBoxContainer.appendChild(leftContainer);
+        seatBoxContainer.appendChild(rightContainer);
+
+        document.getElementById('seatContainer01').appendChild(seatBoxContainer);
+
+        // Left Container Loop
+        for (var i=0; i<capacity; i++) {
+            let listItem = document.createElement('button');
+            listItem.setAttribute('id', 'seat'+(i+1));
+            listItem.setAttribute('class', 'seat');
+            listItem.insertAdjacentHTML('afterbegin', i+1);
+            listItem.setAttribute('style', 'cursor: pointer;');
+            if(i%14<7){ // 7 seats in each side in each row
+                leftContainer.appendChild(listItem);
+            }
+            else{
+                rightContainer.appendChild(listItem);
+            }
+        }
+        // Forbidden seats
+        for (i=0; i<capacity/12; i++) { //First 14 seats
+            document.getElementById('seat'+(i+1)).classList.toggle('forbidden');
+        }
+
+    }
+    
+    // TYPE = LAB (Computer lab) capacity 48?
+
+    // Needs if statements for every type. For now --> else = same with AMF
+    else {
+        // main container
+        let seatBoxContainer = document.createElement('div');
+        seatBoxContainer.setAttribute('class', 'seatBoxContainer');
+        // left Container for seats
+        let leftContainer = document.createElement('div');
+        leftContainer.setAttribute('class', 'leftContainer');
+        // right Container for seats
+        let rightContainer = document.createElement('div');
+        rightContainer.setAttribute('class', 'rightContainer');
+
+        seatBoxContainer.appendChild(leftContainer);
+        seatBoxContainer.appendChild(rightContainer);
+
+        document.getElementById('seatContainer01').appendChild(seatBoxContainer);
+
+        // Left Container Loop
+        for (var i=1; i<=capacity/2; i++) {
+            let listItem = document.createElement('button');
+            listItem.setAttribute('id', 'seat'+i);
+            listItem.setAttribute('class', 'seat');
+            listItem.insertAdjacentHTML('afterbegin', i);
+            listItem.setAttribute('style', 'cursor: pointer;');
+            leftContainer.appendChild(listItem);
+        }
+
+        // Right Container Loop
+        for (i; i<=capacity; i++) {
+            let listItem = document.createElement('button');
+            listItem.setAttribute('id', 'seat'+i);
+            listItem.setAttribute('class', 'seat');
+            listItem.insertAdjacentHTML('afterbegin', i);
+            listItem.setAttribute('style', 'cursor: pointer;');
+            rightContainer.appendChild(listItem);
+        }
+    }
+    let selectBtn = document.getElementById('selectBtn');
+    selectBtn.style.display = 'flex'
     
   }
+
+  // Make select button
+  function makeSelectBtn() {
+    let selectBtn = document.createElement('button');
+    selectBtn.setAttribute('id', 'selectBtn');
+    selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
+    document.getElementById('seatContainer01').append(selectBtn); 
+
+  }
+
+  //todo Yes/No button inside modal (php later)
+  // fix button position
+  // button works only when seat selected!!
+
   
+  function modalHide(selectModal, closeElement) {
+
+        var selectBtn = document.getElementById('selectBtn');
+
+        selectBtn.onclick = function() {
+            selectModal.style.display = 'block';
+        }
+
+        closeElement.onclick = function() {
+            selectModal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == selectModal) {
+                selectModal.style.display = 'none';
+            }
+        }
+    }
+  
+function makeModal() {
+    let selectModal = document.createElement('div');
+    selectModal.setAttribute('id', 'selectModal');
+    selectModal.setAttribute('class', 'modal');
+
+    let modalContent = document.createElement('div');
+    modalContent.setAttribute('class', 'modal-content');
+    
+
+    let closeElement = document.createElement('span');
+    closeElement.setAttribute('class', 'close');
+    closeElement.insertAdjacentHTML('afterbegin','&times;');
+    modalContent.appendChild(closeElement);
+
+    let modalText = document.createElement('p')
+    modalText.setAttribute('class', 'modalText');
+    modalText.insertAdjacentHTML('afterbegin', 'test test test');
+    modalContent.appendChild(modalText);
+
+
+    selectModal.appendChild(modalContent);
+    document.body.append(selectModal);
+    modalHide(selectModal, closeElement);
+    }
+
   function makeDesk(){
-    let listContainer2 = document.createElement('div'),
-          listItem;
-          listContainer2.setAttribute("id", "deskList")
-          document.getElementById('screen').appendChild(listContainer2);
-          listItem = document.createElement('div');
-            listItem.setAttribute("id", "desk") 
-             listContainer2.appendChild(listItem);
-            listContainer2.appendChild(document.createTextNode("ΕΔΡΑ"));
+    let deskElement = document.createElement('div');
+          deskElement.setAttribute("id", "desk");
+          deskElement.setAttribute("class", "desk");
+          document.getElementById('screen').appendChild(deskElement);
+          var desk_text = document.createElement('p');
+          desk_text.setAttribute('class', 'desk_text');
+          deskElement.appendChild(desk_text);
+          desk_text.appendChild(document.createTextNode('ΕΔΡΑ')); //final text node?
   }
 
-  function select_seat(id) {
-   const x=document.getElementById(id);
-   x.style.backgroundColor='green'
-  
-   console.log(x.id);
-   occupied(x.id);
-  }
+  // Dokimh01 12/05
 
-  function occupied(x){
-    var occupiedSeats = [];
-    occupiedSeats.push(x);
-    changeColor(occupiedSeats); 
-  }
+  const container = document.querySelector('.seatContainer');
 
-  function changeColor(seats){
-  
+  // Only one seat can be selected at a time
+  container.addEventListener('click', (e) => {
+      if (e.target.classList.contains('seat') && validSeat() && !e.target.classList.contains('forbidden')) {
+      e.target.classList.toggle('selected');
+      }
+      else if(e.target.classList.contains('seat') && (e.target.classList.contains('selected') && !validSeat())) {
+        e.target.classList.remove('selected');
+      }
+  })
+
+  function validSeat() {
+      if (document.getElementsByClassName('selected').length>=1) {
+        return false; 
+      }
+        return true;
   }
 
   window.onload = makeList();
+  window.onload = makeSelectBtn();
+  window.onload = makeModal();
     document.getElementById("chooseButton").addEventListener("click", validateList);
      

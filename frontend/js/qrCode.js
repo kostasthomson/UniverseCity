@@ -10,7 +10,7 @@ var students = {
   "ics2119": {studentGrade: 6, lesson: "Statistics" },
   "ics2120": {studentGrade: 1, lesson: "MathematicII" },
   "ics2121": {studentGrade: 3, lesson: "MethamaticI" },
-  "http://en.m.wikipedia.org": {studentGrade: 7, lesson: "Statistics" },
+  "http://graficnotes.blogspot.com/": {studentGrade: 7, lesson: "Statistics" },
 }
 
 function onScanSuccess(qrCodeMessage) {
@@ -23,7 +23,7 @@ function onScanSuccess(qrCodeMessage) {
     alert("Element exists");
   } else {
     alert("Element does not exist");
-  }
+  } 
 }
 function onScanError(errorMessage) {
   //handle scan error
