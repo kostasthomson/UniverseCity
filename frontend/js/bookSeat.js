@@ -226,19 +226,36 @@ function theater(capacity, type){ //not final
             rightContainer.appendChild(listItem);
         }
     }
-    let selectBtn = document.getElementById('selectBtn');
-    selectBtn.style.display = 'flex'
+     let selectBtn = document.getElementById('selectBtn');
+     selectBtn.style.display = 'flex'
+  
     
   }
 
   // Make select button
   function makeSelectBtn() {
+    //   //Create a div which contains the button
+    // let buttonContainer=document.createElement('div');
+    // buttonContainer.setAttribute('id','buttonContainer');
+    // let selectBtn = document.createElement('button');
+    // selectBtn.setAttribute('id', 'selectBtn');
+    // selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
+   
+    // document.getElementById('seatContainer01').appendChild(buttonContainer);
+  
+ 
     let selectBtn = document.createElement('button');
     selectBtn.setAttribute('id', 'selectBtn');
     selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
     document.getElementById('seatContainer01').append(selectBtn); 
+    //  selectBtn.style.bottom='50px';
 
+     selectBtn.style.position='absolute';
+     
+    
   }
+
+
 
   //todo Yes/No button inside modal (php later)
   // fix button position
@@ -280,8 +297,22 @@ function makeModal() {
 
     let modalText = document.createElement('p')
     modalText.setAttribute('class', 'modalText');
-    modalText.insertAdjacentHTML('afterbegin', 'test test test');
+    modalText.insertAdjacentHTML('afterbegin', 'Έχετε επιλέξει μια θέση είστε σίγουρος ότι θέλετε να συνεχίσετε για την κράτησή της; ' + '\n');
+    let choosebtnYes= document.createElement('button');
+    choosebtnYes.setAttribute('class','chbtn');
+    let choosebtnNo= document.createElement('button');
+    choosebtnNo.setAttribute('class','chbtn');
+    let textYes =("Ναι");
+    let textNo=("Όχι");
+    choosebtnYes.insertAdjacentHTML('afterbegin',textYes);
+    choosebtnNo.insertAdjacentHTML('afterbegin',textNo);
     modalContent.appendChild(modalText);
+    modalContent.appendChild(choosebtnYes);
+    modalContent.appendChild(choosebtnNo);
+    
+   
+    
+   
 
 
     selectModal.appendChild(modalContent);
@@ -321,8 +352,9 @@ function makeModal() {
         return true;
   }
 
+
   window.onload = makeList();
   window.onload = makeSelectBtn();
-  window.onload = makeModal();
-    document.getElementById("chooseButton").addEventListener("click", validateList);
+  document.getElementById('selectBtn').addEventListener("click",makeModal);
+ document.getElementById("chooseButton").addEventListener("click", validateList);
      
