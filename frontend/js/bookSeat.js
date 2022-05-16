@@ -255,14 +255,20 @@ function theater(capacity, type){ //not final
   // fix button position
   // button works only when seat selected!!
 
+
   
-  function modalHide(selectModal, closeElement) {
+  function modalToggle() {
 
         var selectBtn = document.getElementById('selectBtn');
+        var selectModal = document.getElementById('selectModal');
+        var closeElement = document.getElementById('closeElement');
 
-        selectBtn.onclick = function() {
-            selectModal.style.display = 'block';
+        if (validSeat) { // doesn't fully work. should only work when seat is selected
+            selectBtn.onclick = function() {
+                selectModal.style.display = 'block';
+            }
         }
+        
 
         closeElement.onclick = function() {
             selectModal.style.display = 'none';
@@ -278,45 +284,44 @@ function theater(capacity, type){ //not final
   
 function makeModal() {
     
-      
     
-        let selectModal = document.createElement('div');
-        selectModal.setAttribute('id', 'selectModal');
-        selectModal.setAttribute('class', 'modal');
+            let selectModal = document.createElement('div');
+            selectModal.setAttribute('id', 'selectModal');
+            selectModal.setAttribute('class', 'modal');
 
-        let modalContent = document.createElement('div');
-        modalContent.setAttribute('class', 'modal-content');
-        
+            let modalContent = document.createElement('div');
+            modalContent.setAttribute('class', 'modal-content');
+            
 
-        let closeElement = document.createElement('span');
-        closeElement.setAttribute('class', 'close');
-        closeElement.insertAdjacentHTML('afterbegin','&times;');
-        modalContent.appendChild(closeElement);
+            let closeElement = document.createElement('span');
+            closeElement.setAttribute('class', 'close');
+            closeElement.setAttribute('id', 'closeElement');
+            closeElement.insertAdjacentHTML('afterbegin','&times;');
+            modalContent.appendChild(closeElement);
 
-        let modalText = document.createElement('p')
-        modalText.setAttribute('class', 'modalText');
-        modalText.insertAdjacentHTML('afterbegin', 'Έχετε επιλέξει μια θέση είστε σίγουρος ότι θέλετε να συνεχίσετε για την κράτησή της; ');
-        let choosebtnYes= document.createElement('button');
-        choosebtnYes.setAttribute('class','chbtn');
-        let choosebtnNo= document.createElement('button');
-        choosebtnNo.setAttribute('class','chbtn');
-        choosebtnYes.value =("Ναι");
-        choosebtnNo.value=("Όχι");
-        choosebtnYes.insertAdjacentHTML('afterbegin',choosebtnYes.value );
-        choosebtnNo.insertAdjacentHTML('afterbegin',choosebtnNo.value );
-        modalContent.appendChild(modalText);
-        modalContent.appendChild(choosebtnYes);
-        modalContent.appendChild(choosebtnNo);
+            let modalText = document.createElement('p')
+            modalText.setAttribute('class', 'modalText');
+            modalText.insertAdjacentHTML('afterbegin', 'Έχετε επιλέξει μια θέση είστε σίγουρος ότι θέλετε να συνεχίσετε για την κράτησή της; ');
+            let choosebtnYes= document.createElement('button');
+            choosebtnYes.setAttribute('class','chbtn');
+            let choosebtnNo= document.createElement('button');
+            choosebtnNo.setAttribute('class','chbtn');
+            choosebtnYes.value =("Ναι");
+            choosebtnNo.value=("Όχι");
+            choosebtnYes.insertAdjacentHTML('afterbegin',choosebtnYes.value );
+            choosebtnNo.insertAdjacentHTML('afterbegin',choosebtnNo.value );
+            modalContent.appendChild(modalText);
+            modalContent.appendChild(choosebtnYes);
+            modalContent.appendChild(choosebtnNo);
+            
         
     
-   
- 
-   
+    
+    
 
 
-    selectModal.appendChild(modalContent);
-    document.body.append(selectModal);
-    modalHide(selectModal, closeElement);
+            selectModal.appendChild(modalContent);
+            document.body.append(selectModal);  
     }
 
  
@@ -355,6 +360,7 @@ function makeModal() {
 
   window.onload = makeList();
   window.onload = makeSelectBtn();
-  document.getElementById('selectBtn').addEventListener("click",makeModal);
+  window.onload = makeModal();
+  document.getElementById('selectBtn').addEventListener("click",modalToggle);
  document.getElementById("chooseButton").addEventListener("click", validateList);
      
