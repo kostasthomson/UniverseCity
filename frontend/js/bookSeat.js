@@ -128,7 +128,7 @@ document.querySelector('.date').insertAdjacentHTML('afterbegin', dateElement.toD
   function validateList() {
       let x = document.getElementById("SelectCourseList").value;
       selectedClassroom = findCourse(x);
-      console.log(x);
+     
       if (!document.querySelector('.seatBoxContainer')) {
        theater(selectedClassroom.capacity, selectedClassroom.type);
       }
@@ -228,30 +228,24 @@ function theater(capacity, type){ //not final
     }
      let selectBtn = document.getElementById('selectBtn');
      selectBtn.style.display = 'flex'
+   
   
     
   }
+  
 
   // Make select button
   function makeSelectBtn() {
-    //   //Create a div which contains the button
-    // let buttonContainer=document.createElement('div');
-    // buttonContainer.setAttribute('id','buttonContainer');
-    // let selectBtn = document.createElement('button');
-    // selectBtn.setAttribute('id', 'selectBtn');
-    // selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
-   
-    // document.getElementById('seatContainer01').appendChild(buttonContainer);
+
   
  
     let selectBtn = document.createElement('button');
     selectBtn.setAttribute('id', 'selectBtn');
     selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
     document.getElementById('seatContainer01').append(selectBtn); 
-    //  selectBtn.style.bottom='50px';
+    //   selectBtn.style.bottom='50px';
 
      selectBtn.style.position='absolute';
-     
     
   }
 
@@ -280,38 +274,43 @@ function theater(capacity, type){ //not final
             }
         }
     }
+
   
 function makeModal() {
-    let selectModal = document.createElement('div');
-    selectModal.setAttribute('id', 'selectModal');
-    selectModal.setAttribute('class', 'modal');
-
-    let modalContent = document.createElement('div');
-    modalContent.setAttribute('class', 'modal-content');
     
+      
+    
+        let selectModal = document.createElement('div');
+        selectModal.setAttribute('id', 'selectModal');
+        selectModal.setAttribute('class', 'modal');
 
-    let closeElement = document.createElement('span');
-    closeElement.setAttribute('class', 'close');
-    closeElement.insertAdjacentHTML('afterbegin','&times;');
-    modalContent.appendChild(closeElement);
+        let modalContent = document.createElement('div');
+        modalContent.setAttribute('class', 'modal-content');
+        
 
-    let modalText = document.createElement('p')
-    modalText.setAttribute('class', 'modalText');
-    modalText.insertAdjacentHTML('afterbegin', 'Έχετε επιλέξει μια θέση είστε σίγουρος ότι θέλετε να συνεχίσετε για την κράτησή της; ' + '\n');
-    let choosebtnYes= document.createElement('button');
-    choosebtnYes.setAttribute('class','chbtn');
-    let choosebtnNo= document.createElement('button');
-    choosebtnNo.setAttribute('class','chbtn');
-    let textYes =("Ναι");
-    let textNo=("Όχι");
-    choosebtnYes.insertAdjacentHTML('afterbegin',textYes);
-    choosebtnNo.insertAdjacentHTML('afterbegin',textNo);
-    modalContent.appendChild(modalText);
-    modalContent.appendChild(choosebtnYes);
-    modalContent.appendChild(choosebtnNo);
+        let closeElement = document.createElement('span');
+        closeElement.setAttribute('class', 'close');
+        closeElement.insertAdjacentHTML('afterbegin','&times;');
+        modalContent.appendChild(closeElement);
+
+        let modalText = document.createElement('p')
+        modalText.setAttribute('class', 'modalText');
+        modalText.insertAdjacentHTML('afterbegin', 'Έχετε επιλέξει μια θέση είστε σίγουρος ότι θέλετε να συνεχίσετε για την κράτησή της; ');
+        let choosebtnYes= document.createElement('button');
+        choosebtnYes.setAttribute('class','chbtn');
+        let choosebtnNo= document.createElement('button');
+        choosebtnNo.setAttribute('class','chbtn');
+        choosebtnYes.value =("Ναι");
+        choosebtnNo.value=("Όχι");
+        choosebtnYes.insertAdjacentHTML('afterbegin',choosebtnYes.value );
+        choosebtnNo.insertAdjacentHTML('afterbegin',choosebtnNo.value );
+        modalContent.appendChild(modalText);
+        modalContent.appendChild(choosebtnYes);
+        modalContent.appendChild(choosebtnNo);
+        
     
    
-    
+ 
    
 
 
@@ -320,6 +319,7 @@ function makeModal() {
     modalHide(selectModal, closeElement);
     }
 
+ 
   function makeDesk(){
     let deskElement = document.createElement('div');
           deskElement.setAttribute("id", "desk");
