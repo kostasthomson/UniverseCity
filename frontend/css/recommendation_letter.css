@@ -1,17 +1,70 @@
-table {
-    border-collapse: collapse;
+header{
+    
+    text-transform: capitalize;
+    text-align: center;
+    font-size: calc(20px + 1.5vw);
+    font-weight: 300;
+    margin-bottom: 50px;
+    color: #366c77; 
+    margin-top: 25px;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0);
+    font-family: 'roboto', sans-serif;
+    flex-direction:column;
+}
+
+:focus {
+    outline: none;
+}
+
+.form{
+    min-width: 200px;
+    width: 60vw;
+    height: auto;
+    border-radius: 25px;
+    background:#366c77;
+    border-width: 1px;
+    font-family: 'roboto', sans-serif;
+    box-shadow:
+    4.5px 3.9px 0px rgba(0, 0, 0, 0.07),
+    36px 31px 0px rgba(0, 0, 0, 0.14);
+  
+}
+
+textarea {
+    font-size: 20px;
+}
+
+#teacher,#student,#subjects{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ol,ul{
+    text-align: left;
 }
 
 td,
 th {
     border: 1px solid black;
     padding: 3px 8px;
-}
-
-th {
     text-align: left;
+    
 }
 
-body {
-    padding: 50px;
-}
+input[type=text] {
+    padding: 4px 20px;
+    margin: 3px 0;
+    box-sizing: border-box;
+    background-color:bisque;
+  }
