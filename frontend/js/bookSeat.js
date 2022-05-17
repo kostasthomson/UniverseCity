@@ -103,8 +103,11 @@ document.querySelector('.date').insertAdjacentHTML('afterbegin', dateElement.toD
       listItem;
       document.getElementById('list').appendChild(formElement).appendChild(selectElement);
       selectElement.setAttribute("id", "SelectCourseList");
+      listItem = document.createElement('option');
+      listItem.innerHTML = '-- Επιλογή Μαθήματος --'; // change validateList to ignore this
+      selectElement.appendChild(listItem);
       for (i = 0; i < listData.length; ++i) {
-          listItem = document.createElement('option');
+          listItem = document.createElement('option'); // !!!!!!!!!!!!!!! value attribute, check if possible
   
           listItem.innerHTML = listData[i].name;
           // Add listItem to the selectElement
@@ -127,18 +130,21 @@ document.querySelector('.date').insertAdjacentHTML('afterbegin', dateElement.toD
   // Validate List. Check if there is a seat container already drawn
   function validateList() {
       let x = document.getElementById("SelectCourseList").value;
-      selectedClassroom = findCourse(x);
-     
-      if (!document.querySelector('.seatBoxContainer')) {
-       theater(selectedClassroom.capacity, selectedClassroom.type);
+      if (!(x == '-- Επιλογή Μαθήματος --')) { // temp solution with string !!!!
+            selectedClassroom = findCourse(x);
+        
+            if (!document.querySelector('.seatBoxContainer')) {
+            theater(selectedClassroom.capacity, selectedClassroom.type);
+            }
+            else if(document.querySelector('.seatBoxContainer')) {
+            const element = document.querySelector('.seatBoxContainer');
+            element.remove();
+            const desk_element = document.querySelector('.desk');
+            desk_element.remove();
+            theater(selectedClassroom.capacity, selectedClassroom.type);
+            }
       }
-      else if(document.querySelector('.seatBoxContainer')) {
-        const element = document.querySelector('.seatBoxContainer');
-        element.remove();
-        const desk_element = document.querySelector('.desk');
-        desk_element.remove();
-        theater(selectedClassroom.capacity, selectedClassroom.type);
-      }
+      
   }
 
  
