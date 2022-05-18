@@ -88,61 +88,79 @@ class User {
 let dateElement = new Date;
 document.querySelector('.date').insertAdjacentHTML('afterbegin', dateElement.toDateString());
 
-  // List Initialization
-  let listData = [];
-  for (var i = 0; i <User01.CourseList.length; i++) {
-      listData[i] = User01.CourseList[i];
-      //console.log(listData[i]);
-  }
 
 
-    // List containing the courses
+
+    // List containing the User's courses
     function makeList() {
       let formElement = document.createElement('form'),
-      selectElement = document.createElement('select'),
-      listItem;
+      selectElement = document.createElement('select');
+
       document.getElementById('list').appendChild(formElement).appendChild(selectElement);
       selectElement.setAttribute("id", "SelectCourseList");
+      // Default-First option
       listItem = document.createElement('option');
-      listItem.innerHTML = '-- Επιλογή Μαθήματος --'; // change validateList to ignore this
+      listItem.innerHTML = '-- Επιλογή Μαθήματος --'; 
+      listItem.setAttribute('value', 'ignore');
       selectElement.appendChild(listItem);
-      for (i = 0; i < listData.length; ++i) {
-          listItem = document.createElement('option'); // !!!!!!!!!!!!!!! value attribute, check if possible
-  
-          listItem.innerHTML = listData[i].name;
+
+      // Dynamic list initialization
+      for (i = 0; i < User01.CourseList.length; ++i) {
+          // Create listItem
+          listItem = document.createElement('option');
+
+          // The value of the option is the Course's code
+          listItem.setAttribute('value', User01.CourseList[i].code);
+
+          // The name of the Course is displayed to the user
+          listItem.innerHTML = User01.CourseList[i].name;
+
           // Add listItem to the selectElement
           selectElement.appendChild(listItem);
       }
   }
 
 
-  // Find Course. Return Classroom item
+
+
+  // find the course in the User's list and return the classroom
   function findCourse(x) {
-    for (i=0; listData.length; i++) {
-        if (listData[i].name == x) {
-             return listData[i].Classroom;
+        for (i=0; i<User01.CourseList.length; i++) {
+            if (x == User01.CourseList[i].code) {
+                return User01.CourseList[i].Classroom;
+            }
+          }
+      return console.log('Wrong Course code!');
+  }
+
+  // Simple check, could add more in the future
+  function ListValueCheck(x) {
+        if (!(x == 'ignore')) {
+            return true;
         }
-    }
-        return (0)
+        return false;
   }
 
 
   // Validate List. Check if there is a seat container already drawn
   function validateList() {
-      let x = document.getElementById("SelectCourseList").value;
-      if (!(x == '-- Επιλογή Μαθήματος --')) { // temp solution with string !!!!
-            selectedClassroom = findCourse(x);
+      let ListValue = document.getElementById("SelectCourseList").value;
+      if (ListValueCheck(ListValue)) { 
+            selectedClassroom = findCourse(ListValue);
         
             if (!document.querySelector('.seatBoxContainer')) {
             theater(selectedClassroom.capacity, selectedClassroom.type);
             }
-            else if(document.querySelector('.seatBoxContainer')) {
+            else if(document.querySelector('.seatBoxContainer')) { // remove a seat Container if there is already something
             const element = document.querySelector('.seatBoxContainer');
             element.remove();
             const desk_element = document.querySelector('.desk');
             desk_element.remove();
             theater(selectedClassroom.capacity, selectedClassroom.type);
             }
+      }
+      else {
+          console.log('SelectCourseList value default or incorrect!')
       }
       
   }
