@@ -6,7 +6,7 @@
     $table_name = "STUDENT";
     $table_columns = array("am" => "TEXT", "Name" => "TEXT", "Password" => "TEXT");
 
-    $db = new DataBase("sqlite:../test.db");
+    $db = new DataBase("sqlite:./test.db");
     
     $query = "SELECT * FROM $table_name WHERE am='$user_am' AND Password='$user_pass';";
     $query_done = $db->makeQuery($query);
