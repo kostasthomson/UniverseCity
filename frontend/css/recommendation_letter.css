@@ -35,14 +35,14 @@ body {
     background:#366c77;
     border-width: 1px;
     font-family: 'roboto', sans-serif;
-    box-shadow:
+    /* box-shadow:
     4.5px 3.9px 0px rgba(0, 0, 0, 0.07),
-    36px 31px 0px rgba(0, 0, 0, 0.14);
+    36px 31px 0px rgba(0, 0, 0, 0.14); */
   
 }
 
 textarea {
-    font-size: 20px;
+    font-family: 'roboto', sans-serif;
 }
 
 #teacher,#student,#subjects{
@@ -50,7 +50,7 @@ textarea {
     margin-right: auto;
 }
 
-ol,ul{
+ol{
     text-align: left;
 }
 
@@ -63,8 +63,15 @@ th {
 }
 
 input[type=text] {
+
     padding: 4px 20px;
     margin: 3px 0;
     box-sizing: border-box;
-    background-color:bisque;
+    background-color:rgb(255, 255, 255);
+}
+
+@media print {
+    #printPageButton {
+      display: none;
+    }
   }
