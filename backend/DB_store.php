@@ -7,7 +7,7 @@
     $table_name = "STUDENT";
     $table_columns = array("am" => "TEXT", "Name" => "TEXT", "Password" => "TEXT");
 
-    $db = new DataBase("sqlite:../test.db");
+    $db = new DataBase("sqlite:./test.db");
     $createTable = $db->createTable($table_name, $table_columns);
     
     if($createTable){
