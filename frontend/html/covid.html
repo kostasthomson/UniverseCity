@@ -4,31 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/covid.css">
+    <link rel="stylesheet" href="covid.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <title>Δήλωση Κρούσματος</title>
 </head>
 <body>
-    <label id="namefile" for="fname" >*Αρχείο:</label>
-    <input type="file" id="fname" name="fname" required>
+    <section class="thisUI"> <!--?: move this section -->
+        <div class="labelInput">
+            <label id="fileName" for="fname" class="fileName">Choose a file</label>
+            <input type="file" id="fname" name="fname" class="fileText" required>
+        </div>    
+        
+        <div class="texts">
+            <textarea class="textarea" placeholder="Enter a message..."></textarea>
+            <div id="altComments" class="altComments">
+                        Εαν δεν έχετε χρησιμοποιήσει την λειτουργία της Κράτησης Θέσης<br> ή  έχετε παρακολουθήσει άλλο τμήμα 
+                         αναφέρετε τον αριθμό της<br> θέσης σας και την αίθουσα για τις τελευταίες 5 ημέρες.
+            </div>
+        
+        
+        </div>
+        <div class="checkboxContainer">
+            <label class="checkbox" for="myCheckboxId">
+                <input type="checkbox" name="myCheckboxName" id="myCheckboxId" class="checkbox__input" >
+                <div class="checkbox__box"></div>
+                Δηλώνω υπεύθυνα ότι διαγνώστηκα θετικός/ή στην νόσο covid το τελευταίο 24ωρο.
+            </label>
+            <div class="buttons">
+                <button  id="sendButton" class="sendButton">Αποστολη</button>
+                <button  class="rejectButton">Ακυρωση</button>
+            </form>
+            </div>
+           
+        </div>
     
-    <br>
-    <div id="sxolia1">
-        <label for="textarea">Σχόλια</label>
-        <input type="text" id="textarea" name="textarea">
-    </div>
-    <div id="sxolia">
-        Εαν δεν έχετε χρησιμοποιήσει την λειτουργία της Κράτησης Θέσης ή  έχετε παρακολουθήσει άλλο τμήμα <br>
-         αναφέρετε τον αριθμό της θέσης σας και την αίθουσα για τις τελευταίες 5 ημέρες.
-    </div>
-    <br>
-    <div id="check">
-        <input id="ck" type="checkbox" name="checke" >
-        Δηλώνω υπεύθυνα ότι διαγνώστηκα θετικός/ή στην νόσο covid το τελευταίο 24ωρο.
-        <br>
-        <button id="delete">Ακύρωση</button>
-        <button id="submit">Υποβολή</button>
-    </div>
-    <div id="valid"></div>
-    <script src="../js/covid.js" defer></script>
+    <div class="message" id="message">Το αρχειο σας εχει αποσταλλει επιτυχως!</div>
+      
+    </section>
+    <script src="covid.js" defer></script>
 </body>
 </html>

@@ -1,22 +1,20 @@
-document.getElementById("delete").addEventListener("click", refresh);
-
-function refresh(){
-      document.location.reload(true);
-}
-
-document.getElementById("submit").addEventListener("click", validate);
-
-function validate(){
-    const element = document.getElementById("ck");
-    if(element.checked){
-        document.getElementById("valid").innerHTML = "Η δήλωση έγινε με επιτυχία!!";
-
-    }else{
-        console.log("error");
-    }
-    
-}
+const acceptBtn = document.querySelector(".sendButton");
+const rejectButton = document.querySelector(".rejectButton");
 
 
+rejectButton.addEventListener("click", (e) => {
+  window.location.reload(true);
+});
 
 
+acceptBtn.addEventListener("click", (e) => {
+  let message = document.querySelector(".message");
+  let acceptBox = document.querySelector(".checkbox__input");
+  message.style.display = "none";
+  
+  if( acceptBox.checked){
+  message.style.display = "block";
+  }
+
+  
+});
