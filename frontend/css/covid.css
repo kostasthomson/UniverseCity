@@ -21,6 +21,10 @@ body {
     cursor: pointer;
     border-radius: 1rem;
     margin-top: 5rem;
+    
+}
+
+.fileText::-webkit-file-upload-button {
     visibility: hidden;
 }
 .labelInput{
@@ -155,6 +159,27 @@ body {
     font-weight: 500;
     border-style:ridge;
     border-color: #23c483;
+    text-decoration: none;
+    padding:0.5rem 2rem;
+    background: rgb(22, 22, 29);
+    color:white;
+    border-radius: 4rem;
+    outline:none;
+}
+
+.badMessage{
+    display:none;
+    margin-top: 5rem;
+    margin-left:27.5rem;
+    width: 40%;
+    height:2rem;
+    transform: translateX(-50%) translateY(-50%);
+    font-size:1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    border-style:ridge;
+    border-color: #e00606;
     text-decoration: none;
     padding:0.5rem 2rem;
     background: rgb(22, 22, 29);

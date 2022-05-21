@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="covid.css">
+    <link rel="stylesheet" href="../css/covid.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <title>Δήλωση Κρούσματος</title>
 </head>
 <body>
-    <section class="thisUI"> <!--?: move this section -->
+    <form class="thisUI"> <!--?: move this section -->
         <div class="labelInput">
             <label id="fileName" for="fname" class="fileName">Choose a file</label>
-            <input type="file" id="fname" name="fname" class="fileText" required>
+            <input type="file" id="fname" name="fname" class="fileText" accept="image/png, image/jpeg, application/pdf" value="" required>
         </div>    
         
         <div class="texts">
@@ -33,16 +33,17 @@
                 Δηλώνω υπεύθυνα ότι διαγνώστηκα θετικός/ή στην νόσο covid το τελευταίο 24ωρο.
             </label>
             <div class="buttons">
-                <button  id="sendButton" class="sendButton">Αποστολη</button>
+                <button type="button" onsubmit="GET" id="sendButton" class="sendButton">Αποστολη</button>
                 <button  class="rejectButton">Ακυρωση</button>
-            </form>
             </div>
+            
            
         </div>
     
     <div class="message" id="message">Το αρχειο σας εχει αποσταλλει επιτυχως!</div>
+    <div class="badMessage" id="badMessage">Λαθος τυπος αρχειου! Προσπαθηστε ξανα.</div>
       
-    </section>
-    <script src="covid.js" defer></script>
+    </form>
+    <script src="../js/covid.js" defer></script>
 </body>
 </html>

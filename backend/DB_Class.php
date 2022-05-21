@@ -1,41 +1,39 @@
 <?php
     class DataBase  {
-        private PDO $DB;
+        private  $DB;
         private string $TABLE_NAME;
         private array $TABLE_INFO;
         private array $QueryResults;
+        private array $COLUMNS;
 
         function __construct(string $string) {
             $this->DB = new PDO($string);
         }
         
-        // private function createColumnsString(): string {
-        //     $columns_array = array();  
-        //     for($i=0; $i<count($this->COLUMNS); $i++){
-        //         $name = $this->COLUMNS_NAMES[$i];
-        //         $type = $this->COLUMNS_TYPES[$i];
-        //         $columns_array[$i] = "$name $type";
-        //     }
-        //     return implode(", ", $columns_array);
-        // }
+        private function createColumnsString(): string {
+            $columns_array = array();  
+            for($i=0; $i<count( $this->COLUMNS); $i++){
+                $name = array_keys( $this->COLUMNS)[$i];
+                $type = array_values( $this->COLUMNS)[$i];
+                $columns_array[$i] = "$name $type";
+            }
+            return implode(", ", $columns_array);
+        }
 
-        // function createTable(string $table_name, array $columns): bool {
-        //     try{
-        //         $this->COLUMNS = $columns;
-        //         $this->COLUMNS_NAMES = array_keys($this->COLUMNS);
-        //         $this->COLUMNS_TYPES = array_values($this->COLUMNS);
-        //         $this->TABLES[$table_name] = array($this->COLUMNS);
-        //         $this->TABLES_COUNT++;
+        function createTable(string $table_name, array $columns): bool {
+            try{
+                $this->COLUMNS = $columns;
                 
-        //         $table_columns_string = $this->createColumnsString();
-        //         $statement = $this->DB->prepare("CREATE TABLE IF NOT EXISTS $table_name ($table_columns_string);");
-        //         $statement->execute();
                 
-        //         return true;
-        //     }catch (Exception $e) {
-        //         return false;
-        //     }
-        // }
+                $table_columns_string = $this->createColumnsString();
+                $statement = $this->DB->prepare("CREATE TABLE IF NOT EXISTS $table_name ($table_columns_string);");
+                $statement->execute();
+                
+                return true;
+            }catch (Exception $e) {
+                return false;
+            }
+        }
 
         function makeDMLQuery(string $query): bool {
             try{
@@ -89,6 +87,10 @@
 
         function close(): void {
             $this->DB = null;
+        }
+        
+        function getColumns(): array {
+            return $this->COLUMNS;
         }
     }
 ?>
