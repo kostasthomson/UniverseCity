@@ -1,6 +1,6 @@
 <?php
     class DataBase  {
-        private  $DB;
+        private $DB;
         private string $TABLE_NAME;
         private array $TABLE_INFO;
         private array $QueryResults;
