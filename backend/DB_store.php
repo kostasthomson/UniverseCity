@@ -1,18 +1,18 @@
 <?php
     require "./DB_Class.php";
-    $user_am = htmlspecialchars($_GET["am"]);
-    $user_name = htmlspecialchars($_GET["name"]);
-    $user_pass = htmlspecialchars($_GET["pass"]);
+    $filename = htmlspecialchars($_GET["fname"]);
+    $checkbox = htmlspecialchars($_GET["myCheckboxName"]);
+    $description = htmlspecialchars($_GET["desc"]);
     
-    $table_name = "STUDENT";
-    $table_columns = array("am" => "TEXT", "Name" => "TEXT", "Password" => "TEXT");
+    $table_name = "COVID";
+    $table_columns = array("fname" => "TEXT", "myCheckboxName" => "TEXT", "desc" => "TEXT");
 
-    $db = new DataBase("sqlite:../test.db");
+    $db = new DataBase("sqlite:DATABASES/test.db");
     $createTable = $db->createTable($table_name, $table_columns);
     
     if($createTable){
-        $columns_string = implode(", ", $db->getColumns());
-        $query = "INSERT INTO $table_name ($columns_string) VALUES ('$user_am', '$user_name', '$user_pass');";
+        $columns_string = implode(", ", array_keys($db->getColumns()) );
+        $query = "INSERT INTO $table_name ($columns_string) VALUES ('$filename', '$checkbox', '$description');";
         $db->makeDMLQuery($query);
         echo "Done";
     }else{

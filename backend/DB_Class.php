@@ -1,37 +1,29 @@
 <?php
     class DataBase  {
         private $DB;
-        private $TABLES_COUNT = 0;
-        private $TABLES = array();
-        private $COLUMNS;
-        private $COLUMNS_NAMES;
-        private $COLUMNS_TYPES;
-        private $QueryResults = null;
+        private string $TABLE_NAME;
+        private array $TABLE_INFO;
+        private array $QueryResults;
+        private array $COLUMNS;
 
-        function __construct($string, $table_name="", $columns=array()) {
+        function __construct(string $string) {
             $this->DB = new PDO($string);
-            if($table_name!="" && count($columns)!=0){
-                $this->createTable($table_name, $columns);
-            }
         }
-
+        
         private function createColumnsString(): string {
             $columns_array = array();  
-            for($i=0; $i<count($this->COLUMNS); $i++){
-                $name = $this->COLUMNS_NAMES[$i];
-                $type = $this->COLUMNS_TYPES[$i];
+            for($i=0; $i<count( $this->COLUMNS); $i++){
+                $name = array_keys( $this->COLUMNS)[$i];
+                $type = array_values( $this->COLUMNS)[$i];
                 $columns_array[$i] = "$name $type";
             }
             return implode(", ", $columns_array);
         }
 
-        function createTable($table_name, $columns): bool {
+        function createTable(string $table_name, array $columns): bool {
             try{
                 $this->COLUMNS = $columns;
-                $this->COLUMNS_NAMES = array_keys($this->COLUMNS);
-                $this->COLUMNS_TYPES = array_values($this->COLUMNS);
-                $this->TABLES[$table_name] = array($this->COLUMNS);
-                $this->TABLES_COUNT++;
+                
                 
                 $table_columns_string = $this->createColumnsString();
                 $statement = $this->DB->prepare("CREATE TABLE IF NOT EXISTS $table_name ($table_columns_string);");
@@ -43,7 +35,7 @@
             }
         }
 
-        function makeDMLQuery($query): bool {
+        function makeDMLQuery(string $query): bool {
             try{
                 $this->DB->exec($query);
                 return true;
@@ -52,8 +44,20 @@
             }
         }
 
-        function makeQuery($query): bool {
+        function makeQuery(string $query): bool {
             try{
+                $query = strtoupper($query);
+                $table_index = strpos($query, 'FROM');
+                if($table_index !== false) {
+                    $table_index += 5;
+                    $sub_query = substr($query, $table_index);
+                    $space_index = strpos($sub_query, ' ');
+                    if($space_index !== false) {
+                        $this->setWorkingTable(substr($sub_query, 0, $space_index));
+                    }else {
+                        $this->setWorkingTable($sub_query);
+                    }
+                }
                 $statement = $this->DB->prepare($query);
                 $statement->execute();
                 $this->QueryResults = $statement->fetchAll(PDO::FETCH_ASSOC);               
@@ -62,9 +66,19 @@
                 return false;
             }
         }
+        
+        function setWorkingTable(string $table_name) {
+            $this->TABLE_NAME = $table_name;
+            $this->setTableInfo();
+        }
 
-        function getColumns(): array {
-            return array_keys($this->COLUMNS);
+        private function setTableInfo() {
+            $statement = $this->DB->query("pragma table_info('$this->TABLE_NAME')");
+            $this->TABLE_INFO = $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        function getTableInfo(): array {
+            return $this->TABLE_INFO;
         }
 
         function getQueryResults(): array {
@@ -73,6 +87,10 @@
 
         function close(): void {
             $this->DB = null;
+        }
+        
+        function getColumns(): array {
+            return $this->COLUMNS;
         }
     }
 ?>
