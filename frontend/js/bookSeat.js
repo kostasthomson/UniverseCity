@@ -4,26 +4,14 @@ var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔ
 //------------------ TEST CLASSES DECLARATION START ------------------
 
 class Course {
-    constructor(name, code, availableSeats) {
+    constructor(name, code) {
         this.name = name;
         this.code = code;
-        this.availableSeats = availableSeats;
         Classroom;
-        
     }
 
     setClassroom(Classroom) {
         this.Classroom = Classroom;
-    }
-
-    setAvailableSeats(num) {
-        availableSeats = num;
-    }
-
-
-
-    getAvailableSeats() {
-        return availableSeats;
     }
 }
 
@@ -58,6 +46,7 @@ class User {
 var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 168);
 var AMF9 = new Classroom('Αμφιθέατρο 9', 'AMF', 09, 01, 90);
 var ERG334 = new Classroom('Εργαστήριο 334', 'LAB', 334, 03, 48);
+var CL1 = new Classroom('Αίθουσα 1', 'CL', 12, 01, 168);
 
 
 var AIC101 = new Course('ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΙΚΤΥΟΥ', 'AIC101');
@@ -92,22 +81,54 @@ document.querySelector('.date').insertAdjacentHTML('afterbegin', dateElement.toD
 
 
 // List containing the User's courses
-function makeList() {
-    let formElement = document.createElement('form'),
-    selectElement = document.createElement('select');
+// function makeList() {
+//     let CourseListContainer = document.createElement('div');
+//     formElement.setAttribute("class", "course_list");
+//     let selectElement = document.createElement('li');
+//     selectElement.setAttribute('class', 'list')
+//     selectElement.setAttribute('class', 'collapsed');
 
-    document.getElementById('list').appendChild(formElement).appendChild(selectElement);
-    selectElement.setAttribute("id", "SelectCourseList");
-    // Default-First option
-    listItem = document.createElement('option');
-    listItem.innerHTML = '-- Επιλογή Μαθήματος --'; 
-    listItem.setAttribute('value', 'ignore');
-    selectElement.appendChild(listItem);
+//     document.getElementById('list').appendChild(formElement).appendChild(selectElement);
+//     selectElement.setAttribute("id", "SelectCourseList");
+//     // Default-First option
+//     listItem = document.createElement('li');
+//     listItem.innerHTML = '-- Επιλογή Μαθήματος --'; 
+//     listItem.setAttribute('value', 'ignore');
+//     selectElement.appendChild(listItem);
+
+//     // Dynamic list initialization
+//     for (i = 0; i < User01.CourseList.length; ++i) {
+//         // Create listItem
+//         listItem = document.createElement('li');
+
+//         // The value of the option is the Course's code
+//         listItem.setAttribute('value', User01.CourseList[i].code);
+
+//         // The name of the Course is displayed to the user
+//         listItem.innerHTML = User01.CourseList[i].name;
+
+//         // Add listItem to the selectElement
+//         selectElement.appendChild(listItem);
+//     }
+// }
+
+
+function makeList() { // New Course List with buttons
+
+    let CourseListContainer = document.createElement('div');
+    CourseListContainer.setAttribute("class", "course_list");
+
+
+    
+
+    document.querySelector('.selectCourse').appendChild(CourseListContainer)
+    CourseListContainer.setAttribute("id", "SelectCourseList");
+   
 
     // Dynamic list initialization
     for (i = 0; i < User01.CourseList.length; ++i) {
         // Create listItem
-        listItem = document.createElement('option');
+        listItem = document.createElement('button');
 
         // The value of the option is the Course's code
         listItem.setAttribute('value', User01.CourseList[i].code);
@@ -115,10 +136,44 @@ function makeList() {
         // The name of the Course is displayed to the user
         listItem.innerHTML = User01.CourseList[i].name;
 
+        // validate() starts the generation of the seats with capacity and type 
+        listItem.setAttribute('onclick', 'validate(this.value)');
+
         // Add listItem to the selectElement
-        selectElement.appendChild(listItem);
+        CourseListContainer.appendChild(listItem);
     }
 }
+
+// Find Classroom + Generate Seats 
+function validate(courseCode){
+    // Find the course and return the classroom
+    selectedClassroom = findCourse(courseCode);
+
+    let element = document.querySelector(".seatBoxContainer");
+    let leftContainer = document.querySelector(".leftContainer");
+    let rightContainer = document.querySelector(".rightContainer");
+
+    if(element.classList.contains("filled")) { // There are seats being displayed
+        leftContainer.innerHTML = ""; // clear left seat container
+        rightContainer.innerHTML = "";// clear right seat container
+
+        // Remove Desk element, might change
+        const desk_element = document.querySelector('.desk');
+        if (desk_element){ 
+            desk_element.remove();
+        }
+        // Generate Seats
+        theater(selectedClassroom.capacity, selectedClassroom.type);
+    }
+    else { // Seat container is empty - First load
+        // Generate Seats
+        theater(selectedClassroom.capacity, selectedClassroom.type);
+    }
+}
+
+
+
+
 
 
 
@@ -133,62 +188,40 @@ function findCourse(x) {
     return console.log('Wrong Course code!');
 }
 
-// Simple check, could add more in the future
-function ListValueCheck(x) {
-    if (!(x == 'ignore')) {
-        return true;
-    }
-    return false;
-}
 
-
-// Validate List. Check if there is a seat container already drawn
-function validateList() {
-    let ListValue = document.getElementById("SelectCourseList").value;
-    if (ListValueCheck(ListValue)) { 
-        selectedClassroom = findCourse(ListValue);
-    
-        if (!document.querySelector('.seatBoxContainer')) {
-        theater(selectedClassroom.capacity, selectedClassroom.type);
-        }
-        else if(document.querySelector('.seatBoxContainer')) { // remove a seat Container if there is already something
-        const element = document.querySelector('.seatBoxContainer');
-        element.remove();
-        const desk_element = document.querySelector('.desk');
-        desk_element.remove();
-        theater(selectedClassroom.capacity, selectedClassroom.type);
-        }
-    }
-    else {
-        console.log('SelectCourseList value default or incorrect!')
-    }
-    
+function initSeatContainer(){
+      // main container
+      let seatBoxContainer = document.createElement('div');
+      seatBoxContainer.setAttribute('class', 'seatBoxContainer');
+      // left Container for seats
+      let leftContainer = document.createElement('div');
+      leftContainer.setAttribute('class', 'leftContainer');
+      // right Container for seats
+      let rightContainer = document.createElement('div');
+      rightContainer.setAttribute('class', 'rightContainer');
+  
+      seatBoxContainer.appendChild(leftContainer);
+      seatBoxContainer.appendChild(rightContainer);
+  
+      document.getElementById('seatContainer01').appendChild(seatBoxContainer);
 }
 
 
 
-
-//TEST 01
 
 function theater(capacity, type){ //not final
 makeDesk();
 
+// Get the containers
+let seatBoxContainer = document.querySelector(".seatBoxContainer");
+seatBoxContainer.classList.add("filled");
+let leftContainer = document.querySelector(".leftContainer");
+let rightContainer = document.querySelector(".rightContainer");
+
+
 // TYPE = AMF (amphitheater) capacity 180
 if(type=='AMF') {
-    // main container
-    let seatBoxContainer = document.createElement('div');
-    seatBoxContainer.setAttribute('class', 'seatBoxContainer');
-    // left Container for seats
-    let leftContainer = document.createElement('div');
-    leftContainer.setAttribute('class', 'leftContainer');
-    // right Container for seats
-    let rightContainer = document.createElement('div');
-    rightContainer.setAttribute('class', 'rightContainer');
-
-    seatBoxContainer.appendChild(leftContainer);
-    seatBoxContainer.appendChild(rightContainer);
-
-    document.getElementById('seatContainer01').appendChild(seatBoxContainer);
+  
 
     // Left Container Loop
     for (var i=0; i<capacity; i++) {
@@ -201,10 +234,11 @@ if(type=='AMF') {
             leftContainer.appendChild(listItem);
         }
         else{
+            // Right Container Loop
             rightContainer.appendChild(listItem);
         }
     }
-    // Forbidden seats
+    // Forbidden seats -->!!! must change from number(12) to variable (percentage of capacity)!!!
     for (i=0; i<capacity/12; i++) { //First 14 seats
         document.getElementById('seat'+(i+1)).classList.toggle('forbidden');
     }
@@ -215,39 +249,25 @@ if(type=='AMF') {
 
 // Needs if statements for every type. For now --> else = same with AMF
 else {
-    // main container
-    let seatBoxContainer = document.createElement('div');
-    seatBoxContainer.setAttribute('class', 'seatBoxContainer');
-    // left Container for seats
-    let leftContainer = document.createElement('div');
-    leftContainer.setAttribute('class', 'leftContainer');
-    // right Container for seats
-    let rightContainer = document.createElement('div');
-    rightContainer.setAttribute('class', 'rightContainer');
-
-    seatBoxContainer.appendChild(leftContainer);
-    seatBoxContainer.appendChild(rightContainer);
-
-    document.getElementById('seatContainer01').appendChild(seatBoxContainer);
-
-    // Left Container Loop
-    for (var i=1; i<=capacity/2; i++) {
+    
+      // Left Container Loop
+      for (var i=0; i<capacity; i++) {
         let listItem = document.createElement('button');
-        listItem.setAttribute('id', 'seat'+i);
+        listItem.setAttribute('id', 'seat'+(i+1));
         listItem.setAttribute('class', 'seat');
-        listItem.insertAdjacentHTML('afterbegin', i);
+        listItem.insertAdjacentHTML('afterbegin', i+1);
         listItem.setAttribute('style', 'cursor: pointer;');
-        leftContainer.appendChild(listItem);
+        if(i%14<7){ // 7 seats in each side in each row
+            leftContainer.appendChild(listItem);
+        }
+        else{
+            // Right Container Loop
+            rightContainer.appendChild(listItem);
+        }
     }
-
-    // Right Container Loop
-    for (i; i<=capacity; i++) {
-        let listItem = document.createElement('button');
-        listItem.setAttribute('id', 'seat'+i);
-        listItem.setAttribute('class', 'seat');
-        listItem.insertAdjacentHTML('afterbegin', i);
-        listItem.setAttribute('style', 'cursor: pointer;');
-        rightContainer.appendChild(listItem);
+    // Forbidden seats -->!!! must change from number(12) to variable (percentage of capacity)!!!
+    for (i=0; i<capacity/12; i++) { //First 14 seats
+        document.getElementById('seat'+(i+1)).classList.toggle('forbidden');
     }
 }
     let selectBtn = document.getElementById('selectBtn');
@@ -388,9 +408,8 @@ function validSeat() {
 
 window.onload = makeList();
 window.onload = makeSelectBtn();
-window.onload = makeModal();
+window.onload = makeModal(); // Creates the modal that confirms the seat selection
+window.onload = initSeatContainer(); // init seat container
 
-// selectBtn = document.getElementById('selectBtn');
-// selectBtn.setAttribute('onclick', 'modalToggle()');
-document.getElementById("chooseButton").addEventListener("click", validateList);
+
     

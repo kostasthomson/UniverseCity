@@ -3,13 +3,12 @@
 #chooseButton{
   display: flex; 
   display: inline; 
-  
- 
 }
 
-#selectcourse{
- display: flex;
- display:inline;
+.selectCourse{
+  display: flex;
+  border: 2px solid black;;
+  padding: 1rem;
   
 }
 
@@ -139,7 +138,7 @@
 /* Style for containers */
 
 .seatBoxContainer{
-  display: flex;
+  display: none;
   flex-direction: row;
   flex-wrap: nowrap;
   min-width: 750px;
@@ -153,6 +152,10 @@
   font-size: 40px;
   border-radius: 20px;
   padding: 10px;
+}
+
+.seatBoxContainer.filled{
+  display: flex;
 }
 
 
