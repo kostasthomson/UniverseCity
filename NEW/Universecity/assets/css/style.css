@@ -109,6 +109,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 15px;
   padding: 10px 25px;
 }
+@media (max-width: 767px) {
+  .logo-text {
+    display: none;
+  }
+}
 .dropdown-menu .dropdown-footer a {
   color: #444444;
   text-decoration: underline;
@@ -604,6 +609,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #f6f9ff;
   padding: 10px 15px;
   border-radius: 4px;
+  cursor: pointer;
 }
 .sidebar-nav .nav-link i {
   font-size: 16px;
