@@ -1,8 +1,14 @@
-window.onload = () => {
-     sessionStorage.clear();
-    // sessionStorage.setItem('user', 'student');
-    UserNavListInit();
-    setUserNavList();
+//demo class
+class User {
+    constructor(data) {
+        this.USER_DATA = {
+            AM: data[0],
+            NAME: data[1],
+            PASSWORD: data[2]
+        };
+    }
+    deleteData() {this.USER_DATA={AM:"", NAME:"",PASSWORD:""};}
+    LogData() {console.log(this.USER_DATA);}
 }
 
 function clearElementList() {
@@ -18,7 +24,6 @@ function changeUser(button) {
         sessionStorage.setItem('user', newUser);
         UserNavListInit();
         setUserNavList();
-        console.log(newUser);
     }
 }
 
@@ -53,8 +58,7 @@ function createListElement(element_name) {
  
 
     const i = document.createElement('i');
- 
-    console.log(sessionStorage.getItem('user'))
+
     switch(element_name) {
         case 'Ωρολόγιο Πρόγραμμα':
             li.setAttribute('data-src-index', 1);
@@ -174,4 +178,24 @@ function setUpButtons() {
     footer.appendChild(div);
 }
 
-setUpButtons();
+const queryString = window.location.search;
+if(queryString) {
+    const urlParams = new URLSearchParams(queryString);
+    const login_data = urlParams.get('login_data');
+    const user_data = login_data.split(",");
+    const USER = new User(user_data);
+    switch(USER.USER_DATA.AM) {
+        case 'ics':
+            sessionStorage.setItem('user', 'student');
+            break;
+        case 'iis':
+            sessionStorage.setItem('user', 'teacher');
+            break;
+        case 'dai':
+            sessionStorage.setItem('user', 'secretariat');
+            break;
+    }
+}
+// setUpButtons();
+UserNavListInit();
+setUserNavList();

@@ -1,23 +1,3 @@
-//demo class
-class User {
-    constructor(am, name, pass) {
-        this.USER_DATA = {
-            AM: am,
-            NAME: name,
-            PASSWORD: pass
-        };
-    }
-
-    deleteData(){
-        this.USER_DATA={AM:"", NAME:"",PASSWORD:""};
-    }
-
-    LogData() {
-        console.log(this.USER_DATA);
-    }
-
-}
-
 // form loading animation
 const form = [...document.querySelector('.form').children];
 form.forEach((item, i) => {
@@ -36,17 +16,7 @@ xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         const dbResult = this.responseText;
         if(dbResult!="Fail" && dbResult!="Unrecorded") {
-            window.location.href="../../NEW/Universecity/index.html";
-            const result_array = dbResult.split(",");
-            var newUser = new User(result_array[0], result_array[1], result_array[2]);
-            if(newUser.am==="ics"){
-                sessionStorage.setItem("user","student");
-            }else  if(newUser.am==="iis"){
-                sessionStorage.setItem("user","teacher");
-            }else if(newUser.am==="dai"){
-                sessionStorage.setItem("user","secretariat");
-            }
-            newUser.LogData();
+            window.location.href = "../../NEW/Universecity/index.html?login_data="+dbResult;
         }else {
             console.log(dbResult);
         }
