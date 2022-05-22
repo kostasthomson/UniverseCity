@@ -46,7 +46,7 @@
 
         function makeQuery(string $query): bool {
             try{
-                $query = strtoupper($query);
+                // $query = strtoupper($query);
                 $table_index = strpos($query, 'FROM');
                 if($table_index !== false) {
                     $table_index += 5;
