@@ -8,9 +8,14 @@ class User {
         };
     }
 
+    deleteData(){
+        this.USER_DATA={AM:"", NAME:"",PASSWORD:""};
+    }
+
     LogData() {
         console.log(this.USER_DATA);
     }
+
 }
 
 // form loading animation
@@ -32,14 +37,32 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         const dbResult = this.responseText;
+        console.log(dbResult);
         if(dbResult!="Query failed" && dbResult!="not a registered user") {
+            window.location.href="../../NEW/Universecity/index.html";
             const result_array = dbResult.split(",", 3);
-            const newUser = new User(result_array[0], result_array[1], result_array[2]);
+            var newUser = new User(result_array[0], result_array[1], result_array[2]);
+            if(newUser.am==="ics"){
+                sessionStorage.setItem("user","student");
+            }else  if(newUser.am==="iis"){
+                sessionStorage.setItem("user","teacher");
+            }else if(newUser.am==="dai"){
+                sessionStorage.setItem("user","secretariat");
+            }
+
             newUser.LogData();
         }else {
             console.log(dbResult);
         }
     }
 }; 
-xmlhttp.open("GET","/backend/THOMSON/DB_retrieve.php?am="+USER_AM+"&pass="+USER_PASS,true);
+xmlhttp.open("GET","/backend/DB_retrieve.php?am="+USER_AM+"&pass="+USER_PASS,true);
 xmlhttp.send();
+
+window.onload=()=>{
+    if(newUser){
+        newUser.deleteData();
+        sessionStorage.clear();
+    }
+};
+
