@@ -29,7 +29,7 @@ function changeUser(button) {
 
 const src_links = [
     // Links for secretariat 0-3
-'../../../TechnologiaLogismikou/frontend/html/other_files/arxikh.html', //prob
+'../../../TechnologiaLogismikou/frontend/html/arxikh.html', //prob
 '../../../TechnologiaLogismikou/frontend/html/programma.html',
 '../../../TechnologiaLogismikou/frontend/html/anakoinoseis.html',
 '../../../TechnologiaLogismikou/frontend/html/email.html',
