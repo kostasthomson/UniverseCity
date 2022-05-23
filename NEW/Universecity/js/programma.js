@@ -74,7 +74,7 @@ function createRow(id, hour) {
     let td = document.createElement('td');
     td.setAttribute('id', 'row-'+id+"-data-0");
     td.setAttribute('data-hour', hour);
-    td.innerHTML = hour;
+    td.innerHTML = `${hour}:00 - ${hour + 1}:00`;
     row.appendChild(td);
     return row;
 }
@@ -102,7 +102,7 @@ let changed_fields = [];
 let editable_count = 0;
 const body = document.body;
 const start = 9;
-const end = 21;
+const end = 20;
 const step = 1;
 const days = [
     {id:1,name: 'Δευτέρα'}, 

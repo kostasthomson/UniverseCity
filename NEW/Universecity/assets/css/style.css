@@ -55,12 +55,23 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* Προγραμμα */
+.btn-group {
+  margin-top: 50px;
+  left: 37%;
+}
+
 .btn-outline-primary:hover{
   background-color: #366c77 !important;
+  color: #ffffff !important;
+
 }
 .btn-outline-primary {
   border-color: #366c77 !important;
+  color: #366c77 !important;
+}
 
+.column-head{
+  text-align: center;
 }
 
 /*--------------------------------------------------------------
