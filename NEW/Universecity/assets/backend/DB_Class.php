@@ -40,6 +40,7 @@
                 $this->DB->exec($query);
                 return true;
             }catch (Exception $e) {
+                echo $e->getMessage();
                 return false;
             }
         }
@@ -63,6 +64,7 @@
                 $this->QueryResults = $statement->fetchAll(PDO::FETCH_ASSOC);               
                 return true;
             }catch (Exception $e) { 
+                echo $e->getMessage();
                 return false;
             }
         }

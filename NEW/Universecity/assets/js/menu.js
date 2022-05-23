@@ -121,7 +121,7 @@ function UserNavListInit() {
             NavListElements = ['Ωρολόγιο Πρόγραμμα', 'Ανακοινώσεις', 'Δήλωση Θέσης', 'Εξετάσεις-Βαθμολογίες', 'Στατιστικά', 'Αξιολόγηση Καθηγητών', 'Δήλωση Κρούσματος', 'Βοήθεια'];
             break;
         case 'teacher':
-            NavListElements = ['Ωρολόγιο Πρόγραμμα', 'Διαχείριση Μαθημάτων', 'Ανακοινώσεις', 'Εξετάσεις-Βαθμολογίες', 'Προβολή Προσωπικής Αξιολόγησης','Συστατική Επιστολή'];
+            NavListElements = ['Ωρολόγιο Πρόγραμμα', 'Ανακοινώσεις', 'Διαχείριση Μαθημάτων', 'Εξετάσεις-Βαθμολογίες', 'Προβολή Προσωπικής Αξιολόγησης','Συστατική Επιστολή'];
             break;
         case 'secretariat':
             NavListElements = ['Ωρολόγιο Πρόγραμμα', 'Ανακοινώσεις', 'Διαχείριση Ενεργειών'];
@@ -134,6 +134,8 @@ function UserNavListInit() {
 function changeUser(button) {
     let newUser = button.getAttribute('data-user');
     if(newUser != sessionStorage.getItem('user-class')) {
+        let currUser = new User(['test_am', 'test_name', 'test_pass']);
+        sessionStorage.setItem('user', JSON.stringify(currUser))
         sessionStorage.setItem('user-class', newUser);
         UserNavListInit();
         setUserNavList();
@@ -163,6 +165,11 @@ function updatePageTitle() {
     const last_ol_child = document.getElementsByClassName('breadcrumb-item')[1];
     pagetitle_header.innerHTML = frame_name;
     last_ol_child.innerHTML = frame_name;
+}
+
+function updateNotifications() {
+    const list_header = document.querySelector('.dropdown-menu>.dropdown-header');
+    
 }
 
 const queryString = window.location.search;
@@ -196,3 +203,4 @@ setUpButtons();
 // UserNavListInit();
 // setUserNavList();
 // updatePageTitle();
+updateNotifications();

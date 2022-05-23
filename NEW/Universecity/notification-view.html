@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/notification_view.css">
+    <link rel="stylesheet" href="./assets/css/notification_view.css">
     <title>Notification View Page</title>
 </head>
 <body>
-    <h1>Ανακοινώσεις</h1>
-    <div id="show-div">
-        <ul id="anouncement-list">
-        </ul>
+    <div id="head">
+        <h1>Ανακοινώσεις</h1>
+        <button id="refresh" type="button" onclick="Refresh()">Refresh</button>
+    </div>
+    <div id="content">
+        <div id="show-secretariat">
+            <ul class="anouncement-list">
+            </ul>
+        </div>
+        <div id="show-teacher">
+            <ul class="anouncement-list">
+            </ul>
+        </div>
     </div>
     <script src="./assets/js/notification_view.js"></script>
 </body>

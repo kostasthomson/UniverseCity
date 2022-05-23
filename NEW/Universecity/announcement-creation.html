@@ -12,7 +12,9 @@
     <div id="create-div">
         <input id="announcement-title" type="text" placeholder="Title">
         <textarea id="announcement-description" type="text" placeholder="Description"></textarea>
-        <button id="create-new" name="create-new-announcement" onclick="PostAnnouncement()">Create Announcement</button>
+        <!-- <button id="create-new" name="create-new-announcement" onclick="PostAnnouncement()">Create Announcement</button> -->
+        <button  name="create-new-announcement" onclick="PostAnnouncement('S')">Create Announcement as Secretariat</button>
+        <button  name="create-new-announcement" onclick="PostAnnouncement('T')">Create Announcement as Teacher</button>
     </div>
     <script src="./assets/js/announcement_creation.js"></script>
 </body>

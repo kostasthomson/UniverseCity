@@ -35,6 +35,8 @@
     if(count($seats_array) != 0) {
         foreach($seats_array as $seat) {
             echo $seat;
+            if(array_search($seat, $seats_array) != count($seats_array)-1)
+                echo'|';
         }
     }else {
         echo 'Fail';
