@@ -20,25 +20,35 @@
     
 </head>
 <body>
-    <h1>Ωρολόγιο Πρόγραμμα</h1>
-    <div id="schedule-view">
-        <table id="program-table">
-            <thead id="table-head">
+    <div class="card">
+        <div class="card-body">
+
+          <!-- Bordered Table -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col" class="column-head">Ώρες</th>
+                <th scope="col" class="column-head">Δευτέρα</th>
+                <th scope="col" class="column-head">Τρίτη</th>
+                <th scope="col" class="column-head">Τετάρτη</th>
+                <th scope="col" class="column-head">Πέμπτη</th>
+                <th scope="col" class="column-head">Παρασκευή</th>
+              </tr>
             </thead>
-            <tbody id="table-body">
-                <tr id="column-headers">
-                    <th id="column-head">Ώρες</th>
-                    <th id="column-head">Δευτέρα</th>
-                    <th id="column-head">Τρίτη</th>
-                    <th id="column-head">Τετάρτη</th>
-                    <th id="column-head">Πέμπτη</th>
-                    <th id="column-head">Παρασκευή</th>
-                </tr>
+            <tbody style="text-align: center;">
+              <tr>
+                <th scope="row">1</th>
+                <td>Brandon Jacob</td>
+                <td>Designer</td>
+                <td>28</td>
+                <td>2016-05-25</td>
+              </tr>
             </tbody>
-            <tfoot id="table-foot">
-            </tfoot>
-        </table>
-    </div>
+          </table>
+          <!-- End Bordered Table -->
+
+
+
     <div class="btn-group" role="group" aria-label="Basic outlined example">
         <button type="button" class="btn btn-outline-primary" onclick="edit()">Επεξεργασία</button>
         <button type="button" class="btn btn-outline-primary" onclick="save()">Αποθήκευση</button>
