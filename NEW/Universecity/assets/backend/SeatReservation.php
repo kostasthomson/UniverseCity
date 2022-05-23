@@ -40,4 +40,5 @@
         echo 'Fail';
     }
 
+    $db->close();
 ?>

@@ -1,0 +1,26 @@
+body { 
+    margin: 0;
+    padding: 0;
+    cursor: default;
+}
+
+h1 { 
+    text-align: center;
+}
+
+#anouncement-list {
+    border: 3px solid black;
+    width: min-content;
+    height: min-content;
+    padding: 0;
+    margin: auto;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+li {
+    margin: 1%;
+    border: solid black;
+    padding: 2%;
+    text-align: center;
+}

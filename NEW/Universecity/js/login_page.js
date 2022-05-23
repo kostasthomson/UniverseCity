@@ -6,7 +6,7 @@ form.forEach((item, i) => {
     }, i*250);
 })
 
-// form validation
+// form validation  
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const USER_AM = urlParams.get('am');
@@ -15,7 +15,6 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         const dbResult = this.responseText;
-        console.log('done');
         if(dbResult!="Fail" && dbResult!="Unrecorded") {
             // window.location.href = "../loading.html?login_data="+dbResult;
             window.location.replace("../loading.html?login_data="+dbResult);
