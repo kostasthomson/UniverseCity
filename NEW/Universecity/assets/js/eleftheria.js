@@ -40,7 +40,7 @@ const src_links = [
 '../../../TechnologiaLogismikou/frontend/html/bathmoi.html',
 // Links for techer 8-9
 '../../../TechnologiaLogismikou/frontend/html/evaluation.html',
-'../../../TechnologiaLogismikou/frontend/html/recommendation_letter.html'];
+'../recommendation_letter.html'];
 
 function ChangeFrameContent(list_element) {
     const frame = document.getElementById('page-content');

@@ -1,0 +1,28 @@
+h1 {
+    text-align: center;
+}
+
+table {
+    border: solid black;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 70%;
+}
+
+td {
+    width: 150px;
+    height: 50px;
+    border: solid black;
+    text-align: center;
+}
+
+#buttons {
+    margin: 2%;
+    text-align: center;
+}
+
+button {
+    width: 10em;
+    height: 5.5em;
+}
