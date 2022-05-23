@@ -133,8 +133,8 @@ function UserNavListInit() {
 
 function changeUser(button) {
     let newUser = button.getAttribute('data-user');
-    if(newUser != sessionStorage.getItem('user')) {
-        sessionStorage.setItem('user', newUser);
+    if(newUser != sessionStorage.getItem('user-class')) {
+        sessionStorage.setItem('user-class', newUser);
         UserNavListInit();
         setUserNavList();
     }
@@ -192,7 +192,7 @@ if(queryString) {
     const breadcrumb_list_anchor = document.querySelectorAll('.breadcrumb-item')[0].children[0];
     breadcrumb_list_anchor.href = href;
 }
-// setUpButtons();
-UserNavListInit();
-setUserNavList();
-updatePageTitle();
+setUpButtons();
+// UserNavListInit();
+// setUserNavList();
+// updatePageTitle();
