@@ -4,20 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Qr Code</title>
   </head>
   <body>
-    <script src="../js/html5-qrcode.min.js"></script>
-    <style>
-      .result {
-        background-color: green;
-        color: #fff;
-        padding: 20px;
-      }
-      .row {
-        display: flex;
-      }
-    </style>
+    <script src="../Universecity/js/html5-qrcode.min.js"></script>
 
     <div class="row">
       <div class="col">
@@ -29,21 +19,7 @@
       </div>
     </div>
 
-    <script type="text/javascript">
-      function onScanSuccess(qrCodeMessage) {
-        document.getElementById("result").innerHTML =
-          '<span class="result">' + qrCodeMessage + "</span>";
-      }
+    <script src="../Universecity/js/qrCode.js"></script>
 
-      function onScanError(errorMessage) {
-        //handle scan error
-      }
-
-      var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
-        fps: 10,
-        qrbox: 250,
-      });
-      html5QrcodeScanner.render(onScanSuccess, onScanError);
-    </script>
   </body>
 </html>
