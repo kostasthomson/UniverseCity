@@ -15,13 +15,13 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         const dbResult = this.responseText;
+        console.log('done');
         if(dbResult!="Fail" && dbResult!="Unrecorded") {
-            window.location.href = "../../NEW/Universecity/index.html?login_data="+dbResult;
-        }else {
-            console.log(dbResult);
+            // window.location.href = "../loading.html?login_data="+dbResult;
+            window.location.replace("../loading.html?login_data="+dbResult);
         }
     }
 }; 
-xmlhttp.open("GET","../../backend/DB_retrieve.php?am="+USER_AM+"&pass="+USER_PASS,true);
+xmlhttp.open("GET","../assets/backend/DB_retrieve.php?am="+USER_AM+"&pass="+USER_PASS,true);
 xmlhttp.send();
 

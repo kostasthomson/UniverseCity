@@ -11,6 +11,93 @@ class User {
     LogData() {console.log(this.USER_DATA);}
 }
 
+
+const src_links = {
+// Links for secretariat 0-3
+    'Αρχική': 'index.html',
+    'Ωρολόγιο Πρόγραμμα': 'programma.html',
+    'Ανακοινώσεις': 'anakoinoseis.html',
+    'Διαχείριση Ενεργειών': 'email.html',
+// Links for student 4-7
+    'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
+    'Δήλωση Κρούσματος': 'covid_report.html',
+    'Δήλωση Θέσης':'bookSeat.html',
+    'Μαθήματα':'bathmoi.html',
+// Links for techer 8-9
+    'Προβολή Προσωπικής Αξιολόγησης':'evaluation.html',
+    'Συστατική Επιστολή':'recommendation_letter.html'
+};
+
+function ChangeFrameContent(name) {
+    const frame = document.getElementById('page-content');
+    frame.src = src_links[name];
+    frame.setAttribute('data-content-name', name);
+}
+
+function createListElement(element_name) {
+    const li = document.createElement('li');
+    li.setAttribute('class', 'nav-item');
+
+    const a = document.createElement('a');
+    a.setAttribute('class', 'nav-link');
+    a.setAttribute('onclick', 'ChangeFrameContent(element_name)');
+
+    const i = document.createElement('i');
+
+    switch(element_name) {
+        case 'Ωρολόγιο Πρόγραμμα':
+            i.setAttribute('class', 'bi-calendar-week');
+            break;
+        case 'Ανακοινώσεις':
+            i.setAttribute('class', 'bi bi-bell');
+            break;
+        case 'Στατιστικά':
+            i.setAttribute('class', 'bi bi-graph-up');
+            break;
+        case 'Αξιολόγηση Καθηγητών':
+            i.setAttribute('class', 'bi bi-person-badge');
+            break;
+        case 'Δήλωση Κρούσματος':
+            i.setAttribute('class', 'bi bi-file-text');
+            break; 
+        case 'Δήλωση Θέσης':
+            i.setAttribute('class', 'bi bi-calendar-week');
+            break;    
+        case 'Μαθήματα':
+            i.setAttribute('class', 'bi bi-calendar-week');
+            break; 
+        
+        case 'Βοήθεια':
+            i.setAttribute('class', 'bi bi-info-circle');
+            break; 
+        
+        // TEACHER
+        case 'Προβολή Προσωπικής Αξιολόγησης':
+            i.setAttribute('class', 'bi bi-person-badge');
+            break;
+        case 'Εξετάσεις-Βαθμολογίες':
+            i.setAttribute('class', 'bi bi-journal-bookmark-fill');
+            break; 
+        case 'Συστατική Επιστολή':
+            i.setAttribute('class', 'bi bi-envelope-check');
+            break; 
+        case 'Διαχείριση Μαθημάτων':
+            i.setAttribute('class', 'bi-bookmark-check');
+            break; 
+
+        
+        //SECRETARIAT
+        case 'Διαχείριση Ενεργειών':
+            i.setAttribute('class', 'bi bi-toggles2');
+            break;      
+    }
+    const span = document.createElement('span');
+    span.innerHTML = element_name;
+    a.append(i,span);
+    li.appendChild(a);
+    return li;
+}
+
 function clearElementList() {
     const ul = document.getElementById('sidebar-nav');
     while(ul.childElementCount > 1) {
@@ -18,128 +105,9 @@ function clearElementList() {
     }
 }
 
-function changeUser(button) {
-    let newUser = button.getAttribute('data-user');
-    if(newUser != sessionStorage.getItem('user')) {
-        sessionStorage.setItem('user', newUser);
-        UserNavListInit();
-        setUserNavList();
-    }
-}
-
-const src_links = [
-    // Links for secretariat 0-3
-'../arxikh.html', //prob
-'../programma.html',
-'../anakoinoseis.html',
-'../email.html',
-// Links for student 4-7
-'../evaluation_form.html',
-'../covid_report.html',
-'../bookSeat.html',
-'../bathmoi.html',
-// Links for techer 8-9
-'../evaluation.html',
-'../recommendation_letter.html'];
-
-function ChangeFrameContent(list_element) {
-    const frame = document.getElementById('page-content');
-    frame.src = src_links[list_element.getAttribute('data-src-index')];
-}
-
-function createListElement(element_name) {
-    const li = document.createElement('li');
-    li.setAttribute('class', 'nav-item');
-    
-    li.setAttribute('data-src-index', 0);
-    
-    const a = document.createElement('a');
-    a.setAttribute('class', 'nav-link');
- 
-
-    const i = document.createElement('i');
-
-    switch(element_name) {
-        case 'Ωρολόγιο Πρόγραμμα':
-            li.setAttribute('data-src-index', 1);
-            i.setAttribute('class', 'bi-calendar-week');
-            break;
-        case 'Ανακοινώσεις':
-            li.setAttribute('data-src-index', 2);
-            i.setAttribute('class', 'bi bi-bell');
-            break;
-        case 'Στατιστικά':
-            li.setAttribute('data-src-index', 4);
-            i.setAttribute('class', 'bi bi-graph-up');
-            break;
-        case 'Αξιολόγηση Καθηγητών':
-            li.setAttribute('data-src-index', 4);
-            i.setAttribute('class', 'bi bi-person-badge');
-            break;
-        case 'Δήλωση Κρούσματος':
-            li.setAttribute('data-src-index', 5);
-            i.setAttribute('class', 'bi bi-file-text');
-            break; 
-        case 'Δήλωση Θέσης':
-            li.setAttribute('data-src-index', 6);
-            i.setAttribute('class', 'bi bi-calendar-week');
-            break;    
-        case 'Μαθήματα':
-            li.setAttribute('data-src-index', 7);
-            i.setAttribute('class', 'bi bi-calendar-week');
-            break; 
-        
-        case 'Βοήθεια':
-            li.setAttribute('data-src-index', 7);
-            i.setAttribute('class', 'bi bi-info-circle');
-            break; 
-        
-        // TEACHER
-        case 'Προβολή Προσωπικής Αξιολόγησης':
-            li.setAttribute('data-src-index', 8);
-            i.setAttribute('class', 'bi bi-person-badge');
-            a.appendChild(i);
-            break;
-        case 'Εξετάσεις-Βαθμολογίες':
-            li.setAttribute('data-src-index', 2);
-            i.setAttribute('class', 'bi bi-journal-bookmark-fill');
-            a.appendChild(i);
-            break; 
-        case 'Συστατική Επιστολή':
-            li.setAttribute('data-src-index', 9);
-            i.setAttribute('class', 'bi bi-envelope-check');
-            a.appendChild(i);
-            break; 
-        case 'Διαχείριση Μαθημάτων':
-            li.setAttribute('data-src-index', 2);
-            i.setAttribute('class', 'bi-bookmark-check');
-            a.appendChild(i);
-            break; 
-
-        
-        //SECRETARIAT
-        case 'Διαχείριση Ενεργειών':
-            li.setAttribute('data-src-index', 3);
-            i.setAttribute('class', 'bi bi-toggles2');
-            break;      
-    }
-    li.setAttribute('onclick', 'ChangeFrameContent(this)');
-    a.appendChild(i);
-
-
-
-    //<i class="bi bi-bell"></i>
-    const span = document.createElement('span');
-    span.innerHTML = element_name;
-    a.append(span);
-    li.appendChild(a);
-    return li;
-}
-
 function setUserNavList() {
     const UserNavList = sessionStorage.getItem('user_nav_list').split(',');
     const ul = document.getElementById('sidebar-nav');
-    // ul.innerHTML = '';
     clearElementList();
     UserNavList.forEach(item => {
         ul.appendChild(createListElement(item));
@@ -148,7 +116,7 @@ function setUserNavList() {
 
 function UserNavListInit() {
     let NavListElements;
-    switch(sessionStorage.getItem('user')) {
+    switch(sessionStorage.getItem('user-class')) {
         case 'student':
             NavListElements = ['Ωρολόγιο Πρόγραμμα', 'Ανακοινώσεις', 'Δήλωση Θέσης', 'Εξετάσεις-Βαθμολογίες', 'Στατιστικά', 'Αξιολόγηση Καθηγητών', 'Δήλωση Κρούσματος', 'Βοήθεια'];
             break;
@@ -160,6 +128,16 @@ function UserNavListInit() {
             break;
     }
     sessionStorage.setItem('user_nav_list', NavListElements);
+}
+
+
+function changeUser(button) {
+    let newUser = button.getAttribute('data-user');
+    if(newUser != sessionStorage.getItem('user')) {
+        sessionStorage.setItem('user', newUser);
+        UserNavListInit();
+        setUserNavList();
+    }
 }
 
 function setUpButtons() {
@@ -178,24 +156,43 @@ function setUpButtons() {
     footer.appendChild(div);
 }
 
+function updatePageTitle() {
+    const frame = document.getElementById('page-content');
+    const frame_name = frame.getAttribute('data-content-name');
+    const pagetitle_header = document.getElementById('pagetitle-header');
+    const last_ol_child = document.getElementsByClassName('breadcrumb-item')[1];
+    pagetitle_header.innerHTML = frame_name;
+    last_ol_child.innerHTML = frame_name;
+}
+
 const queryString = window.location.search;
+sessionStorage.setItem('url-query', queryString);
 if(queryString) {
     const urlParams = new URLSearchParams(queryString);
     const login_data = urlParams.get('login_data');
     const user_data = login_data.split(",");
     const USER = new User(user_data);
+    sessionStorage.setItem('user', JSON.stringify(USER));
     switch(USER.USER_DATA.AM) {
         case 'ics':
-            sessionStorage.setItem('user', 'student');
+            sessionStorage.setItem('user-class', 'student');
             break;
         case 'iis':
-            sessionStorage.setItem('user', 'teacher');
+            sessionStorage.setItem('user-class', 'teacher');
             break;
         case 'dai':
-            sessionStorage.setItem('user', 'secretariat');
+            sessionStorage.setItem('user-class', 'secretariat');
             break;
     }
+    const href = 'index.html'+queryString;
+    const logo_anchor = document.querySelector('.logo');
+    logo_anchor.href = href;
+    const sidebar_list_anchor = document.querySelectorAll('.nav-link')[3];
+    sidebar_list_anchor.href = href;
+    const breadcrumb_list_anchor = document.querySelectorAll('.breadcrumb-item')[0].children[0];
+    breadcrumb_list_anchor.href = href;
 }
 // setUpButtons();
 UserNavListInit();
 setUserNavList();
+updatePageTitle();
