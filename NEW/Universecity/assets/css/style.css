@@ -47,7 +47,21 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /*Forms*/
+.btn.btn-primary {
+  background-color: #366c77;
+  left: 50%;
+  position: relative;
+}
 
+
+/* Προγραμμα */
+.btn-outline-primary:hover{
+  background-color: #366c77 !important;
+}
+.btn-outline-primary {
+  border-color: #366c77 !important;
+
+}
 
 /*--------------------------------------------------------------
 # Page Title
@@ -221,6 +235,7 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  left: 50%;
 }
 
 .card-header, .card-footer {

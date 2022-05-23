@@ -1,4 +1,4 @@
-const acceptBtn = document.querySelector(".sendButton");
+const acceptBtn = document.querySelector(".btn btn-primary");
 const rejectButton = document.querySelector(".rejectButton");
 
 

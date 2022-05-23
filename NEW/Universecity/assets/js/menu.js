@@ -35,7 +35,7 @@ const src_links = [
 '../email.html',
 // Links for student 4-7
 '../evaluation_form.html',
-'../covid.html',
+'../covid_report.html',
 '../bookSeat.html',
 '../bathmoi.html',
 // Links for techer 8-9
