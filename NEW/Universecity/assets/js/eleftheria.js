@@ -29,17 +29,17 @@ function changeUser(button) {
 
 const src_links = [
     // Links for secretariat 0-3
-'../../../TechnologiaLogismikou/frontend/html/arxikh.html', //prob
-'../../../TechnologiaLogismikou/frontend/html/programma.html',
-'../../../TechnologiaLogismikou/frontend/html/anakoinoseis.html',
-'../../../TechnologiaLogismikou/frontend/html/email.html',
+'../arxikh.html', //prob
+'../programma.html',
+'../anakoinoseis.html',
+'../email.html',
 // Links for student 4-7
-'../../../TechnologiaLogismikou/frontend/html/evaluation_form.html',
-'../../../TechnologiaLogismikou/frontend/html/covid.html',
-'../../../TechnologiaLogismikou/frontend/html/bookSeat.html',
-'../../../TechnologiaLogismikou/frontend/html/bathmoi.html',
+'../evaluation_form.html',
+'../covid.html',
+'../bookSeat.html',
+'../bathmoi.html',
 // Links for techer 8-9
-'../../../TechnologiaLogismikou/frontend/html/evaluation.html',
+'../evaluation.html',
 '../recommendation_letter.html'];
 
 function ChangeFrameContent(list_element) {
