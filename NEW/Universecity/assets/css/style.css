@@ -221,6 +221,11 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  left: 50%;
+}
+
+.card h2, h4{
+  text-align: center;
 }
 
 .card-header, .card-footer {
