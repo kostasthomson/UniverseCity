@@ -395,14 +395,12 @@ function sumbitSeat() {
                 const dbResult = this.responseText;
                 if(dbResult!="Occupied" ) {
                     let yesbtn = document.querySelector("#yesbtn");
-                    yesbtn.onclick = function(){
-                        var selectModal = document.getElementById('selectModal');
-                        selectModal.style.display = 'none';
-                        alert("Η κράτηση σας ολοκληρώθηκε με επιτύχια");
-                        selectedSeat.classList.remove("selected");
-                        selectedSeat.classList.add("granted");
-                        temp1();
-                    }
+                    var selectModal = document.getElementById('selectModal');
+                    selectModal.style.display = 'none';
+                    alert("Η κράτηση σας ολοκληρώθηκε με επιτύχια");
+                    selectedSeat.classList.remove("selected");
+                    selectedSeat.classList.add("granted");
+                    temp1();
                 }
                 else {
                     alert(dbResult);
