@@ -333,9 +333,6 @@ selectBtn.setAttribute('id', 'selectBtn');
 selectBtn.setAttribute('onclick', 'modalToggle()'); 
 selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
 document.body.appendChild(selectBtn); 
-//   selectBtn.style.bottom='50px';
-
-    selectBtn.style.position='absolute';
 
 
 }
