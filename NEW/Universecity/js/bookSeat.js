@@ -51,9 +51,9 @@ var CL1 = new Classroom('Αίθουσα 1', 'CL', 12, 01, 168);
 
 var AIC101 = new Course('ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΙΚΤΥΟΥ', 'AIC101');
 AIC101.setClassroom(ERG334);
-var AIC102 = new Course('ΤΕΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'AIC102');
+var AIC102 = new Course('ΤΕΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'DEMO4');
 AIC102.setClassroom(AMF12);
-var AIC103 = new Course('ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ', 'AIC103');
+var AIC103 = new Course('ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ', 'DEMO1');
 AIC103.setClassroom(AMF12);
 var AIC104 = new Course('ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ', 'AIC104');
 AIC104.setClassroom(AMF12);
@@ -145,9 +145,45 @@ function makeList() { // New Course List with buttons
 }
 
 // Find Classroom + Generate Seats 
+
+
+var selected1; // temp global
+
+
+function retrieveFromDB(courseCode){
+// retrieve seats from DB
+    
+    let rows;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            if(dbResult!="Fail") {
+                let seatArray = []; // initialize array every time
+                rows = dbResult.split("|");
+                rows.forEach(row => {
+                    let value = row.split(","); //id, number, state
+                    seatArray.push({
+                        "id":parseInt(value[0]),
+                        "number":parseInt(value[1]),
+                        "state":(value[2])
+                    });
+                })
+                theater(seatArray.length, 'AMF', seatArray); //generate seats
+            }
+        }
+    }; 
+    xmlhttp.open("GET","assets/backend/SeatReservation.php?subject_id="+courseCode,true);
+    xmlhttp.send();
+    //capacity = rows.length
+    // end retrieve
+}
+
 function validate(courseCode){
     // Find the course and return the classroom
-    selectedClassroom = findCourse(courseCode);
+    selectedClassroom = findCourse(courseCode); //DEMO1=6, DEMO4=11
+
+    selected1 = courseCode; // temp
 
     let element = document.querySelector(".seatBoxContainer");
     let leftContainer = document.querySelector(".leftContainer");
@@ -163,11 +199,11 @@ function validate(courseCode){
             desk_element.remove();
         }
         // Generate Seats
-        theater(selectedClassroom.capacity, selectedClassroom.type);
+        retrieveFromDB(courseCode);
     }
     else { // Seat container is empty - First load
         // Generate Seats
-        theater(selectedClassroom.capacity, selectedClassroom.type);
+        retrieveFromDB(courseCode);
     }
 }
 
@@ -209,7 +245,7 @@ function initSeatContainer(){
 
 
 
-function theater(capacity, type){ //not final
+function theater(capacity, type, seatArray){ //not final
 makeDesk();
 
 // Get the containers
@@ -227,6 +263,7 @@ if(type=='AMF') {
     for (var i=0; i<capacity; i++) {
         let listItem = document.createElement('button');
         listItem.setAttribute('id', 'seat'+(i+1));
+        listItem.setAttribute('data-seatId', seatArray[i].id);
         listItem.setAttribute('class', 'seat');
         listItem.insertAdjacentHTML('afterbegin', i+1);
         listItem.setAttribute('style', 'cursor: pointer;');
@@ -241,6 +278,14 @@ if(type=='AMF') {
     // Forbidden seats -->!!! must change from number(12) to variable (percentage of capacity)!!!
     for (i=0; i<capacity/12; i++) { //First 14 seats
         document.getElementById('seat'+(i+1)).classList.toggle('forbidden');
+    }
+
+    
+    for(i=0; i<capacity; i++) {
+        if(seatArray[i].state == 'T'){
+            document.querySelector("button[data-seatid='"+seatArray[i].id+"']").classList.toggle("occupied");
+        }
+
     }
 
 }
@@ -285,12 +330,9 @@ function makeSelectBtn() {
 
 let selectBtn = document.createElement('button');
 selectBtn.setAttribute('id', 'selectBtn');
-selectBtn.setAttribute('onclick', 'modalToggle(this)'); 
+selectBtn.setAttribute('onclick', 'modalToggle()'); 
 selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
-document.getElementById('seatContainer01').append(selectBtn); 
-//   selectBtn.style.bottom='50px';
-
-    selectBtn.style.position='absolute';
+document.body.appendChild(selectBtn); 
 
 
 }
@@ -304,7 +346,7 @@ document.getElementById('seatContainer01').append(selectBtn);
 
 
 
-function modalToggle(selectBtn) {
+function modalToggle() {
 
      // let, const
     var selectModal = document.getElementById('selectModal');
@@ -326,6 +368,54 @@ function modalToggle(selectBtn) {
         }
     }
 }
+
+function getSeat(){
+    document.querySelector
+}
+
+
+
+
+function sumbitSeat() {
+    let selectedSeat = document.querySelector('.selected');
+    let dataSeatID = parseInt(selectedSeat.getAttribute('data-seatid'));
+
+    selected1;
+
+    let UserTemp = "ics0001";
+    
+
+    // not correct, will fix
+
+    var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                const dbResult = this.responseText;
+                if(dbResult!="Occupied" ) {
+                    let yesbtn = document.querySelector("#yesbtn");
+                    yesbtn.onclick = function(){
+                        var selectModal = document.getElementById('selectModal');
+                        selectModal.style.display = 'none';
+                        selectedSeat.classList.remove("selected");
+                        selectedSeat.classList.add("granted");
+                        temp1();
+
+                    }
+                }
+                else {
+                    alert(dbResult);
+                }
+            }
+        }; 
+        xmlhttp.open("GET","assets/backend/SeatSelected.php?seat_id="+dataSeatID
+                                                                +"&student_id="+UserTemp,true);
+        xmlhttp.send();
+    
+
+}
+
+
+
 
 
 function makeModal() {
@@ -351,9 +441,12 @@ function makeModal() {
         let choosebtnYes= document.createElement('button');
         choosebtnYes.setAttribute('class','chbtn');
         choosebtnYes.setAttribute('value', 'yes');
+        choosebtnYes.setAttribute('id', 'yesbtn');
+        choosebtnYes.setAttribute('onclick', 'sumbitSeat()');
         let choosebtnNo= document.createElement('button');
         choosebtnNo.setAttribute('class','chbtn');
         choosebtnNo.setAttribute('value', 'no');
+        choosebtnNo.setAttribute('id', 'nobtn');
         // choosebtnYes.value =("Ναι");
         // choosebtnNo.value=("Όχι");
         choosebtnYes.insertAdjacentHTML('afterbegin','Ναι' );
@@ -390,11 +483,17 @@ const container = document.querySelector('.seatContainer');
 
 // Only one seat can be selected at a time
 container.addEventListener('click', (e) => {
-    if (e.target.classList.contains('seat') && validSeat() && !e.target.classList.contains('forbidden')) {
-    e.target.classList.toggle('selected');
+    if (e.target.classList.contains('seat') && validSeat()
+         && !e.target.classList.contains('forbidden')
+         && !e.target.classList.contains('occupied')) {
+
+            e.target.classList.toggle('selected');
     }
-    else if(e.target.classList.contains('seat') && (e.target.classList.contains('selected') && !validSeat())) {
-    e.target.classList.remove('selected');
+    else if(e.target.classList.contains('seat') 
+            && (e.target.classList.contains('selected') 
+            && !validSeat())) {
+
+                e.target.classList.remove('selected');
     }
 })
 
@@ -404,6 +503,17 @@ function validSeat() {
     }
     return true;
 }
+
+function temp1() {
+    if(document.querySelectorAll('.granted').length>=1){
+        selectBtn = document.getElementById('selectBtn');
+        selectBtn.style.display = 'block';
+        selectBtn.style.display = 'none';
+    }
+}
+
+
+
 
 
 window.onload = makeList();

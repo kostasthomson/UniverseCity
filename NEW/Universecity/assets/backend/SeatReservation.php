@@ -24,7 +24,7 @@
                             $seats_result = $db->getQueryResults();
                             if(count($seats_result) != 0) {
                                 $seat = $seats_result[0];
-                                array_push($seats_array, "{$seat['id']}, {$seat['number']}, {$seat['state']}");
+                                array_push($seats_array, "{$seat['id']},{$seat['number']},{$seat['state']}");
                             }
                         }
                     }
