@@ -49,25 +49,25 @@ var ERG334 = new Classroom('Εργαστήριο 334', 'LAB', 334, 03, 48);
 var CL1 = new Classroom('Αίθουσα 1', 'CL', 12, 01, 168);
 
 
-// var AIC101 = new Course('ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΙΚΤΥΟΥ', 'AIC101');
-// AIC101.setClassroom(ERG334);
+var AIC101 = new Course('ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΙΚΤΥΟΥ', 'AIC101');
+AIC101.setClassroom(ERG334);
 var AIC102 = new Course('ΤΕΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'DEMO4');
 AIC102.setClassroom(AMF12);
 var AIC103 = new Course('ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ', 'DEMO1');
 AIC103.setClassroom(AMF12);
-// var AIC104 = new Course('ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ', 'AIC104');
-// AIC104.setClassroom(AMF12);
-// var AIC105 = new Course('ΑΛΓΟΡΙΘΜΟΙ', 'AIC105');
-// AIC105.setClassroom(AMF9);
+var AIC104 = new Course('ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ', 'AIC104');
+AIC104.setClassroom(AMF12);
+var AIC105 = new Course('ΑΛΓΟΡΙΘΜΟΙ', 'AIC105');
+AIC105.setClassroom(AMF9);
 
 
 
 var User01 = new User('User01');
-// User01.addCourse(AIC101);
+User01.addCourse(AIC101);
 User01.addCourse(AIC102);
 User01.addCourse(AIC103);
-// User01.addCourse(AIC104);
-// User01.addCourse(AIC105);
+User01.addCourse(AIC104);
+User01.addCourse(AIC105);
 //console.log(User01);
 }
 
@@ -332,7 +332,7 @@ let selectBtn = document.createElement('button');
 selectBtn.setAttribute('id', 'selectBtn');
 selectBtn.setAttribute('onclick', 'modalToggle()'); 
 selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
-document.getElementById('seatContainer01').append(selectBtn); 
+document.body.appendChild(selectBtn); 
 //   selectBtn.style.bottom='50px';
 
     selectBtn.style.position='absolute';
