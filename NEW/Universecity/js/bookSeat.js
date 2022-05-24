@@ -268,7 +268,7 @@ if(type=='AMF') {
         listItem.setAttribute('data-seatId', seatArray[i].id);
         listItem.setAttribute('class', 'seat');
         listItem.insertAdjacentHTML('afterbegin', i+1);
-        listItem.setAttribute('style', 'cursor: pointer;');
+        //listItem.setAttribute('style', 'cursor: pointer;');
         if(i%14<7){ // 7 seats in each side in each row
             leftContainer.appendChild(listItem);
         }
