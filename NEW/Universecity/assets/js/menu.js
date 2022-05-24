@@ -32,6 +32,7 @@ function ChangeFrameContent(name) {
     const frame = document.getElementById('page-content');
     frame.src = src_links[name];
     frame.setAttribute('data-content-name', name);
+    updatePageTitle();
 }
 
 function createListElement(element_name) {
@@ -40,7 +41,7 @@ function createListElement(element_name) {
 
     const a = document.createElement('a');
     a.setAttribute('class', 'nav-link');
-    a.setAttribute('onclick', 'ChangeFrameContent(element_name)');
+    a.setAttribute('onclick', `ChangeFrameContent('${element_name}')`);
 
     const i = document.createElement('i');
 
@@ -263,6 +264,7 @@ function updateNotifications() {
 }
 
 window.onload = () => {
+    console.log(window.location.search);
     if(window.location.search) {
         const queryString = window.location.search;
         sessionStorage.setItem('url-query', queryString);
