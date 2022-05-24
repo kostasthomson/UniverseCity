@@ -177,8 +177,8 @@
    height: 32px;
    background-color: #bcc6da;
    padding: 1px;
-   border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem; 
+   border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem; 
    /* border-top-left-radius: 1rem;
    border-top-right-radius: 1rem;  */
    cursor: pointer;
