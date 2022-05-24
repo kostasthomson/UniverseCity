@@ -1,5 +1,6 @@
-
-
+* {
+  font-family: "Open Sans", sans-serif;
+}
 #selectBtn{
    margin-left: 52.5rem;
   font-size:1rem;
@@ -326,13 +327,27 @@
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: hsl(126, 38%, 95%);
+  
   margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid hsl(169, 74%, 46%);
+  padding: 2rem;
+  border-radius: 1rem ;
   width: 25%; /* Could be more or less, depending on screen size */
+  box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
+  background-color: #b8b4b4;
+  color: #ffffff;
 }
 
+.modalText{
+  font-size:1.25rem;
+  
+  letter-spacing: 0.05rem;
+  font-weight: 600;
+  border:none;
+  text-decoration: none;
+  padding:0.5rem 2rem;
+   
+   color:black; 
+}
 /* The Close Button */
 .close {
   color: #aaa;
@@ -348,15 +363,40 @@
   cursor: pointer;
 }
 .chbtn{
-color:hsl(169, 74%, 46%); 
 
   
-  width: 60px;
-  height: 20px;
-
+  font-size:1rem;
+  text-transform: uppercase;
+  margin-left: 1rem;
+  letter-spacing: 0.2rem;
+  font-weight: 500;
+  border:none;
+  text-decoration: none;
+  padding:0.5rem 2rem;
+  background: rgb(168, 168, 165);
+  margin-top:1.5rem;
+  color:white;
+  border-radius: 4rem;
+  cursor:pointer;
+  outline:none;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
+  background: #158d5d91;
+  color: #ffffff;
 
 }
 
+.chbtn:hover {
+  background-color: #03c07591;
+  box-shadow: 0rem 1rem 1.4rem #0ae48d50;
+  color:rgb(255, 255, 255);
+  transform:translateY(-0.25rem);
+}
+
+.chbtn:active{
+  transform:translateY(-0.20rem);
+  background-color: #07db86;
+}
 
 .desk_text{
   color:white;
