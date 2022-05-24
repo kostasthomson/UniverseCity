@@ -52,7 +52,6 @@ function edit() {
 function rowInitialization() {
     const null_character = '';
     let rows = document.querySelectorAll('tbody > tr');
-    console.log(rows);
     let lesson_index = 0;
     rows.forEach(row => {
         // if(row.id != 'column-headers') {

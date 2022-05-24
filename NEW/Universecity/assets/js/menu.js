@@ -16,7 +16,7 @@ const src_links = {
 // Links for secretariat 0-3
     'Αρχική': 'index.html',
     'Ωρολόγιο Πρόγραμμα': 'programma.html',
-    'Ανακοινώσεις': 'anakoinoseis.html',
+    'Ανακοινώσεις': '', //anakoinoseis.html
     'Διαχείριση Ενεργειών': 'email.html',
 // Links for student 4-7
     'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
@@ -193,7 +193,11 @@ function createLifromNotification(notification) {
     const diffHrs = Math.floor((diffMms % 86400000) / 3600000);
     const diffMins = Math.round(((diffMms % 86400000) % 3600000) / 60000);
 
-    p2.innerHTML = `${(diffHrs!=0)? diffHrs+"hrs." : ""} ${diffMins} mins.`;
+    if(!isNaN(diffHrs) && !isNaN(diffMins)) {
+        p2.innerHTML = `${(diffHrs!=0)? diffHrs+"hrs." : ""} ${diffMins} mins.`;   
+    } else {
+        p2.innerHTML = '2 mins.';
+    }
     div.append(h4, p1, p2);
     li.append(div);
     return li;
@@ -264,7 +268,6 @@ function updateNotifications() {
 }
 
 window.onload = () => {
-    console.log(window.location.search);
     if(window.location.search) {
         const queryString = window.location.search;
         sessionStorage.setItem('url-query', queryString);
