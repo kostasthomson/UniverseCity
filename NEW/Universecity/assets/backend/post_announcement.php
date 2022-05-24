@@ -1,5 +1,5 @@
 <?php
-    //?title=TEST&description=test_desc&time=18:30:01&date=2022/5/23&sender=S
+    //?title=TEST&description=test_desc&time=18:30:01&date=2022-05-23&sender=S
     require "./DB_Class.php";
 
     $title = htmlspecialchars($_GET['title']);
