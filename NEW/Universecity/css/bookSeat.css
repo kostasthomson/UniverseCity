@@ -1,14 +1,98 @@
 
 
-#chooseButton{
-  display: flex; 
-  display: inline; 
+#selectBtn{
+   margin-left: 52.5rem;
+  font-size:1rem;
+  text-transform: uppercase;
+  
+  letter-spacing: 0.2rem;
+  font-weight: 500;
+  border:none;
+  text-decoration: none;
+  padding:0.5rem 2rem;
+  background: rgb(168, 168, 165);
+  margin-top:1.5rem;
+  color:white;
+  border-radius: 4rem;
+  cursor:pointer;
+  outline:none;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
+  background: #158d5d91;
+  color: #ffffff;
+  
+  
+}
+
+
+
+#selectBtn:hover {
+  background-color: #03c07591;
+  box-shadow: 0rem 1rem 1.4rem #0ae48d50;
+  color:rgb(255, 255, 255);
+  transform:translateY(-0.5rem);
+}
+
+#selectBtn:active{
+  transform:translateY(-0.05rem);
+  background-color: #07db86;
+}
+
+
+.subjectBtns{
+  
+  font-size:1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-weight: 500;
+  border:none;
+  text-decoration: none;
+  padding:0.5rem 1rem;
+  background: rgb(168, 168, 165);
+  margin-top:1.5rem;
+  margin-bottom: 1.2rem;
+  margin-left:2rem;
+  color:white;
+  border-radius: 4rem;
+  cursor:pointer;
+  outline:none;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
+  background: #158d5d91;
+  color: #ffffff;
+}
+.subjectBtns:hover {
+  background-color: #03c07591;
+  box-shadow: 0rem 1rem 1.4rem #0ae48d50;
+  color:rgb(255, 255, 255);
+  
+}
+
+.subjectBtns:active{
+  
+  background-color: #07db86;
 }
 
 .selectCourse{
-  display: flex;
-  border: 2px solid black;;
-  padding: 1rem;
+ 
+  font-size:1rem;
+  text-transform: uppercase;
+  
+  letter-spacing: 0.2rem;
+  font-weight: 500;
+  border:none;
+  text-decoration: none;
+  padding:0.5rem 2rem;
+  background: rgb(168, 168, 165);
+  margin-top:1.5rem;
+  color:white;
+  border-radius: 4rem;
+  cursor:default;
+  outline:none;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
+  background:#dce2f1;
+  color: #ffffff;
   
 }
 
@@ -19,6 +103,28 @@
   
    
  }
+
+ .seat.granted{
+  background-color: #05f79691;
+
+}
+
+
+  
+ .seat.occupied{
+   background-color: rgba(190, 126, 8, 0.685);
+   cursor: default;
+ }
+
+ .seat.granted:hover{
+  background-color: #17e99591;
+}
+
+
+
+.seat.occupied:hover{
+  background-color: orangered;
+}
 
  h3 {
    display: inline-block;
@@ -67,18 +173,20 @@
    margin: 5px;
    width: 32px;
    height: 32px;
-   background-color: #807e80;
+   background-color: #bcc6da;
    padding: 1px;
+   border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem; 
    /* border-top-left-radius: 1rem;
    border-top-right-radius: 1rem;  */
  }
   .seat.selected{
-    background-color: limegreen;
+    background-color: #158d5d91;
   
  }
 
  .seat.forbidden{
-   background-color: darkred;
+   background-color: rgb(141, 4, 4);
  }
   /* p {
   display: flex;
@@ -88,16 +196,18 @@
 } */
 
  .seat:hover{
-   background-color: rgb(47, 48, 48);
+   background-color: rgb(221, 228, 228);
  }
 
  .seat.selected:hover{
-   background-color: green;
+   background-color: #0bd484c7;
  }
 
  .seat.forbidden:hover{
-  background-color: #6f0000;
+  background-color: #8304047e;
 }
+
+
  /* #seat:nth-of-type(7){
   margin-left: 18px;
 }   */
@@ -111,7 +221,7 @@
 
 
 .desk{
-  background-color: #7DD4BE;
+  background-color: #158d5d91;
   height: 50px;
   width: 70px;
   margin: auto;
@@ -193,12 +303,6 @@
   margin-left: 2rem;
 }
 
-#selectBtn{
-  display: none;
-  width: 100px;
-  height: 40px;
-
-}
 
 
 .modal {
@@ -248,7 +352,45 @@ color:hsl(169, 74%, 46%);
 }
 
 
-
+.desk_text{
+  color:white;
+}
+  
+.date{
+  font-size:2rem;
+  
+  letter-spacing: 0.05rem;
+  font-weight: 900;
+  border:none;
+  text-decoration: underline;
+  padding:0.5rem 2rem;
+ 
+  margin-top:1.5rem;
+  color:white;
+  border-radius: 0.5rem;
+  cursor:default;
+  outline:none;
+  color:#066b4391;
+}
+  
+.h3Subject{
+  font-size:2rem;
+  
+  letter-spacing: 0.05rem;
+  font-weight: 900;
+  border:none;
+  text-decoration: underline;
+  padding:0.5rem 2rem;
+ 
+  margin-top:1.5rem;
+  color:white;
+  border-radius: 0.5rem;
+  cursor:default;
+  outline:none;
+  
+  
+  color:#066b4391;
+}
 /* 
 .chbtnNo{
  

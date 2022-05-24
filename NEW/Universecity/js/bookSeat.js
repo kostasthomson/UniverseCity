@@ -132,7 +132,7 @@ function makeList() { // New Course List with buttons
 
         // The value of the option is the Course's code
         listItem.setAttribute('value', User01.CourseList[i].code);
-
+        listItem.setAttribute('class', "subjectBtns");
         // The name of the Course is displayed to the user
         listItem.innerHTML = User01.CourseList[i].name;
 
@@ -181,6 +181,8 @@ function retrieveFromDB(courseCode){
 
 function validate(courseCode){
     // Find the course and return the classroom
+    let selectBtn = document.getElementById("selectBtn");
+    selectBtn.style.display = 'block';
     selectedClassroom = findCourse(courseCode); //DEMO1=6, DEMO4=11
 
     selected1 = courseCode; // temp
@@ -333,7 +335,7 @@ selectBtn.setAttribute('id', 'selectBtn');
 selectBtn.setAttribute('onclick', 'modalToggle()'); 
 selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
 document.body.appendChild(selectBtn); 
-
+selectBtn.style.display = "none";
 
 }
 
