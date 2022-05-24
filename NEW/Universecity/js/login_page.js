@@ -16,8 +16,8 @@ xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         const dbResult = this.responseText;
         if(dbResult!="Fail" && dbResult!="Unrecorded") {
-            // window.location.href = "../loading.html?login_data="+dbResult;
-            window.location.replace("../loading.html?login_data="+dbResult);
+            window.location.href = "../loading.html?login_data="+dbResult;
+            // window.location.replace("../loading.html?login_data="+dbResult);
         }
     }
 }; 
