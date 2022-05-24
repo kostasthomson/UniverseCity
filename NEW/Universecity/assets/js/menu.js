@@ -139,6 +139,7 @@ function changeUser(button) {
         sessionStorage.setItem('user-class', newUser);
         UserNavListInit();
         setUserNavList();
+        updateNotifications();
     }
 }
 
@@ -167,15 +168,111 @@ function updatePageTitle() {
     last_ol_child.innerHTML = frame_name;
 }
 
-function updateNotifications() {
-    const list_header = document.querySelector('.dropdown-menu>.dropdown-header');
-    
+function createLifromNotification(notification) {
+    const li = document.createElement('li');
+    li.setAttribute('id', notification.id);
+    li.setAttribute('class', 'notification-item');
+    const div = document.createElement('div');
+    const h4 = document.createElement('h4');
+    h4.innerHTML = notification.title;
+    const p1 = document.createElement('p');
+    p1.innerHTML = notification.description;
+    const p2 = document.createElement('p');
+
+    const year = parseInt(notification.date.split('-')[0]);
+    const month = parseInt(notification.date.split('-')[1])-1;
+    const day = parseInt(notification.date.split('-')[2]);
+    const hour = parseInt(notification.time.split(':')[0]);
+    const minute = parseInt(notification.time.split(':')[1]);
+
+    const currTime = new Date();
+    const recordTime = new Date(year, month, day, hour, minute);
+
+    const diffMms = (currTime - recordTime);
+    const diffHrs = Math.floor((diffMms % 86400000) / 3600000);
+    const diffMins = Math.round(((diffMms % 86400000) % 3600000) / 60000);
+
+    p2.innerHTML = `${(diffHrs!=0)? diffHrs+"hrs." : ""} ${diffMins} mins.`;
+    div.append(h4, p1, p2);
+    li.append(div);
+    return li;
 }
 
-const queryString = window.location.search;
-sessionStorage.setItem('url-query', queryString);
-if(queryString) {
-    const urlParams = new URLSearchParams(queryString);
+function fillUlElement(ul, announcements) {
+    const divider = document.createElement('li');
+    const hr = document.createElement('hr');
+    hr.setAttribute('class', 'dropdown-divider');
+    divider.appendChild(hr);
+    // let max_nots = 4;
+    // let i = 0;
+    announcements.forEach(announcement => {
+        // if(i < 4) {
+        const details = announcement.split(',');
+        notification = { 
+            'id': details[0],
+            'title': details[1],
+            'description': details[2],
+            'time': details[3], 
+            'date': details[4],
+            'sender': details[5]
+        };
+        // if(sessionStorage.getItem('user-class') == 'teacher') {
+        //     if(notification.sender == 'S') {
+        //         ul.append(createLifromNotification(notification));        
+        //     }
+        // } else {
+        ul.append(createLifromNotification(notification));
+        // }
+        ul.append(divider);
+        // i++;
+        // }
+    });
+    const footer = document.createElement('li');
+    footer.setAttribute('class', 'dropdown-footer');
+    const anchor = document.createElement('a');
+    anchor.setAttribute('href', '#'); 
+    anchor.innerHTML = 'Show all notifications';
+    footer.append(anchor);
+    ul.append(footer);
+}
+
+function UpdateUlElements(notifications) {
+    let notification_list = document.querySelector('.notifications');
+    fillUlElement(notification_list,notifications.slice(-4).reverse());
+}
+
+function updateNotifications() {
+    // const notifications = document.querySelectorAll('.nav-link.nav-icon')[1];
+    // if(sessionStorage.getItem('user-class') == 'secretariat') {
+    //     notifications.style.display = 'none';
+    // }else {
+    //     if(notifications.style.display == 'none'){
+    //         notifications.style.display = 'inline-block';
+    //     }
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            const notifications = dbResult.split('|');
+            UpdateUlElements(notifications);
+        }
+    }; 
+    xmlhttp.open("GET","./assets/backend/get_announcement.php",true);
+    xmlhttp.send();
+    // }
+}
+
+window.onload = () => {
+    if(window.location.search) {
+        const queryString = window.location.search;
+        sessionStorage.setItem('url-query', queryString);
+        window.location = window.location.pathname;
+    }
+}
+
+
+if(sessionStorage.getItem('url-query')) {
+    const urlParams = new URLSearchParams(sessionStorage.getItem('url-query'));
     const login_data = urlParams.get('login_data');
     const user_data = login_data.split(",");
     const USER = new User(user_data);
@@ -191,7 +288,7 @@ if(queryString) {
             sessionStorage.setItem('user-class', 'secretariat');
             break;
     }
-    const href = 'index.html'+queryString;
+    const href = 'index.html'+sessionStorage.getItem('url-query');
     const logo_anchor = document.querySelector('.logo');
     logo_anchor.href = href;
     const sidebar_list_anchor = document.querySelectorAll('.nav-link')[3];
@@ -199,8 +296,8 @@ if(queryString) {
     const breadcrumb_list_anchor = document.querySelectorAll('.breadcrumb-item')[0].children[0];
     breadcrumb_list_anchor.href = href;
 }
-setUpButtons();
-// UserNavListInit();
-// setUserNavList();
-// updatePageTitle();
+// setUpButtons();
+UserNavListInit();
+setUserNavList();
+updatePageTitle();
 updateNotifications();

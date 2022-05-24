@@ -51,36 +51,38 @@ function edit() {
 
 function rowInitialization() {
     const null_character = '';
-    let rows = document.querySelectorAll('tr');
+    let rows = document.querySelectorAll('tbody > tr');
+    console.log(rows);
     let lesson_index = 0;
     rows.forEach(row => {
-        if(row.id != 'column-headers') {
-            let days_list_index = 0;
-            schedule.forEach(day => {
-                let td = document.createElement('td');
-                td.setAttribute('id', row.id+'-data-'+days[days_list_index].id);
-                td.innerHTML = day[lesson_index]? day[lesson_index]: null_character;
-                row.appendChild(td);
-                days_list_index++;
-            });
-            lesson_index++;
-        }
+        // if(row.id != 'column-headers') {
+        let days_list_index = 0;
+        schedule.forEach(day => {
+            let td = document.createElement('td');
+            td.setAttribute('id', row.id+'-data-'+days[days_list_index].id);
+            td.innerHTML = day[lesson_index]? day[lesson_index]: null_character;
+            row.appendChild(td);
+            days_list_index++;
+        });
+        lesson_index++;
+        // }
     });
 }
 
 function createRow(id, hour) {
     const row = document.createElement('tr');
     row.setAttribute('id', 'row-'+id);
-    let td = document.createElement('td');
+    let td = document.createElement('th');
     td.setAttribute('id', 'row-'+id+"-data-0");
     td.setAttribute('data-hour', hour);
+    td.setAttribute('scope', 'row');
     td.innerHTML = `${hour}:00 - ${hour + 1}:00`;
     row.appendChild(td);
     return row;
 }
 
 function tableInit() {   
-    const tbody = document.getElementById('table-body');
+    const tbody = document.querySelector('.table > tbody');
     let id = 0;
     for(let i = start; i <= end; i+=step) {
         let trow;
