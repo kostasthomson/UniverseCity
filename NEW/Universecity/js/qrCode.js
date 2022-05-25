@@ -5,13 +5,10 @@ function onScanSuccess(qrCodeMessage) {
     if (this.readyState == 4 && this.status == 200) {
       const dbResult = this.responseText;
       console.log(dbResult);
+      
     }
   };
-  xmlhttp.open(
-    "GET",
-    "../assets/backend/qrCode.php?student_pass_id=" + qrCodeMessage,
-    true
-  );
+  xmlhttp.open("GET","assets/backend/qrCode.php?student_pass_id=" + qrCodeMessage,true);
   xmlhttp.send();
 
   //If it isn't "undefined" and it isn't "null", then it exists.
