@@ -16,281 +16,278 @@
  <body>
    
     <!-- Questions --> 
-    <p id="myid"></p>
+    <form  id="form" onsubmit="sendRequest()">
 
-        <form  id="form" action="evaluation.php" method="get">
+        <label for="subjects" class="subject">Διαλεξε το μαθημα που θελεις να αξιολογησεις: </label>
+        <select name="subjects" id="subjs" class="select">
+            <option disabled="disabled" selected="selected" class="invalid">Διαλεξτε μαθημα</option>
+            <option value="Αντικειμενοστρεφής προγραμματισμός">Αντικειμενοστρεφης προγραμματισμος</option>
+            <option value="Διαδικαστικός Προγραμματισμός">Διαδικαστικος Προγραμματισμος</option>
+            <option value="Διδακτική της Πληροφορικής">Διδακτικη της Πληροφορικης</option>
+            <option value="Τεχνολογια Λογισμικου">Τεχνολογια Λογισμικου</option>
+        </select>
 
-            <label for="subjects" class="subject">Διαλεξε το μαθημα που θελεις να αξιολογησεις: </label>
-            <select name="subjects" id="subjs" class="select">
-                <option disabled="disabled" selected="selected" class="invalid">Διαλεξτε μαθημα</option>
-                <option value="Αντικειμενοστρεφής προγραμματισμός">Αντικειμενοστρεφης προγραμματισμος</option>
-                <option value="Διαδικαστικός Προγραμματισμός">Διαδικαστικος Προγραμματισμος</option>
-                <option value="Διδακτική της Πληροφορικής">Διδακτικη της Πληροφορικης</option>
-                <option value="Τεχνολογια Λογισμικου">Τεχνολογια Λογισμικου</option>
-            </select>
+        <h3 class="generalQuestions">Γενικές Ερωτήσεις</h3>
 
-            <h3 class="generalQuestions">Γενικές Ερωτήσεις</h3>
+        <p id="1" class="questions"> 1. Η συνολικη αποδοση του διδασκοντα ηταν καλη; <br>
+            <label for="q1" class="radio-inline">
+                <input  id="0" type="radio" name="optradio1" value="0"  class="styleRadio" > 0  
+            </label>
+            <label for="q1" class="radio-inline">
+                <input  id="1" type="radio" name="optradio1" value="1"  class="styleRadio"> 1
+            </label>
+            <label for="q1" class="radio-inline">
+                <input  id="2" type="radio" name="optradio1" value="2"  class="styleRadio" > 2
+            </label>
+            <label for="q1" class="radio-inline">
+                <input  id="3" type="radio" name="optradio1" value="3"  class="styleRadio" > 3
+            </label>
+            <label for="q1" class="radio-inline">
+                <input  id="4" type="radio" name="optradio1" value="4"  class="styleRadio" > 4
+            </label>
+            <label for="q1" class="radio-inline">
+                <input  id="5" type="radio" name="optradio1" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
+        <p id="2" class="questions"> 2. Η ποιοτητα του μαθηματος ήταν υψηλη; <br>
+            <label for="q2" class="radio-inline">
+                <input  id="0" type="radio" name="optradio2" value="0"    class="styleRadio"> 0
+            </label>
+            <label for="q2" class="radio-inline">
+                <input  id="1" type="radio" name="optradio2" value="1"  class="styleRadio" > 1
+            </label>
+            <label for="q2" class="radio-inline">
+                <input  id="2" type="radio" name="optradio2" value="2"   class="styleRadio"> 2
+            </label>
+            <label for="q2" class="radio-inline">
+                <input  id="3" type="radio" name="optradio2" value="3"  class="styleRadio" > 3
+            </label>
+            <label for="q2" class="radio-inline">
+                <input  id="4" type="radio" name="optradio2" value="4"  class="styleRadio" > 4
+            </label>
+            <label for="q2" class="radio-inline">
+                <input  id="5" type="radio" name="optradio2" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
 
-            <p id="1" class="questions"> 1. Η συνολικη αποδοση του διδασκοντα ηταν καλη; <br>
-                <label for="q1" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio1" value="0"  class="styleRadio" > 0  
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio1" value="1"  class="styleRadio"> 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio1" value="2"  class="styleRadio" > 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio1" value="3"  class="styleRadio" > 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio1" value="4"  class="styleRadio" > 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio1" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
-            <p id="2" class="questions"> 2. Η ποιοτητα του μαθηματος ήταν υψηλη; <br>
-                <label for="q2" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio2" value="0"    class="styleRadio"> 0
-                </label>
-                <label for="q2" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio2" value="1"  class="styleRadio" > 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio2" value="2"   class="styleRadio"> 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio2" value="3"  class="styleRadio" > 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio2" value="4"  class="styleRadio" > 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio2" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
+        <h3>Αξιολόγηση μαθήματος</h3>
 
-            <h3>Αξιολόγηση μαθήματος</h3>
+        <p id="3" class="questions"> 3. Η οργανωση και παρουσιαση του μαθηματος ήταν αρτια; <br>
+            <label for="q3" class="radio-inline">
+                <input  id="0" type="radio" name="optradio3" value="0"   class="styleRadio" > 0
+            </label>
+            <label for="q3" class="radio-inline">
+                <input  id="1" type="radio" name="optradio3" value="1"  class="styleRadio" > 1
+            </label>
+            <label for="q3" class="radio-inline">
+                <input  id="2" type="radio" name="optradio3" value="2"  class="styleRadio" > 2
+            </label>
+            <label for="q3" class="radio-inline">
+                <input  id="3" type="radio" name="optradio3" value="3"  class="styleRadio" > 3
+            </label>
+            <label for="q3" class="radio-inline">
+                <input  id="4" type="radio" name="optradio3" value="4"  class="styleRadio" > 4
+            </label>
+            <label for="q3" class="radio-inline">
+                <input  id="5" type="radio" name="optradio3" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
+        <p id="4" class="questions"> 4. Το αντικειμενο του μαθηματος ηταν ενδιαφερον και χρησιμο για τις σπουδες σας; <br>
+            <label for="q4" class="radio-inline">
+                <input  id="0" type="radio" name="optradio4" value="0"   class="styleRadio" > 0
+            </label>
+            <label for="q4" class="radio-inline">
+                <input  id="1" type="radio" name="optradio4" value="1"  class="styleRadio" > 1
+            </label>
+            <label for="q4" class="radio-inline">
+                <input  id="2" type="radio" name="optradio4" value="2"  class="styleRadio" > 2
+            </label>
+            <label for="q4" class="radio-inline">
+                <input  id="3" type="radio" name="optradio4" value="3"  class="styleRadio" > 3
+            </label>
+            <label for="q4" class="radio-inline">
+                <input  id="4" type="radio" name="optradio4" value="4"  class="styleRadio" > 4
+            </label>
+            <label for="q4" class="radio-inline">
+                <input  id="5" type="radio" name="optradio4" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
+        <p id="5" class="questions"> 5. Το διδακτικο υλικο (βιβλια, σημειωσεις, αρθρα κ.λπ.) ηταν επαρκες για τις αναγκες του μαθηματος; <br>
+            <label for="q5" class="radio-inline">
+                <input  id="0" type="radio" name="optradio5" value="0"    class="styleRadio"> 0
+            </label>
+            <label for="q5" class="radio-inline">
+                <input  id="1" type="radio" name="optradio5" value="1"   class="styleRadio"> 1
+            </label>
+            <label for="q5" class="radio-inline">
+                <input  id="2" type="radio" name="optradio5" value="2"  class="styleRadio" > 2
+            </label>
+            <label for="q5" class="radio-inline">
+                <input  id="3" type="radio" name="optradio5" value="3"   class="styleRadio"> 3
+            </label>
+            <label for="q5" class="radio-inline">
+                <input  id="4" type="radio" name="optradio5" value="4"  class="styleRadio" > 4
+            </label>
+            <label for="q5" class="radio-inline">
+                <input  id="5" type="radio" name="optradio5" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
+        
+        <h3>Αξιολόγηση διδασκόντος</h3>
 
-            <p id="3" class="questions"> 3. Η οργανωση και παρουσιαση του μαθηματος ήταν αρτια; <br>
-                <label for="q3" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio3" value="0"   class="styleRadio" > 0
-                </label>
-                <label for="q3" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio3" value="1"  class="styleRadio" > 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio3" value="2"  class="styleRadio" > 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio3" value="3"  class="styleRadio" > 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio3" value="4"  class="styleRadio" > 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio3" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
-            <p id="4" class="questions"> 4. Το αντικειμενο του μαθηματος ηταν ενδιαφερον και χρησιμο για τις σπουδες σας; <br>
-                <label for="q4" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio4" value="0"   class="styleRadio" > 0
-                </label>
-                <label for="q4" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio4" value="1"  class="styleRadio" > 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio4" value="2"  class="styleRadio" > 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio4" value="3"  class="styleRadio" > 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio4" value="4"  class="styleRadio" > 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio4" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
-            <p id="5" class="questions"> 5. Το διδακτικο υλικο (βιβλια, σημειωσεις, αρθρα κ.λπ.) ηταν επαρκες για τις αναγκες του μαθηματος; <br>
-                <label for="q5" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio5" value="0"    class="styleRadio"> 0
-                </label>
-                <label for="q5" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio5" value="1"   class="styleRadio"> 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio5" value="2"  class="styleRadio" > 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio5" value="3"   class="styleRadio"> 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio5" value="4"  class="styleRadio" > 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio5" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
-            
-            <h3>Αξιολόγηση διδασκόντος</h3>
+        <p id="6" class="questions"> 6. Ο καθηγητης ερχοταν στο μαθημα προετοιμασμενος; <br>
+            <label for="q6" class="radio-inline">
+                <input  id="0" type="radio" name="optradio6" value="0"    class="styleRadio"> 0
+            </label>
+            <label for="q6" class="radio-inline">
+                <input  id="1" type="radio" name="optradio6" value="1"  class="styleRadio" > 1
+            </label>
+            <label for="q6" class="radio-inline">
+                <input  id="2" type="radio" name="optradio6" value="2"   class="styleRadio"> 2
+            </label>
+            <label for="q6" class="radio-inline">
+                <input  id="3" type="radio" name="optradio6" value="3"  class="styleRadio" > 3
+            </label>
+            <label for="q6" class="radio-inline">
+                <input  id="4" type="radio" name="optradio6" value="4"  class="styleRadio" > 4
+            </label>
+            <label for="q6" class="radio-inline">
+                <input  id="5" type="radio" name="optradio6" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
+        <p id="7" class="questions"> 7. Η μεταδοτικοτητα του διδασκοντα ηταν καλη; <br>
+            <label for="q7" class="radio-inline">
+                <input  id="0" type="radio" name="optradio7" value="0"   class="styleRadio" > 0
+            </label>
+            <label for="q7" class="radio-inline">
+                <input  id="1" type="radio" name="optradio7" value="1"   class="styleRadio"> 1
+            </label>
+            <label for="q7" class="radio-inline">
+                <input  id="2" type="radio" name="optradio7" value="2"  class="styleRadio" > 2
+            </label>
+            <label for="q7" class="radio-inline">
+                <input  id="3" type="radio" name="optradio7" value="3"   class="styleRadio"> 3
+            </label>
+            <label for="q7" class="radio-inline">
+                <input  id="4" type="radio" name="optradio7" value="4"  class="styleRadio" > 4
+            </label>
+            <label for="q7" class="radio-inline">
+                <input  id="5" type="radio" name="optradio7" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
+        <p id="8" class="questions"> 8. Ενθαρρυνε τις ερωτησεις και ευρυτερα τη συμμετοχη στο μαθημα; <br>
+            <label for="q8" class="radio-inline">
+                <input  id="0" type="radio" name="optradio8" value="0"    class="styleRadio"> 0
+            </label>
+            <label for="q8" class="radio-inline">
+                <input  id="1" type="radio" name="optradio8" value="1"   class="styleRadio"> 1
+            </label>
+            <label for="q8" class="radio-inline">
+                <input  id="2" type="radio" name="optradio8" value="2"   class="styleRadio"> 2
+            </label>
+            <label for="q8" class="radio-inline">
+                <input  id="3" type="radio" name="optradio8" value="3"  class="styleRadio" > 3
+            </label>
+            <label for="q8" class="radio-inline">
+                <input  id="4" type="radio" name="optradio8" value="4"   class="styleRadio"> 4
+            </label>
+            <label for="q8" class="radio-inline">
+                <input  id="5" type="radio" name="optradio8" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
+        <p id="9" class="questions"> 9. Όποτε χρειαστηκα να λυσω αποριες/προβληματα βρηκα τον καθηγητη στις ωρες γραφειου του; <br>
+            <label for="q9" class="radio-inline">
+                <input  id="0" type="radio" name="optradio9" value="0"    class="styleRadio"> 0
+            </label>
+            <label for="q9" class="radio-inline">
+                <input  id="1" type="radio" name="optradio9" value="1"   class="styleRadio"> 1
+            </label>
+            <label for="q9" class="radio-inline">
+                <input  id="2" type="radio" name="optradio9" value="2"   class="styleRadio"> 2
+            </label>
+            <label for="q9" class="radio-inline">
+                <input  id="3" type="radio" name="optradio9" value="3"   class="styleRadio"> 3
+            </label>
+            <label for="q9" class="radio-inline">
+                <input  id="4" type="radio" name="optradio9" value="4"   class="styleRadio"> 4
+            </label>
+            <label for="q9" class="radio-inline">
+                <input  id="5" type="radio" name="optradio9" value="5"   class="styleRadio"> 5
+            </label>
+        </p>
+        <p id="10" class="questions"> 10. Ο διδασκων ηταν συνεπης στις παρουσιες του στα μαθηματα; <br>
+            <label for="q10" class="radio-inline">
+                <input  id="0" type="radio" name="optradio10" value="0"   class="styleRadio" > 0
+            </label>
+            <label for="q10" class="radio-inline">
+                <input  id="1" type="radio" name="optradio10" value="1"  class="styleRadio" > 1
+            </label>
+            <label for="q10" class="radio-inline">
+                <input  id="2" type="radio" name="optradio10" value="2"  class="styleRadio" > 2
+            </label>
+            <label for="q10" class="radio-inline">
+                <input  id="3" type="radio" name="optradio10" value="3"  class="styleRadio" > 3
+            </label>
+            <label for="q10" class="radio-inline">
+                <input  id="4" type="radio" name="optradio10" value="4"  class="styleRadio" > 4
+            </label>
+            <label for="q10" class="radio-inline">
+                <input  id="5" type="radio" name="optradio10" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
 
-            <p id="6" class="questions"> 6. Ο καθηγητης ερχοταν στο μαθημα προετοιμασμενος; <br>
-                <label for="q6" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio6" value="0"    class="styleRadio"> 0
-                </label>
-                <label for="q6" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio6" value="1"  class="styleRadio" > 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio6" value="2"   class="styleRadio"> 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio6" value="3"  class="styleRadio" > 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio6" value="4"  class="styleRadio" > 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio6" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
-            <p id="7" class="questions"> 7. Η μεταδοτικοτητα του διδασκοντα ηταν καλη; <br>
-                <label for="q7" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio7" value="0"   class="styleRadio" > 0
-                </label>
-                <label for="q7" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio7" value="1"   class="styleRadio"> 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio7" value="2"  class="styleRadio" > 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio7" value="3"   class="styleRadio"> 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio7" value="4"  class="styleRadio" > 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio7" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
-            <p id="8" class="questions"> 8. Ενθαρρυνε τις ερωτησεις και ευρυτερα τη συμμετοχη στο μαθημα; <br>
-                <label for="q8" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio8" value="0"    class="styleRadio"> 0
-                </label>
-                <label for="q8" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio8" value="1"   class="styleRadio"> 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio8" value="2"   class="styleRadio"> 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio8" value="3"  class="styleRadio" > 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio8" value="4"   class="styleRadio"> 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio8" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
-            <p id="9" class="questions"> 9. Όποτε χρειαστηκα να λυσω αποριες/προβληματα βρηκα τον καθηγητη στις ωρες γραφειου του; <br>
-                <label for="q9" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio9" value="0"    class="styleRadio"> 0
-                </label>
-                <label for="q9" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio9" value="1"   class="styleRadio"> 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio9" value="2"   class="styleRadio"> 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio9" value="3"   class="styleRadio"> 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio9" value="4"   class="styleRadio"> 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio9" value="5"   class="styleRadio"> 5
-                </label>
-            </p>
-            <p id="10" class="questions"> 10. Ο διδασκων ηταν συνεπης στις παρουσιες του στα μαθηματα; <br>
-                <label for="q10" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio10" value="0"   class="styleRadio" > 0
-                </label>
-                <label for="q10" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio10" value="1"  class="styleRadio" > 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio10" value="2"  class="styleRadio" > 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio10" value="3"  class="styleRadio" > 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio10" value="4"  class="styleRadio" > 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio10" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
+        <h3 class="questionIfExists">Αξιολόγηση Φροντιστηριακού Μαθήματος / Επικουρικού Διδακτικού Προσωπικού (Απαντήστε μόνο αν υπάρχει)</h3>
 
-            <h3 class="questionIfExists">Αξιολόγηση Φροντιστηριακού Μαθήματος / Επικουρικού Διδακτικού Προσωπικού (Απαντήστε μόνο αν υπάρχει)</h3>
-
-            <p id="11" class="questions"> 11. Η ποιοτητα του φροντιστηριακου μαθηματος ηταν υψηλη; <br>
-                <label for="q11" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio11" value="0"    class="styleRadio"> 0
-                </label>
-                <label for="q11" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio11" value="1"   class="styleRadio"> 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio11" value="2"  class="styleRadio" > 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio11" value="3"  class="styleRadio" > 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio11" value="4"  class="styleRadio" > 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio11" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
-            <p id="12" class="questions"> 12. Η συνολικη αποδοση του επικουρικου διδακτικου προσωπικου ηταν καλη; <br>
-                <label for="q12" class="radio-inline">
-                    <input  id="0" type="radio" name="optradio12" value="0"    class="styleRadio"> 0
-                </label>
-                <label for="q12" class="radio-inline">
-                    <input  id="1" type="radio" name="optradio12" value="1"   class="styleRadio"> 1
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="2" type="radio" name="optradio12" value="2"   class="styleRadio"> 2
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="3" type="radio" name="optradio12" value="3"   class="styleRadio"> 3
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="4" type="radio" name="optradio12" value="4"   class="styleRadio"> 4
-                </label>
-                <label for="q1" class="radio-inline">
-                    <input  id="5" type="radio" name="optradio12" value="5"  class="styleRadio" > 5
-                </label>
-            </p>
-            <h3 class="questionIfExists">Eπιπροσθετα σχολια:</h3>
-            <p id="13" class="userComment">  <br>
-            <textarea name="text" placeholder="Ελεύθερο σχόλιο..." class="textarea"></textarea>
-            </p>
-            <input type="submit" class="submitBtn">
-        </form>
-    </p>
+        <p id="11" class="questions"> 11. Η ποιοτητα του φροντιστηριακου μαθηματος ηταν υψηλη; <br>
+            <label for="q11" class="radio-inline">
+                <input  id="0" type="radio" name="optradio11" value="0"    class="styleRadio"> 0
+            </label>
+            <label for="q11" class="radio-inline">
+                <input  id="1" type="radio" name="optradio11" value="1"   class="styleRadio"> 1
+            </label>
+            <label for="q11" class="radio-inline">
+                <input  id="2" type="radio" name="optradio11" value="2"  class="styleRadio" > 2
+            </label>
+            <label for="q11" class="radio-inline">
+                <input  id="3" type="radio" name="optradio11" value="3"  class="styleRadio" > 3
+            </label>
+            <label for="q11" class="radio-inline">
+                <input  id="4" type="radio" name="optradio11" value="4"  class="styleRadio" > 4
+            </label>
+            <label for="q11" class="radio-inline">
+                <input  id="5" type="radio" name="optradio11" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
+        <p id="12" class="questions"> 12. Η συνολικη αποδοση του επικουρικου διδακτικου προσωπικου ηταν καλη; <br>
+            <label for="q12" class="radio-inline">
+                <input  id="0" type="radio" name="optradio12" value="0"    class="styleRadio"> 0
+            </label>
+            <label for="q12" class="radio-inline">
+                <input  id="1" type="radio" name="optradio12" value="1"   class="styleRadio"> 1
+            </label>
+            <label for="q12" class="radio-inline">
+                <input  id="2" type="radio" name="optradio12" value="2"   class="styleRadio"> 2
+            </label>
+            <label for="q12" class="radio-inline">
+                <input  id="3" type="radio" name="optradio12" value="3"   class="styleRadio"> 3
+            </label>
+            <label for="q12" class="radio-inline">
+                <input  id="4" type="radio" name="optradio12" value="4"   class="styleRadio"> 4
+            </label>
+            <label for="q12" class="radio-inline">
+                <input  id="5" type="radio" name="optradio12" value="5"  class="styleRadio" > 5
+            </label>
+        </p>
+        <h3 class="questionIfExists">Eπιπροσθετα σχολια:</h3>
+        <p id="13" class="userComment">  <br>
+        <textarea name="text" placeholder="Ελεύθερο σχόλιο..." class="textarea"></textarea>
+        </p>
+        <input type="submit" class="submitBtn">
+    </form>
    
   
   
-    <script src="/GitHub/TechnologiaLogismikou/NEW/Universecity/js/evalutationForm.js" defer></script>
+    <script src="js/evalutationForm.js" defer></script>
     
 </body>
 </html>
