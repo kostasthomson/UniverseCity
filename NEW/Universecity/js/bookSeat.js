@@ -353,12 +353,17 @@ function modalToggle() {
      // let, const
     var selectModal = document.getElementById('selectModal');
     var closeElement = document.getElementById('closeElement');
+    let nobtn = document.getElementById('nobtn');
 
     if (!validSeat()) { //fixededed xQcL Pepega
         selectModal.style.display = 'block';
         
     }
     
+
+    nobtn.onclick = function() {
+        selectModal.style.display = 'none';
+    }
 
     closeElement.onclick = function() {
         selectModal.style.display = 'none';
