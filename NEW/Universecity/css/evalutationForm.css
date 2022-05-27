@@ -96,7 +96,11 @@ body {
     
     transition:0.50s all ease;
  }
-
+ 
+ .select:active{
+    color: #444444;
+    background: #c8cdd6;
+ } 
 .submitBtn{
     font-size:1rem;
     text-transform: uppercase;
@@ -197,11 +201,16 @@ margin:-0.1rem;
     width: 90rem;
     height:10rem;
     resize: none;
+    letter-spacing: 0.1rem;
+    transition-duration: 0.5s;
+    animation: typewriter 4s steps(44) 1s 1 normal both,
+    blinkTextCursor 500ms steps(44) infinite normal;
 }
 
 .textarea:hover{
     cursor:pointer;
     background-color: #d4dcec;
+    transition:0.3s;
 }
 
  select option[disabled="disabled"][selected="selected"]{
