@@ -2,11 +2,10 @@
     require "./DB_Class.php";
     $user_qrId = htmlspecialchars($_GET["student_pass_id"]); //Take variables from qrCode.js"qrCodeMessage"
 
-    $table_name = "QRCODE";
-    $table_columns = array("student_pass_id" => "TEXT");
+  
     $db = new DataBase("sqlite:DATABASES/STORAGE.db");
 
-    $query = "SELECT * FROM $table_name WHERE student_pass_id='$user_qrId' ;";
+    $query = "SELECT * FROM QRCODE WHERE student_pass_id='$user_qrId' ;";
     $query_done = $db->makeQuery($query);
     
     if ($query_done) {
