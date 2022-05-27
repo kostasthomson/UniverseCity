@@ -1,5 +1,4 @@
 <?php
-    
     $subject = htmlspecialchars($_GET["subjects"]);
     $ans1 = htmlspecialchars($_GET["optradio1"]);
     $ans2 = htmlspecialchars($_GET["optradio2"]);
