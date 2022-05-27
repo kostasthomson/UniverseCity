@@ -180,11 +180,11 @@ input[type='radio']:before {
     
     border-radius:50%;    
 }
-input[type='radio']:checked:before {
+input[type='radio']:checked::before {
 background-color: #f5f4f3;
 border-style: solid;
 border-color:#158d5d91 ;
-border-width: 0.4rem;
+border-width: 0.3rem;
 border-radius: 50%;
 margin:-0.1rem;
 }
