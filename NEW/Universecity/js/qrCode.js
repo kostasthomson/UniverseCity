@@ -2,16 +2,9 @@ function onScanSuccess(qrCodeMessage) {
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-
+        if (this.readyState == 4 && this.status == 200) { 
             const dbResult = this.responseText;
-            const par = document.createElement("p");
-            par.innerHTML = dbResult;
-            document.getElementById("result").append(par);
-            if (dbResult != "Fail" && dbResult != "No resutls") {
-                console.log("Success");
-
-            }
+            document.getElementById("response").innerHTML = dbResult;
         }
     };
 
