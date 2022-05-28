@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/recommendation_letter.css">
+    <link rel="stylesheet" href="../Universecity/css/systatiki.css">
+    <script src="../Universecity/js/systatiki.js" defer></script>
     <title>Συστατική Επιστολή</title>
 </head>
 <body>
@@ -18,23 +19,18 @@
     
         <p>(Συμπληρώνονται από τον υποψήφιο πριν δοθεί το έντυπο στον αξιολογητή)</p>
     
-        <div class="row mb-3">
-            <label for="inputText" class="col-sm-2 col-form-label">Text</label>
-            <div class="col-sm-10">
-            <input type="text" class="form-control">
-            </div>
-        </div>
+        
 
         <table id="student">
             <tr><td>Ονοματεπώνυμο: <input type="text"></td></tr>
-            <tr><td>Βαθμός Πτυχίου: <input type="text"></td></tr>
-            <tr><td>Έτος αποφοίτησης: <input type="text"></td></tr>
+            <tr><td>Βαθμός Πτυχίου: <input type="number"></td></tr>
+            <tr><td>Έτος αποφοίτησης: <input type="number"></td></tr>
             <tr><td>Α.Ε.Ι/Σχολή/Τμήμα: <input type="text"></td></tr>
         </table>
     
         <p><br>Μαθήματα (ή ∆ιπλωματική)  που έχετε κάνει με τον αξιολογητή</p>
         
-        <table id="subjects">
+        <table id="subjects" class="subjects">
             <tr>
                 <th>Μαθήματα</th> 
                 <th>Εξάμηνο</th>
@@ -65,21 +61,19 @@
             </tr>
         </table>
         
-        <p>Αποδέχομαι, ότι αυτή η συστατική επιστολή είναι εμπιστευτική και ως εκ τούτου δεν θα ζητήσω την εξέταση του περιεχομένου.</p>
-        <p>Υπογραφή Υποψηφίου: </p>
-        <p>Ημερομηνία: <input type="text"></p>
+        
         <hr>
     
         <h2>Στοιχεία Αξιολογητή</h2>
     
         <table id="teacher">
             <tr><td>Ονοματεπώνυμο: <input type="text"></td></tr>
-            <tr><td>Θέση / Βαθμός:  <input type="text"></td></tr>
+            <tr><td>Θέση / Βαθμός:  <input type="number"></td></tr>
             <tr><td>Ειδικότητα: <input type="text"></td></tr>
             <tr><td>Α.Ε.Ι/Σχολή/Τμήμα ή άλλος φορέας: <input type="text"></td></tr>
             <tr><td>Διεύθυνση:  <input type="text"></td></tr>
-            <tr><td>Τηλέφωνο: <input type="text"></td></tr>
-            <tr><td>FAX: <input type="text"></td></tr>
+            <tr><td>Τηλέφωνο: <input type="number"></td></tr>
+            <tr><td>FAX: <input type="number"></td></tr>
             <tr><td>Email: <input type="text"></td></tr>
         </table>
         <hr>
@@ -89,13 +83,13 @@
         <h2>Αξιολόγηση</h2>
     
         <ol id="q1">
-            <li><p>Γνωρίζω τον υποψήφιο περίπου <input type="text"> (μήνες-χρόνια). Η σχέση μου με τον υποψήφιο ήταν: (Επιλέξτε όσα ισχύουν)</p> 
+            <li><p>Γνωρίζω τον υποψήφιο περίπου <input type="text" > (μήνες-χρόνια). Η σχέση μου με τον υποψήφιο ήταν: (Επιλέξτε όσα ισχύουν)</p> 
                 <ol >
                     <li>Καθηγητής του σε μαθήματα <input type="checkbox"></li>
                     <li>Επιβλέπων την Διπλωματική Εργασία <input type="checkbox"></li>
                     <li>Τον γνωρίζω ως Μεταπτ.Φοιτητή <input type="checkbox"></li>
                     <li>Τον γνωρίζω ως Εργοδότη <input type="checkbox"></li>
-                    <li>Άλλο(Περιγράψτε): <input type="text"></li>
+                    <li>Άλλο(Περιγράψτε): <input type="text" ></li>
                 </ol>
     
                 <p>Γνωρίζω τον υποψήφιο</p>
@@ -123,17 +117,50 @@
                     
                     <tr>
                         <td>Ευφυία και αντίληψη</td>
-                        <td><input type="text"></td>
+                        <td> <div class="range">
+                            <div class="sliderValue">
+                              <span>100</span>
+                            </div>
+                          <div class="field">
+                                    <div class="value left">
+                          0</div>
+                          <input type="range" min="" max="5"  steps="1" class="rangeIn">
+                                    <div class="value right">
+                          5</div>
+                          </div>
+                          </div></td>
                     </tr>
     
                     <tr>
                         <td>Αποτελεσματικότητα στις προσπάθειές του</td>
-                        <td><input type="text"></td>
+                        <td> <div class="range">
+                            <div class="sliderValue">
+                              <span>100</span>
+                            </div>
+                          <div class="field">
+                                    <div class="value left">
+                          0</div>
+                          <input type="range" min="0" max="5"  steps="1" class="rangeIn">
+                                    <div class="value right">
+                          5</div>
+                          </div>
+                          </div></td>
                     </tr>
     
                     <tr>
                         <td>Ικανότητα επικοινωνίας (γραπτά και προφορικά)</td>
-                        <td><input type="text"></td>
+                        <td> <div class="range">
+                            <div class="sliderValue">
+                              <span>100</span>
+                            </div>
+                          <div class="field">
+                                    <div class="value left">
+                          0</div>
+                          <input type="range" min="0" max="5"  steps="1" class="rangeIn">
+                                    <div class="value right">
+                          5</div>
+                          </div>
+                          </div></td>
                     </tr>
                 </table>
     
@@ -146,17 +173,50 @@
                     
                     <tr>
                         <td>Κριτική σκέψη</td>
-                        <td><input type="text"></td>
+                        <td> <div class="range">
+                            <div class="sliderValue">
+                              <span>100</span>
+                            </div>
+                          <div class="field">
+                                    <div class="value left">
+                          0</div>
+                          <input type="range" min="0" max="5"  steps="1" class="rangeIn">
+                                    <div class="value right">
+                          5</div>
+                          </div>
+                          </div></td>
                     </tr>
     
                     <tr>
-                        <td>Αυτοδυναμία και Ανεξαρτησία</td>
-                        <td><input type="text"></td>
+                        <td >Αυτοδυναμία και Ανεξαρτησία</td>
+                        <td> <div class="range">
+                            <div class="sliderValue">
+                              <span>100</span>
+                            </div>
+                          <div class="field">
+                                    <div class="value left">
+                          0</div>
+                          <input type="range" min="0" max="5"  steps="1" class="rangeIn">
+                                    <div class="value right">
+                          5</div>
+                          </div>
+                          </div></td>
                     </tr>
     
                     <tr>
                         <td>Ωριμότητα και Υπευθυνότητα</td>
-                        <td><input type="text"></td>
+                        <td> <div class="range">
+                            <div class="sliderValue">
+                              <span>100</span>
+                            </div>
+                          <div class="field">
+                                    <div class="value left">
+                          0</div>
+                          <input type="range" min="0" max="5"  steps="1" class="rangeIn">
+                                    <div class="value right">
+                          5</div>
+                          </div>
+                          </div></td>
                     </tr>
                 </table>
             </li>
@@ -165,9 +225,20 @@
                 <p>Αν σας δινόταν η ευκαιρία, θα επιλέγατε να επιβλέψετε την έρευνα του υποψηφίου;</p>
     
                 <ul>
-                    <li>ΝΑΙ <input type="checkbox"></li>
-                    <li>ΟΧΙ <input type="checkbox"></li>
-                    <li>Δεν με αφορά <input type="checkbox"></li>
+                    <li>
+                       Ναι<input type="checkbox">
+                        </div>
+                    </li>
+                    <li>
+                      
+                       Όχι <input type="checkbox">
+                        </div>
+                    </li>
+                    <li>
+                      
+                       Δεν με αφορά <input type="checkbox">
+                        </div>
+                    </li>
                 </ul>
             </li>
     
@@ -205,10 +276,30 @@
             </li>
         </ol>
     
-        <p>Ημερομηνία συμπλήρωσης εντύπου: <input type="text"></p>
+        <p>Ημερομηνία συμπλήρωσης εντύπου: <input type="date" ></p>
         <p>Υπογραφή:</p>
     
-        <button id="printPageButton" type="button" onclick="window.print();">Υποβολή</button>
+        <button id="printPageButton" type="button" class="submitBtn" onclick="window.print();">Υποβολή</button>
     </form>
+   
+    <script>
+        const slideValue = document.querySelector("span");
+        const inputSlider = document.querySelector("input[type=range]");
+        inputSlider.oninput = (()=>{
+          let value = inputSlider.value;
+          slideValue.textContent = value;
+          slideValue.style.left = (value*21) + "%";
+          slideValue.classList.add("show");
+        });
+        inputSlider.onblur = (()=>{
+          slideValue.classList.remove("show");
+        });
+      </script>
+    
+    
+
+
+
 </body>
 </html>
+

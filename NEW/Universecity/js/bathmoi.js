@@ -194,11 +194,16 @@ let bathomologies = [
 
 let student = {name : "Δήμητρα", lastname : "Τσιτσιλέγκα", am : "ics210xx", direction : "Επιστήμη και Τεχνολογία Υπολογιστών"};
 
+
 const body = document.body;
 let table = document.createElement("table");
+let container = document.createElement("div");
+container.classList.add("container");
+body.classList.add("table");
 table.setAttribute("id", "set1");
 
 const text = document.createElement('p');
+text.classList.add("pStudent");
 text.innerHTML = "Βαθμολογίες - " + student.name + " " + student.lastname + " (" + student.am + ")";
 
 function generateTableHead(table, data) {
@@ -225,7 +230,17 @@ function generateTableHeading(table, data)
     th.appendChild(text);
     row.appendChild(th);
 }
-
+function generateTableBody(table, data)
+{
+    const tbody = document.createElement('tbody');
+    table.appendChild(tbody);
+    let row = document.createElement('tr');
+    thead.appendChild(row);
+    let td = document.createElement("td");
+    let text = document.createTextNode(data);
+    th.appendChild(text);
+    row.appendChild(td);
+}
 function generateTable(table, data) {
     for (let element of data) {
         let row = document.createElement('tr');
@@ -247,39 +262,44 @@ function checkreset()
 function summary(table, data)
 {
     let sum = 0;
-    for (let element of data) {
-        let row = document.createElement('tr');
+    let row = document.createElement('tr');
         table.appendChild(row);
-      for (key in element) {
+    for (let element of data)
+     {
+      for (key in element) 
+      {
         let cell = row.insertCell();
         let text = document.createTextNode(element[key]);
         console.log(text);
       }
     }
-    console.log(sum);
     return sum;
 }
-let semerster_1 = bathomologies.filter(course => course.semester === "1");
-let semerster_2 = bathomologies.filter(course => course.semester === "2");
-let semerster_3 = bathomologies.filter(course => course.semester === "3");
-let semerster_4 = bathomologies.filter(course => course.semester === "4");
-let data = Object.keys(semerster_1[0]);
+let semester_1 = bathomologies.filter(course => course.semester === "1");
+let semester_2 = bathomologies.filter(course => course.semester === "2");
+let semester_3 = bathomologies.filter(course => course.semester === "3");
+let semester_4 = bathomologies.filter(course => course.semester === "4");
+let data = Object.keys(semester_1[0]);
 
 generateTableHeading(table, "Α' Εξάμηνο");
 generateTableHead(table, data);
-generateTable(table, semerster_1);
+generateTable(table, semester_1);
+
 generateTableHeading(table, "‏‏‎ ‎");
-let sum = summary(table, semerster_1);
+let sum = summary(table, semester_1);
 
 generateTableHeading(table, "Β' Εξάμηνο");
 generateTableHead(table, data);
-generateTable(table, semerster_2);
+generateTable(table, semester_2);
 generateTableHeading(table, "‏‏‎ ‎");
+ sum = summary(table, semester_2);
 
-generateTableHeading(table, "Γ' Εξάμηνο");
+ generateTableHeading(table, "Γ' Εξάμηνο");
 generateTableHead(table, data);
-generateTable(table, semerster_3);
+generateTable(table, semester_3);
 generateTableHeading(table, "‏‏‎ ‎");
+sum = summary(table, semester_3);
+
 
 body.appendChild(text);
 body.appendChild(table);
