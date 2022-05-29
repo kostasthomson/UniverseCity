@@ -64,7 +64,6 @@ selectedSub.addEventListener('change', (e) => {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
-            // alert(dbResult);
             if(dbResult!="Query failed") {
             
                 
