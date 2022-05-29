@@ -66,7 +66,7 @@ selectedSub.addEventListener('change', (e) => {
             const dbResult = this.responseText;
             if(dbResult!="Query failed") {
             
-                
+                alert("Η υποβολή σου έγινε επιτυχώς!");
                 const result_array = dbResult.split(",");
                 console.log(result_array);
 

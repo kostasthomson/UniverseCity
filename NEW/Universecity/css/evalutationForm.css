@@ -164,11 +164,11 @@ input[type='radio']:checked:before {
 background-color: #f5f4f3;
 border-style: solid;
 border-color:#366c77 ;
-border-width: 0.45rem;
+border-width: 0.40rem;
 border-radius: 50%;
 
 margin: -0.2rem;
-margin-top: 0.00002rem;
+margin-bottom: 0.0001em;
 
 padding: 0.5rem 0.3rem 0.1rem 0.3rem;
 }
