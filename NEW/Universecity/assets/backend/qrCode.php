@@ -14,7 +14,10 @@
             echo "No resutls";
         } else {
             $u = $user[0];
-            print_r($u);
+            //echo "{$u['am']},{$u['Name']},{$u['Password']}";
+            foreach(array_values($u) as $i){
+                echo $i.", ";
+            }
         }
     } else {
         echo "Fail";
