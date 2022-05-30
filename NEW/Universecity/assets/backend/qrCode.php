@@ -7,7 +7,10 @@
 
     $query = "SELECT * FROM STUDENTS WHERE am IN (SELECT student_id FROM identify WHERE qr_id IN (SELECT id FROM QRCODE WHERE student_pass_id = '$user_qrId'))";
     $query_done = $db->makeQuery($query);
-    // $sql = "UPDATE QRCODE SET arrived='true' WHERE student_pass_id = '$user_qrId'";
+    
+
+    // var_dump($sql_query);
+    
 
     if ($query_done) {
         $user = $db->getQueryResults();
@@ -22,5 +25,7 @@
     } else {
         echo "Fail";
     }
+    $sql = "UPDATE QRCODE SET arrived='false' WHERE student_pass_id = '$user_qrId'";
+    $sql_query = $db->makeQuery($sql);
     $db->close();
 ?>
