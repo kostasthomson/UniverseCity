@@ -1,23 +1,33 @@
 <?php
-    $subject = htmlspecialchars($_GET["subjects"]);
-    $ans1 = htmlspecialchars($_GET["optradio1"]);
-    $ans2 = htmlspecialchars($_GET["optradio2"]);
-    $ans3 = htmlspecialchars($_GET["optradio3"]);
-    $ans4 = htmlspecialchars($_GET["optradio4"]);
-    $ans5 = htmlspecialchars($_GET["optradio5"]);
-    $ans6 = htmlspecialchars($_GET["optradio6"]);
-    $ans7 = htmlspecialchars($_GET["optradio7"]);
-    $ans8 = htmlspecialchars($_GET["optradio8"]);
-    $ans9 = htmlspecialchars($_GET["optradio9"]);
-    $ans10 = htmlspecialchars($_GET["optradio10"]);
-    $ans11 = htmlspecialchars($_GET["optradio11"]);
-    $ans12 = htmlspecialchars($_GET["optradio12"]);
+    require "./DB_Class.php";
 
+    $queryUrl = $_GET["results"];
+
+    $results = json_decode($queryUrl);
+
+    $keySubject = "subject";
+    $keyOptions = "options";
+    $keyText = "text";
     
-    $table = "EVALUATION";
-    $db = new PDO("sqlite:evaluation_form.db");
-    $db->exec("INSERT INTO ".$table." (Subject, Answer1, Answer2, Answer3, Answer4, Answer5, Answer6, Answer7, Answer8, Answer9, Answer10, Answer11, Answer12) VALUES ('$subject', '$ans1', '$ans2', '$ans3', '$ans4', '$ans5', '$ans6', '$ans7', '$ans8', '$ans9', '$ans10', '$ans11', '$ans12')");
+    $subject = $results->$keySubject;
+    $options = $results->$keyOptions;
+    $text = $results->$keyText;
+
+    $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
+
+    $query = "INSERT INTO EVALUATION (subject, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6, answer_7, answer_8, answer_9, answer_10, answer_11, answer_12, text) VALUES 
+    ('$subject', ".implode(",", array_values($options))." ,'$text')";
+
+    $db->makeDMLQuery($query);
+
+    $queryId = "SELECT MAX(id) FROM EVALUATION";
+    $db->makeQuery($queryId);
     
-    
-    
+    $resultId = $db->getQueryResults();
+
+
+    $queryFor = "INSERT INTO fills (student_id, evaluation_id) VALUES ('ics0001', {$resultId[0]['MAX(id)']})";
+    $db->makeDMLQuery($queryFor);
+
+    $db->close();
 ?>
