@@ -1,10 +1,10 @@
 function onScanSuccess(qrCodeMessage) {
-
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) { 
             const dbResult = this.responseText;
             document.getElementById("response").innerHTML = dbResult;
+            alert("Hello! I am an alert box!!");
         }
     };
 
