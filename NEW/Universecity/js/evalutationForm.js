@@ -19,8 +19,6 @@ selectedSub.addEventListener('change', (e) => {
     disabled.className= "";
  });
 
- var temp;
-
  function fillOptions(){
     
     let array =[];
@@ -67,6 +65,7 @@ selectedSub.addEventListener('change', (e) => {
             if(dbResult!="Query failed") {
             
                 alert("Η υποβολή σου έγινε επιτυχώς!");
+                window.location.reload(true);
                 const result_array = dbResult.split(",");
                 console.log(result_array);
 
