@@ -1,7 +1,12 @@
 const selectedSub = document.querySelector(".select");
-const  radioBtns = document.querySelectorAll(".styleRadio");
+const  radioBtnsNodes= document.querySelectorAll(".styleRadio");
 const text = document.querySelector(".textarea");
 const disabled = document.querySelector(".invalid");
+const submitBtn = document.querySelector(".submitBtn");
+const textarea = document.querySelector(".textarea");
+let radioCounter = 0;
+
+const RADIO_EACH_ROW = 6;
 
 selectedSub.addEventListener('change', (e) => {
     //clear text
@@ -9,14 +14,19 @@ selectedSub.addEventListener('change', (e) => {
     let  selectedValue = selectedSub.value;
     
     //clear buttons
-    let size = radioBtns.length;
+    let size = radioBtnsNodes.length;
     for(let i=0;i<size;i++)
     {
-        radioBtns[i].checked = false;
+        radioBtnsNodes[i].checked = false;
     }
     
     //remove text decoration from disabled button
     disabled.className= "";
+    
+    radioCounter = 0 ;
+    
+    submitBtn.style.backgroundColor = "grey";
+    submitBtn.style.boxShadow = "grey"
  });
 
  function fillOptions(){
@@ -35,7 +45,19 @@ selectedSub.addEventListener('change', (e) => {
  }
 
  function sendRequest(){
-
+    
+    
+    
+   
+        
+    for ( radio of radioBtnsNodes){
+        if (radio.checked ){
+            radioCounter++;
+        }
+    }
+    
+    
+   
     let options = fillOptions();
 
     let subject = document.getElementById("subjs");
@@ -62,12 +84,17 @@ selectedSub.addEventListener('change', (e) => {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
-            if(dbResult!="Query failed") {
+            if(dbResult!="Query failed" && radioCounter * RADIO_EACH_ROW === radioBtnsNodes.length) {
             
+                
+                
                 alert("Η υποβολή σου έγινε επιτυχώς!");
+                
+               
                 window.location.reload(true);
                 const result_array = dbResult.split(",");
                 console.log(result_array);
+                
 
             }
         }
@@ -78,3 +105,33 @@ selectedSub.addEventListener('change', (e) => {
     xmlhttp.open("GET","assets/backend/evaluation.php?results=" + jsonQueryObject, true);
     xmlhttp.send();
  }
+ 
+ window.onload = () => {
+     submitBtn.style.backgroundColor = "grey";
+     submitBtn.style.boxShadow = "grey"
+     
+    
+ };
+
+ 
+ 
+ document.addEventListener("change", (e) => {
+    
+    if(radioCounter === 12){
+        submitBtn.style.backgroundColor = "#366c77";
+        submitBtn.style.boxShadow = "0rem 0.7rem 1.2rem #3996a9"
+        
+        radioCounter = 0;
+    }
+    else{
+        radioCounter++;
+    }
+});
+
+
+textarea.addEventListener("change", (e) => {
+    if(radioCounter > 0){
+        radioCounter--;
+    }
+});
+        
