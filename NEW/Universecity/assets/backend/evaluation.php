@@ -20,6 +20,14 @@
 
     $db->makeDMLQuery($query);
 
+    $queryId = "SELECT MAX(id) FROM EVALUATION";
+    $db->makeQuery($queryId);
+    
+    $resultId = $db->getQueryResults();
+
+
+    $queryFor = "INSERT INTO fills (student_id, evaluation_id) VALUES ('ics0001', {$resultId[0]['MAX(id)']})";
+    $db->makeDMLQuery($queryFor);
+
     $db->close();
-    //echo $subject. "," .implode(",", array_values($options)). "," .$text;
 ?>
