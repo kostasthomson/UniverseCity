@@ -1,54 +1,43 @@
-body {
-    margin: 0;
-    padding: 0;
-    cursor: default;
+.btn.btn-primary {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    border: none;
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    background: rgb(168, 168, 165);
+    margin-top: -20rem;
+    color: white;
+    border-radius: 4rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease 0s;
+    box-shadow: 0rem 0.3rem 0.8rem rgba(0, 0, 0, 0.1);
+    background: #366c77;
+    color: #ffffff;
+    margin-bottom: -10rem;
+    margin-left: 3rem;
+
 }
 
-h1 {
-    text-align: center;
+
+
+.btn.btn-primary:hover {
+    background-color: #3996a9;
+    box-shadow: 0rem 0.7rem 1.2rem #3996a9;
+    color: rgb(255, 255, 255);
+    transform: translateY(-0.3rem);
 }
 
-#content {
-    display: inline-flex;
-    width: 100%;
-    height: 100%;
-    justify-content: space-around;
+.btn.btn-primary:active {
+    transform: translateY(-0.1rem);
+    background-color: #2da8c0;
 }
 
-#create-div {
-    display: flex;
-    flex-direction: column;
+.card {
+    margin-top: 5rem;
 }
-
-
-#anouncement-title {
-    width: 200px;
-    height: 15px;
-}
-
-textarea {
-    width: 300px;
-    height: 150px;
-    resize: none;
-}
-
-#anouncement-list {
-    border: 3px solid black;
-    width: min-content;
-    height: min-content;
-    padding: 0;
-    margin: auto;
-    flex-direction: column;
-    list-style-type: none;
-}
-
-li {
-    margin: 1%;
-    border: solid black;
-    padding: 2%;
-    text-align: center;
-}
-
 
 .card {
     margin-bottom: 30px;
@@ -81,8 +70,18 @@ li {
 
 .card-body {
     padding: 0 20px 20px 20px;
+    height: 30rem;
 }
 
 .card-img-overlay {
     background-color: rgba(255, 255, 255, 0.6);
+}
+
+#myStyle {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    color: #366c77;
+    width: 50rem;
+
 }
