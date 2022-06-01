@@ -209,6 +209,7 @@
   
   /* Card */
   .card {
+    left: 50%;
     margin-bottom: 30px;
     border: none;
     border-radius: 5px;
@@ -1075,15 +1076,9 @@
     font-size: 13px;
     color: #366c77;
   }
-  
-  
- .btn.btn-primary{
-   border-radius: 1rem;
-  
- }
- 
  
  .btn.btn-primary{
+  border-radius: 1rem;
   font-size:1rem;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
@@ -1093,7 +1088,6 @@
   padding:0.5rem 2rem;
   background: rgb(168, 168, 165);
   margin-top:1.5rem;
-  margin-left: -3rem;
   color:white;
   border-radius: 4rem;
   cursor:pointer;
@@ -1141,5 +1135,16 @@
   cursor:pointer;
   background-color: rgba(210, 210, 218, 0.514);
 }
+
+@media print {
+  #printPageButton {
+    display: none;
+  }
+}
+
+h2,h4{
+  text-align: center;
+}
+
 
 
