@@ -26,7 +26,10 @@
     $resultId = $db->getQueryResults();
 
 
-    $queryFor = "INSERT INTO fills (student_id, evaluation_id) VALUES ('ics0001', {$resultId[0]['MAX(id)']})";
+    $queryFills = "INSERT INTO fills (student_id, evaluation_id) VALUES ('ics0001', {$resultId[0]['MAX(id)']})";
+    $db->makeDMLQuery($queryFills);
+
+    $queryFor = "INSERT INTO for (evaluation_id, subject_id) VALUES ({$resultId[0]['MAX(id)']}, '$subject')";
     $db->makeDMLQuery($queryFor);
 
     $db->close();

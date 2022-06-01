@@ -25,19 +25,19 @@
     <!-- Questions --> 
     <div class="col-lg-6">
     <form  id="form">
-        <div class="card" id="card_id">
-            <div class="card-body" >
-                <h2 class="card-title">ΑΞΙΟΛΟΓΗΣΗ ΚΑΘΗΓΗΤΗ</h2>
-                <label for="subjects" class="subject">Διάλεξε το μάθημα που θέλεις να αξιολογήσεις: </label>
-        <select name="subjects" id="subjs" class="select">
-            <option disabled="disabled" selected="selected" class="invalid">Διαλεξτε μαθημα</option>
-            <option value="DEMO1" name="DEMO1" id="1">Αντικειμενοστρεφής προγραμματισμός</option>
-            <option value="DEMO2" name="DEMO2" id="2">Διαδικαστικός Προγραμματισμός</option>
-            <option value="DEMO3" name="DEMO3" id="3">Διδακτική της Πληροφορικής</option>
-            <option value="DEMO4" name="DEMO4" id="4">Τεχνολογιά Λογισμικού</option>
-        </select>
+         <div class="card" id="card_id">
+            <div class="card-body" id="card-body">
+                
 
-        <h3 class="generalQuestions">Γενικές Ερωτήσεις</h3>
+                <h2 class="card-title">ΑΞΙΟΛΟΓΗΣΗ ΚΑΘΗΓΗΤΗ</h2>
+                <hr>
+                
+             
+            <div id="test"> 
+                <label for="subjects" class="subject">Διάλεξε το μάθημα που θέλεις να αξιολογήσεις: </label>
+            </div>
+
+        <h3class="generalQuestions">Γενικές Ερωτήσεις</h3>
 
         <p id="1" class="questions"> 1. Η συνολική απόδοση του διδάσκοντα ηταν καλή; <br>
             <label for="q1" class="radio-inline">
@@ -293,13 +293,14 @@
         <textarea name="text" placeholder="Ελεύθερο σχόλιο..." class="textarea" id="textArea"></textarea>
         </p>
         <input type="button" class="submitBtn" value="Υποβολη Αξιολογησης" onclick="sendRequest()" >
-                </form>
+
             </div>
-        </div>
+        </div> 
+    </form>
     </div>
 
     <script src="js/evalutationForm.js" defer></script>
-    <!-- <script src="js/subjectGet.js"></script> -->
+    <script src="js/subjectGet.js"></script>
     
 </body>
 </html>
