@@ -4,7 +4,9 @@ function onScanSuccess(qrCodeMessage) {
         if (this.readyState == 4 && this.status == 200) { 
             const dbResult = this.responseText;
             document.getElementById("response").innerHTML = dbResult;
-            location.replace("QrCodeResults.html");
+            location.replace("QrCodeCorrect.html");
+        }else{
+            location.replace("QrCodeFail.html");
         }
     };
 
