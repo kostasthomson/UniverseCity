@@ -14,6 +14,7 @@
     $text = $results->$keyText;
 
     $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
+
     
 
     $query = "INSERT INTO EVALUATION (subject, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6, answer_7, answer_8, answer_9, answer_10, answer_11, answer_12, text) VALUES 
