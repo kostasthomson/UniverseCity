@@ -9,6 +9,7 @@
     $db->makeQuery($query);
 
     $result = $db->getQueryResults();
+    
 
     foreach($result as $r){
         echo $r["code"]. "," .$r['title']. ",";

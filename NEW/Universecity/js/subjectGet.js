@@ -8,6 +8,7 @@ xmlhttp.onreadystatechange = function() {
         const dbResult = this.responseText;
         if(dbResult!="Query failed") {
             
+            
 
             const result_array = dbResult.split(",");
             

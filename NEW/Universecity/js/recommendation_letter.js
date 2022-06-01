@@ -4,3 +4,5 @@ function button_print(){
     window.print();
     document.getElementById("card_id").style.left = "50%";
   }
+
+  
