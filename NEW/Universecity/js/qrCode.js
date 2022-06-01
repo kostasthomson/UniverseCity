@@ -5,8 +5,6 @@ function onScanSuccess(qrCodeMessage) {
             const dbResult = this.responseText;
             document.getElementById("response").innerHTML = dbResult;
             location.replace("QrCodeCorrect.html");
-        }else{
-            location.replace("QrCodeFail.html");
         }
     };
 
@@ -15,7 +13,7 @@ function onScanSuccess(qrCodeMessage) {
 }
 
 function onScanError(errorMessage) {
-    //handle scan error
+    location.replace("QrCodeFail.html");
 }
 var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
     fps: 1,
