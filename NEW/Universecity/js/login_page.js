@@ -6,21 +6,26 @@ form.forEach((item, i) => {
     }, i*250);
 })
 
-// form validation  
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const USER_AM = urlParams.get('am');
-const USER_PASS = urlParams.get('pass');
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        const dbResult = this.responseText;
-        if(dbResult!="Fail" && dbResult!="Unrecorded") {
-            window.location.href = "../loading.html?login_data="+dbResult;
-            // window.location.replace("../loading.html?login_data="+dbResult);
-        }
+const valid_user_am = ['ics', 'aid', 'ait'];
+const table_names = ['STUDENTS', 'SECRETARIATS', 'TEACHERS'];
+function LogIn() {
+    const USER_AM = document.querySelector('.form > .am').value;
+    if(valid_user_am.includes(USER_AM.slice(0,3))) {
+        const TABLE_NAME = table_names[valid_user_am.indexOf(USER_AM)];
+        const USER_PASS = document.querySelector('.form > .password').value;
+        console.log(USER_AM, TABLE_NAME, USER_PASS);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                const dbResult = this.responseText;
+                if(dbResult!="Fail" && dbResult!="Unrecorded") {
+                    window.location.href = "../loading.html?login_data="+dbResult;
+                }
+            }
+        }; 
+        xmlhttp.open("GET","../assets/backend/DB_retrieve.php?am="+USER_AM+"&pass="+USER_PASS+"&tname="+TABLE_NAME,true);
+        xmlhttp.send();
     }
-}; 
-xmlhttp.open("GET","../assets/backend/DB_retrieve.php?am="+USER_AM+"&pass="+USER_PASS,true);
-xmlhttp.send();
+}
+
 
