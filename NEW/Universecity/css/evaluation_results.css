@@ -6,7 +6,13 @@
 }
 .chartContainer{
   margin: auto;
-  padding-bottom: 5rem;
+
+  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.2);
 }
 #btn {
   max-width: 650px;
@@ -21,6 +27,7 @@
     border-radius: 5px;
     box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
   }
+
   
   
   .card-header, .card-footer {
