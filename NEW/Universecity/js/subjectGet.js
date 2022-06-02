@@ -1,6 +1,12 @@
 
 const subject_id = [];
 const subject_title = [];
+const select = document.createElement("select");
+select.setAttribute("name", "subjects");
+select.setAttribute("id", "subjs");
+select.setAttribute("class", "select");
+
+let options = document.createElement("option");
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
@@ -25,18 +31,14 @@ xmlhttp.onreadystatechange = function() {
                 }
             } 
 
-            select = document.createElement("select");
-            select.setAttribute("name", "subjects");
-            select.setAttribute("id", "subjs");
-            select.setAttribute("class", "select");
+            
 
-            options = document.createElement("option")
+            
             options.setAttribute("disabled", "disabled");
             options.setAttribute("selected", "selected");
             options.setAttribute("class", "invalid"); 
 
             for(let i=0;i<subject_title.length;i++){
-                console.log("mphka");
 
                 let optionText = document.createTextNode(subject_title[i]);
                 options = document.createElement("option");

@@ -15,8 +15,6 @@
 
     $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
 
-    
-
     $query = "INSERT INTO EVALUATION (subject, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6, answer_7, answer_8, answer_9, answer_10, answer_11, answer_12, text) VALUES 
     ('$subject', ".implode(",", array_values($options))." ,'$text')";
 
@@ -26,7 +24,6 @@
     $db->makeQuery($queryId);
     
     $resultId = $db->getQueryResults();
-
 
     $queryFills = "INSERT INTO fills (student_id, evaluation_id) VALUES ('ics0001', {$resultId[0]['MAX(id)']})";
     $db->makeDMLQuery($queryFills);
