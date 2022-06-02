@@ -1,16 +1,37 @@
 //demo class
 class User {
-    constructor(data) {
-        this.USER_DATA = {
-            AM: data[0],
-            NAME: data[1],
-            PASSWORD: data[2]
-        };
+    constructor(am, first_name, last_name, email) {
+        this.AM = am;
+        this.FIRST_NAME = first_name;
+        this.LAST_NAME = last_name;
+        this.EMAIL = email;
     }
-    deleteData() {this.USER_DATA={AM:"", NAME:"",PASSWORD:""};}
-    LogData() {console.log(this.USER_DATA);}
 }
 
+class Student extends User {
+    constructor(am, first_name, last_name, email, department, semester, study_direction) {
+        super(am, first_name, last_name, email);
+        this.DEPARTMENT = department;
+        this.SEMESTER = semester;
+        this.STUDY_DIRECTION = study_direction;
+    }
+}
+
+class Teacher extends User {
+    constructor(am, first_name, last_name, email, office, title, biolink) {
+        super(am, first_name, last_name, email);
+        this.OFFICE = office;
+        this.TITLE = title;
+        this.BIOLINK = biolink;
+    }
+}
+
+class Secretariat extends User {
+    constructor(am, first_name, last_name, email, department) {
+        super(am, first_name, last_name, email);
+        this.DEPARTMENT = department;
+    }
+}
 
 const src_links = {
 // Links for secretariat 0-3
@@ -264,40 +285,53 @@ function updateNotifications() {
 }
 
 window.onload = () => {
-    console.log(window.location.search);
     if(window.location.search) {
         const queryString = window.location.search;
         sessionStorage.setItem('url-query', queryString);
-        window.location = window.location.pathname;
     }
 }
 
-
-if(sessionStorage.getItem('url-query')) {
-    const urlParams = new URLSearchParams(sessionStorage.getItem('url-query'));
-    const login_data = urlParams.get('login_data');
-    const user_data = login_data.split(",");
-    const USER = new User(user_data);
-    sessionStorage.setItem('user', JSON.stringify(USER));
-    switch(USER.USER_DATA.AM) {
-        case 'ics':
-            sessionStorage.setItem('user-class', 'student');
-            break;
-        case 'iis':
-            sessionStorage.setItem('user-class', 'teacher');
-            break;
-        case 'dai':
-            sessionStorage.setItem('user-class', 'secretariat');
-            break;
-    }
-    const href = 'index.html'+sessionStorage.getItem('url-query');
-    const logo_anchor = document.querySelector('.logo');
-    logo_anchor.href = href;
-    const sidebar_list_anchor = document.querySelectorAll('.nav-link')[3];
-    sidebar_list_anchor.href = href;
-    const breadcrumb_list_anchor = document.querySelectorAll('.breadcrumb-item')[0].children[0];
-    breadcrumb_list_anchor.href = href;
+const urlParams = new URLSearchParams(sessionStorage.getItem('url-query'));
+const AM = urlParams.get('AM');
+const FIRST_NAME = urlParams.get('FIRST_NAME');
+const LAST_NAME = urlParams.get('LAST_NAME');
+const EMAIL = urlParams.get('EMAIL');
+let USER;
+if(AM.slice(0,3) == 'ics') { 
+    const DEPARTMENT = urlParams.get('DEPARTMENT');
+    const SEMESTER = urlParams.get('SEMESTER');
+    const STUDY_DIRECTION = urlParams.get('STUDY_DIRECTION');
+    USER = new Student(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT, SEMESTER, STUDY_DIRECTION);
+}else if(AM.slice(0,3) == 'ait') { 
+    const OFFICE = urlParams.get('OFFICE');
+    const TITLE = urlParams.get('TITLE');
+    const BIOLINK = urlParams.get('BIOLINK');
+    USER = new Teacher(AM, FIRST_NAME, LAST_NAME, EMAIL, OFFICE, TITLE, BIOLINK);
+}else {
+    const DEPARTMENT = urlParams.get('DEPARTMENT');
+    USER = new Secretariat(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT);
 }
+console.log(USER);
+sessionStorage.setItem('user', JSON.stringify(USER));
+switch(USER.AM.slice(0,3)) {
+    case 'ics':
+        sessionStorage.setItem('user-class', 'student');
+        break;
+    case 'ait':
+        sessionStorage.setItem('user-class', 'teacher');
+        break;
+    case 'aid':
+        sessionStorage.setItem('user-class', 'secretariat');
+        break;
+}
+const href = 'index.html'+sessionStorage.getItem('url-query');
+const logo_anchor = document.querySelector('.logo');
+logo_anchor.href = href;
+const sidebar_list_anchor = document.querySelectorAll('.nav-link')[3];
+sidebar_list_anchor.href = href;
+const breadcrumb_list_anchor = document.querySelectorAll('.breadcrumb-item')[0].children[0];
+breadcrumb_list_anchor.href = href;
+
 // setUpButtons();
 UserNavListInit();
 setUserNavList();
