@@ -1,3 +1,49 @@
+function EnableDepartmentSelection(department_selection) {
+    if(department_selection.disabled) {
+        department_selection.disabled = false;  
+    }
+}
+
+function SetDepartmentSelectionOptions(faculty_menu, department_selection) {
+    const selected_option = faculty_menu.options[faculty_menu.selectedIndex];
+    const selection_type = selected_option.getAttribute('data-selection-type');
+    const departments = department_selection.options;
+    for(let i = 0; i < departments.length; i++) {
+        const current_department = departments[i];
+        if(current_department.classList.contains(selection_type+'-selection')) {
+            current_department.hidden = false;
+        } else {
+            current_department.hidden = true;
+        }
+    }
+}
+
+function DepartmentSelectionUpdate(faculty_menu) {
+    const department_selection = document.getElementById('department-selection');
+    EnableDepartmentSelection(department_selection);
+    if(!document.querySelector("#department-selection > .default-option").selected) {
+        document.querySelector("#department-selection > .default-option").selected = true;
+    }
+    SetDepartmentSelectionOptions(faculty_menu, department_selection);
+}
+
+function CheckValues() {
+    const semester = document.getElementById('semester-selection').value;
+    const faculty = document.getElementById('faculty-selection').value;
+    const department = document.getElementById('department-selection').value;
+    if(semester && faculty && department) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                const dbResult = this.responseText;
+                subjects = dbResult.split(",");
+            }
+        }; 
+        xmlhttp.open("GET","assets/backend/schedule.php?semester="+semester,true);
+        xmlhttp.send();
+    }
+}
+
 function save() {
     if(changed_fields.length == 0) {
         for(let j = 1; j <= days.length; j++) {
@@ -52,7 +98,6 @@ function edit() {
 function rowInitialization() {
     const null_character = '';
     let rows = document.querySelectorAll('tbody > tr');
-    console.log(rows);
     let lesson_index = 0;
     rows.forEach(row => {
         // if(row.id != 'column-headers') {
@@ -113,7 +158,7 @@ const days = [
     {id:4,name: 'Πέμπτη'},
     {id:5,name: 'Παρασκευή'}
 ];
-const subjects = ['Ανάλυση', 'Ασφάλεια', 'Επικοινωνία', 'Προγραμματισμός', 'Τεχνολογία', 'Ψηφιακή'];
+let subjects; //= ['Ανάλυση', 'Ασφάλεια', 'Επικοινωνία', 'Προγραμματισμός', 'Τεχνολογία', 'Ψηφιακή'];
 let schedule = [];
 scheduleInitalization();
 tableInit();
