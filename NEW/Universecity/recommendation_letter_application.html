@@ -21,28 +21,27 @@
 </head>
 <body>
     <div class="col-lg-6">
-    <form>
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title"">Αίτηση συστατικής επιστολής</h2>
-                <div id="test"> 
-                    <label for="subjects" class="subject">Διάλεξε το μάθημα που θέλεις να κάνεις αίτηση:</label>               
-                 </div>
-                 <br>
-                 <br>
-                <div class="row mb-3">
-                    <div class="col-sm-10">
-                        <div class="form-check form-switch">
-                            <label class="form-check-label" for="flexSwitchCheckDefault" id="label-check">Δηλώνω υπεύθυνα ότι ζήτησα συστατική επιστολή</label>
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                            <button type="submit" class="btn btn-primary">Υποβολή</button>
-                          </div>
+        <form>
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title"">Αίτηση συστατικής επιστολής</h2>
+                    <div id="test"> 
+                        <label for="subjects" class="subject">Διάλεξε το μάθημα που θέλεις να κάνεις αίτηση:</label>               
+                    </div>
+                    <br>
+                    <div class="row mb-3">
+                        <div class="col-sm-10">
+                            <div class="form-check form-switch">
+                                <label class="form-check-label" for="flexSwitchCheckDefault" id="label-check">Δηλώνω υπεύθυνα ότι ζήτησα συστατική επιστολή</label>
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                <button type="button" class="btn btn-primary" onclick=queryCreator()>Υποβολη αιτησης</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-        </div>
-    </form>
+            </div>
+        </form>
     </div>
-    
 </body>
 
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

@@ -10,8 +10,6 @@ let radioCounter = 0;
 
 const RADIO_EACH_ROW = 6;
 
-
-
 function fillOptions() {
 
     let array = [];
@@ -36,10 +34,8 @@ function sendRequest() {
     }
 
     let options = fillOptions();
-
     let subject = document.getElementById("subjs");
     let value = subject.options[subject.selectedIndex].value;
-
     const textArea = document.getElementById("textArea").value;
 
     let queryObject = {
@@ -58,21 +54,12 @@ function sendRequest() {
             const dbResult = this.responseText;
             if (dbResult != "Query failed" && (radioCounter + 1) * RADIO_EACH_ROW >= radioBtnsNodes.length) {
 
-
-
                 alert("Η υποβολή σου έγινε επιτυχώς!");
-
-
                 window.location.reload(true);
                 const result_array = dbResult.split(",");
-                console.log(result_array);
-
-                console.log(selectedSub);
-
             }
         }
     };
-
     xmlhttp.open("GET", "assets/backend/evaluation_form.php?results=" + jsonQueryObject, true);
     xmlhttp.send();
 }
@@ -83,8 +70,6 @@ window.onload = () => {
     submitBtn.style.boxShadow = "grey"
 };
 
-
-
 document.addEventListener("change", (e) => {
     let counter = 0;
 
@@ -93,7 +78,6 @@ document.addEventListener("change", (e) => {
             counter++;
         }
     }
-
 
     if (counter >= 12) {
         submitBtn.style.backgroundColor = "#366c77";
@@ -122,9 +106,3 @@ selectedSub.addEventListener('change', (e) => {
         submitBtn.style.boxShadow = "grey"
 
 })
-
-
-// .addEventListener('change', (e) => {
-
-
-// });
