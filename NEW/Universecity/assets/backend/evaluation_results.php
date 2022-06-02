@@ -21,8 +21,5 @@
         if(array_search($r, $result) != count($result)-1) {
             echo ".";
         }
-        
-        
-
     }
 ?>

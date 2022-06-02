@@ -73,7 +73,7 @@ function sendRequest() {
         }
     };
 
-    xmlhttp.open("GET", "assets/backend/evaluation.php?results=" + jsonQueryObject, true);
+    xmlhttp.open("GET", "assets/backend/evaluation_form.php?results=" + jsonQueryObject, true);
     xmlhttp.send();
 }
 

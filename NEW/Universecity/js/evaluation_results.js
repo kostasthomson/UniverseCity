@@ -223,27 +223,27 @@
 var options = {
   series: [{
   name: 'Βαθμός 0',
-  data: [2, 55,1,2,3,4,5,6,7,8,9,11]
+  data: []
 }, {
   name: 'Βαθμός 1',
-  data: [1, 55,1,2,3,4,5,6,7,8,9,11]
+  data: []
 }, {
   name: 'Βαθμός 2',
-  data: [3, 55,1,2,3,4,5,6,7,8,9,11]
+  data: []
 },{
   name: 'Βαθμός 3',
-  data: [4, 55,1,2,3,4,5,6,7,8,9,11]
+  data: []
 },{
   name: 'Βαθμός 4',
-  data: [5, 55,1,2,3,4,5,6,7,8,9,11]
+  data: []
 },{
   name: 'Βαθμός 5',
-  data: [6, 55,1,2,3,4,5,6,7,8,9,11]
+  data: []
 }],
   chart: {
   type: 'bar',
-  height: 400,
-  offsetX: -190,
+  height: 500,
+  offsetX: -230,
   width: 1000,
   stacked: true,
   stackType: '100%'
@@ -330,18 +330,24 @@ window.onload = () => {
 
   
   function buttonCreator(){
+
+    var div = document.getElementById("card_id");
     subjects.forEach(r => {
+
       button = document.createElement("button");
-      button.setAttribute("id", r.id);
+      button.setAttribute("idSubject", r.id);
+      button.setAttribute("id", "chart");
+      button.setAttribute("class", "btn btn-primary");
       button.setAttribute("onclick", "genChart()");
       button.innerHTML = r.title;
-      document.body.appendChild(button);
+      div.appendChild(button);
       
     });
   }
 
   function genChart(){
 
+    
     console.log(array);
     let results = [];
     for(let i = 0; i < 12; i++) {
@@ -366,10 +372,7 @@ window.onload = () => {
         options.series[j].data[i] = results[i][j];
       }
     }
-    
 
-
-    
     var chart = new ApexCharts(document.querySelector(".chart"), options);
     chart.render();
   }

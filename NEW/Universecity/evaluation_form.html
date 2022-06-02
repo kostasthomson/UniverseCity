@@ -17,9 +17,10 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <link href="css/evalutationForm.css" rel="stylesheet">
+  <link href="css/evalutation_form.css" rel="stylesheet">
+
   <script src="js/subjectGet.js"></script>
-  <script src="js/evalutationForm.js" defer></script>
+  <script src="js/evalutation_form.js" defer></script>
   <title>Αξιολόγηση Καθηγητών</title>
 </head>
  <body>
@@ -29,17 +30,13 @@
     <form  id="form">
          <div class="card" id="card_id">
             <div class="card-body" id="card-body">
-                
-
-                <h2 class="card-title">ΑΞΙΟΛΟΓΗΣΗ ΚΑΘΗΓΗΤΗ</h2>
-                <hr>
-                
-             
+            <h2 class="card-title">ΑΞΙΟΛΟΓΗΣΗ ΚΑΘΗΓΗΤΗ</h2>
+            <hr>
             <div id="test"> 
                 <label for="subjects" class="subject">Διάλεξε το μάθημα που θέλεις να αξιολογήσεις: </label>
             </div>
 
-        <h3class="generalQuestions">Γενικές Ερωτήσεις</h3>
+        <h3 class="card-title">Γενικές Ερωτήσεις</h3>
 
         <p id="1" class="questions"> 1. Η συνολική απόδοση του διδάσκοντα ηταν καλή; <br>
             <label for="q1" class="radio-inline">
@@ -82,7 +79,7 @@
             </label>
         </p>
 
-        <h3>Αξιολόγηση μαθήματος</h3>
+        <h3 class="card-title">Αξιολόγηση μαθήματος</h3>
 
         <p id="3" class="questions"> 3. Η οργάνωση και παρουσίαση του μαθήματος ήταν άρτια; <br>
             <label for="q3" class="radio-inline">
@@ -145,7 +142,7 @@
             </label>
         </p>
         
-        <h3>Αξιολόγηση διδασκόντος</h3>
+        <h3 class="card-title">Αξιολόγηση διδασκόντος</h3>
 
         <p id="6" class="questions"> 6. Ο καθηγητής ερχόταν στο μάθημα προετοιμασμένος; <br>
             <label for="q6" class="radio-inline">
@@ -248,7 +245,7 @@
             </label>
         </p>
 
-        <h3 class="questionIfExists">Αξιολόγηση Φροντιστηριακού Μαθήματος / Επικουρικού Διδακτικού Προσωπικού (Απαντήστε μόνο αν υπάρχει)</h3>
+        <h3 class="card-title">Αξιολόγηση Φροντιστηριακού Μαθήματος / Επικουρικού Διδακτικού Προσωπικού (Απαντήστε μόνο αν υπάρχει)</h3>
 
         <p id="11" class="questions"> 11. Η ποιότητα του φροντιστηριακού μαθήματος ήταν υψηλή; <br>
             <label for="q11" class="radio-inline">
@@ -290,7 +287,7 @@
                 <input  id="5" type="radio" name="optradio12" value="5"  class="styleRadio" > 5
             </label>
         </p>
-        <h3 class="questionIfExists">Eπιπρόσθετα σχόλια:</h3>
+        <h3 class="card-title">Eπιπρόσθετα σχόλια:</h3>
         <p id="13" class="userComment">  <br>
         <textarea name="text" placeholder="Ελεύθερο σχόλιο..." class="textarea" id="textArea"></textarea>
         </p>

@@ -39,3 +39,48 @@
   .card-img-overlay {
     background-color: rgba(255, 255, 255, 0.6);
   }
+
+  .btn.btn-primary{
+    border-radius: 1rem;
+    font-size:1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    border:none;
+    text-decoration: none;
+    padding:0.5rem 2rem;
+    background: rgb(168, 168, 165);
+    margin-top:1.5rem;
+    color:white;
+    border-radius: 4rem;
+    cursor:pointer;
+    outline:none;
+    transition: all 0.3s ease 0s;
+    box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
+    background: #366c77;
+    color: #ffffff;
+    
+  }
+  
+  
+  .btn.btn-primary:hover {
+    background-color: #3996a9;
+    box-shadow: 0rem 0.6rem 1.2rem #3fa8bd9d;
+    color:rgb(255, 255, 255);
+    transform:translateY(-0.30rem);
+  }
+  
+  .btn.btn-primary:active{
+    transform:translateY(-0.1rem);
+    background-color: #2da8c0;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Nunito", sans-serif;
+  }
+  h5 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #366c77;
+  }

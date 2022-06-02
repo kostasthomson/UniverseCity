@@ -242,3 +242,11 @@ padding: 0.5rem 0.3rem 0.1rem 0.3rem;
   .subject{
     margin-left:-22rem;
   }
+
+  .card-title {
+    padding: 20px 0 15px 0;
+    font-size: 30px;
+    font-weight: 600;
+    color: #366c77;
+    font-family: "Poppins", sans-serif;
+  }
