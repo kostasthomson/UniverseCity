@@ -89,7 +89,6 @@ selectedSub.addEventListener('change', (e) => {
         //clear text
         text.value = "";
         let selectedValue = selectedSub.value;
-        console.log("mphka");
     
         //clear buttons
         let size = radioBtnsNodes.length;

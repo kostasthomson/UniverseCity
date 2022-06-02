@@ -1,292 +1,9 @@
 
-// var options = {
-//   series: [{
-//   name: 'Βαθμός 0',
-//   data: [44, 55]
-// }, {
-//   name: 'Βαθμός 1',
-//   data: [13, 23]
-// }, {
-//   name: 'Βαθμός 2',
-//   data: [11, 17]
-// },{
-//   name: 'Βαθμός 3',
-//   data: [11, 17]
-// },{
-//   name: 'Βαθμός 4',
-//   data: [11, 17]
-// },{
-//   name: 'Βαθμός 5',
-//   data: [11, 17]
-// }],
-//   chart: {
-//   type: 'bar',
-//   height: 400,
-//   stacked: true,
-//   stackType: '100%'
-// },
-// responsive: [{
-//   breakpoint: 480,
-//   options: {
-//     legend: {
-//       position: 'bottom',
-//       offsetX: -10,
-//       offsetY: 0
-//     }
-//   }
-// }],
-// xaxis: {
-//   categories: ['Q1', 'Q2']
-// },
-// fill: {
-//   opacity: 1
-// },
-// legend: {
-//   position: 'right',
-//   offsetX: 0,
-//   offsetY: 50
-// },
-// title: {
-//   text: 'Γενικές ερωτήσεις'
-// }
-// };
-
-// var chart = new ApexCharts(document.querySelector(".chartGeneralQuestions"), options);
-// chart.render();
-
-// var options = {
-//   series: [{
-//   name: 'Βαθμός 0',
-//   data: [44, 55, 10]
-// }, {
-//   name: 'Βαθμός 1',
-//   data: [13, 23, 12]
-// }, {
-//   name: 'Βαθμός 2',
-//   data: [11, 17, 13]
-// },{
-//   name: 'Βαθμός 3',
-//   data: [11, 17, 15]
-// },{
-//   name: 'Βαθμός 4',
-//   data: [11, 17, 50]
-// },{
-//   name: 'Βαθμός 5',
-//   data: [11, 17, 46]
-// }],
-//   chart: {
-//   type: 'bar',
-//   height: 400,
-//   stacked: true,
-//   stackType: '100%'
-// },
-// responsive: [{
-//   breakpoint: 480,
-//   options: {
-//     legend: {
-//       position: 'bottom',
-//       offsetX: -10,
-//       offsetY: 0
-//     }
-//   }
-// }],
-// xaxis: {
-//   categories: ['Q3', 'Q4', 'Q5']
-// },
-// fill: {
-//   opacity: 1
-// },
-// legend: {
-//   position: 'right',
-//   offsetX: 0,
-//   offsetY: 50
-// },
-// title: {
-//   text: 'Αξιολόγηση μαθήματος'
-// }
-// };
-
-// var chart = new ApexCharts(document.querySelector(".chartEvalSubject"), options);
-// chart.render();
-
-
-// var options = {
-//   series: [{
-//   name: 'Βαθμός 0',
-//   data: [44, 55, 10, 23]
-// }, {
-//   name: 'Βαθμός 1',
-//   data: [13, 23, 12, 45]
-// }, {
-//   name: 'Βαθμός 2',
-//   data: [11, 17, 13, 46]
-// },{
-//   name: 'Βαθμός 3',
-//   data: [11, 17, 15, 40]
-// },{
-//   name: 'Βαθμός 4',
-//   data: [11, 17, 50, 31]
-// },{
-//   name: 'Βαθμός 5',
-//   data: [11, 17, 46, 56]
-// }],
-//   chart: {
-//   type: 'bar',
-//   height: 400,
-//   stacked: true,
-//   stackType: '100%'
-// },
-// responsive: [{
-//   breakpoint: 480,
-//   options: {
-//     legend: {
-//       position: 'bottom',
-//       offsetX: -10,
-//       offsetY: 0
-//     }
-//   }
-// }],
-// xaxis: {
-//   categories: ['Q6', 'Q7', 'Q8', 'Q9']
-// },
-// fill: {
-//   opacity: 1
-// },
-// legend: {
-//   position: 'right',
-//   offsetX: 0,
-//   offsetY: 50
-// },
-// title: {
-//   text: 'Αξιολόγηση διδασκόντος'
-// }
-// };
-
-// var chart = new ApexCharts(document.querySelector(".chartEvalTeacher"), options);
-// chart.render();
-
-// var options = {
-//   series: [{
-//   name: 'Βαθμός 0',
-//   data: [44, 55]
-// }, {
-//   name: 'Βαθμός 1',
-//   data: [13, 23]
-// }, {
-//   name: 'Βαθμός 2',
-//   data: [11, 17]
-// },{
-//   name: 'Βαθμός 3',
-//   data: [11, 17]
-// },{
-//   name: 'Βαθμός 4',
-//   data: [11, 17]
-// },{
-//   name: 'Βαθμός 5',
-//   data: [11, 17]
-// }],
-//   chart: {
-//   type: 'bar',
-//   height: 400,
-//   stacked: true,
-//   stackType: '100%'
-// },
-// responsive: [{
-//   breakpoint: 480,
-//   options: {
-//     legend: {
-//       position: 'bottom',
-//       offsetX: -10,
-//       offsetY: 0
-//     }
-//   }
-// }],
-// xaxis: {
-//   categories: ['Q6', 'Q7']
-// },
-// fill: {
-//   opacity: 1
-// },
-// legend: {
-//   position: 'right',
-//   offsetX: 0,
-//   offsetY: 50
-// },
-// title: {
-//   text: 'Αξιολόγηση Φροντιστηριακού Μαθήματος / Επικουρικού Διδακτικού Προσωπικού'
-// }
-// };
-
-// var chart = new ApexCharts(document.querySelector(".chartEvalTutoringCourse"), options);
-// chart.render();
-
-var options = {
-  series: [{
-  name: 'Βαθμός 0',
-  data: []
-}, {
-  name: 'Βαθμός 1',
-  data: []
-}, {
-  name: 'Βαθμός 2',
-  data: []
-},{
-  name: 'Βαθμός 3',
-  data: []
-},{
-  name: 'Βαθμός 4',
-  data: []
-},{
-  name: 'Βαθμός 5',
-  data: []
-}],
-  chart: {
-  type: 'bar',
-  height: 500,
-  offsetX: -230,
-  width: 1000,
-  stacked: true,
-  stackType: '100%'
-},
-responsive: [{
-  breakpoint: 480,
-  options: {
-    legend: {
-      position: 'bottom',
-      offsetX: -10,
-      offsetY: 0
-    }
-  }
-}],
-plotOptions: {
-  bar: {
-    horizontal: true,
-  },
-},
-colors: ['#8ECAE6', '#219EBC', '#023047', '#FFB703', '#FB8500', '#8A0202'],
-xaxis: {
-  categories: ['Η συνολική απόδοση του διδάσκοντα ήταν καλή;', 'Η ποιότητα του μαθήματος ήταν υψηλή;','Η οργάνωση και παρουσίαση του μαθήματος ήταν άρτια;', 'Το αντικείμενο του μαθήματος ήταν ενδιαφέρον και χρήσιμο για τις σπουδές σας;', 'Το διδακτικό υλικό (βιβλία, σημειώσεις, ασκήσεις, άρθρα κ.λπ.) ήταν επαρκές για τις ανάγκες του μαθήματος;', 'Ο καθηγητής ερχόταν στο μάθημα προετοιμασμένος;', 'Η μεταδοτικότητα του διδάσκοντα ήταν καλή;', 'Ενθάρρυνε τις ερωτήσεις και ευρύτερα τη συμμετοχή στο μάθημα;', 'Όποτε χρειάστηκα να λύσω απορίες/προβλήματα βρήκα τον καθηγητή στις ώρες γραφείου του;', 'Ο διδάσκων ήταν συνεπής στις παρουσίες του στα μαθήματα;','Η ποιότητα του φροντιστηριακού μαθήματος ήταν υψηλή;','Η συνολική απόδοση του επικουρικού διδακτικού προσωπικού ήταν καλή;'],
-},
-fill: {
-  opacity: 2
-},
-legend: {
-  position: 'top',
-  offsetX: 115,
-  offsetY: 0
-},
-title: {
-  text: "",
-  offsetX: 225,
-}
-};
-
-
 let result_array = [];
 let array = [];
 let button;
 let subjects = [];
-
+let questions = ['Η συνολική απόδοση του διδάσκοντα ήταν καλή;', 'Η ποιότητα του μαθήματος ήταν υψηλή;', 'Η οργάνωση και παρουσίαση του μαθήματος ήταν άρτια;', 'Το αντικείμενο του μαθήματος ήταν ενδιαφέρον και χρήσιμο για τις σπουδές σας;', 'Το διδακτικό υλικό (βιβλία, σημειώσεις, ασκήσεις, άρθρα κ.λπ.) ήταν επαρκές για τις ανάγκες του μαθήματος;', 'Ο καθηγητής ερχόταν στο μάθημα προετοιμασμένος;', 'Η μεταδοτικότητα του διδάσκοντα ήταν καλή;', 'Ενθάρρυνε τις ερωτήσεις και ευρύτερα τη συμμετοχή στο μάθημα;', 'Όποτε χρειάστηκα να λύσω απορίες/προβλήματα βρήκα τον καθηγητή στις ώρες γραφείου του;', 'Ο διδάσκων ήταν συνεπής στις παρουσίες του στα μαθήματα;', 'Η ποιότητα του φροντιστηριακού μαθήματος ήταν υψηλή;', 'Η συνολική απόδοση του επικουρικού διδακτικού προσωπικού ήταν καλή;'];
 
 window.onload = () => {
   var xmlhttp = new XMLHttpRequest();
@@ -336,18 +53,17 @@ window.onload = () => {
 
       button = document.createElement("button");
       button.setAttribute("idSubject", r.id);
-      button.setAttribute("id", "chart");
+      button.setAttribute("id", "btn");
       button.setAttribute("class", "btn btn-primary");
-      button.setAttribute("onclick", "genChart()");
+      button.setAttribute("onclick", "calcVotes()");
       button.innerHTML = r.title;
       div.appendChild(button);
       
     });
   }
 
-  function genChart(){
+  function calcVotes(){
 
-    
     console.log(array);
     let results = [];
     for(let i = 0; i < 12; i++) {
@@ -367,12 +83,66 @@ window.onload = () => {
 
     console.log(results);
 
-    for(let j=0;j<6;j++){
-      for(let i=0;i<12;i++){
-        options.series[j].data[i] = results[i][j];
-      }
-    }
+    var divGet = document.getElementById("card_id");
+    let count=0;
+    for(let i=0;i<12;i++){
+        let titleText = questions[i].match(/.{1,30}\S+/g); //RegEx
+        var options = {
+          series: [results[i][0],results[i][1],results[i][2],results[i][3],results[i][4],results[i][5]],
+          chart: {
+          width: 580,
+          height: 305,
+          type: 'pie',
+        },
+        labels: ['0', '1', '2', '3', '4', '5'],
+        title: {
+          text: titleText,
+          align: 'center',
+        },
+        colors: ['#8ECAE6', '#219EBC', '#023047', '#FFB703', '#FB8500', '#8A0202'],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+        };
 
-    var chart = new ApexCharts(document.querySelector(".chart"), options);
-    chart.render();
+        let divChart = document.createElement("div");
+        divChart.setAttribute("class", "chart");
+        divChart.setAttribute("id", "chart" + [i]);
+
+        if(i % 2 == 0){
+          var divChartContainer = document.createElement("div");
+          divChartContainer.setAttribute("class", "chartContainer");
+          divChartContainer.setAttribute("id", "chartContainer" + [i]);
+          divChartContainer.appendChild(divChart);
+        }
+        else{
+          divChartContainer.appendChild(divChart);
+        }
+
+        divGet.appendChild(divChartContainer);
+
+        console.log(options.series[i]);
+
+        var chart = new ApexCharts(document.querySelector("#chart" + [i]), options);
+        chart.render();
+    }
   }
+  
+    
+
+    
+
+
+
+
+
+
+  

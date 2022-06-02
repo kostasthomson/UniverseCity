@@ -73,45 +73,6 @@ User01.addCourse(AIC105);
 
 //------------------ TEST DATA END ------------------
 
-//date
-let dateElement = new Date;
-document.querySelector('.date').insertAdjacentHTML('afterbegin', dateElement.toDateString());
-
-
-
-
-// List containing the User's courses
-// function makeList() {
-//     let CourseListContainer = document.createElement('div');
-//     formElement.setAttribute("class", "course_list");
-//     let selectElement = document.createElement('li');
-//     selectElement.setAttribute('class', 'list')
-//     selectElement.setAttribute('class', 'collapsed');
-
-//     document.getElementById('list').appendChild(formElement).appendChild(selectElement);
-//     selectElement.setAttribute("id", "SelectCourseList");
-//     // Default-First option
-//     listItem = document.createElement('li');
-//     listItem.innerHTML = '-- Επιλογή Μαθήματος --'; 
-//     listItem.setAttribute('value', 'ignore');
-//     selectElement.appendChild(listItem);
-
-//     // Dynamic list initialization
-//     for (i = 0; i < User01.CourseList.length; ++i) {
-//         // Create listItem
-//         listItem = document.createElement('li');
-
-//         // The value of the option is the Course's code
-//         listItem.setAttribute('value', User01.CourseList[i].code);
-
-//         // The name of the Course is displayed to the user
-//         listItem.innerHTML = User01.CourseList[i].name;
-
-//         // Add listItem to the selectElement
-//         selectElement.appendChild(listItem);
-//     }
-// }
-
 
 function makeList() { // New Course List with buttons
 

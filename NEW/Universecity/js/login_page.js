@@ -11,15 +11,24 @@ const table_names = ['STUDENTS', 'SECRETARIATS', 'TEACHERS'];
 function LogIn() {
     const USER_AM = document.querySelector('.form > .am').value;
     if(valid_user_am.includes(USER_AM.slice(0,3))) {
-        const TABLE_NAME = table_names[valid_user_am.indexOf(USER_AM)];
+        const TABLE_NAME = table_names[valid_user_am.indexOf(USER_AM.slice(0,3))];
         const USER_PASS = document.querySelector('.form > .password').value;
-        console.log(USER_AM, TABLE_NAME, USER_PASS);
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 const dbResult = this.responseText;
                 if(dbResult!="Fail" && dbResult!="Unrecorded") {
-                    window.location.href = "../loading.html?login_data="+dbResult;
+                    console.log(dbResult);
+                    const data = dbResult.split(",");
+                    let queryResutls;
+                    if(TABLE_NAME == 'STUDENTS') {
+                        queryResutls = "?AM="+data[0]+"&FIRST_NAME="+data[1]+"&LAST_NAME="+data[2]+"&EMAIL="+data[3]+"&DEPARTMENT="+data[4]+"&SEMESTER="+data[5]+"&STUDY_DIRECTION="+data[6];
+                    } else if (TABLE_NAME == 'TEACHERS') {
+                        queryResutls = "?AM="+data[0]+"&FIRST_NAME="+data[1]+"&LAST_NAME="+data[2]+"&EMAIL="+data[3]+"&OFFICE="+data[4]+"&TITLE="+data[5]+"&BIOLINK="+data[6];
+                    } else {
+                        queryResutls = "?AM="+data[0]+"&FIRST_NAME="+data[1]+"&LAST_NAME="+data[2]+"&EMAIL="+data[3]+"&DEPARTMENT="+data[4];
+                    }
+                    window.location.href = "../loading.html"+queryResutls;
                 }
             }
         }; 
