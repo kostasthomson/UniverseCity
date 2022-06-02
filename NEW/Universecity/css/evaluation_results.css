@@ -1,12 +1,12 @@
 .chart {
 
-  padding-right: 5rem;
-  padding-left: 5rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
   display: inline-block;
 }
 .chartContainer{
   margin: auto;
-  padding-bottom: 8rem
+  padding-bottom: 5rem;
 }
 #btn {
   max-width: 650px;
@@ -94,8 +94,3 @@
     font-weight: 700;
     color: #366c77;
   }
-
-.apexcharts-title-text{
-  white-space: normal;
-  padding-bottom: 5rem;
-}

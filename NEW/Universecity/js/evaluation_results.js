@@ -1,3 +1,4 @@
+
 let result_array = [];
 let array = [];
 let button;
@@ -85,15 +86,18 @@ window.onload = () => {
     var divGet = document.getElementById("card_id");
     let count=0;
     for(let i=0;i<12;i++){
+        let titleText = questions[i].match(/.{1,30}\S+/g); //RegEx
         var options = {
           series: [results[i][0],results[i][1],results[i][2],results[i][3],results[i][4],results[i][5]],
           chart: {
-          width: 380,
+          width: 580,
+          height: 305,
           type: 'pie',
         },
         labels: ['0', '1', '2', '3', '4', '5'],
         title: {
-          text: questions[i]
+          text: titleText,
+          align: 'center',
         },
         colors: ['#8ECAE6', '#219EBC', '#023047', '#FFB703', '#FB8500', '#8A0202'],
         responsive: [{
