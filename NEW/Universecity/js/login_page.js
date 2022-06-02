@@ -11,11 +11,7 @@ const table_names = ['STUDENTS', 'SECRETARIATS', 'TEACHERS'];
 function LogIn() {
     const USER_AM = document.querySelector('.form > .am').value;
     if(valid_user_am.includes(USER_AM.slice(0,3))) {
-<<<<<<< Updated upstream
-        const TABLE_NAME = table_names[valid_user_am.indexOf(USER_AM.slice(0,3))]; // USER_AM alone didn't work
-=======
         const TABLE_NAME = table_names[valid_user_am.indexOf(USER_AM.slice(0,3))];
->>>>>>> Stashed changes
         const USER_PASS = document.querySelector('.form > .password').value;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
