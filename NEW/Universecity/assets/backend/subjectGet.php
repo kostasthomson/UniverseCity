@@ -2,6 +2,10 @@
 
     require "./DB_Class.php";
 
+    $semester = $_GET["results"];
+
+    echo $semester;
+
     $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
 
     $query = "SELECT code,title FROM SUBJECTS WHERE SUBJECTS.semester = 4";

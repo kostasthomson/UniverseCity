@@ -53,7 +53,7 @@ xmlhttp.onreadystatechange = function() {
         }
     }; 
 }
-xmlhttp.open("GET","assets/backend/subjectGet.php", true);
+xmlhttp.open("GET","assets/backend/subjectGet.php?results=", true);
 xmlhttp.send();
 
 
