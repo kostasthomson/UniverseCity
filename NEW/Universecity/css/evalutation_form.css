@@ -117,7 +117,7 @@ body {
     background-color: #3996a9;
     box-shadow: 0rem 0.7rem 1.2rem #3996a9;
     color:rgb(255, 255, 255);
-    transform:translateY(-0.3rem);
+    transform:translateY(-0.2rem);
 }
 
 .submitBtn:active{

@@ -15,6 +15,7 @@
     <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="./css/programma.css" rel="stylesheet">
     
 </head>
 <body>
@@ -24,7 +25,7 @@
 <div id="main-div">
     <div id="selections-div">
         <div class="selection-div">
-            <select id="semester-selection" onchange="CheckValues()">
+            <select id="semester-selection" onchange="CheckValues()"  class="select">
                 <option class="default-option" value="" disabled hidden selected>Επιλογή Εξαμήνου</option>
                 <option value="1">Πρώτο Εξάμηνο</option>
                 <option value="2">Δεύτερο Εξάμηνο</option>
@@ -37,7 +38,7 @@
             </select>
         </div>
         <div class="selection-div">
-            <select id="faculty-selection" onchange="DepartmentSelectionUpdate(this), CheckValues()">
+            <select id="faculty-selection" onchange="DepartmentSelectionUpdate(this), CheckValues()"  class="select">
                 <option class="default-option" value="" disabled hidden selected>Επιλογή Σχολής</option>
                 <option value="Οικονομικών και Περιφειακών Σπουδών" data-selection-type="economics">Οικονομικών και Περιφειακών Σπουδών</option>
                 <option value="Επιστημών Διοίκησης Επιχειρήσεων" data-selection-type="managment">Επιστημών Διοίκησης Επιχειρήσεων</option>
@@ -46,7 +47,7 @@
             </select>
         </div>
         <div class="selection-div">
-            <select id="department-selection" onchange="CheckValues()" disabled> <!-- style="display:hidden" -->
+            <select id="department-selection" onchange="CheckValues()" class="select" disabled> <!-- style="display:hidden" -->
                 <option class="default-option" value="" disabled hidden selected>Επιλογή Τμήματος</option>
                 <option class="economics-selection" value="Οικονομικών Επιστημών" hidden>Οικονομικών Επιστημών</option>
                 <option class="economics-selection" value="Βαλκανικών, Σλαβικών και Ανατολικών Σπουδών" hidden>Βαλκανικών, Σλαβικών και Ανατολικών Σπουδών</option>
@@ -78,9 +79,9 @@
           </table>
           <!-- End Bordered Table -->
 
-    <div class="btn-group" role="group" aria-label="Basic outlined example">
-      <button type="button" class="btn btn-outline-primary" onclick="edit()">Επεξεργασία</button>
-      <button type="button" class="btn btn-outline-primary" onclick="save()">Αποθήκευση</button>
+    <div class="group" role="group" aria-label="Basic outlined example">
+      <button type="button" class="myButtons" onclick="edit()">Επεξεργασία</button>
+      <button type="button" class="myButtons" onclick="save()">Αποθήκευση</button>
     </div>
 
     <script src="./js/programma.js"></script>
