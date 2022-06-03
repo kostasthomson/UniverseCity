@@ -67,7 +67,7 @@ body {
     text-decoration: none;
     padding-top: 0.7rem;
     padding-bottom: 0.7rem;
-    padding-right: 4rem;
+    padding-right: 1rem;
     padding-left: 1rem;
     margin-top:1.5rem;
     margin-left:1.5rem;
@@ -76,6 +76,7 @@ body {
     outline:none;
     transition: all 0.3s ease 0s;
     box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
+    width: 90%;
     
     color: #ffffff;
     background-color: #366c77;
