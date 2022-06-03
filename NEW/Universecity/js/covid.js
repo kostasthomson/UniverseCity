@@ -10,17 +10,37 @@ covidPdf.addEventListener("change" , (e) => {
   inputBtn.disabled = false;
 });
 
-
-
 submitBtn.addEventListener("click", (e) => {
 
     const classText = classroom.map(obj => obj.value); 
     const seatText = seats.map( obj => obj.value);
 
+    
+    let validateArray = [];
+    let textArray = [];
+    
+
+    for(let i=0;i<classText.length;i++){
+      validateArray[i] = classText[i].split(" ");
+      if(validateArray[i][0].includes("ΑΜΦ")){
+        textArray[i] = "ΑΜΦΙΘΕΑΤΡΟ " + validateArray[0][1];
+      }
+      else if((validateArray[i][0].includes("ΑΙΘ"))){
+        textArray[i] = "ΑΙΘΟΥΣΑ " + validateArray[0][1];
+      }
+      else{
+        textArray[i] = "ΕΡΓΑΣΤΗΡΙΟ " + validateArray[0][1];
+      }
+    }
+
+    console.log(textArray);
+
     let queryObject= {
         "covidList" : classText,
         "seatList" : seatText
     };
+
+    
 
     const jsonQueryObject = JSON.stringify(queryObject);
 
@@ -36,7 +56,7 @@ submitBtn.addEventListener("click", (e) => {
             }
         };
     }
-    xmlhttp.open("GET","../../../backend/covid.php?results=" + jsonQueryObject, true);
+    xmlhttp.open("GET","assets/backend/covid.php?results=" + jsonQueryObject, true);
     xmlhttp.send();
 });
 
@@ -47,12 +67,6 @@ inputBtn.addEventListener("click" , (e) => {
     submitBtn.disabled = false;
     submitBtn.style.backgroundColor = "#366c77";
     submitBtn.style.boxShadow = "0rem 0.7rem 1.2rem #3996a9"
-
-    
-  
-
-    
-
 });
 
 function makeDate(){
@@ -66,6 +80,9 @@ function makeDate(){
     document.getElementById("tab1").innerHTML = day  + "/" + month + "/" + year; 
    
     for(let i = 1; i < DATE_DAYS ; i++){
+
+      let text = document.getElementById
+
       if( day - count == 0){
         date.setDate(0) //? set to the last day of previous month
         year = date.getMonth() + 1;
