@@ -8,7 +8,6 @@ select.setAttribute("class", "select");
 
 let options = document.createElement("option");
 
-
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -31,6 +30,13 @@ xmlhttp.onreadystatechange = function() {
                     k++;
                 }
             } 
+
+            
+
+            
+            options.setAttribute("disabled", "disabled");
+            options.setAttribute("selected", "selected");
+            options.setAttribute("class", "invalid"); 
 
             for(let i=0;i<subject_title.length;i++){
 
