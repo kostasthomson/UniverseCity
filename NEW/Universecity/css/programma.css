@@ -49,7 +49,7 @@
     font-weight: 500;
     border:none;
     text-decoration: none;
-    padding:0.4rem;
+    padding:0.8rem;
     cursor:pointer;
     margin-bottom: 1.3rem;
     outline:none;
@@ -58,6 +58,7 @@
     background-color: #158d5d91;
     color: #ffffff;
     background: #366c77;
+    
  } 
  
  
