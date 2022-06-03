@@ -30,7 +30,7 @@ body {
 
 .questions , .questionsIfExists{
     font-size:0.9rem;
-    text-transform: uppercase;
+    
     letter-spacing: 0.3px;
     font-weight: 500;
     border:none;
@@ -76,9 +76,9 @@ body {
     outline:none;
     transition: all 0.3s ease 0s;
     box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
-    background-color: #158d5d91;
+    
     color: #ffffff;
-    background: #366c77;
+    background-color: #366c77;
  } 
  
  
@@ -93,7 +93,7 @@ body {
 
 .submitBtn{
     font-size:1rem;
-    text-transform: uppercase;
+    
     letter-spacing: 0.2rem;
     font-weight: 500;
     border:none;

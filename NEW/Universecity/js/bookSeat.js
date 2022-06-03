@@ -1,5 +1,5 @@
 var user = {name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ','ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ','ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ']};
-
+document.getElementById("currentDate").innerHTML = new Date().toLocaleString();
 // Test classes, todo get data from database with php
 //------------------ TEST CLASSES DECLARATION START ------------------
 
@@ -75,7 +75,8 @@ User01.addCourse(AIC105);
 
 
 function makeList() { // New Course List with buttons
-
+    
+    
     let CourseListContainer = document.createElement('div');
     CourseListContainer.setAttribute("class", "course_list");
 
