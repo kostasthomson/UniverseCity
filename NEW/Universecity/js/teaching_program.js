@@ -1,11 +1,11 @@
 var schedule = [
-    {Days: "Δευτέρα", Hours: "9-12", lessons: "MethamaticI"},
-    {Days: "Δευτέρα", Hours: "12-13", lessons: "MethamaticII" },
-    {Days: "Δευτέρα", Hours: "16-18", lessons: "Statistics" },
-    {Days: "Τρίτη", Hours: "9-12",  lessons: "MathematicII" },
-    {Days: "Τετάρτη", Hours: "9-12", lessons: "Statistics" },
-    {Days: "Πέμπτη", Hours: "9-12",  lessons: "MethamaticI" },
-    {Days: "Παρασκευή", Hours: "9-12",  lessons: "MathematicII" },
+    { Days: "Δευτέρα", Hours: "9-12", lessons: "MethamaticI" },
+    { Days: "Δευτέρα", Hours: "12-13", lessons: "MethamaticII" },
+    { Days: "Δευτέρα", Hours: "16-18", lessons: "Statistics" },
+    { Days: "Τρίτη", Hours: "9-12", lessons: "MathematicII" },
+    { Days: "Τετάρτη", Hours: "9-12", lessons: "Statistics" },
+    { Days: "Πέμπτη", Hours: "9-12", lessons: "MethamaticI" },
+    { Days: "Παρασκευή", Hours: "9-12", lessons: "MathematicII" },
 ]
 
 var buildTable = function buildTable(data) {
@@ -21,7 +21,7 @@ var buildTable = function buildTable(data) {
     }
     table.appendChild(tr);
 
-    data.forEach(function(rowData) {
+    data.forEach(function (rowData) {
         tr = document.createElement("tr");
         for (var i = 0; i < keys.length; i++) {
             var key = keys[i];
@@ -50,7 +50,7 @@ var buildEvaluationTable = function buildEvaluationTable(data, titles) {
 
     table.appendChild(tr);
 
-    data.forEach(function(rowData) {
+    data.forEach(function (rowData) {
         tr = document.createElement("tr");
         for (var i = 2; i < keys.length; i++) {
             var key = keys[i];
@@ -70,6 +70,6 @@ var buildEvaluationTable = function buildEvaluationTable(data, titles) {
 
 document.body.appendChild(buildTable(schedule));
 
-function changeSchedule(){
+function changeSchedule() {
     console.log("Εδώ θα επιλέγει την ώρα και την μέρα και το μάθημα που θέλει να αλλάξει");
 }

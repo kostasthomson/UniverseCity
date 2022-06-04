@@ -36,7 +36,7 @@ const form = [...document.querySelector('.form').children];
 form.forEach((item, i) => {
     setTimeout(() => {
         item.style.opacity = 1;
-    }, i*250);
+    }, i * 250);
 })
 
 const valid_user_am = ['ics', 'aid', 'ait'];
@@ -50,14 +50,14 @@ const ValidAm_TableNames = {
 
 function LogIn() {
     const USER_AM = document.querySelector('.form > .am').value;
-    if(ValidAm_TableNames[USER_AM.slice(0,3)]) {
-        const TABLE_NAME = ValidAm_TableNames[USER_AM.slice(0,3)];
+    if (ValidAm_TableNames[USER_AM.slice(0, 3)]) {
+        const TABLE_NAME = ValidAm_TableNames[USER_AM.slice(0, 3)];
         const USER_PASS = document.querySelector('.form > .password').value;
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
+        xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 const dbResult = this.responseText;
-                if(dbResult!="Fail" && dbResult!="Unrecorded") {
+                if (dbResult != "Fail" && dbResult != "Unrecorded") {
                     const data = dbResult.split(",");
                     const AM = data[0];
                     const FIRST_NAME = data[1];
@@ -65,23 +65,23 @@ function LogIn() {
                     const EMAIL = data[3];
                     const DEPARTMENT = data[4];
                     let USER;
-                    if(TABLE_NAME == 'STUDENTS') { 
+                    if (TABLE_NAME == 'STUDENTS') {
                         const SEMESTER = data[5];
                         const STUDY_DIRECTION = data[6];
                         USER = new Student(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT, SEMESTER, STUDY_DIRECTION);
-                    } else if(TABLE_NAME == 'TEACHERS') { 
+                    } else if (TABLE_NAME == 'TEACHERS') {
                         const OFFICE = data[5];
                         const TITLE = data[6];
                         const BIOLINK = data[7];
                         USER = new Teacher(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT, OFFICE, TITLE, BIOLINK);
-                    }else {
+                    } else {
                         USER = new Secretariat(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT);
                     }
-                    window.location.href = "../loading.html?LoggedInUser="+JSON.stringify(USER)+"&class="+USER.constructor.name;
+                    window.location.href = "../loading.html?LoggedInUser=" + JSON.stringify(USER) + "&class=" + USER.constructor.name;
                 }
             }
-        }; 
-        xmlhttp.open("GET","../assets/backend/DB_retrieve.php?am="+USER_AM+"&pass="+USER_PASS+"&tname="+TABLE_NAME,true);
+        };
+        xmlhttp.open("GET", "../assets/backend/DB_retrieve.php?am=" + USER_AM + "&pass=" + USER_PASS + "&tname=" + TABLE_NAME, true);
         xmlhttp.send();
     }
 }

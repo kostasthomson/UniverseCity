@@ -270,7 +270,7 @@ let pliroforiaka_sistimata = [
         "option": "Υποχρεωτικό Κατεύθυνσης",
         "ects": "5",
         "semester": "3"
-    },   
+    },
 ]
 
 const body = document.body;
@@ -298,15 +298,14 @@ function generateTableHead(table, data) {
     let row = document.createElement('tr');
     thead.appendChild(row);
     for (let key of data) {
-      let th = document.createElement("th");
-      let text = document.createTextNode(key);
-      th.appendChild(text);
-      row.appendChild(th);
+        let th = document.createElement("th");
+        let text = document.createTextNode(key);
+        th.appendChild(text);
+        row.appendChild(th);
     }
 }
 
-function generateTableHeading(table, data)
-{
+function generateTableHeading(table, data) {
     const thead = document.createElement('thead');
     table.appendChild(thead);
     let row = document.createElement('tr');
@@ -321,21 +320,20 @@ function generateTable(table, data) {
     for (let element of data) {
         let row = document.createElement('tr');
         table.appendChild(row);
-      for (key in element) {
-        let cell = row.insertCell();
-        let text = document.createTextNode(element[key]);
-        cell.appendChild(text);
-      }
+        for (key in element) {
+            let cell = row.insertCell();
+            let text = document.createTextNode(element[key]);
+            cell.appendChild(text);
+        }
     }
 }
 
-function checkreset()
-{
-    if(document.getElementById("set1"))
+function checkreset() {
+    if (document.getElementById("set1"))
         document.getElementById('set1').innerHTML = '';
 }
-function direction_1(){
-    
+function direction_1() {
+
     checkreset();
 
     let semerster_1 = epistimi_kai_texnologia.filter(course => course.semester === "1");
@@ -362,13 +360,13 @@ function direction_1(){
 
     body.appendChild(table);
 
-    
+
 }
 
-function direction_2(){
+function direction_2() {
 
     checkreset();
-    
+
     let semerster_1 = pliroforiaka_sistimata.filter(course => course.semester === "1");
     let semerster_2 = pliroforiaka_sistimata.filter(course => course.semester === "2");
     let semerster_3 = pliroforiaka_sistimata.filter(course => course.semester === "3");

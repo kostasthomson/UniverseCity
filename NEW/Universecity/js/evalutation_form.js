@@ -2,7 +2,7 @@
 const selectedSub = document.querySelector(".select");
 const radioBtnsNodes = document.querySelectorAll(".styleRadio");
 const labelInput = document.querySelector("radio-inline");
-const text = document.querySelector(".textarea");
+const text = document.querySelector(".form-control");
 const disabled = document.querySelector(".invalid");
 const submitBtn = document.querySelector(".submitBtn");
 const textarea = document.querySelector(".textarea");
@@ -36,7 +36,7 @@ function sendRequest() {
     let options = fillOptions();
     let subject = document.getElementById("subjs");
     let value = subject.options[subject.selectedIndex].value;
-    const textArea = document.getElementById("textArea").value;
+    const textArea = document.getElementById("floatingTextarea").value;
 
     let queryObject = {
         "subject": value,
@@ -86,22 +86,22 @@ document.addEventListener("change", (e) => {
 });
 
 selectedSub.addEventListener('change', (e) => {
-        //clear text
-        text.value = "";
-        let selectedValue = selectedSub.value;
-    
-        //clear buttons
-        let size = radioBtnsNodes.length;
-        for (let i = 0; i < size; i++) {
-            radioBtnsNodes[i].checked = false;
-        }
-    
-        //remove text decoration from disabled button
-        disabled.className = "";
-    
-        radioCounter = 0;
-    
-        submitBtn.style.backgroundColor = "grey";
-        submitBtn.style.boxShadow = "grey"
+    //clear text
+    text.value = "";
+    let selectedValue = selectedSub.value;
+
+    //clear buttons
+    let size = radioBtnsNodes.length;
+    for (let i = 0; i < size; i++) {
+        radioBtnsNodes[i].checked = false;
+    }
+
+    //remove text decoration from disabled button
+    disabled.className = "";
+
+    radioCounter = 0;
+
+    submitBtn.style.backgroundColor = "grey";
+    submitBtn.style.boxShadow = "grey"
 
 })

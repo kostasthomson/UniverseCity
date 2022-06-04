@@ -1,6 +1,6 @@
 function Refresh() {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
+    xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
             const notifications = dbResult.split('|');
@@ -8,14 +8,14 @@ function Refresh() {
             const teacher_notifications = notifications[1].split('.');
             UpdateUlElements(secretariat_notifications, teacher_notifications);
         }
-    }; 
-    xmlhttp.open("GET","./assets/backend/get_announcement.php",true);
+    };
+    xmlhttp.open("GET", "./assets/backend/get_announcement.php", true);
     xmlhttp.send();
 }
 
 function UpdateUlElements(secretariat, teacher) {
-    fillUlElement(document.getElementById('show-secretariat'),secretariat);
-    fillUlElement(document.getElementById('show-teacher'),teacher);
+    fillUlElement(document.getElementById('show-secretariat'), secretariat);
+    fillUlElement(document.getElementById('show-teacher'), teacher);
 }
 
 let ul_ids = [];
@@ -23,15 +23,15 @@ let ul_ids = [];
 function fillUlElement(ul, announcements) {
     announcements.forEach(announcement => {
         const details = announcement.split(',');
-        notification = { 
+        notification = {
             'id': details[0],
-            'title': details[1], 
-            'description': details[2], 
-            'time': details[3], 
-            'date': details[4], 
+            'title': details[1],
+            'description': details[2],
+            'time': details[3],
+            'date': details[4],
         };
         const li = createListElement(notification);
-        if(!ul_ids.includes(li.id)) {
+        if (!ul_ids.includes(li.id)) {
             ul.append(li);
             ul_ids.push(li.id);
         }

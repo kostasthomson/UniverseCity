@@ -11,7 +11,7 @@
   <title>Δήλωση Κρούσματος</title>
 
   <!-- Vendor CSS Files -->
-  <link rel="stylesheet" href="./css/covid.css">
+
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -20,7 +20,9 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <link href="assets/css/style.css" rel="stylesheet">
-  
+  <link rel="stylesheet" href="./css/covid.css">
+  <script src="./js/covid.js" defer></script>
+
 
 </head>
 
@@ -36,7 +38,7 @@
           <div class="row mb-3">
             <label for="inputNumber" class="col-sm-2 col-form-label">Αρχείο Διαγνωστικού Ελέγχου</label>
             <div class="col-sm-10">
-              <input class="form-control" type="file" id="formFile" accept="image/jpeg,image/png,application/pdf " >
+              <input class="form-control" type="file" id="formFile" accept="image/jpeg,image/png,application/pdf ">
             </div>
           </div>
 
@@ -156,7 +158,7 @@
                   data-bs-parent="#accordionExample">
                   <div class="accordion-body">
                     <div class="row mb-3">
-                      <label for="inputText" class="col-sm-2 col-form-label" >Αμφιθέατρο Μαθήματος</label>
+                      <label for="inputText" class="col-sm-2 col-form-label">Αμφιθέατρο Μαθήματος</label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" placeholder="π.χ ΑΜΦ 12, ΑΙΘ 10, ΕΡΓ 2">
                       </div>
@@ -173,11 +175,11 @@
             </div><!-- End Default Accordion Example -->
           </div>
 
-          
+
 
           <div class="form-floating mb-3">
             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
-              style="height: 100px;"></textarea>
+              style="height: 150px;"></textarea>
             <label for="floatingTextarea">Σχόλια</label>
           </div>
 
@@ -194,11 +196,11 @@
 
   <div class="row mb-3">
     <div class="col-sm-10">
-      <button type="button" class="btn btn-primary" >Υποβολή</button>
+      <button type="button" class="btn btn-primary">Υποβολή</button>
     </div>
   </div>
 
-  <script src="/js/covid.js"></script>
+
 
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

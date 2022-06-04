@@ -1,12 +1,15 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
 
-html{
+html {
   height: 100%;
 }
 
 .container {
-  position:absolute;
+  position: absolute;
   width: 30%;
-  height:0%;
+  height: 0%;
   display: flex;
   height: auto;
   margin: 0 auto;
@@ -16,13 +19,13 @@ html{
   padding-top: 0rem;
   left: 50%;
   top: 50%;
-  transform: translate(-50% , -50%);
-  
-  
+  transform: translate(-50%, -50%);
+
+
 }
 
 
-.row{
+.row {
   margin-top: 2rem;
   width: 85%;
   border-color: aqua;
@@ -30,18 +33,19 @@ html{
   border-color: #ebeef4;
   background-color: #fff;
   color: #798eb3;
-  
-  
+
+
 }
 
 .container {
   margin-bottom: 30px;
- 
+
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 42, 112, 0.219);
 }
 
-.container-header, .container-footer {
+.container-header,
+.container-footer {
   border-color: #ebeef4;
   background-color: #fff;
   color: #798eb3;
@@ -55,11 +59,13 @@ html{
   color: #366c77;
   font-family: "Poppins", sans-serif;
 }
+
 .container-title span {
   color: #899bbd;
   font-size: 14px;
   font-weight: 400;
 }
+
 .container-body {
   padding: 0 20px 20px 20px;
 }

@@ -1,3 +1,7 @@
+* {
+    font-family: "Open Sans", sans-serif;
+}
+
 h1 {
     text-align: center;
 }
@@ -16,7 +20,8 @@ div {
     justify-content: space-around;
 }
 
-#sendEmail, #receiveEmail {
+#sendEmail,
+#receiveEmail {
     flex-direction: column;
 }
 

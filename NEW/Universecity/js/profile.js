@@ -9,10 +9,10 @@ function setDescription(user) {
 }
 
 
-const users = [['onoma_mathiti', 'epitheto_mathiti', 'student'], ['Manos', 'Roumelioths' ,'teacher'], ['onoma_grammateia', 'epitheto_grammateia', 'secretariat']];
+const users = [['onoma_mathiti', 'epitheto_mathiti', 'student'], ['Manos', 'Roumelioths', 'teacher'], ['onoma_grammateia', 'epitheto_grammateia', 'secretariat']];
 const login_user = sessionStorage.getItem('user');
 users.forEach(user => {
-    if(user.includes(login_user)) {
+    if (user.includes(login_user)) {
         setDescription(user);
     }
 });

@@ -1,28 +1,28 @@
 function start() {
-//reset ul and iframe
+    //reset ul and iframe
     reset();
-//getting user
+    //getting user
     const LOGIN_USER = sessionStorage.getItem('user');
     const ul = document.getElementById('menu-options');
     let user_dependent_names;
-    if(LOGIN_USER == users[0]) {
+    if (LOGIN_USER == users[0]) {
         //students menu
-        user_dependent_names = ['Αιτήσεις-Μηνύματα', 'Μαθήματα', 
-                        'Πρόγραμμα Διδασκαλίας', 'Στατιστικά', 'Αξιολόγηση Καθηγητών', 
-                        'Erasmus', 'Δήλωση Κρούσματος', 'Δήλωση Θέσης'
-                    ];
-    }else if(LOGIN_USER == users[1]) {
+        user_dependent_names = ['Αιτήσεις-Μηνύματα', 'Μαθήματα',
+            'Πρόγραμμα Διδασκαλίας', 'Στατιστικά', 'Αξιολόγηση Καθηγητών',
+            'Erasmus', 'Δήλωση Κρούσματος', 'Δήλωση Θέσης'
+        ];
+    } else if (LOGIN_USER == users[1]) {
         //teachers menu
-        user_dependent_names = ['Διαχείριση Μαθημάτων','Πρόγραμμα Διδασκαλίας', 'Εξετάσεις-Βαθμολογίες',
-                        'Προβολή Προσωπικής Αξιολόγησης', 'Συστατική Επιλογή',
-                        'Erasmus', 'Ανακοινώσεις-Ενημερώσεις'
-                    ];
-    }else if(LOGIN_USER == users[2]) {
+        user_dependent_names = ['Διαχείριση Μαθημάτων', 'Πρόγραμμα Διδασκαλίας', 'Εξετάσεις-Βαθμολογίες',
+            'Προβολή Προσωπικής Αξιολόγησης', 'Συστατική Επιλογή',
+            'Erasmus', 'Ανακοινώσεις-Ενημερώσεις'
+        ];
+    } else if (LOGIN_USER == users[2]) {
         //secretariat menu
         user_dependent_names = ['Ωρολόγιο Πρόγραμμα', 'Ανακοινώσεις', 'Διαχείριση Email', 'Απενεργοποίηση Φοιτητή'];
     }
-//create ul according to user
-    if(user_dependent_names) {
+    //create ul according to user
+    if (user_dependent_names) {
         let menu_names = ['Αρχική'];    //home is common to all users
         menu_names = menu_names.concat(user_dependent_names);
         menu_names.push('Έξοδος');  //exit is common to all users
@@ -42,7 +42,7 @@ function start() {
 
 
 function setFrameSrc(html_src) {
-    if(html_src) {
+    if (html_src) {
         const frame = document.getElementById('html-frame');
         frame.contentWindow.location.href = html_src;
     }
@@ -53,7 +53,7 @@ function sentToFrame(value) {
     let page_url;
     switch (value) {
         case 'profile':
-            page_url = '../html/profile.html'; 
+            page_url = '../html/profile.html';
             break;
         // case 'Αρχική':
         //     page_url = '../html/arxikh.html';
@@ -73,7 +73,7 @@ function sentToFrame(value) {
     }
     let page = page_url.split('/');
     let href = document.getElementById('html-frame').contentWindow.location.href.split('/');
-    if(page[page.length-1] != href[href.length-1])
+    if (page[page.length - 1] != href[href.length - 1])
         setFrameSrc(page_url);
     // setFrameSrc(page_url);
 }
@@ -81,9 +81,9 @@ function sentToFrame(value) {
 function createLiElement(context) {
     const li = document.createElement('li');
     li.setAttribute('class', 'list-menu-option');
-    if(context == 'Έξοδος') {
+    if (context == 'Έξοδος') {
         li.setAttribute('onclick', 'LogOut()');
-    }else {
+    } else {
         li.setAttribute('onclick', 'sentToFrame(this.innerHTML)');
     }
     li.innerHTML = context;
@@ -96,12 +96,12 @@ function LogOut() {
 
 function setUser(button) {
     let user = button.getAttribute('data-user');
-    if(!sessionStorage.getItem('user') || (sessionStorage.getItem('user')!=user)){
+    if (!sessionStorage.getItem('user') || (sessionStorage.getItem('user') != user)) {
         sessionStorage.setItem('user', user);
         document.getElementById('html-frame').contentWindow.location.reload();
         start();
     }
-    
+
 }
 
 function reset() {
@@ -120,17 +120,17 @@ window.onload = () => {
     full_reset();
 }
 
-                // DEMO BUTTONS
+// DEMO BUTTONS
 //----------------------------------------------------
 const users = ['student', 'teacher', 'secretariat'];
 const button_div = document.createElement('div');
 button_div.setAttribute('id', 'buttons');
-for(let i=1; i<=3; i++) {
+for (let i = 1; i <= 3; i++) {
     const button = document.createElement('button');
     button.setAttribute('class', 'temp-button');
     button.setAttribute('onclick', 'setUser(this)');
-    button.setAttribute('data-user', users[i-1]);
-    button.innerHTML = 'Login as ' + users[i-1];
+    button.setAttribute('data-user', users[i - 1]);
+    button.innerHTML = 'Login as ' + users[i - 1];
     button_div.appendChild(button);
 }
 document.body.appendChild(button_div);
