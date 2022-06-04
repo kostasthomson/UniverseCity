@@ -186,23 +186,9 @@ input[type='radio']:checked:before {
 }
 
 
-.textarea {
-  width: 20rem;
-  height: 10rem;
-  background-color: rgba(234, 234, 238, 0.541);
-  padding: 1rem;
-  border-radius: 1rem;
-  border: 2px solid transparent;
-  outline: none;
-  width: 40rem;
-  height: 10rem;
-  resize: none;
-}
 
-.textarea:hover {
-  cursor: pointer;
-  background-color: rgba(210, 210, 218, 0.514);
-}
+
+
 
 select option[disabled="disabled"][selected="selected"] {
   display: none;
@@ -271,5 +257,9 @@ select option[disabled="disabled"][selected="selected"] {
 
 .form-control {
   resize: none;
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
+}
+
+#floatingTextarea {
+  height: 500%;
 }
