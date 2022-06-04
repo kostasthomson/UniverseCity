@@ -1,8 +1,9 @@
 <?php
     require "./DB_Class.php";
+    $department = htmlspecialchars($_GET["department"]);
     $semester = htmlspecialchars($_GET["semester"]);
     $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
-    $query = "SELECT title FROM SUBJECTS WHERE semester=$semester;";
+    $query = "SELECT title FROM SUBJECTS WHERE department='$department' and semester=$semester;";
     $query_done = $db->makeQuery($query);
     if($query_done) {
         $results = $db->getQueryResults();
