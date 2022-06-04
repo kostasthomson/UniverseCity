@@ -2,7 +2,7 @@ const src_links = {
 // Links for secretariat 0-3
     'Αρχική': 'index.html',
     'Ωρολόγιο Πρόγραμμα': 'programma.html',
-    'Ανακοινώσεις': 'anakoinoseis.html',
+    'Ανακοινώσεις': 'announcement_creation.html',
     'Διαχείριση Ενεργειών': 'email.html',
 // Links for student 4-7
     'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
