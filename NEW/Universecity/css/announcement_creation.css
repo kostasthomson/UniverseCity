@@ -1,3 +1,7 @@
+* {
+    font-family: "Open Sans", sans-serif;
+}
+
 .btn.btn-primary {
     font-size: 1rem;
     text-transform: uppercase;
@@ -86,8 +90,6 @@
 
 }
 
-#floatingTextarea{
+#floatingTextarea {
     height: 10rem;
 }
-
-

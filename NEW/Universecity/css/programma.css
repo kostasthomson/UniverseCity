@@ -1,114 +1,115 @@
-.myButtons{
-    font-size:1rem;
-    letter-spacing: 0.2rem;
-    font-weight: 500;
-    border:none;
-    margin-left:1.5rem;
-    text-decoration: none;
-    padding:0.5rem 2rem;
-    background: rgb(168, 168, 165);
-    margin-top:1.5rem;
-   
-    color:white;
-    border-radius: 4rem;
-    cursor:pointer;
-    outline:none;
-    transition: all 0.3s ease 0s;
-    box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
-    background: #366c77;
-    color: #ffffff;
-    
+* {
+  font-family: "Open Sans", sans-serif;
 }
 
-  
-.myButtons:hover{
-    background-color: #3996a9;
-    box-shadow: 0rem 0.7rem 1.2rem #3996a9;
-    color:rgb(255, 255, 255);
-    transform:translateY(-0.2rem);
+.myButtons {
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  font-weight: 500;
+  border: none;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  background: rgb(168, 168, 165);
+  margin-top: 1.5rem;
+
+  color: white;
+  border-radius: 4rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  background: #366c77;
+  color: #ffffff;
+
 }
 
-.myButtons:active{
-    transform:translateY(-0.1rem);
-    background-color: #2da8c0;
+
+.myButtons:hover {
+  background-color: #3996a9;
+  box-shadow: 0rem 0.7rem 1.2rem #3996a9;
+  color: rgb(255, 255, 255);
+  transform: translateY(-0.2rem);
 }
 
-.group{
-    
-    margin-left:31rem;
-    width: 30%;
+.myButtons:active {
+  transform: translateY(-0.1rem);
+  background-color: #2da8c0;
+}
+
+.group {
+
+  margin-left: 31rem;
+  width: 30%;
 }
 
 
 .select {
-    cursor:pointer;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    font-size:1rem;
-    letter-spacing: 0.1rem;
-    font-weight: 500;
-    border:none;
-    text-decoration: none;
-    padding:0.4rem 0.9rem 0.4rem 0.4rem;
-    cursor:pointer;
-    margin-bottom: 1.3rem;
-    outline:none;
-    transition: all 0.3s ease 0s;
-    box-shadow: 0rem 0.5rem 1rem rgba(0,0,0,0.1);
-    background-color: #158d5d91;
-    color: #ffffff;
-    background: #366c77;
-    
- } 
- 
- 
- .select:hover {
-    
-    
-    background-color: #3996a9;
-    cursor:pointer;
-    
-    transition:0.50s all ease;
- }
- 
- h1{
-     margin-bottom: 1.5rem;
- }
- 
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  font-weight: 500;
+  border: none;
+  text-decoration: none;
+  padding: 0.4rem 0.9rem 0.4rem 0.4rem;
+  cursor: pointer;
+  margin-bottom: 1.3rem;
+  outline: none;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  background-color: #158d5d91;
+  color: #ffffff;
+  background: #366c77;
+
+}
+
+
+.select:hover {
+
+
+  background-color: #3996a9;
+  cursor: pointer;
+
+  transition: 0.50s all ease;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+}
+
 
 
 
 table thead tr {
-   
-    text-align: left;
-    font-weight: bold;
-  }
-  
- 
-  
 
-  
-  .table  tr:nth-of-type(even) {
-    background-color: #dbd7d71e;
-    
-  }
-  
-  
-  
-  .table tr{
-    transition-duration: 0.8s;
-    transition-delay: 100ms;
-  }
- 
- 
-  .table tr:hover{
-    background-color: rgba(160, 160, 163, 0.534);
-  
-  }
-  
-  .card-body{
-      margin-top:-1rem;
-  }
-    
-    
-  
+  text-align: left;
+  font-weight: bold;
+}
+
+
+
+
+
+.table tr:nth-of-type(even) {
+  background-color: #dbd7d71e;
+
+}
+
+
+
+.table tr {
+  transition-duration: 0.8s;
+  transition-delay: 100ms;
+}
+
+
+.table tr:hover {
+  background-color: rgba(160, 160, 163, 0.534);
+
+}
+
+.card-body {
+  margin-top: -1rem;
+}

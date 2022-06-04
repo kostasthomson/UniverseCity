@@ -76,7 +76,7 @@ var buildTable = function buildTable(data) {
     }
     table.appendChild(tr);
 
-    data.forEach(function(rowData) {
+    data.forEach(function (rowData) {
         tr = document.createElement("tr");
         for (var i = 0; i < keys.length; i++) {
             var key = keys[i];

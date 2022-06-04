@@ -8,9 +8,9 @@ class Anouncement {
         this.Title = title;
         this.Description = message;
     }
-    getId() {return this.Id;}
-    getTitle() {return this.Title;}
-    getDescription() {return this.Description;}
+    getId() { return this.Id; }
+    getTitle() { return this.Title; }
+    getDescription() { return this.Description; }
 }
 
 class User {
@@ -19,10 +19,10 @@ class User {
         this.notshow = 0;
         this.notifications = [];
     }
-    updateShow() {this.show = this.notshow;}
-    getNotifications() {return this.notifications;}
+    updateShow() { this.show = this.notshow; }
+    getNotifications() { return this.notifications; }
     check_db_Notifications() {
-        if(db_notifications_previous_length != db_notifications.length){
+        if (db_notifications_previous_length != db_notifications.length) {
             this.receive();
             db_notifications_previous_length = db_notifications.length;
             return true;
@@ -40,7 +40,7 @@ class Secretariat {
         this.index = 0;
         this.anouncement = null;
     }
-    getAnouncement() {return this.anouncement;}
+    getAnouncement() { return this.anouncement; }
     createAnouncement() {
         let title = anouncement_title.value;
         let description = anouncement_description.value;
@@ -48,7 +48,7 @@ class Secretariat {
         this.index++;
     }
     sendAnouncement() {
-        if(this.anouncement)
+        if (this.anouncement)
             db_notifications.push(this.anouncement);
     }
 }
@@ -57,7 +57,7 @@ function listOfNots(nots) {
     let list = [];
     nots.forEach(element => {
         const li = document.createElement('li');
-        li.innerHTML = 'NotId: ' + element.getId()+ '<br>NotTitle: ' + element.getTitle() + '<br>NotDesc: ' + element.getDescription();
+        li.innerHTML = 'NotId: ' + element.getId() + '<br>NotTitle: ' + element.getTitle() + '<br>NotDesc: ' + element.getDescription();
         list.push(li);
     });
     return list;
@@ -74,7 +74,7 @@ function updateUl() {
     user.updateShow();
     latest_notification.forEach(element => {
         const li = document.createElement('li');
-        li.innerHTML = 'NotId: ' + element.getId()+ '<br>NotTitle: ' + element.getTitle() + '<br>NotDesc: ' + element.getDescription();
+        li.innerHTML = 'NotId: ' + element.getId() + '<br>NotTitle: ' + element.getTitle() + '<br>NotDesc: ' + element.getDescription();
         ul.append(li);
     });
 }
@@ -86,7 +86,7 @@ const anouncement_title = document.getElementById('anouncement-title');
 const anouncement_description = document.getElementById('anouncement-description');
 const ul = document.getElementById('anouncement-list');
 const checkInterval = setInterval(() => {
-    if(user.check_db_Notifications()) {
+    if (user.check_db_Notifications()) {
         updateUl();
     }
 }, 500);

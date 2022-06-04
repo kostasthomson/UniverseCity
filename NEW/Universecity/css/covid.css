@@ -1,3 +1,23 @@
+* {
+    border-style: border-box;
+}
+
+
+
+body {
+    background-color: white;
+    color: white;
+    display: flexbox;
+    height: 150vh;
+    width: 200vh;
+    font-family: 'Open Sans', sans-serif;
+    width: 50%;
+}
+
+
+
+
+
 .fileText {
     padding: 0.5rem;
     color: white;
@@ -237,7 +257,7 @@
     margin-left: -5rem;
     border-radius: 0.8rem;
     box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
-    width: 110%;
+    width: 90%;
 }
 
 .card-header,

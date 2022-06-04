@@ -6,19 +6,19 @@ class User {
         this.mail = null;
         this.prev_length = 0;
     }
-    setAddress(address) {this.address = address;}
+    setAddress(address) { this.address = address; }
     getAddress() { return this.address; }
-    showInbox() {db_student_inbox.forEach(mail => {mail.showEmail()});}
+    showInbox() { db_student_inbox.forEach(mail => { mail.showEmail() }); }
     createMail(to, subject, message) {
         this.mail = new Email(this, to, subject, message);
     }
     sendMail() {
-        if(this.mail) {
+        if (this.mail) {
             db_student_inbox.push(this.mail);
         }
     }
     checkInbox() {
-        if(this.prev_length != db_student_inbox.length) {
+        if (this.prev_length != db_student_inbox.length) {
             this.showInbox();
             addToUl(db_student_inbox[db_student_inbox.length - 1]);
             this.prev_length = db_student_inbox.length;
@@ -33,8 +33,8 @@ class Email {
         this.subject = subject;
         this.message = message;
     }
-    getReceiver() {return this.to;}
-    showEmail(){console.log('From:', this.from.getAddress(), '\nTo:', this.to.getAddress(), '\nSubject:', this.subject, '\nMessage:', this.message);}
+    getReceiver() { return this.to; }
+    showEmail() { console.log('From:', this.from.getAddress(), '\nTo:', this.to.getAddress(), '\nSubject:', this.subject, '\nMessage:', this.message); }
 }
 
 function addToUl(mail) {

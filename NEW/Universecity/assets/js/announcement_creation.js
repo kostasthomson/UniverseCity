@@ -1,8 +1,8 @@
 const submitBtn = document.querySelector(".btn.btn-primary");
 
-submitBtn.addEventListener("click" , PostAnnouncement);
-    
-    
+submitBtn.addEventListener("click", PostAnnouncement);
+
+
 
 
 function PostAnnouncement(sender) {
