@@ -32,6 +32,7 @@ submitBtn.addEventListener("click", (e) => {
         textArray[i] = "ΕΡΓΑΣΤΗΡΙΟ " + validateArray[0][1];
       }
     }
+    
 
     console.log(textArray);
 
