@@ -3,7 +3,7 @@ function Refresh() {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
-            const notifications = dbResult.split('|');
+            const notifications = dbResult.split('/');
             const secretariat_notifications = notifications[0].split('.');
             const teacher_notifications = notifications[1].split('.');
             UpdateUlElements(secretariat_notifications, teacher_notifications);

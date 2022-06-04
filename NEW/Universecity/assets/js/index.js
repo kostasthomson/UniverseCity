@@ -1,7 +1,7 @@
 const src_links = {
     // Links for secretariat 0-3
     'Αρχική': 'index.html',
-    'Ωρολόγιο Πρόγραμμα': 'programma.html',
+    'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
     'Ανακοινώσεις': 'announcement_creation.html',
     'Διαχείριση Ενεργειών': 'email.html',
     // Links for student 4-7
@@ -249,11 +249,12 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const USER = JSON.parse(urlParams.get('LoggedInUser'));
 const className = urlParams.get('class');
+sessionStorage.setItem('user', JSON.stringify(USER));
 if (className == 'Student') {
     sessionStorage.setItem('user-class', 'student');
 } else if (className == 'Teacher') {
     sessionStorage.setItem('user-class', 'teacher');
-} else {
+} else if (className == 'Secretariat') {
     sessionStorage.setItem('user-class', 'secretariat');
 }
 const href = 'index.html' + queryString;
