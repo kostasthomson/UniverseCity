@@ -92,4 +92,9 @@
 
 #floatingTextarea {
     height: 10rem;
+    border-radius: 0.5rem;
+}
+
+input[type=text] {
+    border-radius: 0.5rem;
 }
