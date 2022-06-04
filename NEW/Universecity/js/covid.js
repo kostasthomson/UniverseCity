@@ -4,6 +4,8 @@ const covidPdf = document.querySelector(".form-control");
 let  classroom = Array.from(document.querySelectorAll(".form-control"));
 let seats = [];
 
+let flag = false;
+
 
 
 covidPdf.addEventListener("change" , (e) => {
@@ -18,28 +20,57 @@ submitBtn.addEventListener("click", (e) => {
     
     let validateArray = [];
     let textArray = [];
+
+    let index = 0;
+    
     
 
     for(let i=0;i<classText.length;i++){
-      validateArray[i] = classText[i].split(" ");
-      if(validateArray[i][0].includes("ΑΜΦ")){
-        textArray[i] = "ΑΜΦΙΘΕΑΤΡΟ " + validateArray[0][1];
-      }
-      else if((validateArray[i][0].includes("ΑΙΘ"))){
-        textArray[i] = "ΑΙΘΟΥΣΑ " + validateArray[0][1];
-      }
-      else{
-        textArray[i] = "ΕΡΓΑΣΤΗΡΙΟ " + validateArray[0][1];
-      }
-    }
-    
+      validateArray[i] = classText[i].split(",");
 
+      console.log(validateArray[i]);
+
+      validateArray[i].forEach(c => {
+        let numArray = [];
+        console.log(c);
+        numArray = c.split(" ");
+                
+
+        if(numArray.includes("")){
+          numArray.shift();
+        }
+   
+        console.log(numArray);
+        if(numArray.includes("ΑΜΦ")){
+          textArray[index] = "ΑΜΦΙΘΕΑΤΡΟ " + numArray[1];
+        }
+        else if((numArray.includes("ΑΙΘ"))){
+          textArray[index] = "ΑΙΘΟΥΣΑ " + numArray[1];
+        }
+        else if(numArray.includes("ΕΡΓ")){
+          textArray[index] = "ΕΡΓΑΣΤΗΡΙΟ " + numArray[1];
+        }
+        else{
+          flag = true;
+        }
+        
+
+        index++;
+      });
+      
+      
+      
+    }
+
+
+    
     console.log(textArray);
 
     let queryObject= {
         "covidList" : classText,
         "seatList" : seatText
     };
+
 
     
 
@@ -52,7 +83,7 @@ submitBtn.addEventListener("click", (e) => {
             if(dbResult!="Query failed") {
                 alert("Η αίτηση έγινε επιτυχώς");
                 let resultArray = dbResult.split(",");
-                console.log(resultArray);
+                //console.log(resultArray);
                 
             }
         };
