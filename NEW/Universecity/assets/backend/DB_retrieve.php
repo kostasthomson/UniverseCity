@@ -19,7 +19,7 @@
             if($table_name == 'STUDENTS')
                 echo "{$u['am']},{$u['first_name']},{$u['last_name']},{$u['email']},{$u['department']},{$u['semester']},{$u['study_direction']}";
             else if($table_name == 'TEACHERS')
-                echo "{$u['am']},{$u['first_name']},{$u['last_name']},{$u['email']},{$u['office']},{$u['title']},{$u['biolink']}";
+                echo "{$u['am']},{$u['first_name']},{$u['last_name']},{$u['email']},{$u['department']},{$u['office']},{$u['title']},{$u['biolink']}";
             else 
                 echo "{$u['am']},{$u['first_name']},{$u['last_name']},{$u['email']},{$u['department']}";
         }

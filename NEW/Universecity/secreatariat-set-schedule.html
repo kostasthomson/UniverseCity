@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/secretariat_set_schedule.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <title>Δημιουργία Πρόγραμμα</title>
+</head>
+<body>
+    <header id="header">
+        <h1>Δημιουργία Προγράμματος</h1>
+    </header>
+    <div id="main-div">
+        <div id="selections-div">
+            <div class="selection-div">
+                <select id="semester-selection" onchange="CheckValues()">
+                    <option value="" disabled hidden selected>Επιλογή Εξαμήνου</option>
+                    <option value="1">Πρώτο Εξάμηνο</option>
+                    <option value="2">Δεύτερο Εξάμηνο</option>
+                    <option value="3">Τρίτο Εξάμηνο</option>
+                    <option value="4">Τέταρτο Εξάμηνο</option>
+                    <option value="5">Πέμπτο Εξάμηνο</option>
+                    <option value="6">Έκτο Εξάμηνο</option>
+                    <option value="7">Έβδομο Εξάμηνο</option>
+                    <option value="8">Όγδοο Εξάμηνο</option>
+                </select>
+            </div>
+            <div class="selection-div">
+                <select id="faculty-selection" onchange="CheckValues(), DepartmentSelectionUpdate(this)">
+                    <option value="" disabled hidden >Επιλογή Σχολής</option>
+                    <option value="Οικονομικών και Περιφειακών Σπουδών" data-selection-type="economics">Οικονομικών και Περιφειακών Σπουδών</option>
+                    <option value="Επιστημών Διοίκησης Επιχειρήσεων" data-selection-type="managment">Επιστημών Διοίκησης Επιχειρήσεων</option>
+                    <option selected value="Επιστημών Πληροφορίας" data-selection-type="informatics">Επιστημών Πληροφορίας</option>
+                    <option value="Κοινωνικών, Ανθρωπιστικών Επιστημών και Τεχνών" data-selection-type="social">Κοινωνικών, Ανθρωπιστικών Επιστημών και Τεχνών</option>
+                </select>
+            </div>
+            <div class="selection-div">
+                <select id="department-selection" onchange="CheckValues()" > <!-- style="display:hidden" -->
+                    <option value="" disabled hidden >Επιλογή Τμήματος</option>
+                    <option class="economics-selection" value="Οικονομικών Επιστημών" hidden>Οικονομικών Επιστημών</option>
+                    <option class="economics-selection" value="Βαλκανικών, Σλαβικών και Ανατολικών Σπουδών" hidden>Βαλκανικών, Σλαβικών και Ανατολικών Σπουδών</option>
+                    <option class="managment-selection" value="Οργάνωσης και Διοίκησης Επιχειρήσεων" hidden>Οργάνωσης και Διοίκησης Επιχειρήσεων</option>
+                    <option class="managment-selection" value="Λογιστικής και Χρηματοοικονομικής" hidden>Λογιστικής και Χρηματοοικονομικής</option>
+                    <option selected class="informatics-selection" value="Εφαρμοσμένης Πληροφορικής" hidden>Εφαρμοσμένης Πληροφορικής</option>
+                    <option class="social-selection" value="Διεθνών και Ευρωπαϊκών Σπουδών" hidden>Διεθνών και Ευρωπαϊκών Σπουδών</option>
+                    <option class="social-selection" value="Εκπαιδευτικής και Κοινωνικής Πολιτικής" hidden>Εκπαιδευτικής και Κοινωνικής Πολιτικής</option>
+                    <option class="social-selection" value="Μουσικής Επιστήμης και Τέχνης" hidden>Μουσικής Επιστήμης και Τέχνης</option>
+                </select>
+            </div>
+        </div>
+        <!-- <div id="schedule-div"> -->
+            <div class="card card-div">
+                <div class="card-body">
+                  <!-- Bordered Table -->
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="column-head">Ώρες</th>
+                        <th scope="col" class="column-head">Δευτέρα</th>
+                        <th scope="col" class="column-head">Τρίτη</th>
+                        <th scope="col" class="column-head">Τετάρτη</th>
+                        <th scope="col" class="column-head">Πέμπτη</th>
+                        <th scope="col" class="column-head">Παρασκευή</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        <!-- </div> -->
+    <script src="assets/js/secretariat_set_schedule.js"></script>
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/chart.js/chart.min.js"></script>
+    <script src="assets/vendor/echarts/echarts.min.js"></script>
+    <script src="assets/vendor/quill/quill.min.js"></script>
+    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+</body>
+</html>
