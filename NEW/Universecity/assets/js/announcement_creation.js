@@ -9,6 +9,8 @@ function PostAnnouncement(sender) {
     const value = sessionStorage.getItem("user-class");
     const title = document.querySelector(".form-control");
     const description = document.querySelector("textarea.form-control");
+    console.log(description.value);
+    console.log(value);
     const DateTime = new Date();
     let hours = DateTime.getHours();
     let mins = DateTime.getMinutes();
