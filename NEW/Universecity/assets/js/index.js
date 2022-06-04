@@ -1,38 +1,3 @@
-//demo class
-class User {
-    constructor(am, first_name, last_name, email) {
-        this.AM = am;
-        this.FIRST_NAME = first_name;
-        this.LAST_NAME = last_name;
-        this.EMAIL = email;
-    }
-}
-
-class Student extends User {
-    constructor(am, first_name, last_name, email, department, semester, study_direction) {
-        super(am, first_name, last_name, email);
-        this.DEPARTMENT = department;
-        this.SEMESTER = semester;
-        this.STUDY_DIRECTION = study_direction;
-    }
-}
-
-class Teacher extends User {
-    constructor(am, first_name, last_name, email, office, title, biolink) {
-        super(am, first_name, last_name, email);
-        this.OFFICE = office;
-        this.TITLE = title;
-        this.BIOLINK = biolink;
-    }
-}
-
-class Secretariat extends User {
-    constructor(am, first_name, last_name, email, department) {
-        super(am, first_name, last_name, email);
-        this.DEPARTMENT = department;
-    }
-}
-
 const src_links = {
 // Links for secretariat 0-3
     'Αρχική': 'index.html',
@@ -190,6 +155,14 @@ function updatePageTitle() {
     last_ol_child.innerHTML = frame_name;
 }
 
+function TimeDifference(current, record) {
+    const diffMms = (current - record);
+    const diffMins = Math.round(((diffMms % 86400000) % 3600000) / 60000);
+    const diffHrs = Math.floor((diffMms % 86400000) / 3600000);
+    const diffDays = Math.floor(diffMms / 86400000);
+    return `${(diffDays!=0)? diffDays+"d. " : ""} ${(diffHrs!=0)? diffHrs+"h." : ""} ${(diffMins!=0)? diffMins+"m." : ""}`;
+}
+
 function createLifromNotification(notification) {
     const li = document.createElement('li');
     li.setAttribute('id', notification.id);
@@ -206,15 +179,10 @@ function createLifromNotification(notification) {
     const day = parseInt(notification.date.split('-')[2]);
     const hour = parseInt(notification.time.split(':')[0]);
     const minute = parseInt(notification.time.split(':')[1]);
-
     const currTime = new Date();
     const recordTime = new Date(year, month, day, hour, minute);
-
-    const diffMms = (currTime - recordTime);
-    const diffHrs = Math.floor((diffMms % 86400000) / 3600000);
-    const diffMins = Math.round(((diffMms % 86400000) % 3600000) / 60000);
-
-    p2.innerHTML = `${(diffHrs!=0)? diffHrs+"hrs." : ""} ${diffMins} mins.`;
+    
+    p2.innerHTML = TimeDifference(currTime, recordTime);
     div.append(h4, p1, p2);
     li.append(div);
     return li;
@@ -225,10 +193,7 @@ function fillUlElement(ul, announcements) {
     const hr = document.createElement('hr');
     hr.setAttribute('class', 'dropdown-divider');
     divider.appendChild(hr);
-    // let max_nots = 4;
-    // let i = 0;
     announcements.forEach(announcement => {
-        // if(i < 4) {
         const details = announcement.split(',');
         notification = { 
             'id': details[0],
@@ -238,16 +203,8 @@ function fillUlElement(ul, announcements) {
             'date': details[4],
             'sender': details[5]
         };
-        // if(sessionStorage.getItem('user-class') == 'teacher') {
-        //     if(notification.sender == 'S') {
-        //         ul.append(createLifromNotification(notification));        
-        //     }
-        // } else {
         ul.append(createLifromNotification(notification));
-        // }
         ul.append(divider);
-        // i++;
-        // }
     });
     const footer = document.createElement('li');
     footer.setAttribute('class', 'dropdown-footer');
@@ -264,67 +221,42 @@ function UpdateUlElements(notifications) {
 }
 
 function updateNotifications() {
-    // const notifications = document.querySelectorAll('.nav-link.nav-icon')[1];
-    // if(sessionStorage.getItem('user-class') == 'secretariat') {
-    //     notifications.style.display = 'none';
-    // }else {
-    //     if(notifications.style.display == 'none'){
-    //         notifications.style.display = 'inline-block';
-    //     }
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            const dbResult = this.responseText;
-            const notifications = dbResult.split('|');
-            UpdateUlElements(notifications);
+    const notifications = document.querySelectorAll('.nav-link.nav-icon')[1];
+    if(sessionStorage.getItem('user-class') == 'secretariat') {
+        notifications.style.display = 'none';
+    }else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                const dbResult = this.responseText;
+                const notifications = dbResult.split('/');
+                UpdateUlElements(notifications);
+            }
+        }; 
+        xmlhttp.open("GET","./assets/backend/get_announcement.php",true);
+        xmlhttp.send();
         }
-    }; 
-    xmlhttp.open("GET","./assets/backend/get_announcement.php",true);
-    xmlhttp.send();
-    // }
 }
 
-window.onload = () => {
-    if(window.location.search) {
-        const queryString = window.location.search;
-        sessionStorage.setItem('url-query', queryString);
-    }
+function updateProfile() {
+    document.querySelector('.d-none.d-md-block.dropdown-toggle.ps-2').innerHTML = USER.FIRST_NAME[0] +'. '+USER.LAST_NAME;
+    document.querySelector('.profile > .dropdown-header > h6').innerHTML = USER.FIRST_NAME + ' ' + USER.LAST_NAME;
+    document.querySelector('.profile > .dropdown-header > span').innerHTML = USER.DEPARTMENT;
 }
 
-const urlParams = new URLSearchParams(sessionStorage.getItem('url-query'));
-const AM = urlParams.get('AM');
-const FIRST_NAME = urlParams.get('FIRST_NAME');
-const LAST_NAME = urlParams.get('LAST_NAME');
-const EMAIL = urlParams.get('EMAIL');
-let USER;
-if(AM.slice(0,3) == 'ics') { 
-    const DEPARTMENT = urlParams.get('DEPARTMENT');
-    const SEMESTER = urlParams.get('SEMESTER');
-    const STUDY_DIRECTION = urlParams.get('STUDY_DIRECTION');
-    USER = new Student(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT, SEMESTER, STUDY_DIRECTION);
-}else if(AM.slice(0,3) == 'ait') { 
-    const OFFICE = urlParams.get('OFFICE');
-    const TITLE = urlParams.get('TITLE');
-    const BIOLINK = urlParams.get('BIOLINK');
-    USER = new Teacher(AM, FIRST_NAME, LAST_NAME, EMAIL, OFFICE, TITLE, BIOLINK);
-}else {
-    const DEPARTMENT = urlParams.get('DEPARTMENT');
-    USER = new Secretariat(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT);
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const USER = JSON.parse(urlParams.get('LoggedInUser'));
+const className = urlParams.get('class');
+if (className == 'Student') {
+    sessionStorage.setItem('user-class', 'student');
+}else if (className ==  'Teacher') {
+    sessionStorage.setItem('user-class', 'teacher');
+} else {
+    sessionStorage.setItem('user-class', 'secretariat');
 }
-console.log(USER);
-sessionStorage.setItem('user', JSON.stringify(USER));
-switch(USER.AM.slice(0,3)) {
-    case 'ics':
-        sessionStorage.setItem('user-class', 'student');
-        break;
-    case 'ait':
-        sessionStorage.setItem('user-class', 'teacher');
-        break;
-    case 'aid':
-        sessionStorage.setItem('user-class', 'secretariat');
-        break;
-}
-const href = 'index.html'+sessionStorage.getItem('url-query');
+const href = 'index.html'+queryString;
 const logo_anchor = document.querySelector('.logo');
 logo_anchor.href = href;
 const sidebar_list_anchor = document.querySelectorAll('.nav-link')[3];
@@ -337,3 +269,4 @@ UserNavListInit();
 setUserNavList();
 updatePageTitle();
 updateNotifications();
+updateProfile();
