@@ -11,7 +11,7 @@
         foreach($query_results as $row) {
             echo "{$row['id']},{$row['title']},{$row['description']},{$row['time']},{$row['date']},{$row['sender']}";
             if(array_search($row, $query_results) != count($query_results)-1) {
-                echo "/";
+                echo "|";
             }
         }
     }

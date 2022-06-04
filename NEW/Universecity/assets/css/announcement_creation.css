@@ -1,0 +1,23 @@
+body { 
+    margin: 0;
+    padding: 0;
+}
+
+h1 { 
+    text-align: center;
+}
+
+#create-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#create-div > * {
+    width: 50%;
+}
+
+textarea {
+    height: 150px;
+    resize: none;
+}
