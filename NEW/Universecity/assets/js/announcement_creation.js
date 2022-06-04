@@ -1,6 +1,14 @@
+const submitBtn = document.querySelector(".btn.btn-primary");
+
+submitBtn.addEventListener("click" , PostAnnouncement);
+    
+    
+
+
 function PostAnnouncement(sender) {
+    const value = sessionStorage.getItem("user-class");
     const title = document.querySelector(".form-control");
-    const description = document.getElementById('floatingTextarea').value;
+    const description = document.querySelector("textarea.form-control");
     const DateTime = new Date();
     let hours = DateTime.getHours();
     let mins = DateTime.getMinutes();
@@ -35,3 +43,6 @@ function PostAnnouncement(sender) {
     xmlhttp.open("GET", "../../assets/backend/post_announcement.php?" + queryString, true);
     xmlhttp.send();
 }
+
+
+
