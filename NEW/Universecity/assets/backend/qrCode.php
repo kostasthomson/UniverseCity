@@ -9,23 +9,26 @@
     $query_done = $db->makeQuery($query);
     
 
-    // var_dump($sql_query);
     
 
     if ($query_done) {
+        
         $user = $db->getQueryResults();
+
         if (count($user) == 0) {
             echo "No resutls";
         } else {
             $u = $user[0];
+
             foreach(array_values($u) as $i){
                 echo $i.", ";
             }
+
         }
     } else {
         echo "Fail";
     }
-    $sql = "UPDATE QRCODE SET arrived='false' WHERE student_pass_id = '$user_qrId'";
+    $sql = "UPDATE QRCODE SET arrived=1 WHERE student_pass_id = '$user_qrId'";
     $sql_query = $db->makeQuery($sql);
     $db->close();
 ?>
