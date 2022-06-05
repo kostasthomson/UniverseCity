@@ -1,17 +1,19 @@
-var user = { name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ', 'ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ'] };
+//var user = { name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ', 'ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ'] };
 document.getElementById("currentDate").innerHTML = new Date().toLocaleString();
 // Test classes, todo get data from database with php
 //------------------ TEST CLASSES DECLARATION START ------------------
 
-class Course {
-    constructor(name, code) {
-        this.name = name;
-        this.code = code;
-        Classroom;
-    }
+var GLOBAL = GLOBAL || {};
 
-    setClassroom(Classroom) {
-        this.Classroom = Classroom;
+
+class Course {
+    constructor(code, title, department, semester, ects, direction) {
+        this.CODE = code;
+        this.TITLE = title;
+        this.DEPARTMENT = department;
+        this.SEMESTER = semester;
+        this.ECTS = ects;
+        this.DIRECTION = direction;
     }
 }
 
@@ -28,8 +30,14 @@ class Classroom {
 }
 
 class User {
-    constructor(name) {
-        this.name;
+    constructor() {
+        this.AM;
+        this.DEPARTMENT;
+        this.EMAIL;
+        this.FIRST_NAME;
+        this.LAST_NAME;
+        this.SEMESTER;
+        this.STUDY_DIRECTION;
         this.CourseList = [];
     }
 
@@ -43,39 +51,121 @@ class User {
 
 //------------------ TEST DATA START ------------------
 {
-    var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 168);
-    var AMF9 = new Classroom('Αμφιθέατρο 9', 'AMF', 09, 01, 90);
-    var ERG334 = new Classroom('Εργαστήριο 334', 'LAB', 334, 03, 48);
-    var CL1 = new Classroom('Αίθουσα 1', 'CL', 12, 01, 168);
+    // var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 168);
+    // var AMF9 = new Classroom('Αμφιθέατρο 9', 'AMF', 09, 01, 90);
+    // var ERG334 = new Classroom('Εργαστήριο 334', 'LAB', 334, 03, 48);
+    // var CL1 = new Classroom('Αίθουσα 1', 'CL', 12, 01, 168);
 
 
-    var AIC101 = new Course('ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΙΚΤΥΟΥ', 'AIC101');
-    AIC101.setClassroom(ERG334);
-    var AIC102 = new Course('ΤΕΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'DEMO4');
-    AIC102.setClassroom(AMF12);
-    var AIC103 = new Course('ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ', 'DEMO1');
-    AIC103.setClassroom(AMF12);
-    var AIC104 = new Course('ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ', 'AIC104');
-    AIC104.setClassroom(AMF12);
-    var AIC105 = new Course('ΑΛΓΟΡΙΘΜΟΙ', 'AIC105');
-    AIC105.setClassroom(AMF9);
+    // var AIC101 = new Course('ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΙΚΤΥΟΥ', 'AIC101');
+    // AIC101.setClassroom(ERG334);
+    // var AIC102 = new Course('ΤΕΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'AIC024');
+    // AIC102.setClassroom(AMF12);
+    // var AIC103 = new Course('ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ', 'DEMO1');
+    // AIC103.setClassroom(AMF12);
+    // var AIC104 = new Course('ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ', 'AIC104');
+    // AIC104.setClassroom(AMF12);
+    // var AIC105 = new Course('ΑΛΓΟΡΙΘΜΟΙ', 'AIC105');
+    // AIC105.setClassroom(AMF9);
 
 
 
-    var User01 = new User('User01');
-    User01.addCourse(AIC101);
-    User01.addCourse(AIC102);
-    User01.addCourse(AIC103);
-    User01.addCourse(AIC104);
-    User01.addCourse(AIC105);
+    // var User01 = new User('User01');
+    // User01.addCourse(AIC101);
+    // User01.addCourse(AIC102);
+    // User01.addCourse(AIC103);
+    // User01.addCourse(AIC104);
+    // User01.addCourse(AIC105);
     //console.log(User01);
 }
 
 //------------------ TEST DATA END ------------------
 
+window.onload = getUserInfo(); 
+
+
+function getUserInfo(){ // Gets User Info from Session Storage
+    GLOBAL.user = [];
+    GLOBAL.user = JSON.parse(sessionStorage.getItem('user'));
+    GLOBAL.user.CourseList = [];
+    console.log(GLOBAL.user);
+    retriveUserSeat(GLOBAL.user.AM);
+    retrieveCourses();
+}
+
+function retriveUserSeat(am){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            if (dbResult != "Fail") {
+                const dbResult = this.responseText;
+                seats = dbResult.split('/');
+                GLOBAL.user.seatList = [];
+                seats.forEach(row => {
+                    let value = row.split(',');
+                    GLOBAL.user.seatList.push(parseInt(value[1]));
+                })
+                console.log(GLOBAL.user.seatList);
+                }
+                
+            }
+        }
+    xmlhttp.open("GET", "assets/backend/get_student_seat.php?student_id=" + am, true);
+    xmlhttp.send();
+}
+
+
+function retrieveCourses() {
+    // retrieve courses
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            if (dbResult != "Fail") {
+                const dbResult = this.responseText;
+                subjectArray = dbResult.split('/');
+                GLOBAL.user.CourseList = [];
+                subjectArray.forEach(subject => {
+                    let value = subject.split(',');
+                    course = new Course(value[0],
+                                        value[1],
+                                        value[2],
+                                        parseInt(value[3]),
+                                        parseInt(value[4]),
+                                        value[5]);
+                    GLOBAL.user.CourseList.push(course);
+                    // CourseList.push({
+                    //     'CODE': (value[0]),
+                    //     'TITLE': (value[1]),
+                    //     'DEPARTMENT': (value[2]),
+                    //     'SEMESTER': parseInt(value[3]),
+                    //     'ECTS': parseInt(value[4]),
+                    //     'DIRECTION': (value[5])
+
+                    // })
+
+                });
+                makeList();
+        
+
+    
+                }
+                
+            }
+        }
+    xmlhttp.open("GET", "assets/backend/get_subject_list.php?department=" + GLOBAL.user.DEPARTMENT 
+                                                            +"&semester=" + GLOBAL.user.SEMESTER
+                                                            +"&direction=" + GLOBAL.user.STUDY_DIRECTION, true);
+    xmlhttp.send();
+    // end retrieve
+    
+
+    }
 
 function makeList() { // New Course List with buttons
-
+    console.log(GLOBAL);
 
     let CourseListContainer = document.createElement('div');
     CourseListContainer.setAttribute("class", "course_list");
@@ -88,15 +178,15 @@ function makeList() { // New Course List with buttons
 
 
     // Dynamic list initialization
-    for (i = 0; i < User01.CourseList.length; ++i) {
+    for (i = 0; i < GLOBAL.user.CourseList.length; ++i) {
         // Create listItem
         listItem = document.createElement('button');
 
         // The value of the option is the Course's code
-        listItem.setAttribute('value', User01.CourseList[i].code);
+        listItem.setAttribute('value', GLOBAL.user.CourseList[i].CODE);
         listItem.setAttribute('class', "subjectBtns");
         // The name of the Course is displayed to the user
-        listItem.innerHTML = User01.CourseList[i].name;
+        listItem.innerHTML = GLOBAL.user.CourseList[i].TITLE;
 
         // validate() starts the generation of the seats with capacity and type 
         listItem.setAttribute('onclick', 'validate(this.value)');
@@ -109,7 +199,6 @@ function makeList() { // New Course List with buttons
 // Find Classroom + Generate Seats 
 
 
-var selected1; // temp global
 
 
 function retrieveFromDB(courseCode) {
@@ -145,9 +234,9 @@ function validate(courseCode) {
     // Find the course and return the classroom
     let selectBtn = document.getElementById("selectBtn");
     selectBtn.style.display = 'block';
-    selectedClassroom = findCourse(courseCode); //DEMO1=6, DEMO4=11
+    
 
-    selected1 = courseCode; // temp
+    
 
     let element = document.querySelector(".seatBoxContainer");
     let leftContainer = document.querySelector(".leftContainer");
@@ -174,19 +263,6 @@ function validate(courseCode) {
 
 
 
-
-
-
-
-// find the course in the User's list and return the classroom
-function findCourse(x) {
-    for (i = 0; i < User01.CourseList.length; i++) {
-        if (x == User01.CourseList[i].code) {
-            return User01.CourseList[i].Classroom;
-        }
-    }
-    return console.log('Wrong Course code!');
-}
 
 
 function initSeatContainer() {
@@ -239,18 +315,7 @@ function theater(capacity, type, seatArray) { //not final
                 rightContainer.appendChild(listItem);
             }
         }
-        // Forbidden seats -->!!! must change from number(12) to variable (percentage of capacity)!!!
-        for (i = 0; i < capacity / 12; i++) { //First 14 seats
-            document.getElementById('seat' + (i + 1)).classList.toggle('forbidden');
-        }
-
-
-        for (i = 0; i < capacity; i++) {
-            if (seatArray[i].state == 'T') {
-                document.querySelector("button[data-seatid='" + seatArray[i].id + "']").classList.toggle("occupied");
-            }
-
-        }
+        
 
     }
 
@@ -282,8 +347,43 @@ function theater(capacity, type, seatArray) { //not final
     let selectBtn = document.getElementById('selectBtn');
     selectBtn.style.display = 'flex'
 
+    markSeats(capacity, seatArray);
 
 
+
+}
+
+
+function markSeats(capacity, seatArray) {
+    // Forbidden seats -->!!! must change from number(12) to variable (percentage of capacity)!!!
+    for (i = 0; i < capacity / 12; i++) { //First 14 seats
+        document.getElementById('seat' + (i + 1)).classList.toggle('forbidden');
+    }
+
+    // Occupied seats - Seats that other users have already occupied
+    for (i = 0; i < capacity; i++) {
+        if (seatArray[i].state == 'T') {
+            document.querySelector("button[data-seatid='" + seatArray[i].id + "']").classList.toggle("occupied");
+        }
+
+    }
+
+    // User Seat
+    GLOBAL.user.seatList.forEach(seat => {
+        for (i=0; i<capacity; i++) {
+            if (seat == seatArray[i].id) {
+                // grantedSeat.classList.remove("selected");
+                let grantedSeat = document.querySelector("button[data-seatid='" + seatArray[i].id + "']");
+                grantedSeat.classList.remove("occupied");
+                grantedSeat.classList.toggle("granted");
+                grantedSeat.classList.toggle("grantedTooltip");
+                tooltip = document.createElement('span');
+                tooltip.innerHTML = ('Η θέση που έχεις κρατήσει!');
+                tooltip.classList.toggle("grantedTooltipText");
+                grantedSeat.appendChild(tooltip);
+            }
+        }
+    });
 }
 
 
@@ -338,20 +438,16 @@ function modalToggle() {
     }
 }
 
-function getSeat() {
-    document.querySelector
-}
 
 
 
 
-function sumbitSeat() {
+
+function submitSeat() {
     let selectedSeat = document.querySelector('.selected');
     let dataSeatID = parseInt(selectedSeat.getAttribute('data-seatid'));
 
-    selected1;
 
-    let UserTemp = "ics0001";
 
 
     // not correct, will fix
@@ -362,14 +458,12 @@ function sumbitSeat() {
             const dbResult = this.responseText;
             if (dbResult != "Occupied") {
                 let yesbtn = document.querySelector("#yesbtn");
-                yesbtn.onclick = function () {
-                    var selectModal = document.getElementById('selectModal');
+                var selectModal = document.getElementById('selectModal');
                     selectModal.style.display = 'none';
                     alert("Η κράτηση σας ολοκληρώθηκε με επιτύχια");
                     selectedSeat.classList.remove("selected");
                     selectedSeat.classList.add("granted");
-                    temp1();
-                }
+                    temp1(); // Must change to show actual data 
             }
             else {
                 alert(dbResult);
@@ -377,7 +471,7 @@ function sumbitSeat() {
         }
     };
     xmlhttp.open("GET", "assets/backend/SeatSelected.php?seat_id=" + dataSeatID
-        + "&student_id=" + UserTemp, true);
+        + "&student_id=" + GLOBAL.user.AM, true);
     xmlhttp.send();
 
 
@@ -411,7 +505,7 @@ function makeModal() {
     choosebtnYes.setAttribute('class', 'chbtn');
     choosebtnYes.setAttribute('value', 'yes');
     choosebtnYes.setAttribute('id', 'yesbtn');
-    choosebtnYes.setAttribute('onclick', 'sumbitSeat()');
+    choosebtnYes.setAttribute('onclick', 'submitSeat()');
     let choosebtnNo = document.createElement('button');
     choosebtnNo.setAttribute('class', 'chbtn');
     choosebtnNo.setAttribute('value', 'no');
@@ -485,7 +579,7 @@ function temp1() {
 
 
 
-window.onload = makeList();
+// window.onload = makeList();
 window.onload = makeSelectBtn();
 window.onload = makeModal(); // Creates the modal that confirms the seat selection
 window.onload = initSeatContainer(); // init seat container
