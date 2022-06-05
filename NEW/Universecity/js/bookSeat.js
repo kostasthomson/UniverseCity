@@ -19,12 +19,12 @@ class Course {
 
 
 class Classroom {
-    constructor(name, type, code, floor, capacity) {
-        this.name = name;
-        this.type = type;
-        this.code = code;
-        this.floor = floor;
-        this.capacity = capacity;
+    constructor(id, name, type, number, capacity) {
+        this.ID = id;
+        this.NAME = name;
+        this.TYPE = type;
+        this.NUMBER = number;
+        this.CAPACITY = capacity;
     }
 
 }
@@ -89,11 +89,11 @@ function getUserInfo(){ // Gets User Info from Session Storage
     GLOBAL.user = JSON.parse(sessionStorage.getItem('user'));
     GLOBAL.user.CourseList = [];
     console.log(GLOBAL.user);
-    retriveUserSeat(GLOBAL.user.AM);
+    retriveUserSeat(GLOBAL.user.AM, ()=>{});
     retrieveCourses();
 }
 
-function retriveUserSeat(am){
+function retriveUserSeat(am, callback){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -107,6 +107,8 @@ function retriveUserSeat(am){
                     GLOBAL.user.seatList.push(parseInt(value[1]));
                 })
                 console.log(GLOBAL.user.seatList);
+                callback();
+
                 }
                 
             }
@@ -114,6 +116,8 @@ function retriveUserSeat(am){
     xmlhttp.open("GET", "assets/backend/get_student_seat.php?student_id=" + am, true);
     xmlhttp.send();
 }
+
+
 
 
 function retrieveCourses() {
@@ -189,7 +193,7 @@ function makeList() { // New Course List with buttons
         listItem.innerHTML = GLOBAL.user.CourseList[i].TITLE;
 
         // validate() starts the generation of the seats with capacity and type 
-        listItem.setAttribute('onclick', 'validate(this.value)');
+        listItem.setAttribute('onclick', 'retrieveClassroom(this.value, validate)');
 
         // Add listItem to the selectElement
         CourseListContainer.appendChild(listItem);
@@ -220,7 +224,9 @@ function retrieveFromDB(courseCode) {
                         "state": (value[2])
                     });
                 })
-                theater(seatArray.length, 'AMF', seatArray); //generate seats
+                GLOBAL.currCapacity = seatArray.length;
+                GLOBAL.currSeatArray = seatArray;
+                theater(GLOBAL.currCapacity, GLOBAL.Classroom.TYPE, GLOBAL.currSeatArray); //generate seats
             }
         }
     };
@@ -228,6 +234,34 @@ function retrieveFromDB(courseCode) {
     xmlhttp.send();
     //capacity = rows.length
     // end retrieve
+}
+
+
+function retrieveClassroom(courseCode, callback) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            if (dbResult != "Fail") {
+                console.log(JSON.parse(dbResult));
+                GLOBAL.Classroom = JSON.parse(dbResult);
+                // let value = dbResult.split(',');
+                // console.log(value);
+                // GLOBAL.Classroom = new Classroom(   parseInt(value[0]), //id
+                //                                     value[1], // name
+                //                                     value[2], // type
+                //                                     parseInt(value[3]), // number
+                //                                     parseInt(value[4])); // capacity
+                // console.log('retrieveClassroom');
+                // console.log(GLOBAL.Classroom);
+                // console.log(courseCode);
+
+                callback(courseCode);
+            }
+        }
+    };
+    xmlhttp.open("GET", "assets/backend/get_classroom.php?subject_id=" + courseCode, true);
+    xmlhttp.send();
 }
 
 function validate(courseCode) {
@@ -296,7 +330,7 @@ function theater(capacity, type, seatArray) { //not final
 
 
     // TYPE = AMF (amphitheater) capacity 180
-    if (type == 'AMF') {
+    if (type == 'A') {
 
 
         // Left Container Loop
@@ -348,6 +382,7 @@ function theater(capacity, type, seatArray) { //not final
     selectBtn.style.display = 'flex'
 
     markSeats(capacity, seatArray);
+    markGranted();
 
 
 
@@ -357,35 +392,47 @@ function theater(capacity, type, seatArray) { //not final
 function markSeats(capacity, seatArray) {
     // Forbidden seats -->!!! must change from number(12) to variable (percentage of capacity)!!!
     for (i = 0; i < capacity / 12; i++) { //First 14 seats
-        document.getElementById('seat' + (i + 1)).classList.toggle('forbidden');
+        document.getElementById('seat' + (i + 1)).classList.add('forbidden');
     }
 
     // Occupied seats - Seats that other users have already occupied
     for (i = 0; i < capacity; i++) {
         if (seatArray[i].state == 'T') {
-            document.querySelector("button[data-seatid='" + seatArray[i].id + "']").classList.toggle("occupied");
+            console.log(seatArray[i]);
+            document.querySelector("button[data-seatid='" + seatArray[i].id + "']").classList.add("occupied");
         }
 
     }
+}
 
+
+function markGranted() {
     // User Seat
+    //todo make user select only 1 seat
+    let seatArray = GLOBAL.currSeatArray;
+
     GLOBAL.user.seatList.forEach(seat => {
-        for (i=0; i<capacity; i++) {
-            if (seat == seatArray[i].id) {
+        for (i=0; i<seatArray.length; i++) {
+            console.log(seat == seatArray[i].id);
+            if (seat == seatArray[i].id) { // Should be true only ONE time per Classroom
                 // grantedSeat.classList.remove("selected");
                 let grantedSeat = document.querySelector("button[data-seatid='" + seatArray[i].id + "']");
                 grantedSeat.classList.remove("occupied");
-                grantedSeat.classList.toggle("granted");
-                grantedSeat.classList.toggle("grantedTooltip");
+                grantedSeat.classList.add("granted");
+                grantedSeat.classList.add("grantedTooltip");
                 tooltip = document.createElement('span');
                 tooltip.innerHTML = ('Η θέση που έχεις κρατήσει!');
-                tooltip.classList.toggle("grantedTooltipText");
+                tooltip.classList.add("grantedTooltipText");
                 grantedSeat.appendChild(tooltip);
+
+                // Hide Select Button if user has a seat
+                selectBtn = document.getElementById('selectBtn');
+                selectBtn.style.display = 'block';
+                selectBtn.style.display = 'none';
             }
         }
     });
 }
-
 
 // Make select button
 function makeSelectBtn() {
@@ -417,7 +464,7 @@ function modalToggle() {
     var closeElement = document.getElementById('closeElement');
     let nobtn = document.getElementById('nobtn');
 
-    if (!validSeat()) { //fixededed xQcL Pepega
+    if (!validSeat()) { 
         selectModal.style.display = 'block';
 
     }
@@ -457,13 +504,12 @@ function submitSeat() {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
             if (dbResult != "Occupied") {
-                let yesbtn = document.querySelector("#yesbtn");
                 var selectModal = document.getElementById('selectModal');
                     selectModal.style.display = 'none';
                     alert("Η κράτηση σας ολοκληρώθηκε με επιτύχια");
                     selectedSeat.classList.remove("selected");
                     selectedSeat.classList.add("granted");
-                    temp1(); // Must change to show actual data 
+                    retriveUserSeat(GLOBAL.user.AM, markGranted);
             }
             else {
                 alert(dbResult);
