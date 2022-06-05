@@ -329,7 +329,7 @@ function theater(capacity, type, seatArray) { //not final
     let rightContainer = document.querySelector(".rightContainer");
 
 
-    // TYPE = AMF (amphitheater) capacity 180
+    // TYPE = A (amphitheater) capacity 112
     if (type == 'A') {
 
 
@@ -381,6 +381,7 @@ function theater(capacity, type, seatArray) { //not final
     let selectBtn = document.getElementById('selectBtn');
     selectBtn.style.display = 'flex'
 
+    seatEventListener(); // Temporary implementation
     markSeats(capacity, seatArray);
     markGranted();
 
@@ -411,11 +412,12 @@ function markGranted() {
     //todo make user select only 1 seat
     let seatArray = GLOBAL.currSeatArray;
 
-    GLOBAL.user.seatList.forEach(seat => {
+    
         for (i=0; i<seatArray.length; i++) {
-            console.log(seat == seatArray[i].id);
-            if (seat == seatArray[i].id) { // Should be true only ONE time per Classroom
+
+            if (GLOBAL.user.seatList.includes(seatArray[i].id)) { // Should be true only ONE time per Classroom
                 // grantedSeat.classList.remove("selected");
+                console.log('markGranted() IN IN IN IN');
                 let grantedSeat = document.querySelector("button[data-seatid='" + seatArray[i].id + "']");
                 grantedSeat.classList.remove("occupied");
                 grantedSeat.classList.add("granted");
@@ -429,9 +431,25 @@ function markGranted() {
                 selectBtn = document.getElementById('selectBtn');
                 selectBtn.style.display = 'block';
                 selectBtn.style.display = 'none';
+
+                // Remove ability to click
+                const container = document.querySelector('.seatContainer');
+                container.removeEventListener('click', listener);
+
+                removePointer(); // Temporary implementation
+               
+                
+
             }
         }
-    });
+    
+}
+
+function removePointer(){ // Temporary implementation
+    let seat = document.querySelectorAll('.seat');
+    seat.forEach(element => {
+        element.style.cursor = "default";
+    })
 }
 
 // Make select button
@@ -451,9 +469,6 @@ function makeSelectBtn() {
 
 
 
-//todo Yes/No button inside modal (php later)
-// fix button position
-// button works only when seat selected!!
 
 
 
@@ -497,7 +512,7 @@ function submitSeat() {
 
 
 
-    // not correct, will fix
+
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -588,10 +603,15 @@ function makeDesk() {
 
 // Dokimh01 12/05
 
-const container = document.querySelector('.seatContainer');
+function seatEventListener(){ // Temporary implementation
+    const container = document.querySelector('.seatContainer');
 
-// Only one seat can be selected at a time
-container.addEventListener('click', (e) => {
+    // Only one seat can be selected at a time
+    container.addEventListener('click', listener); 
+
+}
+
+var listener = (e) => { // Temporary implementation
     if (e.target.classList.contains('seat') && validSeat()
         && !e.target.classList.contains('forbidden')
         && !e.target.classList.contains('occupied')) {
@@ -604,7 +624,10 @@ container.addEventListener('click', (e) => {
 
         e.target.classList.remove('selected');
     }
-})
+};
+
+
+
 
 function validSeat() {
     if (document.querySelectorAll('.selected').length >= 1) {
@@ -612,15 +635,6 @@ function validSeat() {
     }
     return true;
 }
-
-function temp1() {
-    if (document.querySelectorAll('.granted').length >= 1) {
-        selectBtn = document.getElementById('selectBtn');
-        selectBtn.style.display = 'block';
-        selectBtn.style.display = 'none';
-    }
-}
-
 
 
 
