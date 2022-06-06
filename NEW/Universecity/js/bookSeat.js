@@ -362,20 +362,17 @@ function theater(capacity, type, seatArray) { //not final
         for (var i = 0; i < capacity; i++) {
             let listItem = document.createElement('button');
             listItem.setAttribute('id', 'seat' + (i + 1));
+            listItem.setAttribute('data-seatId', seatArray[i].id);
             listItem.setAttribute('class', 'seat');
             listItem.insertAdjacentHTML('afterbegin', i + 1);
-            listItem.setAttribute('style', 'cursor: pointer;');
-            if (i % 14 < 7) { // 7 seats in each side in each row
+            //listItem.setAttribute('style', 'cursor: pointer;');
+            if (i % 6 < 3) { // 6 seats in each side in each row
                 leftContainer.appendChild(listItem);
             }
             else {
                 // Right Container Loop
                 rightContainer.appendChild(listItem);
             }
-        }
-        // Forbidden seats -->!!! must change from number(12) to variable (percentage of capacity)!!!
-        for (i = 0; i < capacity / 12; i++) { //First 14 seats
-            document.getElementById('seat' + (i + 1)).classList.toggle('forbidden');
         }
     }
     let selectBtn = document.getElementById('selectBtn');
