@@ -45,7 +45,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.html" target="main_iframe" class="logo d-flex align-items-center">
         <img src="assets/img/Logo.png" alt="">
         <img src="assets/img/Universecity - text.png" class="logo-text" alt="">
       </a>
@@ -212,7 +212,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.html" target="main_iframe">
           <i class="bi bi-house-fill"></i>
           <span>Αρχική</span>
         </a>
@@ -254,16 +254,16 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1 id="pagetitle-header">Ωρολόγιο Πρόγραμμα</h1>
+      <h1 id="pagetitle-header"></h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Αρχική</a></li>
-          <li class="breadcrumb-item active">Ωρολόγιο Πρόγραμμα</li>
+          <li class="breadcrumb-item"><a href="index.html" target="main_iframe">Αρχική</a></li>
+          <!-- <li class="breadcrumb-item active"></li> -->
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <iframe id="page-content" src="./secretariat_set_schedule.html" data-content-name="Ωρολόγιο Πρόγραμμα">
+    <iframe id="page-content" src="user_view_schedule.html" name="main_iframe" data-content-name="Αρχική">
 
     </iframe>
   </main><!-- End #main -->

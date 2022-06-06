@@ -36,13 +36,15 @@
         }
 
         function makeDMLQuery(string $query): bool {
-            try{
-                $this->DB->exec($query);
-                return true;
-            }catch (Exception $e) {
-                echo $e->getMessage();
-                return false;
-            }
+            // try{
+            //     $this->DB->exec($query);
+            //     return true;
+            // }catch (Exception $e) {
+            //     echo $e->getMessage();
+            //     return false;
+            // }
+            return $this->makeQuery($query);
+            //! delete this function and replace it with makeQuery to all files
         }
 
         function makeQuery(string $query): bool {

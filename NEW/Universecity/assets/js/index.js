@@ -1,24 +1,10 @@
-const src_links = {
-    // Links for secretariat 0-3
-    'Αρχική': 'index.html',
-    'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
-    'Ανακοινώσεις': 'announcement_creation.html',
-    'Διαχείριση Ενεργειών': 'email.html',
-    // Links for student 4-7
-    'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
-    'Δήλωση Κρούσματος': 'covid_report.html',
-    'Δήλωση Θέσης': 'bookSeat.html',
-    'Μαθήματα': 'bathmoi.html',
-    // Links for techer 8-9
-    'Προβολή Προσωπικής Αξιολόγησης': 'evaluation.html',
-    'Συστατική Επιστολή': 'recommendation_letter.html'
-};
-
 function ChangeFrameContent(name) {
-    const frame = document.getElementById('page-content');
-    frame.src = src_links[name];
-    frame.setAttribute('data-content-name', name);
-    updatePageTitle();
+    if(JSON.parse(sessionStorage.getItem('user_nav_list'))[name]) {
+        const frame = document.getElementById('page-content');
+        frame.src = JSON.parse(sessionStorage.getItem('user_nav_list'))[name];
+        frame.setAttribute('data-content-name', name);
+        updatePageTitle();
+    }
 }
 
 function createListElement(element_name) {
@@ -32,6 +18,9 @@ function createListElement(element_name) {
     const i = document.createElement('i');
 
     switch (element_name) {
+        case 'Αρχική':
+            i.setAttribute('class', 'bi bi-house-fill');
+            break;
         case 'Ωρολόγιο Πρόγραμμα':
             i.setAttribute('class', 'bi-calendar-week');
             break;
@@ -93,28 +82,77 @@ function clearElementList() {
 }
 
 function setUserNavList() {
-    const UserNavList = sessionStorage.getItem('user_nav_list').split(',');
+    const UserNavList = JSON.parse(sessionStorage.getItem('user_nav_list'));
     const ul = document.getElementById('sidebar-nav');
     clearElementList();
-    UserNavList.forEach(item => {
-        ul.appendChild(createListElement(item));
+    Object.keys(UserNavList).forEach(key => {
+        ul.appendChild(createListElement(key));
     });
 }
+
+// const src_links = {
+//     'Αρχική': 'index.html',
+//     // Links for secretariat 0-3
+//     'sercretariat': {
+//         'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
+//         'Ανακοινώσεις': 'announcement_creation.html',
+//     },
+//     // Links for student 4-7
+//     'student': {
+//         'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
+//         'Ανακοινώσεις': 'announcement_creation.html',
+//         'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
+//         'Δήλωση Κρούσματος': 'covid_report.html',
+//         'Δήλωση Θέσης': 'bookSeat.html',
+//         'Μαθήματα': 'bathmoi.html'
+//     },
+//     // Links for techer 8-9
+//     'teacher': {
+//         'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
+//         'Ανακοινώσεις': 'announcement_creation.html',
+//         'Προβολή Προσωπικής Αξιολόγησης': 'evaluation.html',
+//         'Συστατική Επιστολή': 'recommendation_letter.html'
+//     }
+// };
 
 function UserNavListInit() {
     let NavListElements;
     switch (sessionStorage.getItem('user-class')) {
         case 'student':
-            NavListElements = ['Ωρολόγιο Πρόγραμμα', 'Ανακοινώσεις', 'Δήλωση Θέσης', 'Εξετάσεις-Βαθμολογίες', 'Στατιστικά', 'Αξιολόγηση Καθηγητών', 'Δήλωση Κρούσματος', 'Βοήθεια'];
+            NavListElements = {
+                'Αρχική': 'user_view_schedule.html',
+                'Ωρολόγιο Πρόγραμμα': 'user_view_schedule.html',
+                'Ανακοινώσεις': 'notification-view.html',
+                'Δήλωση Θέσης': 'bookSeat.html' ,
+                'Εξετάσεις-Βαθμολογίες': '',
+                'Στατιστικά': '', 
+                'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
+                'Δήλωση Κρούσματος': 'covid_report.html',
+                'Βοήθεια': ''
+            };
             break;
         case 'teacher':
-            NavListElements = ['Ωρολόγιο Πρόγραμμα', 'Ανακοινώσεις', 'Διαχείριση Μαθημάτων', 'Εξετάσεις-Βαθμολογίες', 'Προβολή Προσωπικής Αξιολόγησης', 'Συστατική Επιστολή'];
+            NavListElements = {
+                'Αρχική': 'user_view_schedule.html',
+                'Ωρολόγιο Πρόγραμμα': '',
+                'Ανακοινώσεις': 'notification-view.html',
+                'Διαχείριση Μαθημάτων': '',
+                'Εξετάσεις-Βαθμολογίες': '',
+                'Προβολή Προσωπικής Αξιολόγησης': 'evaluation.html',
+                'Συστατική Επιστολή': 'recommendation_letter.html'
+            };
             break;
         case 'secretariat':
-            NavListElements = ['Ωρολόγιο Πρόγραμμα', 'Ανακοινώσεις', 'Διαχείριση Ενεργειών'];
+            document.getElementById('page-content').src = 'secretariat_set_schedule.html';
+            NavListElements = {
+                'Αρχική': 'secretariat_set_schedule.html',
+                'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
+                'Ανακοινώσεις': 'announcement_creation.html',
+                'Διαχείριση Ενεργειών': ''
+            };
             break;
     }
-    sessionStorage.setItem('user_nav_list', NavListElements);
+    sessionStorage.setItem('user_nav_list', JSON.stringify(NavListElements));
 }
 
 
@@ -130,29 +168,22 @@ function changeUser(button) {
     }
 }
 
-function setUpButtons() {
-    let footer = document.getElementById('footer');
-    let div = document.createElement('div');
-    div.setAttribute('id', 'login-buttons');
-    let users = ['student', 'teacher', 'secretariat'];
-    users.forEach(user => {
-        let button = document.createElement('button');
-        button.setAttribute('id', user + '-button');
-        button.setAttribute('onclick', 'changeUser(this)');
-        button.setAttribute('data-user', user);
-        button.innerHTML = 'Login as ' + user;
-        div.appendChild(button);
-    })
-    footer.appendChild(div);
-}
-
 function updatePageTitle() {
     const frame = document.getElementById('page-content');
     const frame_name = frame.getAttribute('data-content-name');
     const pagetitle_header = document.getElementById('pagetitle-header');
-    const last_ol_child = document.getElementsByClassName('breadcrumb-item')[1];
     pagetitle_header.innerHTML = frame_name;
-    last_ol_child.innerHTML = frame_name;
+    if(frame_name != 'Αρχική') {
+        let last_ol_child = document.getElementsByClassName('breadcrumb-item')[1];
+        console.log('before', last_ol_child);
+        if(!last_ol_child) {
+           last_ol_child = document.createElement('li');
+           last_ol_child.setAttribute('class', 'breadcrumb-item active');
+           document.querySelector('.breadcrumb').appendChild(last_ol_child);
+        }
+        last_ol_child.innerHTML = frame_name;
+        console.log('after', last_ol_child);
+    }
 }
 
 function TimeDifference(current, record) {
@@ -257,15 +288,13 @@ if (className == 'Student') {
 } else if (className == 'Secretariat') {
     sessionStorage.setItem('user-class', 'secretariat');
 }
-const href = 'index.html' + queryString;
 const logo_anchor = document.querySelector('.logo');
-logo_anchor.href = href;
+logo_anchor.href = document.getElementById('page-content').src;
 const sidebar_list_anchor = document.querySelectorAll('.nav-link')[3];
-sidebar_list_anchor.href = href;
+sidebar_list_anchor.href = document.getElementById('page-content').src;
 const breadcrumb_list_anchor = document.querySelectorAll('.breadcrumb-item')[0].children[0];
-breadcrumb_list_anchor.href = href;
+breadcrumb_list_anchor.href = document.getElementById('page-content').src;
 
-// setUpButtons();
 UserNavListInit();
 setUserNavList();
 updatePageTitle();
