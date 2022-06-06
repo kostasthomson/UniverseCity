@@ -138,7 +138,7 @@ function UserNavListInit() {
                 'Ανακοινώσεις': 'notification-view.html',
                 'Διαχείριση Μαθημάτων': '',
                 'Εξετάσεις-Βαθμολογίες': '',
-                'Προβολή Προσωπικής Αξιολόγησης': 'evaluation.html',
+                'Προβολή Προσωπικής Αξιολόγησης': 'evaluation_results.html',
                 'Συστατική Επιστολή': 'recommendation_letter.html'
             };
             break;
