@@ -7,9 +7,6 @@
   $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
   $db ->makeDMLQuery("DELETE FROM QRCODE");
   $db ->makeDMLQuery("DELETE FROM identify");
-//   ('0', '216048520487'), 
-//   ('0', '277773744389'), 
-//   ('0', '267220448759')";
   $id = 1 ;
   foreach( $data as $student_pass_id=>$student_id){
       $query1 = "INSERT INTO QRCODE VALUES ($id, 0, '$student_pass_id')";

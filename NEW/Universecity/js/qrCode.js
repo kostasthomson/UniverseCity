@@ -4,8 +4,10 @@ function onScanSuccess(qrCodeMessage) {
     if (this.readyState == 4 && this.status == 200) {
       const dbResult = this.responseText;
       document.getElementById("response").innerHTML = dbResult;
-      location.replace("QrCodeCorrect.html");
+      // location.replace("QrCodeCorrect.html");
     }
+    const dbResult = this.responseText;
+    document.getElementById("response").innerHTML = dbResult;
   };
 
   xmlhttp.open(
@@ -17,7 +19,9 @@ function onScanSuccess(qrCodeMessage) {
 }
 
 function onScanError(errorMessage) {
-  location.replace("QrCodeFail.html");
+  const dbResult = this.responseText;
+  document.getElementById("response").innerHTML = dbResult;
+  // location.replace("QrCodeFail.html");
 }
 var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
   fps: 1,
