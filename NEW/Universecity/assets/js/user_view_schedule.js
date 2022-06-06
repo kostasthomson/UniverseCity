@@ -40,44 +40,40 @@ function save() {
             }
         }
         editable_count = 0;
-        updateDBSchedule();
     }
 }
 
 function edit() {
-    const department = document.getElementById('department-selection').value;
-    if(department) {
-        if(editable_count < 1) {
-            for(let i = 0; i <= (end-start); i++) {
-                for(let j = 1; j <= days.length; j++) {
-                    let td = document.getElementById('row-'+i+'-data-'+j);
-                    let td_text = td.innerHTML;
-                    td.innerHTML = '';
-                    let drop = document.createElement('select');
-                    drop.setAttribute('id', 'Lesson'+i+j);
-                    let defaultOption = document.createElement('option');
-                    defaultOption.setAttribute('value', '');
-                    defaultOption.disabled = true;
-                    defaultOption.selected = true;
-                    defaultOption.hidden = true;
-                    defaultOption.innerHTML = 'Choose Lesson';
-                    drop.appendChild(defaultOption);
-                    subjects.forEach(lesson => {
-                        let option = document.createElement('option');
-                        option.setAttribute('value', lesson);
-                        option.innerHTML = lesson;
-                        if(lesson == td_text) {
-                            option.selected = true;
-                        }
-                        drop.appendChild(option);
-                    });
-                    td.appendChild(drop);                   
-                    //ena if gia na krataei thn prohgoymenh epilogh
-                }
+    if(editable_count < 1) {
+        for(let i = 0; i <= (end-start); i++) {
+            for(let j = 1; j <= days.length; j++) {
+                let td = document.getElementById('row-'+i+'-data-'+j);
+                let td_text = td.innerHTML;
+                td.innerHTML = '';
+                let drop = document.createElement('select');
+                drop.setAttribute('id', 'Lesson'+i+j);
+                let defaultOption = document.createElement('option');
+                defaultOption.setAttribute('value', '');
+                defaultOption.disabled = true;
+                defaultOption.selected = true;
+                defaultOption.hidden = true;
+                defaultOption.innerHTML = 'Choose Lesson';
+                drop.appendChild(defaultOption);
+                subjects.forEach(lesson => {
+                    let option = document.createElement('option');
+                    option.setAttribute('value', lesson);
+                    option.innerHTML = lesson;
+                    if(lesson == td_text) {
+                        option.selected = true;
+                    }
+                    drop.appendChild(option);
+                });
+                td.appendChild(drop);                   
+                //ena if gia na krataei thn prohgoymenh epilogh
             }
         }
-        editable_count++;
     }
+    editable_count++;
 }
 
 function resetOptions() {
@@ -104,27 +100,29 @@ const days = [
 ];
 let subjects;
 
-let xmlhttp_subjects = new XMLHttpRequest();
-xmlhttp_subjects.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        const dbResult = this.responseText;
-        subjects = dbResult.split(",");
-        console.log(subjects);
-    }
-}; 
-xmlhttp_subjects.open("GET","assets/backend/get_subjects.php?department=ΕΠ&semester="+JSON.parse(sessionStorage.getItem('user')).SEMESTER,true);
-xmlhttp_subjects.send();
-
-let xmlhttp_schedule = new XMLHttpRequest();
-xmlhttp_schedule.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        const dbResult = this.responseText;
-        const time_subjects = dbResult.split('/');
-        time_subjects.forEach(row => {
-            const row_data = row.split(',');
-            rowInitialization(row_data);
-        });
-    }
-}; 
-xmlhttp_schedule.open("GET","assets/backend/get_schedule.php?department=ΕΠ&semester="+JSON.parse(sessionStorage.getItem('user')).SEMESTER,true);
-xmlhttp_schedule.send();
+window.onload = () => {
+    let xmlhttp_subjects = new XMLHttpRequest();
+    xmlhttp_subjects.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            subjects = dbResult.split(",");
+            console.log(subjects);
+        }
+    }; 
+    xmlhttp_subjects.open("GET","assets/backend/get_subjects.php?department=ΕΠ&semester="+JSON.parse(sessionStorage.getItem('user')).SEMESTER,true);
+    xmlhttp_subjects.send();
+    
+    let xmlhttp_schedule = new XMLHttpRequest();
+    xmlhttp_schedule.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            const time_subjects = dbResult.split('/');
+            time_subjects.forEach(row => {
+                const row_data = row.split(',');
+                rowInitialization(row_data);
+            });
+        }
+    }; 
+    xmlhttp_schedule.open("GET","assets/backend/get_schedule.php?department=ΕΠ&semester="+JSON.parse(sessionStorage.getItem('user')).SEMESTER,true);
+    xmlhttp_schedule.send();
+}

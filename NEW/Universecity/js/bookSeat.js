@@ -1,5 +1,5 @@
 //var user = { name: "charisis", courses: ['ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΥΚΤΙΟΥ', 'ΤΕΧΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ'] };
-document.getElementById("currentDate").innerHTML = new Date().toLocaleString();
+// document.getElementById("currentDate").innerHTML = new Date().toLocaleString();
 // Test classes, todo get data from database with php
 //------------------ TEST CLASSES DECLARATION START ------------------
 

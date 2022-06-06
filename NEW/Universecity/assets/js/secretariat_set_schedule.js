@@ -85,6 +85,16 @@ function CheckValues() {
         }; 
         xmlhttp_schedule.open("GET","assets/backend/get_schedule.php?department="+department_element.options[selectedIndex].getAttribute('name')+"&semester="+semester,true);
         xmlhttp_schedule.send();
+
+        let xmlhttp_classes = new XMLHttpRequest();
+        xmlhttp_classes.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                const dbResult = this.responseText;
+                sessionStorage.setItem('classes', dbResult);
+            }
+        }; 
+        xmlhttp_classes.open("GET","assets/backend/get_classrooms.php",true);
+        xmlhttp_classes.send();
     }
 }
 
@@ -118,12 +128,16 @@ function cancel() {
     for(let j = 1; j <= days.length; j++) {
         for(let i = 0; i <= (end-start); i++) {
             let td = document.getElementById('row-'+i+'-data-'+j);
-            let drop = document.getElementById('Lesson'+i+j);
-            let choice = drop.value;
-            td.removeChild(drop);
-            if(!choice) {
+            let drop_subjects = document.getElementById('Lesson'+i+j);
+            let drop_classes = document.getElementById('Class'+i+j);
+            let choice_subject = drop_subjects.value;
+            td.removeChild(drop_subjects);
+            let choice_class = drop_classes.value;
+            td.remove(drop_classes);
+            if(!choice_subject && !choice_subject) {
                 td.innerHTML = '';
             } else {
+                let choice = choice_subject + '<br>' + choice_class;
                 td.innerHTML = choice;
             }
         }
@@ -136,16 +150,20 @@ function save() {
         for(let j = 1; j <= days.length; j++) {
             for(let i = 0; i <= (end-start); i++) {
                 let td = document.getElementById('row-'+i+'-data-'+j);
-                let drop = document.getElementById('Lesson'+i+j);
-                if(drop) {
-                    let choice = drop.value;
-                    td.removeChild(drop);
+                let drop_subjects = document.getElementById('Lesson'+i+j);
+                let drop_classes = document.getElementById('Class'+i+j);
+                if(drop_subjects && drop_classes) {
+                    let choice_subject = drop_subjects.value;
+                    td.removeChild(drop_subjects);
+                    let choice_class = drop_classes.value;
+                    td.remove(drop_classes);
+                    let choice = choice_subject + '<br>' + choice_class;
                     td.innerHTML = choice;
                 }
             }
         }
         editable_count = 0;
-        updateDBSchedule();
+        // updateDBSchedule();
     }
 }
 
@@ -158,25 +176,47 @@ function edit() {
                     let td = document.getElementById('row-'+i+'-data-'+j);
                     let td_text = td.innerHTML;
                     td.innerHTML = '';
-                    let drop = document.createElement('select');
-                    drop.setAttribute('id', 'Lesson'+i+j);
-                    let defaultOption = document.createElement('option');
-                    defaultOption.setAttribute('value', '');
-                    defaultOption.disabled = true;
-                    defaultOption.selected = true;
-                    defaultOption.hidden = true;
-                    defaultOption.innerHTML = 'Choose Lesson';
-                    drop.appendChild(defaultOption);
+
+                    let drop_subjects = document.createElement('select');
+                    drop_subjects.setAttribute('id', 'Lesson'+i+j);
+                    let defaultOption_subject = document.createElement('option');
+                    defaultOption_subject.setAttribute('value', '');
+                    defaultOption_subject.disabled = true;
+                    defaultOption_subject.selected = true;
+                    defaultOption_subject.hidden = true;
+                    defaultOption_subject.innerHTML = 'Choose Lesson';
+                    drop_subjects.appendChild(defaultOption_subject);
                     subjects.forEach(lesson => {
                         let option = document.createElement('option');
                         option.setAttribute('value', lesson);
                         option.innerHTML = lesson;
-                        if(lesson == td_text) {
+                        if(td_text.includes(lesson)) {
                             option.selected = true;
                         }
-                        drop.appendChild(option);
+                        drop_subjects.appendChild(option);
                     });
-                    td.appendChild(drop);                   
+
+                    let drop_classes = document.createElement('select');
+                    drop_classes.setAttribute('id', 'Class'+i+j);
+                    let defaultOption_class = document.createElement('option');
+                    defaultOption_class.setAttribute('value', '');
+                    defaultOption_class.disabled = true;
+                    defaultOption_class.selected = true;
+                    defaultOption_class.hidden = true;
+                    defaultOption_class.innerHTML = 'Choose Class';
+                    drop_classes.appendChild(defaultOption_class);
+                    let classes_object = JSON.parse(sessionStorage.getItem('classes'));
+                    Object.keys(classes_object).forEach(key => {
+                        let option = document.createElement('option');
+                        option.setAttribute('value', key);
+                        option.innerHTML = classes_object[key];
+                        if(td_text.includes(classes_object[key])) {
+                            option.selected = true;
+                        }
+                        drop_classes.appendChild(option);
+                    });
+                    
+                    td.append(drop_subjects, drop_classes);                   
                     //ena if gia na krataei thn prohgoymenh epilogh
                 }
             }
@@ -196,7 +236,6 @@ function resetOptions() {
 
 
 let editable_count = 0;
-const body = document.body;
 const start = 9;
 const end = 20;
 const step = 1;

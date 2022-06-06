@@ -1,9 +1,11 @@
 function ChangeFrameContent(name) {
     if(JSON.parse(sessionStorage.getItem('user_nav_list'))[name]) {
         const frame = document.getElementById('page-content');
-        frame.src = JSON.parse(sessionStorage.getItem('user_nav_list'))[name];
-        frame.setAttribute('data-content-name', name);
-        updatePageTitle();
+        if(frame.getAttribute('data-content-name') != name) {
+            frame.src = JSON.parse(sessionStorage.getItem('user_nav_list'))[name];
+            frame.setAttribute('data-content-name', name);
+            updatePageTitle();
+        }
     }
 }
 
@@ -175,14 +177,14 @@ function updatePageTitle() {
     pagetitle_header.innerHTML = frame_name;
     if(frame_name != 'Αρχική') {
         let last_ol_child = document.getElementsByClassName('breadcrumb-item')[1];
-        console.log('before', last_ol_child);
         if(!last_ol_child) {
-           last_ol_child = document.createElement('li');
-           last_ol_child.setAttribute('class', 'breadcrumb-item active');
-           document.querySelector('.breadcrumb').appendChild(last_ol_child);
+            last_ol_child = document.createElement('li');
+            last_ol_child.setAttribute('class', 'breadcrumb-item active');
+            document.querySelector('.breadcrumb').appendChild(last_ol_child);
         }
         last_ol_child.innerHTML = frame_name;
-        console.log('after', last_ol_child);
+    } else {
+        document.querySelector('.breadcrumb').removeChild(document.querySelector('.breadcrumb').lastChild);
     }
 }
 
@@ -290,8 +292,8 @@ if (className == 'Student') {
 }
 const logo_anchor = document.querySelector('.logo');
 logo_anchor.href = document.getElementById('page-content').src;
-const sidebar_list_anchor = document.querySelectorAll('.nav-link')[3];
-sidebar_list_anchor.href = document.getElementById('page-content').src;
+// const sidebar_list_anchor = document.querySelectorAll('.nav-link')[3];
+// sidebar_list_anchor.href = document.getElementById('page-content').src;
 const breadcrumb_list_anchor = document.querySelectorAll('.breadcrumb-item')[0].children[0];
 breadcrumb_list_anchor.href = document.getElementById('page-content').src;
 
