@@ -6,8 +6,6 @@ function onScanSuccess(qrCodeMessage) {
       document.getElementById("response").innerHTML = dbResult;
       // location.replace("QrCodeCorrect.html");
     }
-    const dbResult = this.responseText;
-    document.getElementById("response").innerHTML = dbResult;
   };
 
   xmlhttp.open(
@@ -19,8 +17,6 @@ function onScanSuccess(qrCodeMessage) {
 }
 
 function onScanError(errorMessage) {
-  const dbResult = this.responseText;
-  document.getElementById("response").innerHTML = dbResult;
   // location.replace("QrCodeFail.html");
 }
 var html5QrcodeScanner = new Html5QrcodeScanner("reader", {

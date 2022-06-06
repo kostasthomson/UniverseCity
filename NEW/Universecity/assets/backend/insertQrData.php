@@ -3,7 +3,7 @@
 
   require "./DB_Class.php";
 
-  $data = array("216048520487"=>"ics21008", "277773744389"=>"ics21010", "286100013096"=> "ics21003");
+  $data = array("216048520487"=>"ics21008", "277773744389"=>"ics21010", "286100013096"=>"ics21003", "275182571332"=>"ics21007");
   $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
   $db ->makeDMLQuery("DELETE FROM QRCODE");
   $db ->makeDMLQuery("DELETE FROM identify");
