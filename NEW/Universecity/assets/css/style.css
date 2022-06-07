@@ -376,12 +376,15 @@ h4 {
   font-weight: 600;
 }
 
-.breadcrumb a {
-  color: #899bbd;
-  transition: 0.3s;
+.breadcrumb-item {
+  cursor: default;
 }
 
-.breadcrumb a:hover {
+.breadcrumb-first{
+  cursor: pointer;
+}
+
+.breadcrumb .breadcrumb-first:hover {
   color: #51678f;
 }
 

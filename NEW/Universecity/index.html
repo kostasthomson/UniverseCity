@@ -45,7 +45,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" target="main_iframe" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/Logo.png" alt="">
         <img src="assets/img/Universecity - text.png" class="logo-text" alt="">
       </a>
@@ -57,7 +57,8 @@
         <input type="text" name="query" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
-    </div><!-- End Search Bar -->
+    </div>
+    <!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -66,7 +67,8 @@
           <a class="nav-link nav-icon search-bar-toggle " href="#">
             <i class="bi bi-search"></i>
           </a>
-        </li><!-- End Search Icon-->
+        </li>
+        <!-- End Search Icon-->
 
         <li class="nav-item dropdown">
 
@@ -83,61 +85,6 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <!-- <li class="notification-item">
-               <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Προγραμματισμός Διαδικτύου</h4>
-                <p>Το σημερινό μάθημα αναβάλλεται λόγω ασθένειας</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-               <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Τεχνολογία Λογισμικού</h4>
-                <p>Κρούσμα Covid στο μάθημα της Τρίτης 17/05</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li> -->
 
           </ul><!-- End Notification Dropdown Items -->
 
@@ -181,12 +128,12 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            <!-- <li>
               <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
                 <i class="bi bi-question-circle"></i>
                 <span>Βοήθεια</span>
               </a>
-            </li>
+            </li> -->
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -211,42 +158,6 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="index.html" target="main_iframe">
-          <i class="bi bi-house-fill"></i>
-          <span>Αρχική</span>
-        </a>
-      </li> -->
-
-      <!-- End Dashboard Nav -->
-
-      <!-- <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-person-check-fill"></i><span>Κράτηση Θέσης</span></i>
-      </a>
-
-      <a class="nav-link collapsed" href="pages-login.html">
-        <i class="bi bi-calendar-week-fill"></i>
-        <span>Πρόγραμμα</span>
-      </a>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#others-nav" data-bs-toggle="collapse" href="#">
-          <span class="nav-heading">ΑΛΛΕΣ ΛΕΙΤΟΥΡΓΙΕΣ</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-      <ul id="others-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-      <li>
-      <a class="nav-link collapsed" href="pages-login.html">
-        <i class="bi bi-graph-up"></i>
-        <span>Βαθμολογία</span>
-      </a> </li>
-
-      <li><a class="nav-link collapsed" href="pages-login.html">
-        <i class="bi bi-file-earmark-plus"></i>
-        <span>Δήλωση Μαθημάτων</span>
-      </a></li>
-
-      </ul> -->
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -257,13 +168,13 @@
       <h1 id="pagetitle-header">Αρχική</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html" target="main_iframe">Αρχική</a></li>
+          <li class="breadcrumb-item breadcrumb-first" onclick="ChangeFrameContent(this.innerHTML)">Αρχική</li> <!-- <a href="user_schedule.html" target="main_iframe">Αρχική</a> -->
           <!-- <li class="breadcrumb-item active"></li> -->
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <iframe id="page-content" src="user_view_schedule.html" name="main_iframe" data-content-name="Αρχική">
+    <iframe id="page-content" src="user_schedule.html" name="main_iframe" data-content-name="Αρχική">
 
     </iframe>
   </main><!-- End #main -->

@@ -39,9 +39,6 @@ form.forEach((item, i) => {
     }, i * 250);
 })
 
-const valid_user_am = ['ics', 'aid', 'ait'];
-const table_names = ['STUDENTS', 'SECRETARIATS', 'TEACHERS'];
-
 const ValidAm_TableNames = {
     'ics': 'STUDENTS',
     'ait': 'TEACHERS',
@@ -77,11 +74,13 @@ function LogIn() {
                     } else {
                         USER = new Secretariat(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT);
                     }
-                    window.location.href = "../loading.html?LoggedInUser=" + JSON.stringify(USER) + "&class=" + USER.constructor.name;
+                    sessionStorage.setItem('user', JSON.stringify(USER));
+                    sessionStorage.setItem('user-type', USER.constructor.name.toLowerCase());
+                    window.location.href = "../loading.html";
                 }
             }
         };
-        xmlhttp.open("GET", "../assets/backend/DB_retrieve.php?am=" + USER_AM + "&pass=" + USER_PASS + "&tname=" + TABLE_NAME, true);
+        xmlhttp.open("GET", "../assets/backend/login.php?am=" + USER_AM + "&pass=" + USER_PASS + "&tname=" + TABLE_NAME, true);
         xmlhttp.send();
     }
 }

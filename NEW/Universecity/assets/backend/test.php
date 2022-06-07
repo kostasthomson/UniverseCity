@@ -3,6 +3,13 @@
     require "./DB_Class.php";
     $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
 
+    // $db->makeQuery("SELECT am, code FROM SUBJECTS JOIN STUDENTS ON SUBJECTS.semester=STUDENTS.semester");
+    // $results = $db->getQueryResults();
+    // foreach($results as $row) {
+    //     $stid = $row['am'];
+    //     $suid = $row['code'];
+    //     $db->makeQuery("INSERT INTO enrolled_in VALUES ('$stid', '$suid')");
+    // }
     // $query = "UPDATE CLASSROOM SET capacity=48 WHERE capacity=60";
     // $db->makeQuery($query);
 
@@ -29,14 +36,14 @@
     //     }
     // }
 
-    for($i=1; $i<=25; $i++) {
-        $j = $i % 25;
-        if($j == 0) {
-            $j=1;
-        }
-        $query = "INSERT INTO teached_in VALUES ($i, $j)";
-        $db->makeQuery($query);
-    }
+    // for($i=1; $i<=25; $i++) {
+    //     $j = $i % 25;
+    //     if($j == 0) {
+    //         $j=1;
+    //     }
+    //     $query = "INSERT INTO teached_in VALUES ($i, $j)";
+    //     $db->makeQuery($query);
+    // }
 
 
     $db->close();

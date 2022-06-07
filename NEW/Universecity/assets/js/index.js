@@ -4,7 +4,7 @@ function ChangeFrameContent(name) {
         if(frame.getAttribute('data-content-name') != name) {
             frame.src = JSON.parse(sessionStorage.getItem('user_nav_list'))[name];
             frame.setAttribute('data-content-name', name);
-            updatePageTitle();
+            updateContentTitle();
         }
     }
 }
@@ -92,50 +92,25 @@ function setUserNavList() {
     });
 }
 
-// const src_links = {
-//     'Αρχική': 'index.html',
-//     // Links for secretariat 0-3
-//     'sercretariat': {
-//         'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
-//         'Ανακοινώσεις': 'announcement_creation.html',
-//     },
-//     // Links for student 4-7
-//     'student': {
-//         'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
-//         'Ανακοινώσεις': 'announcement_creation.html',
-//         'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
-//         'Δήλωση Κρούσματος': 'covid_report.html',
-//         'Δήλωση Θέσης': 'bookSeat.html',
-//         'Μαθήματα': 'bathmoi.html'
-//     },
-//     // Links for techer 8-9
-//     'teacher': {
-//         'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
-//         'Ανακοινώσεις': 'announcement_creation.html',
-//         'Προβολή Προσωπικής Αξιολόγησης': 'evaluation.html',
-//         'Συστατική Επιστολή': 'recommendation_letter.html'
-//     }
-// };
-
 function UserNavListInit() {
     let NavListElements;
-    switch (sessionStorage.getItem('user-class')) {
+    switch (sessionStorage.getItem('user-type')) {
         case 'student':
             NavListElements = {
-                'Αρχική': 'user_view_schedule.html',
-                'Ωρολόγιο Πρόγραμμα': 'user_view_schedule.html',
+                'Αρχική': 'user_schedule.html',
+                'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
                 'Ανακοινώσεις': 'notification-view.html',
                 'Δήλωση Θέσης': 'bookSeat.html' ,
                 'Εξετάσεις-Βαθμολογίες': '',
                 'Στατιστικά': '', 
                 'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
                 'Δήλωση Κρούσματος': 'covid_report.html',
-                'Βοήθεια': ''
+                'Βοήθεια': 'help.html'
             };
             break;
         case 'teacher':
             NavListElements = {
-                'Αρχική': 'user_view_schedule.html',
+                'Αρχική': 'user_schedule.html',
                 'Ωρολόγιο Πρόγραμμα': '',
                 'Ανακοινώσεις': 'notification-view.html',
                 'Διαχείριση Μαθημάτων': '',
@@ -145,10 +120,10 @@ function UserNavListInit() {
             };
             break;
         case 'secretariat':
-            document.getElementById('page-content').src = 'secretariat_set_schedule.html';
+            document.getElementById('page-content').src = 'secretariat_schedule.html';
             NavListElements = {
-                'Αρχική': 'secretariat_set_schedule.html',
-                'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
+                'Αρχική': 'secretariat_schedule.html',
+                'Ωρολόγιο Πρόγραμμα': 'secretariat_schedule.html',
                 'Ανακοινώσεις': 'announcement_creation.html',
                 'Διαχείριση Ενεργειών': ''
             };
@@ -157,20 +132,7 @@ function UserNavListInit() {
     sessionStorage.setItem('user_nav_list', JSON.stringify(NavListElements));
 }
 
-
-function changeUser(button) {
-    let newUser = button.getAttribute('data-user');
-    if (newUser != sessionStorage.getItem('user-class')) {
-        let currUser = new User(['test_am', 'test_name', 'test_pass']);
-        sessionStorage.setItem('user', JSON.stringify(currUser))
-        sessionStorage.setItem('user-class', newUser);
-        UserNavListInit();
-        setUserNavList();
-        updateNotifications();
-    }
-}
-
-function updatePageTitle() {
+function updateContentTitle() {
     const frame = document.getElementById('page-content');
     const frame_name = frame.getAttribute('data-content-name');
     const pagetitle_header = document.getElementById('pagetitle-header');
@@ -255,8 +217,8 @@ function UpdateUlElements(notifications) {
 
 function updateNotifications() {
     const notifications = document.querySelectorAll('.nav-link.nav-icon')[1];
-    if (sessionStorage.getItem('user-class') == 'secretariat') {
-        notifications.style.display = 'none';
+    if (sessionStorage.getItem('user-type') == 'secretariat') {
+        notifications.style.display = 'hidden';
     } else {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -272,33 +234,38 @@ function updateNotifications() {
 }
 
 function updateProfile() {
+    const USER = JSON.parse(sessionStorage.getItem('user'));
     document.querySelector('.d-none.d-md-block.dropdown-toggle.ps-2').innerHTML = USER.FIRST_NAME[0] + '. ' + USER.LAST_NAME;
     document.querySelector('.profile > .dropdown-header > h6').innerHTML = USER.FIRST_NAME + ' ' + USER.LAST_NAME;
     document.querySelector('.profile > .dropdown-header > span').innerHTML = USER.DEPARTMENT;
 }
 
-
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const USER = JSON.parse(urlParams.get('LoggedInUser'));
-const className = urlParams.get('class');
-sessionStorage.setItem('user', JSON.stringify(USER));
-if (className == 'Student') {
-    sessionStorage.setItem('user-class', 'student');
-} else if (className == 'Teacher') {
-    sessionStorage.setItem('user-class', 'teacher');
-} else if (className == 'Secretariat') {
-    sessionStorage.setItem('user-class', 'secretariat');
+function setSubjects() {
+    let xmlhttp_subjects = new XMLHttpRequest();
+    xmlhttp_subjects.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            subjects = dbResult.split(",");
+            sessionStorage.setItem('subjects', JSON.stringify(subjects));
+        }
+    };
+    const user_type = sessionStorage.getItem('user-type');
+    if(user_type == 'student') {
+        xmlhttp_subjects.open("GET","assets/backend/get_enrolled_subjects.php?student_id="+JSON.parse(sessionStorage.getItem('user')).AM,true);
+        xmlhttp_subjects.send();
+    } else if(user_type == 'teacher') {
+        xmlhttp_subjects.open("GET","assets/backend/get_teachedby_subjects.php?teacher_id"+JSON.parse(sessionStorage.getItem('user')).AM,true);
+        xmlhttp_subjects.send();
+    }
 }
-const logo_anchor = document.querySelector('.logo');
-logo_anchor.href = document.getElementById('page-content').src;
-// const sidebar_list_anchor = document.querySelectorAll('.nav-link')[3];
-// sidebar_list_anchor.href = document.getElementById('page-content').src;
-const breadcrumb_list_anchor = document.querySelectorAll('.breadcrumb-item')[0].children[0];
-breadcrumb_list_anchor.href = document.getElementById('page-content').src;
 
-UserNavListInit();
-setUserNavList();
-updatePageTitle();
-updateNotifications();
-updateProfile();
+if(!sessionStorage.getItem('user') && !sessionStorage.getItem('user-type')) {
+    window.location.href = 'Login_Page.html';
+} else {
+    setSubjects();
+    UserNavListInit();
+    setUserNavList();
+    updateContentTitle();
+    updateNotifications();
+    updateProfile();
+}
