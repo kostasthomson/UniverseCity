@@ -56,16 +56,17 @@ submitBtn.addEventListener("click", (e) => {
 
 
 
-  let classText = [];
+  let classText = [[]];
   let seatText = [];
+  let index = 0;
 
   //!sanitization process for TEXT
   for (string of classTemp) {
-    for (let j = 0; j < string.length; j++) {
-      if (string[j] == "," || string[j] == "-" && !(string[j + 1] == "-") && !(string[j + 1] == ",")) {
-        //TODO;
-      }
-    }
+    // for (let j = 0; j < string.length; j++) {
+    //   if (string[j] == "," || string[j] == "-" && !(string[j + 1] == "-") && !(string[j + 1] == ",")) {
+    //     //TODO;
+    //   }
+    // }
     let commaSeperatedString = string.split(",");
     let count = string.split(",").length;
     for (let i = 0; i < count; i++) {
@@ -88,10 +89,11 @@ submitBtn.addEventListener("click", (e) => {
         splittedString[0] = "";
         splittedString[1] = "";
       }
-      commaSeperatedString[i] = splittedString[0] + "-" + splittedString[1];
+      commaSeperatedString[i] = splittedString[0] + " " + splittedString[1];
+
     }
-    string = commaSeperatedString.join();
-    classText.push(string);
+    classText[index] = commaSeperatedString.toString().split(",");
+    index++;
   }
 
   //!sanitization process for SEATS
