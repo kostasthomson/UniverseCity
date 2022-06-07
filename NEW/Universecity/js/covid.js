@@ -11,44 +11,36 @@ let seats = [];
 
 
 
-let temp = classroom.map(obj => obj.value);
-let seatText = seats.map(obj => obj.value);
-
-let classText = temp.map(element => {
-  return element.toUpperCase();
-});
 
 
 
 
-
-
-// classroom.forEach(function (elem) {
-//   elem.addEventListener("input", (e) => {
-//     let str = "";
-//     let sanitizedString = "";
-//     str = e.target.value;
-//     sanitizedString = str.replace(/[^α-ω0-9,-]/gi, '');
-//     console.log(sanitizedString);
-//     if (sanitizedString !== e.target.value) {
-//       e.target.value = sanitizedString;
-//     }
-//   });
-// });
-
-seats.forEach(function (obj) {
-  obj.addEventListener("input", (el) => {
-    console.log("hi");
+document.addEventListener("input", (e) => {
+  if (classroom.includes(e.target)) {
+    let indexC = classroom.indexOf(e.target);
     let str = "";
     let sanitizedString = "";
-    str = el.target.value;
-    sanitizedString = str.replace(/[0-9,]/g, '');
-    console.log(sanitizedString);
+    str = e.target.value;
+    sanitizedString = str.replace(regexClass, '');
     if (sanitizedString !== e.target.value) {
-      el.target.value = sanitizedString;
+      e.target.value = sanitizedString;
+      classroom[indexC] = e.target;
     }
-  });
+  } else if (seats.includes(e.target)) {
+    let indexS = seats.indexOf(e.target);
+    let str = "";
+    let sanitizedString = "";
+    str = e.target.value;
+    sanitizedString = str.replace(regexSeats, '');
+    if (sanitizedString !== e.target.value) {
+      e.target.value = sanitizedString;
+      seats[indexS] = e.target;
+    }
+  }
 });
+
+
+
 
 
 
@@ -58,7 +50,71 @@ covidPdf.addEventListener("change", (e) => {
 
 submitBtn.addEventListener("click", (e) => {
 
+  let classTemp = classroom.map(obj => obj.value.toUpperCase());
+  let seatTemp = seats.map(obj => obj.value);
 
+
+
+
+  let classText = [];
+  let seatText = [];
+
+  //!sanitization process for TEXT
+  for (string of classTemp) {
+    for (let j = 0; j < string.length; j++) {
+      if (string[j] == "," || string[j] == "-" && !(string[j + 1] == "-") && !(string[j + 1] == ",")) {
+        //TODO;
+      }
+    }
+    let commaSeperatedString = string.split(",");
+    let count = string.split(",").length;
+    for (let i = 0; i < count; i++) {
+      let splittedString = commaSeperatedString[i].split('-');
+      let type = splittedString[0];
+      let num = splittedString[1];
+      let expectednum = parseInt(num);
+      if (num == expectednum) {
+        if (type.includes("ΑΜΦ")) {
+          splittedString[0] = "ΑΜΦΙΘΕΑΤΡΟ";
+        }
+        else if (type.includes("ΑΙΘ")) {
+          splittedString[0] = "ΑΙΘΟΥΣΑ";
+        }
+        else if (type.includes("ΕΡΓ")) {
+          splittedString[0] = "ΕΡΓΑΣΤΗΡΙΟ";
+        }
+      }
+      else {
+        splittedString[0] = "";
+        splittedString[1] = "";
+      }
+      commaSeperatedString[i] = splittedString[0] + "-" + splittedString[1];
+    }
+    string = commaSeperatedString.join();
+    classText.push(string);
+  }
+
+  //!sanitization process for SEATS
+  for (string of seatTemp) {
+    let commaSeperatedString = string.split(",");
+    if (commaSeperatedString[0].charAt(0) == ",") {
+      commaSeperatedString[0] = commaSeperatedString[0].slice(1);
+    }
+
+
+    string = commaSeperatedString.join();
+    seatText.push(string);
+  }
+
+
+
+
+
+
+
+
+  console.log(classText);
+  console.log(seatText);
 
 
 
