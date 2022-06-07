@@ -232,7 +232,6 @@ body {
 
 }
 
-
 .btn.btn-primary:hover {
     background-color: #3996a9;
     box-shadow: 0rem 0.7rem 1.2rem #3996a9;
@@ -253,11 +252,11 @@ body {
 
 .card {
     margin-bottom: 30px;
+    margin: auto;
     border: none;
-    margin-left: -5rem;
     border-radius: 0.8rem;
     box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
-    width: 90%;
+    width: 95%;
 }
 
 .card-header,
@@ -290,7 +289,14 @@ body {
     background-color: rgba(255, 255, 255, 0.6);
 }
 
-p,
-label {
-    color: black
+p,label{
+    color:black;
+}
+
+#flexSwitchCheckDefault{
+    margin-left: 1.6rem;
+}
+
+.form-switch{
+    padding-left: 0rem;
 }

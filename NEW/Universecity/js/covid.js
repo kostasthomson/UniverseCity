@@ -8,12 +8,7 @@ const regexSeats = /[^0-9,]/g;
 
 let classroom = Array.from(document.querySelectorAll(".form-control"));
 let seats = [];
-
-
-
-
-
-
+let dates = [];
 
 document.addEventListener("input", (e) => {
   if (classroom.includes(e.target)) {
@@ -39,11 +34,6 @@ document.addEventListener("input", (e) => {
   }
 });
 
-
-
-
-
-
 covidPdf.addEventListener("change", (e) => {
   inputBtn.disabled = false;
 });
@@ -53,11 +43,8 @@ submitBtn.addEventListener("click", (e) => {
   let classTemp = classroom.map(obj => obj.value.toUpperCase());
   let seatTemp = seats.map(obj => obj.value);
 
-
-
-
   let classText = [[]];
-  let seatText = [];
+  let seatText = [[]];
   let index = 0;
 
   //!sanitization process for TEXT
@@ -97,38 +84,25 @@ submitBtn.addEventListener("click", (e) => {
   }
 
   //!sanitization process for SEATS
+  index=0;
   for (string of seatTemp) {
     let commaSeperatedString = string.split(",");
     if (commaSeperatedString[0].charAt(0) == ",") {
       commaSeperatedString[0] = commaSeperatedString[0].slice(1);
     }
-
-
-    string = commaSeperatedString.join();
-    seatText.push(string);
+    seatText[index] = commaSeperatedString.toString().split(",");
+    index++;
   }
-
-
-
-
-
-
-
-
   console.log(classText);
   console.log(seatText);
 
-
-
-
-
   let queryObject = {
     "covidList": classText,
-    "seatList": seatText
+    "seatList": seatText,
+    "dateList": dates
   };
 
-
-
+  console.log(dates);
 
   const jsonQueryObject = JSON.stringify(queryObject);
 
@@ -138,8 +112,6 @@ submitBtn.addEventListener("click", (e) => {
       const dbResult = this.responseText;
       if (dbResult != "Query failed") {
         alert("Η αίτηση έγινε επιτυχώς");
-        let resultArray = dbResult.split(",");
-        //console.log(resultArray);
 
       }
     };
@@ -147,9 +119,6 @@ submitBtn.addEventListener("click", (e) => {
   xmlhttp.open("GET", "assets/backend/covid.php?results=" + jsonQueryObject, true);
   xmlhttp.send();
 });
-
-
-
 
 inputBtn.addEventListener("click", (e) => {
   submitBtn.disabled = false;
@@ -166,6 +135,7 @@ function makeDate() {
   let day = date.getDate();
 
   document.getElementById("tab1").innerHTML = day + "/" + month + "/" + year;
+  dates[0] = day + "/" + month + "/" + year;
 
   for (let i = 1; i < DATE_DAYS; i++) {
 
@@ -182,7 +152,9 @@ function makeDate() {
     else {
       document.getElementById("tab" + (i + 1)).innerHTML = (day - i) + "/" + month + "/" + year;
     }
+    dates[i] = (day - i) + "/" + month + "/" + year;
   }
+  
 }
 
 window.onload = () => {
@@ -194,8 +166,6 @@ window.onload = () => {
   classroom.shift();  //?Remove the first element of inputs which is the covid file one- we dont need it 
   classroom.pop();  //?Remove the last element of inputs which is the text one - we dont need that either
   //*! Make two seperate lists, one containing the class and the other one the seats 
-
-
 
   let isSeat = false;
 
