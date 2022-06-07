@@ -1,4 +1,3 @@
-// const selectedSub = document.querySelector(".select");
 const selectedSub = document.querySelector(".select");
 const radioBtnsNodes = document.querySelectorAll(".styleRadio");
 const labelInput = document.querySelector("radio-inline");
@@ -38,12 +37,16 @@ function sendRequest() {
     let value = subject.options[subject.selectedIndex].value;
     const textArea = document.getElementById("floatingTextarea").value;
 
+    let user = JSON.parse(sessionStorage.getItem("user"));
+
     let queryObject = {
         "subject": value,
 
         "options": options,
 
-        "text": textArea
+        "text": textArea,
+
+        "AM": user.AM
     };
 
     const jsonQueryObject = JSON.stringify(queryObject);
@@ -53,7 +56,7 @@ function sendRequest() {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
             if (dbResult != "Query failed" && (radioCounter + 1) * RADIO_EACH_ROW >= radioBtnsNodes.length) {
-
+  
                 alert("Η υποβολή σου έγινε επιτυχώς!");
                 window.location.reload(true);
                 const result_array = dbResult.split(",");
@@ -103,5 +106,4 @@ selectedSub.addEventListener('change', (e) => {
 
     submitBtn.style.backgroundColor = "grey";
     submitBtn.style.boxShadow = "grey"
-
-})
+});

@@ -5,14 +5,17 @@
 
     $results = json_decode($queryUrl);
 
+
     $keySubject = "subject";
     $keyOptions = "options";
     $keyText = "text";
+    $keyAM = "AM";
     
     $subject = $results->$keySubject;
     $options = $results->$keyOptions;
     $text = $results->$keyText;
-
+    $AM = $results->$keyAM;
+    
     $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
 
     $query = "INSERT INTO EVALUATION (subject, answer_1, answer_2, answer_3, answer_4, answer_5, answer_6, answer_7, answer_8, answer_9, answer_10, answer_11, answer_12, text) VALUES 
@@ -25,7 +28,7 @@
     
     $resultId = $db->getQueryResults();
 
-    $queryFills = "INSERT INTO fills (student_id, evaluation_id) VALUES ('ics0001', {$resultId[0]['MAX(id)']})";
+    $queryFills = "INSERT INTO fills (student_id, evaluation_id) VALUES ('$AM', {$resultId[0]['MAX(id)']})";
     $db->makeDMLQuery($queryFills);
 
     $queryFor = "INSERT INTO for (evaluation_id, subject_id) VALUES ({$resultId[0]['MAX(id)']}, '$subject')";
