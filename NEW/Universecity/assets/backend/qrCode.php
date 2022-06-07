@@ -21,10 +21,10 @@
             $u = $user[0];
 
             foreach(array_values($u) as $i){
-                $query = "SELECT student_id FROM is_sitting WHERE am = $i";
+                $query = "SELECT student_id FROM is_sitting WHERE am = $i";// Pare ta student id pou einai stin aithousa pou ekana scan kai des uparxei to diko mou ?
                 $query_correct = $db->makeQuery($query);
                 if($query_correct){
-                    echo $i;
+                    echo $i;//uparxei ara fere to
                 }
                 
             }
