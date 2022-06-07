@@ -4,6 +4,7 @@ let array = [];
 let button;
 let subjects = [];
 let questions = ['Η συνολική απόδοση του διδάσκοντα ήταν καλή;', 'Η ποιότητα του μαθήματος ήταν υψηλή;', 'Η οργάνωση και παρουσίαση του μαθήματος ήταν άρτια;', 'Το αντικείμενο του μαθήματος ήταν ενδιαφέρον και χρήσιμο για τις σπουδές σας;', 'Το διδακτικό υλικό (βιβλία, σημειώσεις, ασκήσεις, άρθρα κ.λπ.) ήταν επαρκές για τις ανάγκες του μαθήματος;', 'Ο καθηγητής ερχόταν στο μάθημα προετοιμασμένος;', 'Η μεταδοτικότητα του διδάσκοντα ήταν καλή;', 'Ενθάρρυνε τις ερωτήσεις και ευρύτερα τη συμμετοχή στο μάθημα;', 'Όποτε χρειάστηκα να λύσω απορίες/προβλήματα βρήκα τον καθηγητή στις ώρες γραφείου του;', 'Ο διδάσκων ήταν συνεπής στις παρουσίες του στα μαθήματα;', 'Η ποιότητα του φροντιστηριακού μαθήματος ήταν υψηλή;', 'Η συνολική απόδοση του επικουρικού διδακτικού προσωπικού ήταν καλή;'];
+var flag = false;
 
 window.onload = () => {
   var xmlhttp = new XMLHttpRequest();
@@ -41,7 +42,7 @@ window.onload = () => {
       }
     }
   };
-  xmlhttp.open("GET", "assets/backend/evaluation_results.php", true);
+  xmlhttp.open("GET", "assets/backend/evaluation_results.php?user=" + sessionStorage.getItem("user"), true);
   xmlhttp.send();
 }
 
@@ -65,6 +66,7 @@ function buttonCreator() {
 function calcVotes() {
 
   console.log(array);
+  if(!flag){
   let results = [];
   for (let i = 0; i < 12; i++) {
     let counter = {
@@ -134,6 +136,8 @@ function calcVotes() {
     var chart = new ApexCharts(document.querySelector("#chart" + [i]), options);
     chart.render();
   }
+  flag = true;
+}
 }
 
 
