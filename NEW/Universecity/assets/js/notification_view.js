@@ -1,4 +1,8 @@
+let sEle = [];
+let tEle = [];
+
 function Refresh() {
+
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -42,5 +46,21 @@ function createListElement(notification) {
     const li = document.createElement('li');
     li.setAttribute('id', notification.id);
     li.innerHTML = notification.title + ' ' + notification.description + ' ' + notification.time + ' ' + notification.date;
+
+
+
+    sEle = Array.from(document.querySelector(".show-secretariat").getElementsByTagName("li"));
+    tEle = Array.from(document.querySelector(".show-teacher").getElementsByTagName("li"));
+
+    for (e of sEle) {
+        e.style.padding = "1rem  1.5rem 0.5rem 0.5rem";
+    }
+
+    for (e of tEle) {
+        e.style.padding = "1rem  1.5rem 0.5rem 0.5rem";
+    }
+    console.log(sEle);
+    console.log(tEle);
+
     return li;
 }
