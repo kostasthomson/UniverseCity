@@ -32,10 +32,10 @@
     } else {
         echo "Fail";
     }
-    // $query1 = "UPDATE QRCODE SET arrived=1 WHERE (SELECT seat_id FROM is_sitting WHERE student_id IN (SELECT student_id FROM identify WHERE qr_id IN (SELECT id FROM QRCODE WHERE student_pass_id = '$user_qrId')))";
+    $query1 = "UPDATE QRCODE SET arrived=1 WHERE (SELECT seat_id FROM is_sitting WHERE student_id IN (SELECT student_id FROM identify WHERE qr_id IN (SELECT id FROM QRCODE WHERE student_pass_id = '$user_qrId')))";
     // $sql_query = $db->makeQuery($query1);
 
-    $sql = "UPDATE QRCODE SET arrived=1 WHERE student_pass_id = '$user_qrId'";
+    // $sql = "UPDATE QRCODE SET arrived=1 WHERE student_pass_id = '$user_qrId'";
     $sql_query = $db->makeQuery($sql);
     
     $db->close();
