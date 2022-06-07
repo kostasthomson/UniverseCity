@@ -8,37 +8,45 @@
     <title>Βοήθεια</title>
 </head>
 <body>
+  <nav class="accordion arrows">
+    <header class="box">
+      <label for="acc-close" class="box-title">Χρήσιμες πληροφορίες</label>
+    </header>
+    <input type="radio" name="accordion" id="cb1" />
+    <section class="box">
+      <label class="box-title" for="cb1">Τοποθεσία Πανεπιστημίου</label>
+      <label class="box-close" for="acc-close"></label>
+      <div class="box-content">Η ταχυδρομική διεύθυνση του Πανεπιστημίου Μακεδονίας είναι: <br>
+        Εγνατίας 156, 546 36, Θεσσαλονίκη, Ελλάδα</p></div>
+    </section>
+    <input type="radio" name="accordion" id="cb2" />
+    <section class="box">
+      <label class="box-title" for="cb2">Για γενικές απορίες</label>
+      <label class="box-close" for="acc-close"></label>
+      <div class="box-content">Μπορείτε να επικοινωνήσετε στο τηλέφωνο του Πανεπιστημίου, το οποίο  είναι +30 2310 891 101 </div>
+    </section>
+    <input type="radio" name="accordion" id="cb3" />
+    <section class="box">
+      <label class="box-title" for="cb3">  Για πληροφορίες σχετικά με τις Σχολές, τα Τμήματα και τα Προγράμματα Σπουδών</label>
+      <label class="box-close" for="acc-close"></label>
+      <div class="box-content"> Μπορείτε να επικοινωνήτε με τις Γραμματείες των Κοσμητειών και των Τμημάτων είτε μέσω mail:aid@uom.edu.gr <br>
+        είτε στον αριθμό τηλεφώνου της γραμματείας του κάθε τμήματος.</div>
+    </section>
+    <input type="radio" name="accordion" id="cb4" />
+    <section class="box">
+      <label class="box-title" for="cb4">  Για θέματα  που αφορούν την πρυτανεία </label>
+      <label class="box-close" for="acc-close"></label>
+      <div class="box-content"> Μπορείτε να επικοινωνήτε στέλνοντας email στο prytan@uom.edu.gr</div>
+    </section>
+    <input type="radio" name="accordion" id="cb5" />
+    <section class="box">
+      <label class="box-title" for="cb5"> Για οργανωτικά και τεχνικά θέματα της ιστοσελίδας</label>
+      <label class="box-close" for="acc-close"></label>
+      <div class="box-content"> Μπορείτε να επικοινωνήτε στέλνοντας email στο  universecity@gmail.com</div>
+    </section>
 
-  <button class="accordion">Τοποθεσία Πανεπιστημίου</button>
-<div class="panel">
-  <p>Η ταχυδρομική διεύθυνση του Πανεπιστημίου Μακεδονίας είναι: <br>
-    Εγνατίας 156, 546 36, Θεσσαλονίκη, Ελλάδα</p>
-</div>
-
-<button class="accordion">Επικοινωνία</button>
-<div class="panel">
-  <button class="accordion">Για γενικές απορίες</button>
-<div class="panel">
-  <p>Το τηλέφωνο Επικοινωνίας του Πανεπιστημίου είναι +30 2310 891 101 </p>
-</div>
-<button class="accordion"> Πληροφορίες σχετικά με τις Σχολές, τα Τμήματα και τα Προγράμματα Σπουδών</button>
-<div class="panel">
-  <p>Μπορείτε να επικοινωνήτε με τις Γραμματείες των Κοσμητειών και των Τμημάτων είτε μέσω mail:aid@uom.edu.gr <br>
-    είτε στον αριθμό τηλεφώνου της γραμματείας του κάθε τμήματος. </p>
-</div>
-<button class="accordion"> Θέματα Πρυτανείας</button>
-<div class="panel">
-  <p> Μπορείτε να στείλετε mail στο παρακάτω email:prytan@uom.edu.gr </p>
-</div>
-<button class="accordion">Για οργανωτικά και τεχνικά θέματα της ιστοσελίδας</button>
-<div class="panel">
-  <p>Μπορείτε να στείλετε mail στο παρακάτω email: universecity@gmail.com </p>
-</div>
-
-</div>
-  </div>
+    <input type="radio" name="accordion" id="acc-close" />
+  </nav>
   </div>  
-  <script src="./js/help.js" defer></script>
-
 </body>
 </html>
