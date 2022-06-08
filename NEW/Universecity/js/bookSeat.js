@@ -49,37 +49,7 @@ class User {
 //------------------ TEST CLASSES DECLARATION END ------------------
 
 
-//------------------ TEST DATA START ------------------
-{
-    // var AMF12 = new Classroom('Αμφιθέατρο 12', 'AMF', 12, 01, 168);
-    // var AMF9 = new Classroom('Αμφιθέατρο 9', 'AMF', 09, 01, 90);
-    // var ERG334 = new Classroom('Εργαστήριο 334', 'LAB', 334, 03, 48);
-    // var CL1 = new Classroom('Αίθουσα 1', 'CL', 12, 01, 168);
 
-
-    // var AIC101 = new Course('ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΔΙΑΔΙΚΤΥΟΥ', 'AIC101');
-    // AIC101.setClassroom(ERG334);
-    // var AIC102 = new Course('ΤΕΧΝΟΛΟΓΙΑ ΛΟΓΙΣΜΙΚΟΥ', 'AIC024');
-    // AIC102.setClassroom(AMF12);
-    // var AIC103 = new Course('ΑΝΑΛΥΣΗ ΑΛΓΟΡΙΘΜΩΝ', 'DEMO1');
-    // AIC103.setClassroom(AMF12);
-    // var AIC104 = new Course('ΑΣΦΑΛΕΙΑ ΠΛΗΡΟΦΟΡΙΩΝ', 'AIC104');
-    // AIC104.setClassroom(AMF12);
-    // var AIC105 = new Course('ΑΛΓΟΡΙΘΜΟΙ', 'AIC105');
-    // AIC105.setClassroom(AMF9);
-
-
-
-    // var User01 = new User('User01');
-    // User01.addCourse(AIC101);
-    // User01.addCourse(AIC102);
-    // User01.addCourse(AIC103);
-    // User01.addCourse(AIC104);
-    // User01.addCourse(AIC105);
-    //console.log(User01);
-}
-
-//------------------ TEST DATA END ------------------
 
 window.onload = getUserInfo(); 
 
@@ -106,7 +76,6 @@ function retriveUserSeat(am, callback){
                     let value = row.split(',');
                     GLOBAL.user.seatList.push(parseInt(value[1]));
                 })
-                console.log(GLOBAL.user.seatList);
                 callback();
 
                 }
@@ -243,18 +212,13 @@ function retrieveClassroom(courseCode, callback) {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
             if (dbResult != "Fail") {
-                console.log(JSON.parse(dbResult));
                 GLOBAL.Classroom = JSON.parse(dbResult);
-                // let value = dbResult.split(',');
-                // console.log(value);
-                // GLOBAL.Classroom = new Classroom(   parseInt(value[0]), //id
-                //                                     value[1], // name
-                //                                     value[2], // type
-                //                                     parseInt(value[3]), // number
-                //                                     parseInt(value[4])); // capacity
-                // console.log('retrieveClassroom');
-                // console.log(GLOBAL.Classroom);
-                // console.log(courseCode);
+                // GLOBAL.Classroom
+                // {ID}
+                // {NAME}
+                // {TYPE}
+                // {NUMBER}
+                // {CAPACITY}
 
                 callback(courseCode);
             }
@@ -276,9 +240,13 @@ function validate(courseCode) {
     let leftContainer = document.querySelector(".leftContainer");
     let rightContainer = document.querySelector(".rightContainer");
 
+
     if (element.classList.contains("filled")) { // There are seats being displayed
         leftContainer.innerHTML = ""; // clear left seat container
+
         rightContainer.innerHTML = "";// clear right seat container
+
+        initInsideContainers(leftContainer, rightContainer);
 
         // Remove Desk element, might change
         const desk_element = document.querySelector('.desk');
@@ -300,6 +268,7 @@ function validate(courseCode) {
 
 
 function initSeatContainer() {
+
     // main container
     let seatBoxContainer = document.createElement('div');
     seatBoxContainer.setAttribute('class', 'seatBoxContainer');
@@ -310,10 +279,73 @@ function initSeatContainer() {
     let rightContainer = document.createElement('div');
     rightContainer.setAttribute('class', 'rightContainer');
 
+    
+    
+    // left1
+    let left1 = document.createElement('div');
+    left1.setAttribute('class', 'insideContainer');
+    left1.setAttribute('id', 'left1');
+    leftContainer.appendChild(left1);
+    left1.style.display = "none";
+
+    // left2
+    let left2 = document.createElement('div');
+    left2.setAttribute('class', 'insideContainer');
+    left2.setAttribute('id', 'left2');
+    leftContainer.appendChild(left2);
+    left2.style.display = "none";
+
+    // right1
+    let right1 = document.createElement('div');
+    right1.setAttribute('class', 'insideContainer');
+    right1.setAttribute('id', 'right1');
+    rightContainer.appendChild(right1);
+    right1.style.display = "none";
+
+    // right2
+    let right2 = document.createElement('div');
+    right2.setAttribute('class', 'insideContainer');
+    right2.setAttribute('id', 'right2');
+    rightContainer.appendChild(right2);
+    right2.style.display = "none";
+
     seatBoxContainer.appendChild(leftContainer);
     seatBoxContainer.appendChild(rightContainer);
 
     document.getElementById('seatContainer01').appendChild(seatBoxContainer);
+    
+}
+
+//todo merge initSeatContainer() with initInsideContainers()
+
+function initInsideContainers(leftContainer, rightContainer) {
+    // left1
+    let left1 = document.createElement('div');
+    left1.setAttribute('class', 'insideContainer');
+    left1.setAttribute('id', 'left1');
+    leftContainer.appendChild(left1);
+    left1.style.display = "none";
+
+    // left2
+    let left2 = document.createElement('div');
+    left2.setAttribute('class', 'insideContainer');
+    left2.setAttribute('id', 'left2');
+    leftContainer.appendChild(left2);
+    left2.style.display = "none";
+
+    // right1
+    let right1 = document.createElement('div');
+    right1.setAttribute('class', 'insideContainer');
+    right1.setAttribute('id', 'right1');
+    rightContainer.appendChild(right1);
+    right1.style.display = "none";
+
+    // right2
+    let right2 = document.createElement('div');
+    right2.setAttribute('class', 'insideContainer');
+    right2.setAttribute('id', 'right2');
+    rightContainer.appendChild(right2);
+    right2.style.display = "none";
 }
 
 
@@ -327,6 +359,11 @@ function theater(capacity, type, seatArray) { //not final
     seatBoxContainer.classList.add("filled");
     let leftContainer = document.querySelector(".leftContainer");
     let rightContainer = document.querySelector(".rightContainer");
+
+    let left1 = document.getElementById('left1');
+    let left2 = document.getElementById('left2');
+    let right1 = document.getElementById('right1');
+    let right2 = document.getElementById('right2');
 
 
     // TYPE = A (amphitheater) capacity 112
@@ -358,6 +395,11 @@ function theater(capacity, type, seatArray) { //not final
     // Needs if statements for every type. For now --> else = same with AMF
     else {
 
+        left1.style.display = "inline";
+        left2.style.display = "inline";
+        right1.style.display = "inline";
+        right2.style.display = "inline";
+
         // Left Container Loop
         for (var i = 0; i < capacity; i++) {
             let listItem = document.createElement('button');
@@ -367,11 +409,21 @@ function theater(capacity, type, seatArray) { //not final
             listItem.insertAdjacentHTML('afterbegin', i + 1);
             //listItem.setAttribute('style', 'cursor: pointer;');
             if (i % 6 < 3) { // 6 seats in each side in each row
-                leftContainer.appendChild(listItem);
+                if (i % 3 < 2){
+                    left1.appendChild(listItem);
+                }
+                else {
+                    left2.appendChild(listItem);
+                }
+
             }
-            else {
-                // Right Container Loop
-                rightContainer.appendChild(listItem);
+            else {  // Right Container Loop
+                if (i % 3 < 1){
+                    right1.appendChild(listItem);
+                }
+                else {
+                    right2.appendChild(listItem);
+                }
             }
         }
     }
@@ -388,15 +440,24 @@ function theater(capacity, type, seatArray) { //not final
 
 
 function markSeats(capacity, seatArray) {
-    // Forbidden seats -->!!! must change from number(12) to variable (percentage of capacity)!!!
-    for (i = 0; i < capacity / 12; i++) { //First 14 seats
+    let forbiddenSeatPerc = 0.125; //! Must change to default value
+
+    if (GLOBAL.Classroom.TYPE == "A"){
+        forbiddenSeatPerc = 0.125;
+    }
+    else if (GLOBAL.Classroom.TYPE == "C") {
+        forbiddenSeatPerc = 0.25; //! Must change when we redifine "C" type classrroms
+    }
+
+
+    // Forbidden seats -->!!! must change from number(8) to variable (percentage of capacity)!!!
+    for (i = 0; i < capacity * forbiddenSeatPerc; i++) { //First 14 seats
         document.getElementById('seat' + (i + 1)).classList.add('forbidden');
     }
 
     // Occupied seats - Seats that other users have already occupied
     for (i = 0; i < capacity; i++) {
         if (seatArray[i].state == 'T') {
-            console.log(seatArray[i]);
             document.querySelector("button[data-seatid='" + seatArray[i].id + "']").classList.add("occupied");
         }
 
@@ -414,7 +475,6 @@ function markGranted() {
 
             if (GLOBAL.user.seatList.includes(seatArray[i].id)) { // Should be true only ONE time per Classroom
                 // grantedSeat.classList.remove("selected");
-                console.log('markGranted() IN IN IN IN');
                 let grantedSeat = document.querySelector("button[data-seatid='" + seatArray[i].id + "']");
                 grantedSeat.classList.remove("occupied");
                 grantedSeat.classList.add("granted");
