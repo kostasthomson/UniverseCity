@@ -32,6 +32,9 @@ function createListElement(element_name) {
         case 'Στατιστικά':
             i.setAttribute('class', 'bi bi-graph-up');
             break;
+        case 'Σάρωση QR':
+            i.setAttribute('class', 'bx bx-qr-scan');
+            break;
         case 'Αξιολόγηση Καθηγητών':
             i.setAttribute('class', 'bi bi-person-badge');
             break;
@@ -102,9 +105,10 @@ function UserNavListInit() {
                 'Αρχική': 'user_schedule.html',
                 'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
                 'Ανακοινώσεις': 'notification-view.html',
-                'Δήλωση Θέσης': 'bookSeat.html' ,
                 'Εξετάσεις-Βαθμολογίες': '',
                 'Στατιστικά': '', 
+                'Δήλωση Θέσης': 'bookSeat.html' ,
+                'Σάρωση QR': 'QrScanner.html',
                 'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
                 'Συστατική Επιστολή': 'recommendation_letter_application.html',
                 'Δήλωση Κρούσματος': 'covid_report.html',
@@ -248,8 +252,7 @@ function setSubjects() {
     xmlhttp_subjects.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
-            subjects = dbResult.split(",");
-            sessionStorage.setItem('subjects', JSON.stringify(subjects));
+            sessionStorage.setItem('subjects', dbResult);
         }
     };
     const user_type = sessionStorage.getItem('user-type');

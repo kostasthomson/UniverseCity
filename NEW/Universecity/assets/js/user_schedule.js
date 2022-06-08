@@ -101,15 +101,17 @@ const days = [
 let subjects;
 
 window.onload = () => {
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    let department = user.DEPARTMENT;
+    let semester = user.SEMESTER;
     let xmlhttp_subjects = new XMLHttpRequest();
     xmlhttp_subjects.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
             subjects = dbResult.split(",");
-            console.log(subjects);
         }
     }; 
-    xmlhttp_subjects.open("GET","assets/backend/get_subjects.php?department=ΕΠ&semester="+JSON.parse(sessionStorage.getItem('user')).SEMESTER,true);
+    xmlhttp_subjects.open("GET","assets/backend/get_subjects.php?department="+department+"&semester="+semester,true);
     xmlhttp_subjects.send();
     
     let xmlhttp_schedule = new XMLHttpRequest();
@@ -123,6 +125,6 @@ window.onload = () => {
             });
         }
     }; 
-    xmlhttp_schedule.open("GET","assets/backend/get_schedule.php?department=ΕΠ&semester="+JSON.parse(sessionStorage.getItem('user')).SEMESTER,true);
+    xmlhttp_schedule.open("GET","assets/backend/get_schedule.php?department="+department+"&semester="+semester,true);
     xmlhttp_schedule.send();
 }
