@@ -9,13 +9,14 @@ html {
 .container {
   position: absolute;
   width: 30%;
-  height: 0%;
+
   display: flex;
   height: auto;
   margin: 0 auto;
   padding: 10px;
   align-items: center;
   justify-content: center;
+  padding-bottom: 0rem;
   padding-top: 0rem;
   left: 50%;
   top: 50%;
@@ -39,7 +40,7 @@ html {
 
 .container {
   margin-bottom: 30px;
-
+  border-radius: 0.8rem;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 42, 112, 0.219);
 }
@@ -72,4 +73,14 @@ html {
 
 .container-img-overlay {
   background-color: rgba(255, 255, 255, 0.6);
+}
+
+#reader {
+  width: 289%;
+  position: absolute;
+  height: 150%;
+  margin-top: 0rem;
+  margin-left: 396%;
+  transform: translateX(-50vw);
+  border-radius: 0.8rem;
 }

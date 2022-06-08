@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+  <link rel="stylesheet" href="./css/darkMode.css">
+  <script src="./js/darkMode.js" defer></script>
   <title>Αρχική - UniverseCity</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -61,6 +62,10 @@
     <!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
+
+      <div class="toggle">
+        <img src="./img/darkModeIcon.png" class="indicator">
+      </div>
       <ul class="d-flex align-items-center">
 
         <li class="nav-item d-block d-lg-none">
@@ -72,7 +77,7 @@
 
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <a id="asideElem" class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <!-- <span class="badge bg-primary badge-number">2</span> -->
           </a><!-- End Notification Icon -->
