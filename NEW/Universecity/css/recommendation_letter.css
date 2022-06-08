@@ -18,7 +18,7 @@ body {
   width: 100%;
   margin: auto;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.8rem;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
 }
 
@@ -131,4 +131,9 @@ h2,
 h4,
 h5 {
   text-align: center;
+}
+
+input,
+label {
+  border-radius: 0.7rem;
 }
