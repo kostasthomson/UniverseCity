@@ -5,7 +5,6 @@ const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 const main = document.querySelector("main");
 const asideElem = document.querySelectorAll("aside ul li a.nav-link");
-
 const notificationIcon = document.querySelector(".header-nav .nav-icon");
 const otherIcon = document.getElementById("asideElem");
 const searchBar = document.querySelector(".search-bar");
@@ -19,6 +18,8 @@ const h4list = document.querySelectorAll("header h4");
 const myframe = document.querySelector('iframe');
 const temp1 = Array.from(document.querySelectorAll("ul"));
 const spanlist = document.querySelectorAll("span");
+let universecityPlanet = document.querySelector(".planet");
+let universecityText = document.querySelector(".logo-text");
 
 temp1.shift();
 console.log(docShow);
@@ -55,6 +56,10 @@ toggle.addEventListener("click", (e) => {
     if (aside.classList.contains("active")) {
         icon.src = "../img/Logo-white.png";
         icon.style.boxShadow = "none";
+        universecityText.src = "../img/Universecity - textInverse.png";
+        universecityPlanet.src = "../img/logo-white.png";
+        universecityPlanet.style.boxShadow = "none";
+        universecityText.style.boxShadow = "none";
         h1.style.color = "#5ab6c9";
 
 
@@ -180,17 +185,16 @@ toggle.addEventListener("click", (e) => {
 
     } else {
         h1.style.color = "#366c77";
-        icon.src = "../img/.png";
-
+        icon.src = "../img/Logo.png";
+        universecityPlanet.src = "../img/Logo.png";
+        universecityText.src = "../img/Universecity - text.png";
         for (e of asideElem) {
             e.classList.toggle("active");
             e.style.backgroundColor = "transparent";
             e.style.color = "#366c77";
         }
 
-        if (divButton = otherPage.document.querySelectorAll("selectCourse")) {
-            divButton.style.backgroundColor = "";
-        }
+
 
         for (e of temp1) {
             e.classList.toggle("active");

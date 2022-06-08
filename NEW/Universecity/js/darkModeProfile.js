@@ -17,6 +17,10 @@ const temp1 = document.querySelectorAll("ul");
 const spanlist = document.querySelectorAll("span");
 const pEelements = document.querySelectorAll("p");
 const labelElements = document.querySelectorAll("label");
+const universecity = document.querySelector("logo-text");
+let otherBody;
+let oth
+
 
 
 
@@ -39,6 +43,8 @@ toggle.addEventListener("click", (e) => {
     if (footer.classList.contains("active")) {
         icon.src = "../img/white.png";
         icon.style.boxShadow = "none";
+        universecity.src = "../img/universityInverse.png";
+        universecity.style.boxShadow = "none";
         h1.style.color = "#5ab6c9";
 
 
@@ -80,7 +86,11 @@ toggle.addEventListener("click", (e) => {
             elems.style.color = "#5ab6c9";
         }
 
-
+        if (myel = otherPage.document.querySelectorAll("li")) {
+            for (elems of myel) {
+                elems.style.color = "#5ab6c9";
+            }
+        }
 
 
         if (myQuestions = otherPage.document.querySelectorAll(".questions")) {
@@ -139,6 +149,8 @@ toggle.addEventListener("click", (e) => {
     } else {
         h1.style.color = "#366c77";
         icon.src = "../img/dark.png";
+        universecity.src = "../assets/img/Universecity.png";
+        universecity.style.boxShadow = "none";
 
         for (e of asideElem) {
             e.classList.toggle("active");
