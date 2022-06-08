@@ -15,7 +15,7 @@
         $user = $db->getQueryResults();// Exei ena sinolo apo onomata pou exoun valei oti tha kathisoun sto mathima
 
         if (count($user) == 0) {
-            echo "No resutls";
+             "No results";
         } else {
 
             $query = "UPDATE studentsArrive SET sum_arrived = sum_arrived + 1 WHERE students_id = '$student_am' AND subject_id IN (SELECT subject_id FROM teached_in WHERE class_id = $classroom_qrId)";
