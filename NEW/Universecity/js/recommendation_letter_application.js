@@ -2,8 +2,6 @@ const inputBtn = document.querySelector(".form-check-input");
 const submitBtn = document.querySelector(".btn.btn-primary");
 const selectSub = document.querySelector(".select");
 
-
-
 window.onload = () => {
     submitBtn.style.backgroundColor = "grey";
     submitBtn.style.boxShadow = "grey"
@@ -11,17 +9,18 @@ window.onload = () => {
     inputBtn.disabled = true;
 };
 
-
-
-
 function queryCreator() {
 
     let subject = document.getElementById("subjs");
     let value = subject.options[subject.selectedIndex].value;
 
+    console.log(value);
+
+    let user = JSON.parse(sessionStorage.getItem("user"));
+
     let queryObject = {
-        "stud_am": "ics21001",
-        "subject_id": value
+        "stud_am": "ics21005", //user.AM
+        "teacher_id": value
     };
 
     const jsonQueryObject = JSON.stringify(queryObject);
@@ -30,7 +29,9 @@ function queryCreator() {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
+
             if (dbResult != "Query failed") {
+
                 alert("Η αίτηση έγινε επιτυχώς");
                 window.location.reload(true);
             }
@@ -40,12 +41,8 @@ function queryCreator() {
     xmlhttp.send();
 }
 
-
 document.addEventListener("change", (e) => {
     inputBtn.disabled = false;
-    console.log("%cThis is a blue text", "color:red");
-    console.log("hi");
-
 });
 
 inputBtn.addEventListener("click", (e) => {

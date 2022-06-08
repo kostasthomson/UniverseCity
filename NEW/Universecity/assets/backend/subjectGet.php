@@ -2,19 +2,19 @@
 
     require "./DB_Class.php";
 
-    $semester = $_GET["results"];
+    $queryUrl = $_GET["semester"];
 
-    echo $semester;
+    $semester = json_decode($queryUrl);
 
     $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
 
-    $query = "SELECT code,title FROM SUBJECTS WHERE SUBJECTS.semester = 4";
+    $query = "SELECT code,title FROM SUBJECTS WHERE SUBJECTS.semester = '$semester'";
     
     $db->makeQuery($query);
 
     $result = $db->getQueryResults();
 
     foreach($result as $r){
-        echo $r["code"]. "," .$r['title']. ",";
+        echo $r['code']. "," .$r['title']. ",";
     }
 ?>

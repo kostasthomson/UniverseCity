@@ -5,7 +5,6 @@
 
     $results = json_decode($queryUrl);
 
-
     $keySubject = "subject";
     $keyOptions = "options";
     $keyText = "text";

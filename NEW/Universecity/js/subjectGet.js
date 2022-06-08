@@ -7,14 +7,13 @@ select.setAttribute("id", "subjs");
 select.setAttribute("class", "select");
 
 let options = document.createElement("option");
+let user = JSON.parse(sessionStorage.getItem("user"));
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         const dbResult = this.responseText;
         if (dbResult != "Query failed") {
-
-
 
             const result_array = dbResult.split(",");
 
@@ -31,9 +30,6 @@ xmlhttp.onreadystatechange = function () {
                 }
             }
 
-
-
-
             options.setAttribute("disabled", "disabled");
             options.setAttribute("selected", "selected");
             options.setAttribute("class", "invalid");
@@ -47,13 +43,13 @@ xmlhttp.onreadystatechange = function () {
                 options.setAttribute("id", i + 1);
                 options.appendChild(optionText);
 
-                select.appendChild(options);
-                document.getElementById("test").appendChild(select);
+                select.appendChild(options);    
             }
+            document.getElementById("test").appendChild(select);
         }
     };
 }
-xmlhttp.open("GET", "assets/backend/subjectGet.php?results=", true);
+xmlhttp.open("GET", "assets/backend/subjectGet.php?semester=" + user.SEMESTER, true);
 xmlhttp.send();
 
 

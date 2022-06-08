@@ -46,7 +46,6 @@ window.onload = () => {
   xmlhttp.send();
 }
 
-
 function buttonCreator() {
 
   var div = document.getElementById("card_id");
@@ -65,7 +64,6 @@ function buttonCreator() {
 
 function calcVotes() {
 
-  console.log(array);
   if(!flag){
   let results = [];
   for (let i = 0; i < 12; i++) {
@@ -82,8 +80,6 @@ function calcVotes() {
     })
     results.push(counter);
   }
-
-  console.log(results);
 
   var divGet = document.getElementById("card_id");
   let count = 0;
