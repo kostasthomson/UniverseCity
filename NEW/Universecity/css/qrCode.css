@@ -1,87 +1,122 @@
-<<<<<<< Updated upstream
-* {
-  font-family: "Open Sans", sans-serif;
-}
+ * {
+   font-family: "Open Sans", sans-serif;
+ }
 
-html {
-  height: 100%;
-}
+ html {
+   height: 100%;
+ }
 
-.container {
-  position: absolute;
-  width: 30%;
+ .container {
+   position: absolute;
+   width: 30%;
 
-  display: flex;
-  height: auto;
-  margin: 0 auto;
-  padding: 10px;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 0rem;
-  padding-top: 0rem;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-
-}
+   display: flex;
+   height: auto;
+   margin: 0 auto;
+   padding: 10px;
+   align-items: center;
+   justify-content: center;
+   padding-bottom: 0rem;
+   padding-top: 0rem;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
 
 
-.row {
-  margin-top: 2rem;
-  width: 85%;
-  border-color: aqua;
-  background-color: rgba(255, 255, 255, 0.6);
-  border-color: #ebeef4;
-  background-color: #fff;
-  color: #798eb3;
+ }
 
 
-}
+ .row {
+   margin-top: 2rem;
+   width: 85%;
+   border-color: aqua;
+   background-color: rgba(255, 255, 255, 0.6);
+   border-color: #ebeef4;
+   background-color: #fff;
+   color: #798eb3;
 
-.container {
-  margin-bottom: 30px;
-  border-radius: 0.8rem;
-  border-radius: 5px;
-  box-shadow: 0px 0 30px rgba(1, 42, 112, 0.219);
-}
 
-.container-header,
-.container-footer {
-  border-color: #ebeef4;
-  background-color: #fff;
-  color: #798eb3;
-  padding: 15px;
-}
+ }
 
-.container-title {
-  padding: 20px 0 15px 0;
-  font-size: 30px;
-  font-weight: 600;
-  color: #366c77;
-  font-family: "Poppins", sans-serif;
-}
+ .container {
+   margin-bottom: 30px;
+   border-radius: 0.8rem;
+   border-radius: 5px;
+   box-shadow: 0px 0 30px rgba(1, 42, 112, 0.219);
+ }
 
-.container-title span {
-  color: #899bbd;
-  font-size: 14px;
-  font-weight: 400;
-}
+ .container-header,
+ .container-footer {
+   border-color: #ebeef4;
+   background-color: #fff;
+   color: #798eb3;
+   padding: 15px;
+ }
 
-.container-body {
-  padding: 0 20px 20px 20px;
-}
+ .container-title {
+   padding: 20px 0 15px 0;
+   font-size: 30px;
+   font-weight: 600;
+   color: #366c77;
+   font-family: "Poppins", sans-serif;
+ }
 
-.container-img-overlay {
-  background-color: rgba(255, 255, 255, 0.6);
-}
+ .container-title span {
+   color: #899bbd;
+   font-size: 14px;
+   font-weight: 400;
+ }
 
-#reader {
-  margin-left: -0.65rem;
-}
+ .container-body {
+   padding: 0 20px 20px 20px;
+ }
 
-button {
-  margin-right: 0.1rem;
-}
-=======
->>>>>>> Stashed changes
+ .container-img-overlay {
+   background-color: rgba(255, 255, 255, 0.6);
+ }
+
+ #reader {
+   margin-left: -0.65rem;
+ }
+
+ button {
+   margin-right: 1rem;
+   border-radius: 1rem;
+   text-transform: uppercase;
+   letter-spacing: 0.1rem;
+   font-weight: 500;
+   border: none;
+   text-decoration: none;
+   padding: 0.5rem 2rem;
+   background: rgb(168, 168, 165);
+   margin-top: 1.5rem;
+   color: white;
+   border-radius: 4rem;
+   cursor: pointer;
+   outline: none;
+   transition: all 0.3s ease 0s;
+   box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
+   background: #366c77;
+   color: #ffffff;
+ }
+
+
+ button:hover {
+   background-color: #3996a9;
+   box-shadow: 0rem 0.6rem 1.2rem #3fa8bd9d;
+   color: rgb(255, 255, 255);
+   transform: translateY(-0.30rem);
+ }
+
+ button:active {
+   transform: translateY(-0.1rem);
+   background-color: #2da8c0;
+ }
+
+ .col {
+   margin-left: 1rem;
+ }
+
+ a {
+   text-decoration: none;
+ }
