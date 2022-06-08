@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 * {
   font-family: "Open Sans", sans-serif;
 }
@@ -76,11 +77,11 @@ html {
 }
 
 #reader {
-  width: 289%;
-  position: absolute;
-  height: 150%;
-  margin-top: 0rem;
-  margin-left: 396%;
-  transform: translateX(-50vw);
-  border-radius: 0.8rem;
+  margin-left: -0.65rem;
 }
+
+button {
+  margin-right: 0.1rem;
+}
+=======
+>>>>>>> Stashed changes
