@@ -12,10 +12,6 @@ body {
 
 }
 
-
-
-
-
 .fileText {
     padding: 0.5rem;
     color: white;
@@ -38,8 +34,6 @@ body {
     margin-top: 2rem;
 }
 
-
-
 .texts {
     display: flex;
     margin-left: 2rem;
@@ -53,8 +47,6 @@ body {
 
 
 }
-
-
 
 .checkboxContainer {
     margin-left: 2rem;
@@ -246,7 +238,6 @@ body {
     resize: none;
     border-radius: 0.7rem;
 }
-
 
 .card {
     margin-bottom: 30px;
