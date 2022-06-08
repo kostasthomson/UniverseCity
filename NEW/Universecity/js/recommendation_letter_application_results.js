@@ -2,9 +2,6 @@ const user = JSON.parse(sessionStorage.getItem("user"));
 let separatedArray = [[]];
 
 let ul = document.createElement("ul");
-ul.setAttribute("id", "subList");
-ul.setAttribute("class", "list-group");
-document.body.appendChild(ul);
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -42,7 +39,6 @@ function listCreator(){
         var li = document.createElement("li");
         li.setAttribute("class", "card-body");
         li.setAttribute("id", i);
-        li.setAttribute("data-value", separatedArray[i][0]);
         li.setAttribute("onclick", "recFill(this.id)");
 
         li.innerHTML = "Φοιτητής: " + separatedArray[i][1] + " " + separatedArray[i][2] + " (" + separatedArray[i][0] + ")";
