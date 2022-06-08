@@ -10,9 +10,7 @@ function onScanSuccess(qrCodeMessage) {
 
   xmlhttp.open(
     "GET",
-    "assets/backend/qrCode.php?classroom_id=" + qrCodeMessage,
-    true
-  );
+    "assets/backend/qrCode.php?classroom_id=" + qrCodeMessage + "&am=" + USER_AM, true);
   xmlhttp.send();
 }
 
