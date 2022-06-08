@@ -48,6 +48,6 @@ document.addEventListener("change", (e) => {
 inputBtn.addEventListener("click", (e) => {
     submitBtn.disabled = false;
     submitBtn.style.backgroundColor = "#366c77";
-    submitBtn.style.boxShadow = "0rem 0.7rem 1.2rem #3996a9"
+
 
 });

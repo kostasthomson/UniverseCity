@@ -56,7 +56,7 @@ function sendRequest() {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
             if (dbResult != "Query failed" && (radioCounter + 1) * RADIO_EACH_ROW >= radioBtnsNodes.length) {
-  
+
                 alert("Η υποβολή σου έγινε επιτυχώς!");
                 window.location.reload(true);
                 const result_array = dbResult.split(",");
@@ -84,7 +84,7 @@ document.addEventListener("change", (e) => {
 
     if (counter >= 12) {
         submitBtn.style.backgroundColor = "#366c77";
-        submitBtn.style.boxShadow = "0rem 0.7rem 1.2rem #3996a9"
+
     }
 });
 

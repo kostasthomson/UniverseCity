@@ -1,7 +1,7 @@
 let sEle = [];
 let tEle = [];
 
-document.h1.style.color = "#366c77";
+
 
 function Refresh() {
 
@@ -47,7 +47,7 @@ function fillUlElement(ul, announcements) {
 function createListElement(notification) {
     const li = document.createElement('li');
     li.setAttribute('id', notification.id);
-    li.setAttribute("class", darkMode);
+    li.setAttribute("class", "darkMode");
     li.innerHTML = notification.title + ' ' + notification.description + ' ' + notification.time + ' ' + notification.date;
 
 

@@ -101,6 +101,12 @@ toggle.addEventListener("click", (e) => {
             elems.style.color = "rgb(90, 182, 201)";
         }
 
+        if (myel = otherPage.document.querySelectorAll("li")) {
+            for (elems of myel) {
+                elems.style.color = "#5ab6c9";
+            }
+        }
+
         otherBody.classList.toggle("active");
         otherBody.style.backgroundColor = "rgb(47, 46, 46)";
 
@@ -134,6 +140,12 @@ toggle.addEventListener("click", (e) => {
 
         if (legend = otherPage.document.querySelectorAll("legend")) {
             for (elems of legend) {
+                elems.style.color = "";
+            }
+        }
+
+        if (myel = otherPage.document.querySelectorAll("li")) {
+            for (elems of myel) {
                 elems.style.color = "";
             }
         }
