@@ -10,10 +10,16 @@ body {
   font-family: "Open Sans", sans-serif;
   background: #f6f9ff;
   color: #444444;
+
 }
 
 /* Card */
 .card {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   left: 50%;
   width: 100%;
   margin: auto;
@@ -76,7 +82,7 @@ body {
 
 .btn.btn-primary:hover {
   background-color: #3996a9;
-  box-shadow: 0rem 0.6rem 1.2rem #3fa8bd9d;
+  box-shadow: 0rem 0.7rem 1.8rem #3fa8bd9d;
   color: rgb(255, 255, 255);
   transform: translateY(-0.30rem);
 }
