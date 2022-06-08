@@ -44,7 +44,9 @@ function createListElement(element_name) {
         case 'Μαθήματα':
             i.setAttribute('class', 'bi bi-calendar-week');
             break;
-
+        case 'Συστατική Επιστολή':
+            i.setAttribute('class', 'bi bi-envelope-check');
+            break;
         case 'Βοήθεια':
             i.setAttribute('class', 'bi bi-info-circle');
             break;
@@ -104,6 +106,7 @@ function UserNavListInit() {
                 'Εξετάσεις-Βαθμολογίες': '',
                 'Στατιστικά': '', 
                 'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
+                'Συστατική Επιστολή': 'recommendation_letter_application.html',
                 'Δήλωση Κρούσματος': 'covid_report.html',
                 'Βοήθεια': 'help.html'
             };
