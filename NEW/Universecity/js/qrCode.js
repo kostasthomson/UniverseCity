@@ -2,9 +2,14 @@ function onScanSuccess(qrCodeMessage) {
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      // const dbResult = this.responseText;
+      const dbResult = this.responseText;
+      console.log(dbResult);
+      if(dbResult.includes("Fail") || dbResult.includes("No results")){
+        location.replace("QrCodeFail.html")
+      }else{
+        location.replace("QrCodeCorrect.html");
+      }
       // document.getElementById("response").innerHTML = dbResult;
-      location.replace("QrCodeCorrect.html");
     }
   };
   let am = JSON.parse(sessionStorage.getItem("user")).AM;
@@ -17,7 +22,6 @@ function onScanSuccess(qrCodeMessage) {
 
 function onScanError(errorMessage) {
 
-  // location.replace("QrCodeFail.html");
 }
 var html5QrcodeScanner = new Html5QrcodeScanner("reader", {
   fps: 1,
