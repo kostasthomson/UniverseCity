@@ -1,7 +1,7 @@
 function ChangeFrameContent(name) {
-    if(JSON.parse(sessionStorage.getItem('user_nav_list'))[name]) {
+    if (JSON.parse(sessionStorage.getItem('user_nav_list'))[name]) {
         const frame = document.getElementById('page-content');
-        if(frame.getAttribute('data-content-name') != name) {
+        if (frame.getAttribute('data-content-name') != name) {
             frame.src = JSON.parse(sessionStorage.getItem('user_nav_list'))[name];
             frame.setAttribute('data-content-name', name);
             updateContentTitle();
@@ -106,8 +106,8 @@ function UserNavListInit() {
                 'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
                 'Ανακοινώσεις': 'notification-view.html',
                 'Εξετάσεις-Βαθμολογίες': '',
-                'Στατιστικά': '', 
-                'Δήλωση Θέσης': 'bookSeat.html' ,
+                'Στατιστικά': '',
+                'Δήλωση Θέσης': 'bookSeat.html',
                 'Σάρωση QR': 'QrScanner.html',
                 'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
                 'Συστατική Επιστολή': 'recommendation_letter_application.html',
@@ -144,9 +144,9 @@ function updateContentTitle() {
     const frame_name = frame.getAttribute('data-content-name');
     const pagetitle_header = document.getElementById('pagetitle-header');
     pagetitle_header.innerHTML = frame_name;
-    if(frame_name != 'Αρχική') {
+    if (frame_name != 'Αρχική') {
         let last_ol_child = document.getElementsByClassName('breadcrumb-item')[1];
-        if(!last_ol_child) {
+        if (!last_ol_child) {
             last_ol_child = document.createElement('li');
             last_ol_child.setAttribute('class', 'breadcrumb-item active');
             document.querySelector('.breadcrumb').appendChild(last_ol_child);
@@ -167,8 +167,11 @@ function TimeDifference(current, record) {
 
 function createLifromNotification(notification) {
     const li = document.createElement('li');
+    const hr = document.createElement('hr');
     li.setAttribute('id', notification.id);
     li.setAttribute('class', 'notification-item');
+    hr.setAttribute('class', 'dropdown-divider');
+    li.appendChild(hr);
     const div = document.createElement('div');
     const h4 = document.createElement('h4');
     h4.innerHTML = notification.title;
@@ -193,6 +196,7 @@ function createLifromNotification(notification) {
 function fillUlElement(ul, announcements) {
     const divider = document.createElement('li');
     const hr = document.createElement('hr');
+    divider.setAttribute('class', 'notification-item');
     hr.setAttribute('class', 'dropdown-divider');
     divider.appendChild(hr);
     announcements.forEach(announcement => {
@@ -249,23 +253,23 @@ function updateProfile() {
 
 function setSubjects() {
     let xmlhttp_subjects = new XMLHttpRequest();
-    xmlhttp_subjects.onreadystatechange = function() {
+    xmlhttp_subjects.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
             sessionStorage.setItem('subjects', dbResult);
         }
     };
     const user_type = sessionStorage.getItem('user-type');
-    if(user_type == 'student') {
-        xmlhttp_subjects.open("GET","assets/backend/get_enrolled_subjects.php?student_id="+JSON.parse(sessionStorage.getItem('user')).AM,true);
+    if (user_type == 'student') {
+        xmlhttp_subjects.open("GET", "assets/backend/get_enrolled_subjects.php?student_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
         xmlhttp_subjects.send();
-    } else if(user_type == 'teacher') {
-        xmlhttp_subjects.open("GET","assets/backend/get_teachedby_subjects.php?teacher_id"+JSON.parse(sessionStorage.getItem('user')).AM,true);
+    } else if (user_type == 'teacher') {
+        xmlhttp_subjects.open("GET", "assets/backend/get_teachedby_subjects.php?teacher_id" + JSON.parse(sessionStorage.getItem('user')).AM, true);
         xmlhttp_subjects.send();
     }
 }
 
-if(!sessionStorage.getItem('user') && !sessionStorage.getItem('user-type')) {
+if (!sessionStorage.getItem('user') && !sessionStorage.getItem('user-type')) {
     window.location.href = 'Login_Page.html';
 } else {
     setSubjects();

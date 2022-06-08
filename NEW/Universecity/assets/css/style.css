@@ -66,7 +66,7 @@ h4 {
 /*Forms*/
 .btn.btn-primary {
   background-color: #366c77;
-  left: 50%;
+
   position: relative;
 
 }
@@ -286,7 +286,7 @@ h4 {
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
-  left: 50%;
+
 }
 
 .card-header,
@@ -380,7 +380,7 @@ h4 {
   cursor: default;
 }
 
-.breadcrumb-first{
+.breadcrumb-first {
   cursor: pointer;
 }
 
