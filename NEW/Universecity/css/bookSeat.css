@@ -3,7 +3,8 @@
 }
 
 #selectBtn {
-  margin-left: 52.5rem;
+  margin: auto;
+  margin-top: 1rem;
   font-size: 1rem;
   text-transform: uppercase;
 
@@ -51,6 +52,8 @@
   padding: 0.5rem 2rem;
   background: rgb(168, 168, 165);
   margin-top: 1.5rem;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
   color: white;
   border-radius: 4rem;
   cursor: pointer;
@@ -313,6 +316,7 @@ h3 {
   font-size: 40px;
   border-radius: 1rem;
   padding: 10px;
+  justify-content: space-around;
 }
 
 .seatBoxContainer.filled {
@@ -354,6 +358,22 @@ h3 {
   margin-left: 2rem;
 }
 
+
+.insideContainer {
+  min-width: 90px;
+  max-width: 90px;
+  margin: 1rem;
+}
+
+#left2 {
+  min-width: 50px;
+  max-width: 50px;
+}
+
+#right1 {
+  min-width: 50px;
+  max-width: 50px;
+}
 
 
 .modal {
