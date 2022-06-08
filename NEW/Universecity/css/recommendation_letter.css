@@ -113,7 +113,7 @@ body {
 }
 
 @media print {
-  #printPageButton {
+  #printPageButton, #li-card-body {
     display: none;
   }
 }
@@ -133,7 +133,21 @@ h5 {
   text-align: center;
 }
 
+<<<<<<< Updated upstream
 input,
 label {
   border-radius: 0.7rem;
 }
+=======
+.ul{
+  padding-right: 35rem;
+  margin-bottom: -6.5rem;
+}
+
+#subList, #li-card-body, #liItems, #ul{
+
+  left: 100%;
+}
+
+
+>>>>>>> Stashed changes

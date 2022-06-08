@@ -19,7 +19,7 @@ function queryCreator() {
     let user = JSON.parse(sessionStorage.getItem("user"));
 
     let queryObject = {
-        "stud_am": "ics21005", //user.AM
+        "stud_am": user.AM, 
         "teacher_id": value
     };
 
