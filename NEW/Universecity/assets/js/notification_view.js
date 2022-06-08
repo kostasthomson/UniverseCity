@@ -1,6 +1,8 @@
 let sEle = [];
 let tEle = [];
 
+
+
 function Refresh() {
 
     var xmlhttp = new XMLHttpRequest();
@@ -45,6 +47,7 @@ function fillUlElement(ul, announcements) {
 function createListElement(notification) {
     const li = document.createElement('li');
     li.setAttribute('id', notification.id);
+    li.setAttribute("class", "darkMode");
     li.innerHTML = notification.title + ' ' + notification.description + ' ' + notification.time + ' ' + notification.date;
 
 

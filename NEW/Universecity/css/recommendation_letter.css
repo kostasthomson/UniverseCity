@@ -104,8 +104,12 @@ body {
   background-color: rgba(210, 210, 218, 0.514);
 }
 
-.form-control{
+.form-control {
   width: 90%;
+
+  resize: none;
+  border-radius: 0.7rem;
+
 }
 
 @media print {
@@ -128,6 +132,3 @@ h4,
 h5 {
   text-align: center;
 }
-
-
-
