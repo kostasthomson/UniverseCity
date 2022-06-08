@@ -50,7 +50,7 @@ header.active,
 footer.active,
 main.active,
 aside.active {
-    transition: 0.5s;
+    transition: 0.2s;
     background-color: rgba(6, 8, 9, 0.67);
 }
 
@@ -62,9 +62,7 @@ header.active .toggle-sidebar-btn {
     color: #5ab6c9;
 }
 
-main.active {
-    transition: 5s;
-}
+
 
 .toggle.active {
     background-color: rgba(53, 52, 52, 0);
@@ -83,4 +81,15 @@ main.active {
 
 main div h1.active {
     color: #5ab6c9;
+}
+
+
+iframe.active body.active h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #5ab6c9;
+
 }

@@ -138,3 +138,7 @@ body {
 .container:hover {
     background: #dce2f13b;
 }
+
+h1 {
+    color: #366c77 !important;
+}
