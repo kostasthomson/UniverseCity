@@ -5,13 +5,11 @@ const header = document.querySelector("header");
 const footer = document.querySelector("footer");
 const main = document.querySelector("main");
 const asideElem = document.querySelectorAll("aside ul li a.nav-link");
-const notificationIcon = document.querySelector(".header-nav .nav-icon");
 const otherIcon = document.getElementById("asideElem");
 const searchBar = document.querySelector(".search");
-const workingIcon = document.querySelector("i .bi.bi-bell");
 const workingText = document.querySelector(".nav-link.nav-profile.d-flex.align-items-center.pe-0");
 const docShow = document.querySelectorAll("li .dropdown-header");
-const h5list = document.querySelectorAll("header h6");
+const h6list = document.querySelectorAll("header h6");
 const icon = document.querySelector(".indicator");
 const h1 = document.querySelector("h1");
 const h4list = document.querySelectorAll("header h4");
@@ -22,31 +20,16 @@ const universecityPlanet = document.querySelector(".planet");
 const universecityText = document.querySelector(".logo-text");
 const sidebar = document.querySelector("aside ul.sidebar-nav");
 
-console.log(sidebar);
-
-temp1.shift();
-console.log(docShow);
-console.log(temp1);
-let otherPage;
-let otherBody;
-let hElemennts;
-let labelElements;
-let pEelements;
-let divButton;
 
 
-
-sidebar.addEventListener("click", (e) => {
-    toggle.click();
-    toggle.click();
+temp1.shift(); //!remove the first element which contains the notify and Img Icon 
 
 
-
-});
 
 
 
 toggle.addEventListener("click", (e) => {
+    //!Consistent dark mode through page changes,time out is necessecary to work
     sidebar.onclick = function () {
         setTimeout(function () {
             toggle.click();
@@ -62,6 +45,7 @@ toggle.addEventListener("click", (e) => {
 
     };
 
+    //!elements that CAN be stylized via css in index.html 
     toggle.classList.toggle("active");
     body.classList.toggle("active");
     aside.classList.toggle("active");
@@ -116,14 +100,23 @@ toggle.addEventListener("click", (e) => {
             e.style.color = "#5ab6c9";
         }
 
-        for (e of h5list) {
+        for (e of h6list) {
             e.classList.toggle("active");
             e.style.backgroundColor = "rgb(24, 26, 27)";
             e.style.color = "#5ab6c9";
         }
 
+
+
+
+        for (elems of h4list) {
+            elems.style.color = "#5ab6c9";
+        }
+
         myframe.classList.toggle("active");
         myframe.style.color = "#5ab6c9";
+
+        //!: Existing elements in index over, we head now to iframe elements that need initialization and special "care" 
 
         let otherPage = myframe.contentWindow;
 
@@ -143,7 +136,45 @@ toggle.addEventListener("click", (e) => {
         let sections = otherPage.document.querySelectorAll("section");
         let headerBox = otherPage.document.querySelector("header.box");
         let containers = otherPage.document.querySelectorAll(".container");
+        let selections = otherPage.document.querySelectorAll("select");
+        let listGroup = otherPage.document.querySelectorAll(".list-group-item-item");
+        let options = otherPage.document.querySelectorAll("option")
 
+        for (elems of pEelements) {
+            elems.style.color = "rgb(209, 214, 225)";
+        }
+        for (elems of labelElements) {
+            elems.style.color = "rgb(90, 182, 201)";
+        }
+
+        for (elems of hElemennts) {
+            elems.style.color = "rgb(90, 182, 201)";
+        }
+
+        if (options = otherPage.document.querySelectorAll("option")) {
+            for (e of options) {
+                e.classList.toggle("active");
+                e.style.color = "#5ab6c9";
+            }
+
+        }
+
+        if (listGroup = otherPage.document.querySelectorAll(".list-group-item")) {
+
+            for (e of listGroup) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(27, 29, 30)";
+            }
+
+        }
+
+
+        if (selections = otherPage.document.querySelectorAll("select")) {
+            for (e of selections) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(27, 29, 30)";
+            }
+        }
         if (containers = otherPage.document.querySelectorAll(".container")) {
             for (e of containers) {
                 e.classList.toggle("active");
@@ -254,7 +285,7 @@ toggle.addEventListener("click", (e) => {
             }
         }
 
-        if (myUl = otherPage.document.querySelectorAll("ul .list-group")) {
+        if (myUl = otherPage.document.querySelectorAll("ul .list-group-item")) {
             for (elems of myUl) {
                 elems.style.color = "#5ab6c9";
             }
@@ -264,24 +295,6 @@ toggle.addEventListener("click", (e) => {
             for (elems of myli) {
                 elems.style.color = "#5ab6c9";
             }
-        }
-
-
-
-
-        for (elems of pEelements) {
-            elems.style.color = "rgb(209, 214, 225)";
-        }
-        for (elems of labelElements) {
-            elems.style.color = "rgb(90, 182, 201)";
-        }
-
-        for (elems of hElemennts) {
-            elems.style.color = "rgb(90, 182, 201)";
-        }
-
-        for (elems of h4list) {
-            elems.style.color = "#5ab6c9";
         }
 
         if (myel = otherPage.document.querySelectorAll("li")) {
@@ -317,8 +330,6 @@ toggle.addEventListener("click", (e) => {
             e.style.color = "#366c77";
         }
 
-
-
         for (e of temp1) {
             e.classList.toggle("active");
             e.style.backgroundColor = "";
@@ -331,15 +342,29 @@ toggle.addEventListener("click", (e) => {
             e.style.color = "";
         }
 
-        for (e of h5list) {
+        for (e of h6list) {
             e.classList.toggle("active");
             e.style.backgroundColor = "";
             e.style.color = "";
         }
 
 
+        for (elems of h4list) {
+            elems.style.color = "";
+        }
+
+        for (e of spanlist) {
+            e.classList.toggle("active");
+            e.style.color = "";
+        }
+
+
+
+
         myframe.classList.toggle("active");
         myframe.style.color = "#366c77";
+
+        //!: Existing elements in index over, we head now to iframe elements that need initialization and special "care" 
 
         let otherPage = myframe.contentWindow;
 
@@ -359,6 +384,44 @@ toggle.addEventListener("click", (e) => {
         let sections = otherPage.document.querySelectorAll("section.box");
         let headerBox = otherPage.document.querySelector("header.box");
         let containers = otherPage.document.querySelectorAll(".container");
+        let selections = otherPage.document.querySelectorAll("select");
+        let listGroup = otherPage.document.querySelectorAll(".list-group-item");
+        let options = otherPage.document.querySelectorAll("option")
+
+        for (elems of pEelements) {
+            elems.style.color = "";
+        }
+
+        for (elems of hElemennts) {
+            elems.style.color = "#366c77";
+        }
+
+        for (elems of labelElements) {
+            elems.style.color = "";
+        }
+
+        if (options = otherPage.document.querySelectorAll("option")) {
+            for (e of options) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+            }
+
+        }
+        if (listGroup = otherPage.document.querySelectorAll(".list-group-item")) {
+
+            for (e of listGroup) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "white";
+            }
+
+        }
+        if (selections = otherPage.document.querySelectorAll("select")) {
+            for (e of selections) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+                e.style.color = "";
+            }
+        }
 
         if (containers = otherPage.document.querySelectorAll(".container")) {
             for (e of containers) {
@@ -375,7 +438,8 @@ toggle.addEventListener("click", (e) => {
         }
         if (headerBox = otherPage.document.querySelector("header.box")) {
             headerBox.classList.toggle("active");
-            headerBox.style.backgroundColor = "#f6f9ff";
+            headerBox.style.backgroundColor = "#366c77";
+            headerBox.style.color = "white";
 
         }
 
@@ -471,22 +535,7 @@ toggle.addEventListener("click", (e) => {
             }
         }
 
-        for (elems of pEelements) {
-            elems.style.color = "";
-        }
-
-        for (elems of hElemennts) {
-            elems.style.color = "#366c77";
-        }
-
-        for (elems of labelElements) {
-            elems.style.color = "";
-        }
-        for (elems of h4list) {
-            elems.style.color = "";
-        }
-
-        if (myUl = otherPage.document.querySelectorAll("ul .list-group")) {
+        if (myUl = otherPage.document.querySelectorAll("ul .list-group-item")) {
             for (elems of myUl) {
                 elems.style.color = "";
             }
@@ -506,10 +555,7 @@ toggle.addEventListener("click", (e) => {
             }
         }
 
-        for (e of spanlist) {
-            e.classList.toggle("active");
-            e.style.color = "";
-        }
+
 
         if (seatButton = otherPage.document.querySelector("seatBoxContainer")) {
             seatButton.style.backgroundColor = "";

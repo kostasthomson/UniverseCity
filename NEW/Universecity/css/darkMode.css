@@ -104,3 +104,9 @@ h6.active {
 #asideElem.active {
     color: #5ab6c9;
 }
+
+.search.active {
+    color: #5ab6c9;
+    background-color: rgb(24, 26, 27);
+
+}
