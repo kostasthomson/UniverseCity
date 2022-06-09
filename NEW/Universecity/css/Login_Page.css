@@ -101,3 +101,7 @@ input:focus::placeholder {
 .link:hover {
     color: #fff;
 }
+
+.heading {
+    cursor: default;
+}
