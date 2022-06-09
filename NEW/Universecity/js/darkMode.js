@@ -20,8 +20,9 @@ const temp1 = Array.from(document.querySelectorAll("ul"));
 const spanlist = document.querySelectorAll("span");
 const universecityPlanet = document.querySelector(".planet");
 const universecityText = document.querySelector(".logo-text");
+const sidebar = document.querySelector("aside ul.sidebar-nav");
 
-
+console.log(sidebar);
 
 temp1.shift();
 console.log(docShow);
@@ -32,14 +33,35 @@ let hElemennts;
 let labelElements;
 let pEelements;
 let divButton;
-let card = 0;
 
 
 
+sidebar.addEventListener("click", (e) => {
+    toggle.click();
+    toggle.click();
+
+
+
+});
 
 
 
 toggle.addEventListener("click", (e) => {
+    sidebar.onclick = function () {
+        setTimeout(function () {
+            toggle.click();
+
+        }, 1);
+        setTimeout(function () {
+            toggle.click();
+
+        }, 50);
+
+
+
+
+    };
+
     toggle.classList.toggle("active");
     body.classList.toggle("active");
     aside.classList.toggle("active");
@@ -63,14 +85,14 @@ toggle.addEventListener("click", (e) => {
         universecityPlanet.style.boxShadow = "none";
         universecityText.style.boxShadow = "none";
         h1.style.color = "#5ab6c9";
-        searchBar.style.backgroundColor = "rgba(87, 77, 77, 0.14)";
+        searchBar.style.backgroundColor = "rgb(24, 26, 27);";
         searchBar.style.color = "#5ab6c9";
 
 
 
         for (e of asideElem) {
             e.classList.toggle("active");
-            e.style.backgroundColor = "rgba(87, 77, 77, 0.14)";
+            e.style.backgroundColor = "rgb(24, 26, 27)";
             e.style.color = "#5ab6c9";
         }
 
@@ -78,7 +100,7 @@ toggle.addEventListener("click", (e) => {
 
         for (e of docShow) {
             e.classList.toggle("active");
-            e.style.backgroundColor = "rgb(47, 46, 46)";
+            e.style.backgroundColor = "rgb(24, 26, 27)";
             e.style.color = "#5ab6c9";
         }
 
@@ -90,13 +112,13 @@ toggle.addEventListener("click", (e) => {
 
         for (e of temp1) {
             e.classList.toggle("active");
-            e.style.backgroundColor = "rgb(47, 46, 46)";
+            e.style.backgroundColor = "rgb(24, 26, 27)";
             e.style.color = "#5ab6c9";
         }
 
         for (e of h5list) {
             e.classList.toggle("active");
-            e.style.backgroundColor = "rgb(47, 46, 46)";
+            e.style.backgroundColor = "rgb(24, 26, 27)";
             e.style.color = "#5ab6c9";
         }
 
@@ -106,7 +128,6 @@ toggle.addEventListener("click", (e) => {
         let otherPage = myframe.contentWindow;
 
         let otherBody = otherPage.document.querySelector("body");
-        let card = otherPage.document.querySelector(".card");
         let hElemennts = otherPage.document.querySelectorAll(".card-title");
         let labelElements = otherPage.document.querySelectorAll("label");
         let pEelements = otherPage.document.querySelectorAll("p");
@@ -116,25 +137,69 @@ toggle.addEventListener("click", (e) => {
         let buttons = otherPage.document.querySelectorAll("button");
         let seatbox = otherPage.document.querySelectorAll(".seatBoxContainer");
         let selectBox = otherPage.document.querySelectorAll("selectCourse");
+        let card = otherPage.document.querySelector(".card");
+        let liList = otherPage.document.querySelector("li");
+        let nav = otherPage.document.querySelector("nav");
+        let sections = otherPage.document.querySelectorAll("section");
+        let headerBox = otherPage.document.querySelector("header.box");
+        let containers = otherPage.document.querySelectorAll(".container");
 
+        if (containers = otherPage.document.querySelectorAll(".container")) {
+            for (e of containers) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "#212222";
+            }
+        }
+
+
+        if (nav = otherPage.document.querySelector("nav")) {
+            nav.classList.toggle("active");
+            nav.style.backgroundColor = "rgb(27, 29, 30)";
+
+        }
+        if (headerBox = otherPage.document.querySelector("header.box")) {
+            headerBox.classList.toggle("active");
+            headerBox.style.backgroundColor = "rgb(27, 29, 30)";
+
+        }
+
+        if (liList = otherPage.document.querySelectorAll("li")) {
+            for (e of liList) {
+                e.classList.toggle("active");
+                e.style.color = "#5ab6c9";
+            }
+        }
+
+        if (sections = otherPage.document.querySelectorAll("section")) {
+            for (e of sections) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(27, 29, 30)";
+            }
+        }
+
+        if (card = otherPage.document.querySelector(".card")) {
+            card.classList.toggle("active");
+            card.style.backgroundColor = "rgb(27, 29, 30)";
+
+        }
         if (seatbox = otherPage.document.querySelectorAll(".seatBoxContainer")) {
             for (e of seatbox) {
                 e.classList.toggle("active");
-                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.backgroundColor = "rgb(27, 29, 30)";
             }
         }
 
         if (selectBox = otherPage.document.querySelectorAll(".selectCourse")) {
             for (e of selectBox) {
                 e.classList.toggle("active");
-                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.backgroundColor = "rgb(27, 29, 30)";
             }
         }
 
         if (buttons = otherPage.document.querySelectorAll("button")) {
             for (e of buttons) {
                 e.classList.toggle("active");
-                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.backgroundColor = "rgb(27, 29, 30)";
                 e.style.color = "#5ab6c9";
             }
         }
@@ -142,7 +207,7 @@ toggle.addEventListener("click", (e) => {
         if (inputs = otherPage.document.querySelectorAll("input")) {
             for (e of inputs) {
                 e.classList.toggle("active");
-                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.backgroundColor = "rgb(27, 29, 30)";
                 e.style.color = "#5ab6c9";
             }
         }
@@ -150,7 +215,7 @@ toggle.addEventListener("click", (e) => {
         if (accordionBody = otherPage.document.querySelectorAll(".accordion-body")) {
             for (e of accordionBody) {
                 e.classList.toggle("active");
-                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.backgroundColor = "rgb(27, 29, 30)";
                 e.style.color = "#5ab6c9";
             }
         }
@@ -158,17 +223,17 @@ toggle.addEventListener("click", (e) => {
         if (textareas = otherPage.document.querySelectorAll("textarea")) {
             for (e of textareas) {
                 e.classList.toggle("active");
-                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.backgroundColor = "rgb(27, 29, 30)";
                 e.style.color = "#5ab6c9";
             }
         }
 
         if (divButton = otherPage.document.querySelector(".selectCourse")) {
-            divButton.style.backgroundColor = "#343333";
+            divButton.style.backgroundColor = "rgb(27, 29, 30)";
         }
 
         if (seatButton = otherPage.document.querySelector("seatBoxContainer")) {
-            seatButton.style.backgroundColor = "#343333";
+            seatButton.style.backgroundColor = "rgb(27, 29, 30)";
         }
         if (hones = otherPage.document.querySelectorAll("h1")) {
             for (elems of hones) {
@@ -201,8 +266,7 @@ toggle.addEventListener("click", (e) => {
             }
         }
 
-        card.classList.toggle("active");
-        card.style.backgroundColor = "rgba(87, 77, 77, 0.14)";
+
 
 
         for (elems of pEelements) {
@@ -233,9 +297,10 @@ toggle.addEventListener("click", (e) => {
             }
         }
 
-
-        otherBody.classList.toggle("active");
-        otherBody.style.backgroundColor = "rgb(47, 46, 46)";
+        if (otherBody = otherPage.document.querySelector("body")) {
+            otherBody.classList.toggle("active");
+            otherBody.style.backgroundColor = "rgb(27, 29, 30)";
+        }
 
     } else {
         h1.style.color = "#366c77";
@@ -244,6 +309,8 @@ toggle.addEventListener("click", (e) => {
         universecityText.src = "../img/Universecity - text.png";
         searchBar.style.backgroundColor = "";
         searchBar.style.color = "#366c77";
+
+
         for (e of asideElem) {
             e.classList.toggle("active");
             e.style.backgroundColor = "transparent";
@@ -274,20 +341,66 @@ toggle.addEventListener("click", (e) => {
         myframe.classList.toggle("active");
         myframe.style.color = "#366c77";
 
-        otherPage = myframe.contentWindow;
+        let otherPage = myframe.contentWindow;
 
-        otherBody = otherPage.document.querySelector("body");
-        card = otherPage.document.querySelector(".card");
-        hElemennts = otherPage.document.querySelectorAll(".card-title");
-        labelElements = otherPage.document.querySelectorAll("label");
-        pEelements = otherPage.document.querySelectorAll("p");
-        textareas = otherPage.document.querySelectorAll("textarea");
-        accordionBody = otherPage.document.querySelectorAll(".accordion-body");
-        inputs = otherPage.document.querySelectorAll("input");
-        buttons = otherPage.document.querySelectorAll("button");
-        seatbox = otherPage.document.querySelectorAll(".seatBoxContainer");
+        let otherBody = otherPage.document.querySelector("body");
+        let card = otherPage.document.querySelectorAll(".card");
+        let hElemennts = otherPage.document.querySelectorAll(".card-title");
+        let labelElements = otherPage.document.querySelectorAll("label");
+        let pEelements = otherPage.document.querySelectorAll("p");
+        let textareas = otherPage.document.querySelectorAll("textarea");
+        let accordionBody = otherPage.document.querySelectorAll(".accordion-body");
+        let inputs = otherPage.document.querySelectorAll("input");
+        let buttons = otherPage.document.querySelectorAll("button");
+        let seatbox = otherPage.document.querySelectorAll(".seatBoxContainer");
         let selectBox = otherPage.document.querySelectorAll("selectCourse");
+        let liList = otherPage.document.querySelectorAll("li");
+        let nav = otherPage.document.querySelector("nav");
+        let sections = otherPage.document.querySelectorAll("section.box");
+        let headerBox = otherPage.document.querySelector("header.box");
+        let containers = otherPage.document.querySelectorAll(".container");
 
+        if (containers = otherPage.document.querySelectorAll(".container")) {
+            for (e of containers) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+            }
+        }
+
+        if (nav = otherPage.document.querySelector("nav")) {
+            nav.classList.toggle("active");
+            nav.style.backgroundColor = "#f6f9ff";
+            nav.style.color = "#366c77";
+
+        }
+        if (headerBox = otherPage.document.querySelector("header.box")) {
+            headerBox.classList.toggle("active");
+            headerBox.style.backgroundColor = "#f6f9ff";
+
+        }
+
+
+
+        if (sections = otherPage.document.querySelectorAll("section.box")) {
+            for (e of sections) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "white";
+            }
+        }
+
+
+        if (liList = otherPage.document.querySelectorAll("li")) {
+            for (e of liList) {
+                e.classList.toggle("active");
+                e.style.color = "#5ab6c9";
+            }
+        }
+        if (card = otherPage.document.querySelectorAll(".card")) {
+            for (e of card) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+            }
+        }
 
 
         if (selectBox = otherPage.document.querySelectorAll(".selectCourse")) {
@@ -402,13 +515,15 @@ toggle.addEventListener("click", (e) => {
             seatButton.style.backgroundColor = "";
         }
 
-        card.classList.toggle("active");
-        card.style.backgroundColor = "";
 
 
 
 
-        otherBody.classList.toggle("active");
-        otherBody.style.backgroundColor = "";
+
+
+        if (otherBody = otherPage.document.querySelector("body")) {
+            otherBody.classList.toggle("active");
+            otherBody.style.backgroundColor = "";
+        }
     }
 });
