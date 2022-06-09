@@ -96,6 +96,11 @@ function calcVotes() {
       title: {
         text: titleText,
         align: 'center',
+        style: {
+          fontSize:  '1.5rem',
+          //fontFamily:  "Open Sans", sans serif,
+          color:  '#366c77'
+        },
       },
       colors: ['#8ECAE6', '#219EBC', '#023047', '#FFB703', '#FB8500', '#8A0202'],
       responsive: [{

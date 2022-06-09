@@ -1,29 +1,22 @@
-function rowInitialization(data) {
-    for(let i = 0; i < (end - start); i++) {
-        let element = document.getElementById('row-'+i+'-data-0');
-        if(element.getAttribute('data-hour') == data[0]) {
-            for(let j = 1; j < data.length; j++) {
-                document.getElementById('row-'+i+'-data-'+j).innerHTML = data[j];
-            }
-        }
+function columnInitialization(col, data) {
+    for(let i = 0; i < data.length; i++) {
+        document.getElementById('row-'+i+'-data-'+col).innerHTML = data[i];
     }
 }
 
 function cancel() {
-    for(let j = 1; j <= days.length; j++) {
-        for(let i = 0; i <= (end-start); i++) {
-            let td = document.getElementById('row-'+i+'-data-'+j);
-            let drop = document.getElementById('Lesson'+i+j);
-            let choice = drop.value;
-            td.removeChild(drop);
-            if(!choice) {
-                td.innerHTML = '';
-            } else {
-                td.innerHTML = choice;
+    if(editable_count != 0) {
+        for(let j = 1; j <= days.length; j++) {
+            for(let i = 0; i <= (end-start); i++) {
+                let td = document.getElementById('row-'+i+'-data-'+j);
+                let drop = document.getElementById('Lesson'+i+j);
+                let text = drop.getAttribute('data-previous-text');
+                td.removeChild(drop);
+                td.innerHTML = text;
             }
         }
+        editable_count = 0;
     }
-    editable_count = 0;
 }
 
 function save() {
@@ -32,11 +25,14 @@ function save() {
             for(let i = 0; i <= (end-start); i++) {
                 let td = document.getElementById('row-'+i+'-data-'+j);
                 let drop = document.getElementById('Lesson'+i+j);
-                if(drop) {
-                    let choice = drop.value;
-                    td.removeChild(drop);
-                    td.innerHTML = choice;
+                let option;
+                if(drop.getAttribute('data-option-id')) {
+                    option = document.getElementById(drop.getAttribute('data-option-id'));
+                } else {
+                    option = drop.options[drop.selectedIndex];
                 }
+                td.removeChild(drop);
+                td.innerHTML = (option.value) ? option.innerHTML : '';
             }
         }
         editable_count = 0;
@@ -44,50 +40,60 @@ function save() {
 }
 
 function edit() {
-    if(editable_count < 1) {
+    if(editable_count == 0) {
         for(let i = 0; i <= (end-start); i++) {
             for(let j = 1; j <= days.length; j++) {
                 let td = document.getElementById('row-'+i+'-data-'+j);
                 let td_text = td.innerHTML;
                 td.innerHTML = '';
                 let drop = document.createElement('select');
+                drop.setAttribute('class', 'dropdown-selection');
                 drop.setAttribute('id', 'Lesson'+i+j);
-                let defaultOption = document.createElement('option');
-                defaultOption.setAttribute('value', '');
-                defaultOption.disabled = true;
-                defaultOption.selected = true;
-                defaultOption.hidden = true;
-                defaultOption.innerHTML = 'Choose Lesson';
-                drop.appendChild(defaultOption);
-                subjects.forEach(lesson => {
-                    let option = document.createElement('option');
-                    option.setAttribute('value', lesson);
-                    option.innerHTML = lesson;
-                    if(lesson == td_text) {
-                        option.selected = true;
-                    }
-                    drop.appendChild(option);
-                });
-                td.appendChild(drop);                   
+                drop.setAttribute('data-previous-text', td_text);
+                drop.setAttribute('onchange', 'updateSelectionData(this)');
+                fillSelectionElement(drop, td_text);
+                td.appendChild(drop);
                 //ena if gia na krataei thn prohgoymenh epilogh
             }
         }
+        editable_count++;
     }
-    editable_count++;
 }
 
-function resetOptions() {
-    for(let i = 0; i <= (end-start); i++) {
-        for(let j = 1; j <= days.length; j++) {
-            document.getElementById('row-'+i+'-data-'+j).innerHTML = '';
+function fillSelectionElement(drop, text) {
+    for(let i = -1; i < subjects.length; i++) {
+        let option = document.createElement('option');
+        option.setAttribute('id', drop.id+'-'+(i+1));
+        if(i < 0) {
+            //DEFAULT OPTION
+            option.setAttribute('value', '');
+            option.selected = true;
+            option.innerHTML = 'Choose Lesson';
+        } else {
+            //LESSONS
+            const lesson = subjects[i];
+            if(lesson.semester == user.SEMESTER) {
+                option.setAttribute('value', lesson.code);
+                option.innerHTML = lesson.title;
+                if(lesson.title == text) {
+                    option.selected = true;
+                }
+            } else {
+                option = null;
+            }
+        }
+        if(option) {
+            drop.appendChild(option);
         }
     }
-    editable_count = 0;
 }
 
+function updateSelectionData(selection) {
+    let option_id = selection.options[selection.selectedIndex].id;
+    selection.setAttribute('data-option-id', option_id);
+}
 
 let editable_count = 0;
-const body = document.body;
 const start = 9;
 const end = 20;
 const step = 1;
@@ -98,33 +104,9 @@ const days = [
     { id: 4, name: 'Πέμπτη' },
     { id: 5, name: 'Παρασκευή' }
 ];
-let subjects;
-
-window.onload = () => {
-    let user = JSON.parse(sessionStorage.getItem('user'));
-    let department = user.DEPARTMENT;
-    let semester = user.SEMESTER;
-    let xmlhttp_subjects = new XMLHttpRequest();
-    xmlhttp_subjects.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            const dbResult = this.responseText;
-            subjects = dbResult.split(",");
-        }
-    }; 
-    xmlhttp_subjects.open("GET","assets/backend/get_subjects.php?department="+department+"&semester="+semester,true);
-    xmlhttp_subjects.send();
-    
-    let xmlhttp_schedule = new XMLHttpRequest();
-    xmlhttp_schedule.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            const dbResult = this.responseText;
-            const time_subjects = dbResult.split('/');
-            time_subjects.forEach(row => {
-                const row_data = row.split(',');
-                rowInitialization(row_data);
-            });
-        }
-    }; 
-    xmlhttp_schedule.open("GET","assets/backend/get_schedule.php?department="+department+"&semester="+semester,true);
-    xmlhttp_schedule.send();
-}
+let user = JSON.parse(sessionStorage.getItem('user'));
+let subjects = JSON.parse(sessionStorage.getItem('subjects'));
+let schedule = JSON.parse(sessionStorage.getItem('schedule'));
+days.forEach(day => {
+    columnInitialization(day.id, schedule[day.name]);
+});
