@@ -120,3 +120,23 @@
  a {
    text-decoration: none;
  }
+
+
+ #reader__status_span {
+   margin-right: 1rem;
+   border-radius: 0.7rem;
+   text-transform: uppercase;
+   letter-spacing: 0.1rem;
+   font-weight: 500;
+   border: none;
+   text-decoration: none;
+   padding: 0.5rem 2rem;
+   background: rgb(168, 168, 165);
+   margin-top: 1.5rem;
+   color: white;
+   border-radius: 4rem;
+   outline: none;
+   transition: all 0.3s ease 0s;
+   background: #366c77 !important;
+   color: #ffffff !important;
+ }
