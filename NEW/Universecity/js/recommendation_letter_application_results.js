@@ -2,7 +2,7 @@ const user = JSON.parse(sessionStorage.getItem("user"));
 
 let separatedArray = [[]];
 
-let queryObject= {};
+let queryObject;
 
 
 let ul = document.createElement("ul");
@@ -141,6 +141,8 @@ function tableCreator(liItemId){
 
                 console.log(validateSubArray);
 
+                console.log(queryObject.stud_am);
+
                 let table = document.querySelector("#tableSubject");
                 let tbody = document.querySelector("#subjects");
                 let tdSubject = document.createElement("td");
@@ -154,6 +156,9 @@ function tableCreator(liItemId){
                 let tr = document.createElement("tr");
 
                 for(let i=0;i<validateSubArray.length;i++){
+
+                    
+                
 
                     th.setAttribute("scope", "row");
                     th.innerHTML = i+1;
@@ -177,7 +182,7 @@ function tableCreator(liItemId){
 
         };
     }
-    xmlhttpTableFill.open("GET", "assets/backend/validateSubAndTeacher.php?AM=" + user.AM, true);
+    xmlhttpTableFill.open("GET", "assets/backend/validateSubAndTeacher.php?AM=" + user.AM + "&stud_am=" + queryObject.stud_am, true);
     xmlhttpTableFill.send();
 
 }
