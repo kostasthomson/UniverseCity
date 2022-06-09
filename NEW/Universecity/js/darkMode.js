@@ -19,7 +19,7 @@ const spanlist = document.querySelectorAll("span");
 const universecityPlanet = document.querySelector(".planet");
 const universecityText = document.querySelector(".logo-text");
 const sidebar = document.querySelector("aside ul.sidebar-nav");
-
+let toggled = false;
 
 console.log(sidebar);
 temp1.shift(); //!remove the first element which contains the notify and Img Icon 
@@ -34,11 +34,11 @@ toggle.addEventListener("click", (e) => {
         setTimeout(function () {
             toggle.click();
 
-        }, 5);
+        }, 20);
         setTimeout(function () {
             toggle.click();
 
-        }, 60);
+        }, 22);
 
 
 
@@ -47,6 +47,7 @@ toggle.addEventListener("click", (e) => {
 
     //!elements that CAN be stylized via css in index.html 
     toggle.classList.toggle("active");
+    toggled = true;
     body.classList.toggle("active");
     aside.classList.toggle("active");
     main.classList.toggle("active");
@@ -230,8 +231,8 @@ toggle.addEventListener("click", (e) => {
         if (buttons = otherPage.document.querySelectorAll("button")) {
             for (e of buttons) {
                 e.classList.toggle("active");
-                e.style.backgroundColor = "rgb(27, 29, 30)";
-                e.style.color = "#5ab6c9";
+                e.style.setProperty('background-color', 'rgb(34, 37, 38) ', 'important');
+                e.style.setProperty("color", "#5ab6c9", "important");
             }
         }
 
