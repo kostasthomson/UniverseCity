@@ -36,3 +36,10 @@ h1 {
     flex-direction: column;
     list-style-type: none;
 }
+
+.show-secretariat{
+    background-color: #00BCD4; 
+}
+.show-teacher{
+    background-color: #17545d;
+}
