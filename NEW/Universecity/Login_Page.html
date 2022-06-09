@@ -6,20 +6,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
     <link href="assets/img/Logo.png" rel="icon">
     <link rel="stylesheet" href="./css/Login_Page.css">
+    <link rel="stylesheet" href="./css/loginPageDarkMode.css">
+
+    <title>Login Page</title>
 </head>
 
 <body>
     <img class="img1" src="../img/Universecity.png" width="600px"></img>
+
+    <div class="toggle">
+        <img src="./img/dark.png" class="indicator">
+    </div>
+
     <div class="form">
         <h3 class="heading"><i class="fa fa-unlock-alt"></i>Σύνδεση</h3>
         <input class="am" name="am" type="text" placeholder="Α.Μ." autocomplete="off" required>
         <input class="password" name="pass" type="password" placeholder="Κωδικός" autocomplete="off" required>
         <button class="btn" name="button" onclick="LogIn()">Είσοδος</button>
     </div>
+    <script src="./js/loginDarkMode.js"></script>
     <script src="./js/login_page.js"></script>
+
 </body>
 
 </html>

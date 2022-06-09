@@ -1,0 +1,107 @@
+html {
+    letter-spacing: 0.1rem;
+}
+
+button {
+    font-size: 1rem;
+
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    border: none;
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    background: rgb(168, 168, 165);
+    margin-top: 1.5rem;
+    color: white;
+    border-radius: 0.4rem !important;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease 0s;
+
+    background-color: #366c77;
+    color: #ffffff;
+
+}
+
+
+button:hover {
+
+    box-shadow: 0rem 0.7rem 1.2rem #3996a9;
+
+    transform: translateY(-0.2rem);
+    background-color: rgb(253, 250, 250);
+}
+
+button:active {
+    transform: translateY(-0.1rem);
+    background-color: #dbdbdb;
+    color: black;
+}
+
+.toggle {
+
+
+    display: block;
+    width: 3rem;
+    height: 2rem;
+    transition: 0.6s;
+
+
+    cursor: pointer;
+    transform: translate(10rem, 2.5rem);
+    border-radius: 1rem;
+
+
+}
+
+.toggle .indicator {
+
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 160px;
+
+    border-radius: 50%;
+    transform: scale(0.9);
+
+
+    width: 1.8rem;
+    height: 1.8rem;
+    transform: translate(0.5rem, 0.1rem);
+
+}
+
+body {
+    transition: background-color 400ms linear;
+}
+
+
+body.active {
+    background-color: rgb(24, 26, 27);
+    transition: background-color 400ms linear;
+}
+
+
+
+
+
+.indicator {
+
+    transition: background-color 400s linear;
+
+}
+
+.indicator:active {
+    transition: background-color 400ms linear;
+}
+
+input {
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    border-radius: 0.7rem;
+
+}
+
+button.active:hover {
+    background-color: #3996a9;
+}

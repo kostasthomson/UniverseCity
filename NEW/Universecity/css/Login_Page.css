@@ -70,8 +70,7 @@ input::placeholder {
     color: #fff;
 }
 
-input:focus,
-.btn:hover {
+input:focus {
     background: #fff;
     color: #000;
 }

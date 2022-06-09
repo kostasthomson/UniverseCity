@@ -21,7 +21,7 @@ const universecityText = document.querySelector(".logo-text");
 const sidebar = document.querySelector("aside ul.sidebar-nav");
 
 
-
+console.log(sidebar);
 temp1.shift(); //!remove the first element which contains the notify and Img Icon 
 
 
@@ -34,11 +34,11 @@ toggle.addEventListener("click", (e) => {
         setTimeout(function () {
             toggle.click();
 
-        }, 1);
+        }, 5);
         setTimeout(function () {
             toggle.click();
 
-        }, 50);
+        }, 60);
 
 
 
