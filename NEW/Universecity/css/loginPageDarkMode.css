@@ -1,5 +1,6 @@
 html {
     letter-spacing: 0.1rem;
+    font-family: "Open Sans", sans-serif;
 }
 
 button {
@@ -29,7 +30,7 @@ button:hover {
     box-shadow: 0rem 0.7rem 1.2rem #3996a9;
 
     transform: translateY(-0.2rem);
-    background-color: rgb(253, 250, 250);
+    background-color: rgba(240, 227, 227, 0.719);
 }
 
 button:active {
