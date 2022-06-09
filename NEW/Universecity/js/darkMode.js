@@ -19,6 +19,7 @@ const spanlist = document.querySelectorAll("span");
 const universecityPlanet = document.querySelector(".planet");
 const universecityText = document.querySelector(".logo-text");
 const sidebar = document.querySelector("aside ul.sidebar-nav");
+const chooseElem = document.getElementById("choose");
 let toggled = false;
 
 console.log(sidebar);
@@ -43,6 +44,17 @@ toggle.addEventListener("click", (e) => {
 
 
 
+    };
+
+    chooseElem.onclick = function () {
+        setTimeout(function () {
+            toggle.click();
+
+        }, 20);
+        setTimeout(function () {
+            toggle.click();
+
+        }, 22);
     };
 
     //!elements that CAN be stylized via css in index.html 
@@ -131,7 +143,7 @@ toggle.addEventListener("click", (e) => {
         let buttons = otherPage.document.querySelectorAll("button");
         let seatbox = otherPage.document.querySelectorAll(".seatBoxContainer");
         let selectBox = otherPage.document.querySelectorAll("selectCourse");
-        let card = otherPage.document.querySelector(".card");
+        let cards = otherPage.document.querySelectorAll(".card");
         let liList = otherPage.document.querySelector("li");
         let nav = otherPage.document.querySelector("nav");
         let sections = otherPage.document.querySelectorAll("section");
@@ -141,7 +153,74 @@ toggle.addEventListener("click", (e) => {
         let listGroup = otherPage.document.querySelectorAll(".list-group-item-item");
         let options = otherPage.document.querySelectorAll("option")
         let tspans = otherPage.document.querySelectorAll("tspan");
+        let cardBody = otherPage.document.querySelectorAll(".card-body");
+        let rows = otherPage.document.querySelector(".row");
+        let cols = otherPage.document.querySelector(".col-lg-3.col-md-4.label");
+        let h2s = otherPage.document.querySelectorAll("h2");
+        let socialLinks = otherPage.document.querySelectorAll("div a i");
+        let colsx8 = otherPage.document.querySelectorAll(".col-xl-8");
+        let colsx4 = otherPage.document.querySelectorAll(".col-xl-4");
 
+        if (colsx8 = otherPage.document.querySelectorAll(".col-xl-8")) {
+
+            for (e of colsx8) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(27, 29, 30)";
+            }
+        }
+
+        if (colsx4 = otherPage.document.querySelectorAll(".col-xl-4")) {
+
+            for (e of colsx4) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(27, 29, 30)";
+            }
+        }
+
+        if (socialLinks = otherPage.document.querySelectorAll("div a i")) {
+
+            for (e of socialLinks) {
+                e.classList.toggle("active");
+                e.style.color = "#5ab6c9";
+            }
+        }
+
+        if (h2s = otherPage.document.querySelectorAll("h2")) {
+
+            for (e of h2s) {
+                e.classList.toggle("active");
+                e.style.color = "#5ab6c9";
+            }
+        }
+
+        if (cols = otherPage.document.querySelectorAll(".col-lg-3.col-md-4.label")) {
+            for (e of cols) {
+                e.classList.toggle("active");
+                e.style.color = "white";
+            }
+
+
+        }
+
+        if (rows = otherPage.document.querySelectorAll(".row")) {
+            for (e of rows) {
+                e.classList.toggle("active");
+                e.style.color = "white";
+            }
+
+
+        }
+
+
+        if (cardBody = otherPage.document.querySelectorAll(".card-body")) {
+
+            for (e of cardBody) {
+                e.classList.toggle("active");
+                e.style.setProperty("background-color", "rgba(38, 45, 49, 0.29)", "important");
+            }
+
+
+        }
 
         if (tspans = otherPage.document.querySelectorAll("tspan")) {
             for (e of tspans) {
@@ -218,11 +297,13 @@ toggle.addEventListener("click", (e) => {
             }
         }
 
-        if (card = otherPage.document.querySelector(".card")) {
-            card.classList.toggle("active");
-            card.style.backgroundColor = "rgb(27, 29, 30)";
-
+        if (cards = otherPage.document.querySelectorAll(".card")) {
+            for (e of cards) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(27, 29, 30)";
+            }
         }
+
         if (seatbox = otherPage.document.querySelectorAll(".seatBoxContainer")) {
             for (e of seatbox) {
                 e.classList.toggle("active");
@@ -379,7 +460,6 @@ toggle.addEventListener("click", (e) => {
         let otherPage = myframe.contentWindow;
 
         let otherBody = otherPage.document.querySelector("body");
-        let card = otherPage.document.querySelectorAll(".card");
         let hElemennts = otherPage.document.querySelectorAll(".card-title");
         let labelElements = otherPage.document.querySelectorAll("label");
         let pEelements = otherPage.document.querySelectorAll("p");
@@ -396,9 +476,79 @@ toggle.addEventListener("click", (e) => {
         let containers = otherPage.document.querySelectorAll(".container");
         let selections = otherPage.document.querySelectorAll("select");
         let listGroup = otherPage.document.querySelectorAll(".list-group-item");
-        let options = otherPage.document.querySelectorAll("option")
+        let options = otherPage.document.querySelectorAll("option");
         let tspans = otherPage.document.querySelectorAll("tspan");
+        let cards = otherPage.document.querySelectorAll(".card");
+        let cardBody = otherPage.document.querySelectorAll(".card-body");
+        let rows = otherPage.document.querySelector(".row");
+        let cols = otherPage.document.querySelector(".col-lg-3.col-md-4.label");
+        let h2s = otherPage.document.querySelectorAll("h2");
+        let colsx8 = otherPage.document.querySelectorAll(".col-xl-8");
+        let colsx4 = otherPage.document.querySelectorAll(".col-xl-4");
+        let socialLinks = otherPage.document.querySelectorAll("div a i");
 
+
+        if (socialLinks = otherPage.document.querySelectorAll("div a i")) {
+
+            for (e of socialLinks) {
+                e.classList.toggle("active");
+                e.style.color = "#336c77";
+            }
+        }
+
+
+        if (colsx8 = otherPage.document.querySelectorAll(".col-xl-8")) {
+
+            for (e of colsx8) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "#f6f9ff";
+            }
+        }
+
+        if (colsx4 = otherPage.document.querySelectorAll(".col-xl-4")) {
+
+            for (e of colsx4) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "#f6f9ff";
+            }
+        }
+
+
+        if (h2s = otherPage.document.querySelectorAll("h2")) {
+
+            for (e of h2s) {
+                e.classList.toggle("active");
+                e.style.color = "#366c77";
+            }
+        }
+
+        if (cols = otherPage.document.querySelectorAll(".col-lg-3.col-md-4.label")) {
+            for (e of cols) {
+                e.classList.toggle("active");
+                e.style.color = "#366c77";
+            }
+
+
+        }
+
+        if (rows = otherPage.document.querySelectorAll(".row")) {
+            for (e of rows) {
+                e.classList.toggle("active");
+                e.style.color = "black";
+            }
+
+
+        }
+
+        if (cardBody = otherPage.document.querySelectorAll(".card-body")) {
+
+            for (e of cardBody) {
+                e.classList.toggle("active");
+                e.style.setProperty("background-color", "", "important");
+            }
+
+
+        }
 
         if (tspans = otherPage.document.querySelectorAll("tspan")) {
             for (e of tspans) {
@@ -468,7 +618,7 @@ toggle.addEventListener("click", (e) => {
         if (sections = otherPage.document.querySelectorAll("section.box")) {
             for (e of sections) {
                 e.classList.toggle("active");
-                e.style.backgroundColor = "white";
+                e.style.backgroundColor = "";
             }
         }
 
@@ -479,8 +629,9 @@ toggle.addEventListener("click", (e) => {
                 e.style.color = "#5ab6c9";
             }
         }
-        if (card = otherPage.document.querySelectorAll(".card")) {
-            for (e of card) {
+
+        if (cards = otherPage.document.querySelectorAll(".card")) {
+            for (e of cards) {
                 e.classList.toggle("active");
                 e.style.backgroundColor = "";
             }

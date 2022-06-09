@@ -43,6 +43,7 @@ html {
 
 
 
+
 }
 
 
@@ -115,4 +116,59 @@ h6.active {
     color: #5ab6c9;
     background-color: rgb(24, 26, 27);
 
+}
+
+
+.btn.btn-primary,
+.btn.btn-danger {
+    font-size: 1rem;
+
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    border: none;
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    background: rgb(168, 168, 165);
+    margin-top: 1.5rem;
+    color: white;
+    border-radius: 4rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease 0s;
+    box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    background: #366c77;
+    color: #ffffff;
+
+}
+
+.btn.btn-danger {
+    background-color: #cf0f0f;
+    color: #ffffff;
+}
+
+.btn.btn-danger:hover {
+    background-color: #dd1313;
+    box-shadow: 0rem 0.7rem 1.2rem #962e2e;
+    color: rgb(255, 255, 255);
+    transform: translateY(-0.2rem);
+}
+
+;
+
+.btn.btn-danger:active {
+    transform: translateY(-0.1rem);
+    background-color: #f10707;
+
+}
+
+.btn.btn-primary:hover {
+    background-color: #3996a9;
+    box-shadow: 0rem 0.7rem 1.2rem #3996a9;
+    color: rgb(255, 255, 255);
+    transform: translateY(-0.2rem);
+}
+
+.btn.btn-primary:active {
+    transform: translateY(-0.1rem);
+    background-color: #2da8c0;
 }
