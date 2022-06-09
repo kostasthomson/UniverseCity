@@ -79,6 +79,10 @@ input:focus::placeholder {
     color: #000;
 }
 
+input.active::placeholder {
+    color: white
+}
+
 .btn {
     width: auto;
     padding: 0 20px;

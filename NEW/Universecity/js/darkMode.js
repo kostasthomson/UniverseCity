@@ -140,7 +140,16 @@ toggle.addEventListener("click", (e) => {
         let selections = otherPage.document.querySelectorAll("select");
         let listGroup = otherPage.document.querySelectorAll(".list-group-item-item");
         let options = otherPage.document.querySelectorAll("option")
+        let tspans = otherPage.document.querySelectorAll("tspan");
 
+
+        if (tspans = otherPage.document.querySelectorAll("tspan")) {
+            for (e of tspans) {
+                e.classList.toggle("active");
+                e.style.setProperty("color", "#5ab6c9", "important");
+            }
+
+        }
         for (elems of pEelements) {
             elems.style.color = "rgb(209, 214, 225)";
         }
@@ -388,6 +397,16 @@ toggle.addEventListener("click", (e) => {
         let selections = otherPage.document.querySelectorAll("select");
         let listGroup = otherPage.document.querySelectorAll(".list-group-item");
         let options = otherPage.document.querySelectorAll("option")
+        let tspans = otherPage.document.querySelectorAll("tspan");
+
+
+        if (tspans = otherPage.document.querySelectorAll("tspan")) {
+            for (e of tspans) {
+                e.classList.toggle("active");
+                e.style.setProperty("color", "#366c77", "important");
+            }
+
+        }
 
         for (elems of pEelements) {
             elems.style.color = "";
