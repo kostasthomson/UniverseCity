@@ -154,12 +154,20 @@ input:checked+section.box .box-title:before {
 
 
 
-label {
+section {
   font-size: 1.5rem;
   color: #3996a9;
+  transition: all 400ms;
+
 }
 
+section:hover {
+  transition: all 400ms;
+}
 
+section:focus {
+  transition: all 20ms;
+}
 
 header.box {
   background-color: #2a6673;
