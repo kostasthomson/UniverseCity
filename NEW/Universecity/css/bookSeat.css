@@ -169,11 +169,11 @@ h3 {
 }
 
 .seat.selected {
-  background-color: #09b470c7
+  background-color: #09b470c7 !important;
 }
 
 .seat.forbidden {
-  background-color: rgb(141, 4, 4);
+  background-color: rgb(141, 4, 4) !important;
   cursor: default;
 }
 
@@ -185,7 +185,7 @@ h3 {
 } */
 
 .seat.granted {
-  background-color: #05f796;
+  background-color: #05f796 !important;
   cursor: default;
 
 }

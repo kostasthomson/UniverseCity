@@ -7,7 +7,7 @@ const main = document.querySelector("main");
 const asideElem = document.querySelectorAll("aside ul li a.nav-link");
 const notificationIcon = document.querySelector(".header-nav .nav-icon");
 const otherIcon = document.getElementById("asideElem");
-const searchBar = document.querySelector(".search-bar");
+const searchBar = document.querySelector(".search");
 const workingIcon = document.querySelector("i .bi.bi-bell");
 const workingText = document.querySelector(".nav-link.nav-profile.d-flex.align-items-center.pe-0");
 const docShow = document.querySelectorAll("li .dropdown-header");
@@ -18,8 +18,10 @@ const h4list = document.querySelectorAll("header h4");
 const myframe = document.querySelector('iframe');
 const temp1 = Array.from(document.querySelectorAll("ul"));
 const spanlist = document.querySelectorAll("span");
-let universecityPlanet = document.querySelector(".planet");
-let universecityText = document.querySelector(".logo-text");
+const universecityPlanet = document.querySelector(".planet");
+const universecityText = document.querySelector(".logo-text");
+
+
 
 temp1.shift();
 console.log(docShow);
@@ -30,7 +32,7 @@ let hElemennts;
 let labelElements;
 let pEelements;
 let divButton;
-
+let card = 0;
 
 
 
@@ -61,6 +63,8 @@ toggle.addEventListener("click", (e) => {
         universecityPlanet.style.boxShadow = "none";
         universecityText.style.boxShadow = "none";
         h1.style.color = "#5ab6c9";
+        searchBar.style.backgroundColor = "rgba(87, 77, 77, 0.14)";
+        searchBar.style.color = "#5ab6c9";
 
 
 
@@ -99,15 +103,65 @@ toggle.addEventListener("click", (e) => {
         myframe.classList.toggle("active");
         myframe.style.color = "#5ab6c9";
 
-        otherPage = myframe.contentWindow;
+        let otherPage = myframe.contentWindow;
 
-        otherBody = otherPage.document.querySelector("body");
-        card = otherPage.document.querySelector(".card");
-        hElemennts = otherPage.document.querySelectorAll(".card-title");
-        labelElements = otherPage.document.querySelectorAll("label");
-        pEelements = otherPage.document.querySelectorAll("p");
+        let otherBody = otherPage.document.querySelector("body");
+        let card = otherPage.document.querySelector(".card");
+        let hElemennts = otherPage.document.querySelectorAll(".card-title");
+        let labelElements = otherPage.document.querySelectorAll("label");
+        let pEelements = otherPage.document.querySelectorAll("p");
+        let textareas = otherPage.document.querySelectorAll("textarea");
+        let accordionBody = otherPage.document.querySelectorAll(".accordion-body");
+        let inputs = otherPage.document.querySelectorAll("input");
+        let buttons = otherPage.document.querySelectorAll("button");
+        let seatbox = otherPage.document.querySelectorAll(".seatBoxContainer");
+        let selectBox = otherPage.document.querySelectorAll("selectCourse");
 
+        if (seatbox = otherPage.document.querySelectorAll(".seatBoxContainer")) {
+            for (e of seatbox) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(47, 46, 46)";
+            }
+        }
 
+        if (selectBox = otherPage.document.querySelectorAll(".selectCourse")) {
+            for (e of selectBox) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(47, 46, 46)";
+            }
+        }
+
+        if (buttons = otherPage.document.querySelectorAll("button")) {
+            for (e of buttons) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.color = "#5ab6c9";
+            }
+        }
+
+        if (inputs = otherPage.document.querySelectorAll("input")) {
+            for (e of inputs) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.color = "#5ab6c9";
+            }
+        }
+
+        if (accordionBody = otherPage.document.querySelectorAll(".accordion-body")) {
+            for (e of accordionBody) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.color = "#5ab6c9";
+            }
+        }
+
+        if (textareas = otherPage.document.querySelectorAll("textarea")) {
+            for (e of textareas) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(47, 46, 46)";
+                e.style.color = "#5ab6c9";
+            }
+        }
 
         if (divButton = otherPage.document.querySelector(".selectCourse")) {
             divButton.style.backgroundColor = "#343333";
@@ -188,6 +242,8 @@ toggle.addEventListener("click", (e) => {
         icon.src = "../img/Logo.png";
         universecityPlanet.src = "../img/Logo.png";
         universecityText.src = "../img/Universecity - text.png";
+        searchBar.style.backgroundColor = "";
+        searchBar.style.color = "#366c77";
         for (e of asideElem) {
             e.classList.toggle("active");
             e.style.backgroundColor = "transparent";
@@ -225,7 +281,64 @@ toggle.addEventListener("click", (e) => {
         hElemennts = otherPage.document.querySelectorAll(".card-title");
         labelElements = otherPage.document.querySelectorAll("label");
         pEelements = otherPage.document.querySelectorAll("p");
+        textareas = otherPage.document.querySelectorAll("textarea");
+        accordionBody = otherPage.document.querySelectorAll(".accordion-body");
+        inputs = otherPage.document.querySelectorAll("input");
+        buttons = otherPage.document.querySelectorAll("button");
+        seatbox = otherPage.document.querySelectorAll(".seatBoxContainer");
+        let selectBox = otherPage.document.querySelectorAll("selectCourse");
 
+
+
+        if (selectBox = otherPage.document.querySelectorAll(".selectCourse")) {
+            for (e of selectBox) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+            }
+        }
+
+        if (seatbox = otherPage.document.querySelectorAll(".seatBoxContainer")) {
+            for (e of seatbox) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+                e.style.color = "";
+            }
+        }
+
+        if (buttons = otherPage.document.querySelectorAll("button")) {
+            for (e of buttons) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+                e.style.color = "";
+            }
+        }
+
+        if (inputs = otherPage.document.querySelectorAll("input")) {
+            for (e of inputs) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+                e.style.color = "";
+            }
+        }
+
+
+        if (accordionBody = otherPage.document.querySelectorAll(".accordion-body")) {
+            for (e of accordionBody) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+                e.style.color = "";
+            }
+        };
+
+
+
+        if (textareas = otherPage.document.querySelectorAll("textarea")) {
+            for (e of textareas) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+                e.style.color = "";
+            }
+        }
         if (table = otherPage.document.querySelectorAll("table")) {
 
             for (elems of table) {
