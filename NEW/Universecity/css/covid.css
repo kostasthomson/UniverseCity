@@ -219,6 +219,7 @@ body {
     box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
     background: #366c77;
     color: #ffffff;
+    margin-left: 24rem;
 
 }
 
@@ -291,4 +292,9 @@ label {
 
 .form-switch {
     padding-left: 0rem;
+}
+
+
+#myvalidation {
+    margin-top: 2.5rem;
 }
