@@ -496,98 +496,10 @@ h3 {
   color: #366c77;
 }
 
-/* .h3Subject {
-  font-size: 2rem;
-
-  letter-spacing: 0.05rem;
-  font-weight: 900;
-  border: none;
-  text-decoration: underline;
-  padding: 0.5rem 2rem;
-
-  margin-top: 1.5rem;
-  color: white;
-  border-radius: 0.5rem;
-  cursor: default;
-  outline: none;
-
-
-  color: #366c77;
-} */
-
-/* 
-.chbtnNo{
- 
- 
-  width: 60px;
-  height: 20px;
-
-} */
-
-/* Column test (for LAB classroom) */
-
-/* .singleCol{
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 35px;
-  max-width: 35px;
-
-  border-collapse: collapse;
-  border:2px solid black;
-  
-  font-size: 24px;
-  border-radius: 10px;
-  padding: 5px;
-
-  /* margin-left: 2rem; */
-
-
-/* .doubleCol{
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 85px;
-  max-width: 85px;
-
-  border-collapse: collapse;
-  border:2px solid black;
-  
-  font-size: 24px;
-  border-radius: 10px;
-  padding: 5px;
-
-  /* margin-left: 2rem; */
-
-
-/* .singleColLEFT{
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 35px;
-  max-width: 35px;
-
-  border-collapse: collapse;
-  border:2px solid black;
-  
-  font-size: 24px;
-  border-radius: 10px;
-  padding: 5px;
-
-  /* margin-left: 2rem; */
-
-
-/* .doubleColLEFT{
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 85px;
-  max-width: 85px;
-
-  border-collapse: collapse;
-  border:2px solid black;
-  
-  font-size: 24px;
-  border-radius: 10px;
-  padding: 5px;
-
-  /* margin-left: 2rem; */
+.message-box {
+  color:rgb(0, 0, 0);
+  text-transform: none;
+}
 
 #floatingTextarea {
   height: 150px;
