@@ -2,6 +2,7 @@
 var db_notifications_previous_length = 0;
 var db_notifications = [];
 
+
 class Anouncement {
     constructor(id, title, message) {
         this.Id = id;
