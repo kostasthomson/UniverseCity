@@ -6,6 +6,7 @@ const inputs = document.querySelectorAll("input");
 const mybutton = document.querySelector("button");
 const myform = document.querySelector(".form");
 const heading = document.querySelector(".heading");
+const card = document.querySelector(".card");
 
 
 

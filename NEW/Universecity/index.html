@@ -113,8 +113,8 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+            <li id="choose">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html" target="main_iframe">
                 <i class="bi bi-person"></i>
                 <span>Λογαριασμός</span>
               </a>
@@ -173,14 +173,16 @@
       <h1 id="pagetitle-header">Αρχική</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item breadcrumb-first" onclick="ChangeFrameContent(this.innerHTML)">Αρχική</li>
+          <li class="breadcrumb-item breadcrumb-first"
+            onclick="ChangeFrameContent(this.innerHTML), updateScheduleButton(false)">Αρχική</li>
           <!-- <a href="user_schedule.html" target="main_iframe">Αρχική</a> -->
           <!-- <li class="breadcrumb-item active"></li> -->
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <iframe id="page-content" src="user_schedule.html" name="main_iframe" data-content-name="Αρχική">
+    <iframe id="page-content" src="user_schedule.html" name="main_iframe" data-content-name="Αρχική"
+      onload="checkSource(this)">
 
     </iframe>
   </main><!-- End #main -->

@@ -1,8 +1,50 @@
+function checkSource(frame) {
+    if(frame.getAttribute('data-content-name') == 'Ωρολόγιο Πρόγραμμα') {
+        updateScheduleButton(true);
+    }
+}
+
+function updateScheduleButton(value){
+    let frame_body = window.main_iframe.document.querySelector('.card-body');
+    if(value) {
+        let div = document.createElement("div");
+        div.setAttribute('class', 'group');
+        div.setAttribute('role', 'group');
+        div.setAttribute('aria-label', 'Basic outlined example');
+
+        let cancel = document.createElement('button');
+        cancel.setAttribute('type', 'button');
+        cancel.setAttribute('class', 'myButtons');
+        cancel.setAttribute('onclick', 'cancel()');
+        cancel.innerHTML = 'Ακύρωση';
+
+        let edit = document.createElement('button');
+        edit.setAttribute('type', 'button');
+        edit.setAttribute('class', 'myButtons');
+        edit.setAttribute('onclick', 'edit()');
+        edit.innerHTML = 'Επεξεργασία';
+
+        let save = document.createElement('button');
+        save.setAttribute('type', 'button');
+        save.setAttribute('class', 'myButtons');
+        save.setAttribute('onclick', 'save()');
+        save.innerHTML = 'Αποθήκευση';
+
+        div.append(cancel, edit, save);
+        frame_body.appendChild(div);
+    } else {
+        frame_body.removeChild(frame_body.lastChild);
+    }
+}
+
 function ChangeFrameContent(name) {
     if (JSON.parse(sessionStorage.getItem('user_nav_list'))[name]) {
         const frame = document.getElementById('page-content');
-        if (frame.getAttribute('data-content-name') != name) {
-            frame.src = JSON.parse(sessionStorage.getItem('user_nav_list'))[name];
+        if(frame.getAttribute('data-content-name') != name) {
+            let link = JSON.parse(sessionStorage.getItem('user_nav_list'))[name];
+            if(frame.getAttribute('src') != link) {
+                frame.src = link;
+            }
             frame.setAttribute('data-content-name', name);
             updateContentTitle();
         }
@@ -15,7 +57,13 @@ function createListElement(element_name) {
 
     const a = document.createElement('a');
     a.setAttribute('class', 'nav-link');
-    a.setAttribute('onclick', `ChangeFrameContent('${element_name}')`);
+    let str = '';
+    if(element_name == 'Ωρολόγιο Πρόγραμμα') {
+        str =  `,updateScheduleButton(${true})`;
+    } else if (element_name == 'Αρχική') {
+        str = `,updateScheduleButton(${false})`;
+    }
+    a.setAttribute('onclick', `ChangeFrameContent('${element_name}')` + str);
 
     const i = document.createElement('i');
 
@@ -269,10 +317,45 @@ function setSubjects() {
     }
 }
 
+function setSchedule() {
+    let department = JSON.parse(sessionStorage.getItem('user')).DEPARTMENT;
+    let semester= JSON.parse(sessionStorage.getItem('user')).SEMESTER;
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            let schedule_list = JSON.parse(dbResult);
+            const translate = {
+                'Δευτέρα': 'Monday',
+                'Τρίτη': 'Tuesday',
+                'Τετάρτη': 'Wednesday',
+                'Πέμπτη': 'Thursday',
+                'Παρασκευή': 'Friday',
+            }
+            let schedule = {
+                'Δευτέρα': [],
+                'Τρίτη': [],
+                'Τετάρτη': [],
+                'Πέμπτη': [],
+                'Παρασκευή': []
+            }
+            Object.keys(schedule).forEach(key => {
+                schedule_list.forEach(element => {
+                    schedule[key].push(element[translate[key]]);
+                });
+            });
+            sessionStorage.setItem('schedule', JSON.stringify(schedule));
+        }
+    };
+    xmlhttp.open("GET", "assets/backend/get_schedule.php?department="+department+"&semester="+semester, true);
+    xmlhttp.send();
+}
+
 if (!sessionStorage.getItem('user') && !sessionStorage.getItem('user-type')) {
     window.location.href = 'Login_Page.html';
 } else {
     setSubjects();
+    setSchedule();
     UserNavListInit();
     setUserNavList();
     updateContentTitle();

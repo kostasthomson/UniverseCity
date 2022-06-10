@@ -79,6 +79,10 @@ input:focus::placeholder {
     color: #000;
 }
 
+input.active::placeholder {
+    color: white
+}
+
 .btn {
     width: auto;
     padding: 0 20px;
@@ -100,4 +104,8 @@ input:focus::placeholder {
 
 .link:hover {
     color: #fff;
+}
+
+.heading {
+    cursor: default;
 }

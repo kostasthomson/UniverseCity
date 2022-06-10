@@ -55,6 +55,7 @@
 .group {
   margin-left: 28rem;
   width: 60%;
+  text-align: center;
 }
 
 
@@ -81,8 +82,6 @@
 
 
 .select:hover {
-
-
   background-color: #3996a9;
   cursor: pointer;
 
@@ -93,11 +92,18 @@
      margin-bottom: 1.5rem;
  } */
 
+th, td, .dropdown-selection{
+  width: 14em;
+}
 
+tbody > tr > th, tbody > tr > td{
+  height: 4.1em;
+  text-align: center;
+  vertical-align: middle;
+}
 
 
 table thead tr {
-
   text-align: left;
   font-weight: bold;
 }
@@ -134,4 +140,8 @@ table thead tr {
 
 #main-div {
   background-color: rgb(26, 28, 29);
+}
+
+.dropdown-selection {
+  border: none;
 }
