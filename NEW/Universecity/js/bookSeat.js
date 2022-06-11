@@ -63,6 +63,54 @@ function getUserInfo(){ // Gets User Info from Session Storage
     retrieveCourses();
 }
 
+
+function getSchedule() {
+    GLOBAL.user.schedule = JSON.parse(sessionStorage.getItem("schedule"));
+
+    const date = new Date(); //! zero-based for the month index
+
+    // 2022, 05, 08 --> year, month index, day --> 2022 June 8
+    console.log( //! temp
+        date.toLocaleDateString('el', {
+            weekday: 'long'
+        })
+    ); 
+
+    const currentWeekday = date.toLocaleDateString('el', {weekday: 'long'});
+
+
+
+
+    let today = []; // Today's Schedule
+
+    // parallel arrays temporary implementation
+    //todo change array names
+    GLOBAL.user.List = [];
+    GLOBAL.user.ListCode = [];
+
+    if (currentWeekday != ("Σάββατο" || "Κυριακή")) {
+        today = GLOBAL.user.schedule[currentWeekday];
+        for (let i=0; i<GLOBAL.user.CourseList.length; i++) {
+            for (let j=0; j<today.length; j++) {
+                if (GLOBAL.user.CourseList[i].TITLE == today[j]) {
+                    if (!GLOBAL.user.List.includes(today[j])) {
+                        GLOBAL.user.List.push(today[j]);
+                        GLOBAL.user.ListCode.push(GLOBAL.user.CourseList[i].CODE);
+                    }
+                }
+            }
+            
+        }
+        if (GLOBAL.user.List.length == 0) {
+            return false;
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function retriveUserSeat(am, callback){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -139,34 +187,44 @@ function retrieveCourses() {
 
 function makeList() { // New Course List with buttons
     console.log(GLOBAL);
-
-    let CourseListContainer = document.createElement('div');
-    CourseListContainer.setAttribute("class", "course_list");
-
-
+    if (getSchedule()) { 
+        let CourseListContainer = document.createElement('div');
+        CourseListContainer.setAttribute("class", "course_list");
 
 
-    document.querySelector('.selectCourse').appendChild(CourseListContainer)
-    CourseListContainer.setAttribute("id", "SelectCourseList");
 
 
-    // Dynamic list initialization
-    for (i = 0; i < GLOBAL.user.CourseList.length; ++i) {
-        // Create listItem
-        listItem = document.createElement('button');
+        document.querySelector('.selectCourse').appendChild(CourseListContainer)
+        CourseListContainer.setAttribute("id", "SelectCourseList");
 
-        // The value of the option is the Course's code
-        listItem.setAttribute('value', GLOBAL.user.CourseList[i].CODE);
-        listItem.setAttribute('class', "subjectBtns");
-        // The name of the Course is displayed to the user
-        listItem.innerHTML = GLOBAL.user.CourseList[i].TITLE;
 
-        // validate() starts the generation of the seats with capacity and type 
-        listItem.setAttribute('onclick', 'retrieveClassroom(this.value, validate)');
+        // Dynamic list initialization
+        for (i = 0; i < GLOBAL.user.List.length; ++i) {
+            // Create listItem
+            listItem = document.createElement('button');
 
-        // Add listItem to the selectElement
-        CourseListContainer.appendChild(listItem);
+            // The value of the option is the Course's code
+            listItem.setAttribute('value', GLOBAL.user.ListCode[i]);
+            listItem.setAttribute('class', "subjectBtns");
+            // The name of the Course is displayed to the user
+            listItem.innerHTML = GLOBAL.user.List[i];
+
+            // validate() starts the generation of the seats with capacity and type 
+            listItem.setAttribute('onclick', 'retrieveClassroom(this.value, validate)');
+
+            // Add listItem to the selectElement
+            CourseListContainer.appendChild(listItem);
+        }
     }
+    else {
+        let message = document.createElement('div');
+        message.setAttribute('class', 'message-box');
+        message.innerHTML = "Δεν υπάρχει κάποιο μάθημα για να κάνεις κράτηση σήμερα.";
+        document.querySelector('.selectCourse').appendChild(message);
+
+    }
+
+    
 }
 
 // Find Classroom + Generate Seats 

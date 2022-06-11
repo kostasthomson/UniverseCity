@@ -93,6 +93,10 @@ function updateSelectionData(selection) {
     selection.setAttribute('data-option-id', option_id);
 }
 
+function get(sessionStorageId) {
+    return JSON.parse(sessionStorage.getItem(sessionStorageId));
+}
+
 let editable_count = 0;
 const start = 9;
 const end = 20;
@@ -104,9 +108,10 @@ const days = [
     { id: 4, name: 'Πέμπτη' },
     { id: 5, name: 'Παρασκευή' }
 ];
-let user = JSON.parse(sessionStorage.getItem('user'));
-let subjects = JSON.parse(sessionStorage.getItem('subjects'));
-let schedule = JSON.parse(sessionStorage.getItem('schedule'));
+
+let user = get('user');
+let subjects = get('subjects');
+let schedule = get('schedule');
 days.forEach(day => {
     columnInitialization(day.id, schedule[day.name]);
 });

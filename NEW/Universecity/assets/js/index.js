@@ -4,39 +4,6 @@ function checkSource(frame) {
     }
 }
 
-function updateScheduleButton(value){
-    let frame_body = window.main_iframe.document.querySelector('.card-body');
-    if(value) {
-        let div = document.createElement("div");
-        div.setAttribute('class', 'group');
-        div.setAttribute('role', 'group');
-        div.setAttribute('aria-label', 'Basic outlined example');
-
-        let cancel = document.createElement('button');
-        cancel.setAttribute('type', 'button');
-        cancel.setAttribute('class', 'myButtons');
-        cancel.setAttribute('onclick', 'cancel()');
-        cancel.innerHTML = 'Ακύρωση';
-
-        let edit = document.createElement('button');
-        edit.setAttribute('type', 'button');
-        edit.setAttribute('class', 'myButtons');
-        edit.setAttribute('onclick', 'edit()');
-        edit.innerHTML = 'Επεξεργασία';
-
-        let save = document.createElement('button');
-        save.setAttribute('type', 'button');
-        save.setAttribute('class', 'myButtons');
-        save.setAttribute('onclick', 'save()');
-        save.innerHTML = 'Αποθήκευση';
-
-        div.append(cancel, edit, save);
-        frame_body.appendChild(div);
-    } else {
-        frame_body.removeChild(frame_body.lastChild);
-    }
-}
-
 function ChangeFrameContent(name) {
     if (JSON.parse(sessionStorage.getItem('user_nav_list'))[name]) {
         const frame = document.getElementById('page-content');
@@ -47,6 +14,44 @@ function ChangeFrameContent(name) {
             }
             frame.setAttribute('data-content-name', name);
             updateContentTitle();
+        }
+    }
+}
+
+function updateScheduleButton(value){
+    let frame = window.main_iframe.document;
+    let frame_body = frame.querySelector('.card-body');
+    if(value) {
+        if(!frame.querySelector('.group')) {
+            let div = document.createElement("div");
+            div.setAttribute('class', 'group');
+            div.setAttribute('role', 'group');
+            div.setAttribute('aria-label', 'Basic outlined example');
+    
+            let cancel = document.createElement('button');
+            cancel.setAttribute('type', 'button');
+            cancel.setAttribute('class', 'myButtons');
+            cancel.setAttribute('onclick', 'cancel()');
+            cancel.innerHTML = 'Ακύρωση';
+    
+            let edit = document.createElement('button');
+            edit.setAttribute('type', 'button');
+            edit.setAttribute('class', 'myButtons');
+            edit.setAttribute('onclick', 'edit()');
+            edit.innerHTML = 'Επεξεργασία';
+    
+            let save = document.createElement('button');
+            save.setAttribute('type', 'button');
+            save.setAttribute('class', 'myButtons');
+            save.setAttribute('onclick', 'save()');
+            save.innerHTML = 'Αποθήκευση';
+    
+            div.append(cancel, edit, save);
+            frame_body.appendChild(div);
+        }
+    } else {
+        if(frame.querySelector('.group')) {
+            frame_body.removeChild(frame_body.lastChild);
         }
     }
 }
@@ -143,48 +148,6 @@ function setUserNavList() {
     Object.keys(UserNavList).forEach(key => {
         ul.appendChild(createListElement(key));
     });
-}
-
-function UserNavListInit() {
-    let NavListElements;
-    switch (sessionStorage.getItem('user-type')) {
-        case 'student':
-            NavListElements = {
-                'Αρχική': 'user_schedule.html',
-                'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
-                'Ανακοινώσεις': 'notification-view.html',
-                'Εξετάσεις-Βαθμολογίες': '',
-                'Στατιστικά': '',
-                'Δήλωση Θέσης': 'bookSeat.html',
-                'Σάρωση QR': 'QrScanner.html',
-                'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
-                'Συστατική Επιστολή': 'recommendation_letter_application.html',
-                'Δήλωση Κρούσματος': 'covid_report.html',
-                'Βοήθεια': 'help.html'
-            };
-            break;
-        case 'teacher':
-            NavListElements = {
-                'Αρχική': 'user_schedule.html',
-                'Ωρολόγιο Πρόγραμμα': '',
-                'Ανακοινώσεις': 'notification-view.html',
-                'Διαχείριση Μαθημάτων': '',
-                'Εξετάσεις-Βαθμολογίες': '',
-                'Προβολή Προσωπικής Αξιολόγησης': 'evaluation_results.html',
-                'Συστατική Επιστολή': 'recommendation_letter.html'
-            };
-            break;
-        case 'secretariat':
-            document.getElementById('page-content').src = 'secretariat_schedule.html';
-            NavListElements = {
-                'Αρχική': 'secretariat_schedule.html',
-                'Ωρολόγιο Πρόγραμμα': 'secretariat_schedule.html',
-                'Ανακοινώσεις': 'announcement_creation.html',
-                'Διαχείριση Ενεργειών': ''
-            };
-            break;
-    }
-    sessionStorage.setItem('user_nav_list', JSON.stringify(NavListElements));
 }
 
 function updateContentTitle() {
@@ -299,64 +262,9 @@ function updateProfile() {
     document.querySelector('.profile > .dropdown-header > span').innerHTML = USER.DEPARTMENT;
 }
 
-function setSubjects() {
-    let xmlhttp_subjects = new XMLHttpRequest();
-    xmlhttp_subjects.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            const dbResult = this.responseText;
-            sessionStorage.setItem('subjects', dbResult);
-        }
-    };
-    const user_type = sessionStorage.getItem('user-type');
-    if (user_type == 'student') {
-        xmlhttp_subjects.open("GET", "assets/backend/get_enrolled_subjects.php?student_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
-        xmlhttp_subjects.send();
-    } else if (user_type == 'teacher') {
-        xmlhttp_subjects.open("GET", "assets/backend/get_teachedby_subjects.php?teacher_id" + JSON.parse(sessionStorage.getItem('user')).AM, true);
-        xmlhttp_subjects.send();
-    }
-}
-
-function setSchedule() {
-    let department = JSON.parse(sessionStorage.getItem('user')).DEPARTMENT;
-    let semester= JSON.parse(sessionStorage.getItem('user')).SEMESTER;
-    let xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            const dbResult = this.responseText;
-            let schedule_list = JSON.parse(dbResult);
-            const translate = {
-                'Δευτέρα': 'Monday',
-                'Τρίτη': 'Tuesday',
-                'Τετάρτη': 'Wednesday',
-                'Πέμπτη': 'Thursday',
-                'Παρασκευή': 'Friday',
-            }
-            let schedule = {
-                'Δευτέρα': [],
-                'Τρίτη': [],
-                'Τετάρτη': [],
-                'Πέμπτη': [],
-                'Παρασκευή': []
-            }
-            Object.keys(schedule).forEach(key => {
-                schedule_list.forEach(element => {
-                    schedule[key].push(element[translate[key]]);
-                });
-            });
-            sessionStorage.setItem('schedule', JSON.stringify(schedule));
-        }
-    };
-    xmlhttp.open("GET", "assets/backend/get_schedule.php?department="+department+"&semester="+semester, true);
-    xmlhttp.send();
-}
-
 if (!sessionStorage.getItem('user') && !sessionStorage.getItem('user-type')) {
     window.location.href = 'Login_Page.html';
 } else {
-    setSubjects();
-    setSchedule();
-    UserNavListInit();
     setUserNavList();
     updateContentTitle();
     updateNotifications();
