@@ -20,6 +20,7 @@ const universecityPlanet = document.querySelector(".planet");
 const universecityText = document.querySelector(".logo-text");
 const sidebar = document.querySelector("aside ul.sidebar-nav");
 const chooseElem = document.getElementById("choose");
+const searchForBorder = document.getElementById("searchField");
 let toggled = false;
 
 console.log(sidebar);
@@ -70,6 +71,7 @@ toggle.addEventListener("click", (e) => {
     h1.classList.toggle("active");
     otherIcon.classList.toggle("active");
     workingText.classList.toggle("active");
+
 
 
 

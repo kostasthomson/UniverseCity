@@ -203,7 +203,7 @@ h4 {
 
 @media (min-width: 768px) {
   .dropdown-menu-arrow::before {
-    content: "";
+    /*! we dont need it content: ""; */
     width: 13px;
     height: 13px;
     background: #fff;
@@ -1175,6 +1175,6 @@ textarea:focus {
 # Notifications Page
 --------------------------------------------------------------*/
 
-.notification-content{
+.notification-content {
   padding: 0.5em 0em 0em 1em !important;
 }
