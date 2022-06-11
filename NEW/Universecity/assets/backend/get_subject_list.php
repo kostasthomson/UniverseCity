@@ -6,9 +6,7 @@
     $semester = htmlspecialchars($_GET["semester"]);
     $direction = htmlspecialchars($_GET["direction"]);
 
-    if($department=="ΕΦΑΡΜΟΣΜΕΝΗΣ ΠΛΗΡΟΦΟΡΙΚΗΣ") {
-        $department = "ΕΠ";
-    }
+
 
     $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
 
