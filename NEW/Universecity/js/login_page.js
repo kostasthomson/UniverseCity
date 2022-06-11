@@ -37,7 +37,112 @@ form.forEach((item, i) => {
     setTimeout(() => {
         item.style.opacity = 1;
     }, i * 250);
-})
+});
+
+
+for(let element of document.getElementsByTagName('input')) {
+    element.addEventListener('keypress', (event) => {
+        if(event.keyCode === 13) {
+            LogIn();
+        }
+    })
+}
+
+
+function setSubjects() {
+    let xmlhttp_subjects = new XMLHttpRequest();
+    xmlhttp_subjects.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            sessionStorage.setItem('subjects', dbResult);
+        }
+    };
+    const user_type = sessionStorage.getItem('user-type');
+    if (user_type == 'student') {
+        xmlhttp_subjects.open("GET", "assets/backend/get_enrolled_subjects.php?student_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
+        xmlhttp_subjects.send();
+    } else if (user_type == 'teacher') {
+        xmlhttp_subjects.open("GET", "assets/backend/get_teachedby_subjects.php?teacher_id" + JSON.parse(sessionStorage.getItem('user')).AM, true);
+        xmlhttp_subjects.send();
+    }
+}
+
+function setSchedule() {
+    let department = JSON.parse(sessionStorage.getItem('user')).DEPARTMENT;
+    let semester= JSON.parse(sessionStorage.getItem('user')).SEMESTER;
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            let schedule_list = JSON.parse(dbResult);
+            const translate = {
+                'Δευτέρα': 'Monday',
+                'Τρίτη': 'Tuesday',
+                'Τετάρτη': 'Wednesday',
+                'Πέμπτη': 'Thursday',
+                'Παρασκευή': 'Friday',
+            }
+            let schedule = {
+                'Δευτέρα': [],
+                'Τρίτη': [],
+                'Τετάρτη': [],
+                'Πέμπτη': [],
+                'Παρασκευή': []
+            }
+
+            Object.keys(schedule).forEach(key => {
+                schedule_list.forEach(element => {
+                    schedule[key].push(element[translate[key]]);
+                });
+            });
+            sessionStorage.setItem('schedule', JSON.stringify(schedule));
+        }
+    };
+    xmlhttp.open("GET", "assets/backend/get_schedule.php?department="+department+"&semester="+semester, true);
+    xmlhttp.send();
+}
+
+function UserNavListInit() {
+    let NavListElements;
+    switch (sessionStorage.getItem('user-type')) {
+        case 'student':
+            NavListElements = {
+                'Αρχική': 'user_schedule.html',
+                'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
+                'Ανακοινώσεις': 'notification-view.html',
+                'Εξετάσεις-Βαθμολογίες': '',
+                'Στατιστικά': '',
+                'Δήλωση Θέσης': 'bookSeat.html',
+                'Σάρωση QR': 'QrScanner.html',
+                'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
+                'Συστατική Επιστολή': 'recommendation_letter_application.html',
+                'Δήλωση Κρούσματος': 'covid_report.html',
+                'Βοήθεια': 'help.html'
+            };
+            break;
+        case 'teacher':
+            NavListElements = {
+                'Αρχική': 'user_schedule.html',
+                'Ωρολόγιο Πρόγραμμα': '',
+                'Ανακοινώσεις': 'notification-view.html',
+                'Διαχείριση Μαθημάτων': '',
+                'Εξετάσεις-Βαθμολογίες': '',
+                'Προβολή Προσωπικής Αξιολόγησης': 'evaluation_results.html',
+                'Συστατική Επιστολή': 'recommendation_letter.html'
+            };
+            break;
+        case 'secretariat':
+            document.getElementById('page-content').src = 'secretariat_schedule.html';
+            NavListElements = {
+                'Αρχική': 'secretariat_schedule.html',
+                'Ωρολόγιο Πρόγραμμα': 'secretariat_schedule.html',
+                'Ανακοινώσεις': 'announcement_creation.html',
+                'Διαχείριση Ενεργειών': ''
+            };
+            break;
+    }
+    sessionStorage.setItem('user_nav_list', JSON.stringify(NavListElements));
+}
 
 const ValidAm_TableNames = {
     'ics': 'STUDENTS',
@@ -76,6 +181,9 @@ function LogIn() {
                     }
                     sessionStorage.setItem('user', JSON.stringify(USER));
                     sessionStorage.setItem('user-type', USER.constructor.name.toLowerCase());
+                    setSubjects();
+                    setSchedule();
+                    UserNavListInit();
                     window.location.href = "../loading.html";
                 }
             }
