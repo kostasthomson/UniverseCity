@@ -1,4 +1,4 @@
-new_notification = {
+let new_notification = {
     "title": `test`,
     "publish_day": "2022-06-10",
     "remove_day" : "2022-06-29",
