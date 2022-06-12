@@ -5,7 +5,7 @@ let separatedArray = [[]];
 let queryObject;
 
 
-let ul = document.createElement("ul");
+let ol = document.createElement("ol");
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -98,18 +98,28 @@ function recFill(liItemId){
 
 function listCreator(){
 
-    ul.setAttribute("id", "subList");
-    ul.setAttribute("class", "list-group");
-    document.getElementById("li-card-body").appendChild(ul);
+    ol.setAttribute("id", "subList");
+    ol.setAttribute("class", "list-group list-group-numbered");
+    document.getElementById("li-card-body").appendChild(ol);
 
     for(let i=0;i<separatedArray.length;i++){
         
-        var li = document.createElement("li");
-        li.setAttribute("class", "card-body");
-        li.setAttribute("id", i);
-        li.setAttribute("onclick", "recFill(this.id)");
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        let span = document.createElement("span");
 
-        li.innerHTML = "Φοιτητής: " + separatedArray[i][1] + " " + separatedArray[i][2] + " (" + separatedArray[i][0] + ")";
+        li.setAttribute("class", "list-group-item");
+
+        a.setAttribute("id", i);
+        a.setAttribute("onclick", "recFill(this.id)");
+        a.style.cursor = "pointer";
+
+
+        span.innerHTML = "Φοιτητής: " + separatedArray[i][1] + " " + separatedArray[i][2] + " (" + separatedArray[i][0] + ")";
+        
+        a.appendChild(span);
+        li.appendChild(a);
+
         document.getElementById("subList").appendChild(li);
     }
     

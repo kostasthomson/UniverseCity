@@ -14,31 +14,31 @@
   <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
-  <link href="css/recommendation_letter.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/recommendation_letter.css">
+  <link href="assets/css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
-  <h2 class="card-title" style="text-align: center; left: 50%;">ΣΥΣΤΑΤΙΚΗ ΕΠΙΣΤΟΛΗ</h2>  
+  <h2 class="card-title" id="hide-title">ΣΥΣΤΑΤΙΚΗ ΕΠΙΣΤΟΛΗ</h2>  
   <div class="col-lg-8">
-    <div class="card" style="left: 33%;">
+    <div class="card" id="hide-div">
       <div class="card-body">
-        <h2 class="card-title">ΑΙΤΗΣΕΙΣ</h2>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-8">
-    <div class="card" style="left: 33%;">
-      <div class="card-body">
-        <h2 class="card-title">ΦΟΡΜΑ ΕΠΙΣΤΟΛΗΣ</h2>
+        <h2 class="card-title" id="hide-title" >ΑΙΤΗΣΕΙΣ</h2>
         <div class="ul" id="ul">
           <div id="li-card-body">
             <h5 class="card-subtitle"></h5>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="card" id="card_id">
+      <div class="card-body">
+        <h2 class="card-title">ΦΟΡΜΑ ΕΠΙΣΤΟΛΗΣ</h2>
         <form>
           <p>Το έντυπο αυτό, οι πληροφορίες του οποίου θεωρούνται ΕΜΠΙΣΤΕΥΤΙΚΕΣ, έχει σχεδιαστεί ώστε να διευκολύνει την
             αντικειμενική και ουσιαστική αξιολόγηση των υποψηφίων. Παρακαλούμε να συμπληρωθεί με σαφήνεια, σύμφωνα με
@@ -86,9 +86,13 @@
             </thead>
             <tbody id="subjects"></tbody>
           </table>
-          <p>Αποδέχομαι, ότι αυτή η συστατική επιστολή είναι εμπιστευτική και ως εκ τούτου δεν θα ζητήσω την εξέταση του
-            περιεχομένου.</p>
-          <p>Υπογραφή Υποψηφίου CHECKBOX</p>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck1">
+            <label class="form-check-label" for="gridCheck1">
+              Αποδέχομαι, ότι αυτή η συστατική επιστολή είναι εμπιστευτική και ως εκ τούτου δεν θα ζητήσω την εξέταση του
+              περιεχομένου.
+            </label>
+          </div>
 
           <br><hr><br> <!--DIVIDER-->
 
@@ -452,7 +456,6 @@
                   <input type="text" class="form-control">
                 </div>
               </div>
-
             </ol>
             <br>
             <p>9. Αν έχετε γράψει συστατικές επιστολές για το ίδιο μεταπτυχιακό πρόγραμμα σε προηγούμενες χρονιές, θα
@@ -469,44 +472,38 @@
                 <input type="date" class="form-control">
               </div>
             </div>
-            <p>Υπογραφή</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-primary" id="printPageButton"
-                onclick="button_print();">Υποβολή</button>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck2">
+              <label class="form-check-label" for="gridCheck2">
+                Υπογραφή.
+              </label>
             </div>
+          <br>
+          <button type="button" class="btn btn-primary" id="submitButton" data-bs-toggle="modal" data-bs-target="#verticalycentered">
+            Υποβολή
+          </button>
+          <div class="modal fade" id="verticalycentered" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Υποβολή συστατικής επιστολής</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <strong>ΠΡΟΣΟΧΗ!</strong> Η υποβολη ειναι μονιμη και υστερα απο την επιλογη της δεν θα υπαρξει περαιτερω επεξεργασια, επιθυμειτε να τροποποιησετε την επιστολη σας;
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Επιστροφή</button>
+                  <button type="button" class="btn btn-primary" onclick="button_print()" data-bs-dismiss="modal">Συνέχεια</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </div>
   </div>
 </body>
-
-          
-        
-
-            
-
-
-
-
-
-
-            <br>
-            
-
-            
-
-            
-
-            
-        </form>
-      </div>
-    </div>
-  </div>
-</body>
-
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-    class="bi bi-arrow-up-short"></i></a>
-
 <!-- Vendor JS Files -->
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

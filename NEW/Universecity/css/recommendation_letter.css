@@ -1,0 +1,24 @@
+#hide-title{
+    text-align: center; 
+    left: 33%;
+}
+
+#hide-div{
+    left: 25%;
+}
+
+#card_id{
+    left: 25%;
+}
+
+#submitButton{
+    display: block;
+    margin: auto;
+}
+
+@media print {
+    #submitButton {
+      display: none;
+      
+    }
+  }
