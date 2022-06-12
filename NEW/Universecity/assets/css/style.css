@@ -302,10 +302,24 @@ h4 {
   font-size: 30px;
   font-weight: 600;
   color: #366c77;
-  font-family: "Poppins", sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 .card-title span {
+  color: #899bbd;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card-subtitle {
+  padding: 20px 0 15px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #366c77;
+  font-family: "Jost", sans-serif;
+}
+
+.card-subtitle span {
   color: #899bbd;
   font-size: 14px;
   font-weight: 400;
