@@ -165,7 +165,8 @@ function getSchedule() {
     GLOBAL.user.schedule = JSON.parse(sessionStorage.getItem("schedule"));
 
     const date = new Date(); //! zero-based for the month index
-    console.log(date);
+    //! static date ^^^^^^^^
+    //todo choose static date
 
     // 2022, 05, 08 --> year, month index, day --> 2022 June 8
     console.log( //! temp
@@ -314,7 +315,7 @@ function retrieveFromDB(courseCode) { // Find Classroom + Generate Seats
                         "id": parseInt(value[0]),
                         "number": parseInt(value[1]),
                         "lower_semester_state": (value[2]),
-                        "higher_semester_state": parseInt(value[3])
+                        "higher_semester_state": (value[3])
                     });
                 })
                 GLOBAL.currCapacity = seatArray.length;
@@ -567,7 +568,8 @@ function submitSeat() { //choosebtnYes 'onclick' attribute
         }
     };
     xmlhttp.open("GET", "assets/backend/SeatSelected.php?seat_id=" + dataSeatID
-        + "&student_id=" + GLOBAL.user.AM, true);
+                                                        + "&student_id=" + GLOBAL.user.AM
+                                                        + "&semester=" + GLOBAL.user.SEMESTER, true);
     xmlhttp.send();
 
 
@@ -598,15 +600,29 @@ function validSeat() { //simple condition checker ^^
 }
 
 
+//
+function initiateBookSeat() {
+    retriveUserSeat(GLOBAL.user.AM, ()=>{});
+    retrieveCourses();
+}
+
 // window.onload
 function getUserInfo(){ // Gets User Info from Session Storage
     GLOBAL.user = [];
     GLOBAL.user = JSON.parse(sessionStorage.getItem('user'));
     GLOBAL.user.CourseList = [];
-    console.log(GLOBAL.user);
-    retriveUserSeat(GLOBAL.user.AM, ()=>{});
-    retrieveCourses();
+    if (parseInt(GLOBAL.user.SEMESTER) % 2 == 0) {
+        initiateBookSeat();
+    }
+    else {
+        let message = document.createElement('div');
+        message.setAttribute('class', 'message-box');
+        message.innerHTML = "Λάθος εξάμηνο. Αυτή τη στιγμή διανίουμε το εαρινό εξάμηνο.";
+        document.querySelector('.selectCourse').appendChild(message);
+    }
+    
 }
+
 
 
 function makeSelectBtn() { // Make select button
