@@ -1,8 +1,11 @@
 const user = JSON.parse(sessionStorage.getItem("user"));
+const subject = JSON.parse(sessionStorage.getItem("subjects"));
 
 let separatedArray = [[]];
 
 let queryObject;
+
+
 
 
 let ol = document.createElement("ol");
@@ -11,8 +14,11 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         const dbResult = this.responseText;
-
+        
         if (dbResult != "Query failed") {
+
+            console.log(subject);
+            console.log(subject);    
 
             const result_array = dbResult.split(",");
             
@@ -29,7 +35,7 @@ xmlhttp.onreadystatechange = function () {
         }
     };
 }
-xmlhttp.open("GET", "assets/backend/studentsGet.php?AM=" + user.AM, true);
+xmlhttp.open("GET", "assets/backend/studentsGet.php?AM=" + user.AM + "&subjects=" + subject[0].code, true);
 xmlhttp.send();
 
 function recFill(liItemId){
@@ -75,9 +81,10 @@ function recFill(liItemId){
                 
                     let textName = document.querySelector("#textName");
                     textName.setAttribute("value", queryObject.stud_firstName + " " + queryObject.stud_lastName);
+                    textName.setAttribute("pseudo-id", queryObject.stud_am);
 
                     let textGrade = document.querySelector("#textGrade");
-                    textGrade.setAttribute("value", avg);
+                    textGrade.setAttribute("value", avg.toFixed(1));
 
                     let textYear = document.querySelector("#textYear");
                     textYear.setAttribute("value", 2025);
@@ -105,17 +112,16 @@ function listCreator(){
     for(let i=0;i<separatedArray.length;i++){
         
         let li = document.createElement("li");
-        let a = document.createElement("a");
-        let span = document.createElement("span");
-
         li.setAttribute("class", "list-group-item");
+        li.setAttribute("id", i);
 
+        let a = document.createElement("a");
         a.setAttribute("id", i);
         a.setAttribute("onclick", "recFill(this.id)");
         a.style.cursor = "pointer";
 
-
-        span.innerHTML = "Φοιτητής: " + separatedArray[i][1] + " " + separatedArray[i][2] + " (" + separatedArray[i][0] + ")";
+        let span = document.createElement("span");
+        span.innerHTML = separatedArray[i][1] + " " + separatedArray[i][2] + " (" + separatedArray[i][0] + ")";
         
         a.appendChild(span);
         li.appendChild(a);
@@ -166,9 +172,6 @@ function tableCreator(liItemId){
                 let tr = document.createElement("tr");
 
                 for(let i=0;i<validateSubArray.length;i++){
-
-                    
-                
 
                     th.setAttribute("scope", "row");
                     th.innerHTML = i+1;
