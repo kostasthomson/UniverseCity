@@ -62,7 +62,7 @@ function setSubjects() {
         xmlhttp_subjects.open("GET", "assets/backend/get_enrolled_subjects.php?student_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
         xmlhttp_subjects.send();
     } else if (user_type == 'teacher') {
-        xmlhttp_subjects.open("GET", "assets/backend/get_teachedby_subjects.php?teacher_id" + JSON.parse(sessionStorage.getItem('user')).AM, true);
+        xmlhttp_subjects.open("GET", "assets/backend/get_teachedby_subjects.php?teacher_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
         xmlhttp_subjects.send();
     }
 }
@@ -102,14 +102,14 @@ function setSchedule() {
     xmlhttp.send();
 }
 
-function UserNavListInit() {
+function setUserNavListInit() {
     let NavListElements;
     switch (sessionStorage.getItem('user-type')) {
         case 'student':
             NavListElements = {
                 'Αρχική': 'user_schedule.html',
                 'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
-                'Ανακοινώσεις': 'notification-view.html',
+                'Ανακοινώσεις': 'notification_view.html',
                 'Εξετάσεις-Βαθμολογίες': '',
                 'Στατιστικά': '',
                 'Δήλωση Θέσης': 'bookSeat.html',
@@ -124,7 +124,7 @@ function UserNavListInit() {
             NavListElements = {
                 'Αρχική': 'user_schedule.html',
                 'Ωρολόγιο Πρόγραμμα': '',
-                'Ανακοινώσεις': 'notification-view.html',
+                'Ανακοινώσεις': 'announcement_creation.html',
                 'Διαχείριση Μαθημάτων': '',
                 'Εξετάσεις-Βαθμολογίες': '',
                 'Προβολή Προσωπικής Αξιολόγησης': 'evaluation_results.html',
@@ -132,7 +132,7 @@ function UserNavListInit() {
             };
             break;
         case 'secretariat':
-            document.getElementById('page-content').src = 'secretariat_schedule.html';
+            // document.getElementById('page-content').src = 'secretariat_schedule.html';
             NavListElements = {
                 'Αρχική': 'secretariat_schedule.html',
                 'Ωρολόγιο Πρόγραμμα': 'secretariat_schedule.html',
@@ -143,6 +143,19 @@ function UserNavListInit() {
     }
     sessionStorage.setItem('user_nav_list', JSON.stringify(NavListElements));
 }
+
+function setNotifications() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            sessionStorage.setItem('notifications', dbResult);// [new_notification] //ΕΔΩ ΜΠΑΙΝΕΙ DB
+        }
+    };
+    xmlhttp.open("GET", "./assets/backend/get_announcements.php", true);
+    xmlhttp.send();
+}
+
 
 const ValidAm_TableNames = {
     'ics': 'STUDENTS',
@@ -183,7 +196,8 @@ function LogIn() {
                     sessionStorage.setItem('user-type', USER.constructor.name.toLowerCase());
                     setSubjects();
                     setSchedule();
-                    UserNavListInit();
+                    setUserNavListInit();
+                    setNotifications();
                     window.location.href = "../loading.html";
                 }
             }

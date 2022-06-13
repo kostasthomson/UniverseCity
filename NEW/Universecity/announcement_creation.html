@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <script type="text/javascript" src="./assets/js/announcement_creation.js"></script>
+        <script src="./assets/js/main.js"></script>
+        <title>Ανακοίνωσης</title>
+        <!-- Vendor CSS Files -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+        <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+        <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+        <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+        <script src="https://cdn.tiny.cloud/1/jac9pl4dtnfk4j7p986uj86m4x9jq6cl10vy4inprb9dw53w/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    </head>
+    <body>
+        <div class="card-body create" id="create-notification">
+            <h5 class="card-title">Δημιουργία Ανακοίνωσης</h5>
+            <form class="row g-3">
+                <div class="col-md-12">
+                    <label for="inputDate" class="col-sm-12 col-form-label">Θέμα</label>
+                    <input type="text" id="title" class="form-control" placeholder="Θέμα">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputDate"  class="col-sm-12 col-form-label">Ημερομηνία Δημοσίευσης</label>
+                    <input type="date" id="publish-day" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputDate" class="col-sm-12 col-form-label">Ημερομηνία Αφαίρεσης Δημοσίευσης</label>
+                    <input type="date" id="remove-day" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputDate" class="col-sm-12 col-form-label">Ώρα Δημοσίευσης</label>
+                    <input type="time" id="publish-time" class="form-control">
+                </div>
+                <div class="col-md-6" id="Checkboxes">
+                    <label for="inputDate" class="col-sm-12 col-form-label">Παραλήπτες</label>
+                </div>
+                <div class="col-lg-12" style="margin-bottom :5vh;">
+                    <label for="inputDate" class="col-sm-12 col-form-label">Περιγραφή</label>
+                    <textarea id="tiny" class="tinymce-editor col-sm-12" style="padding:20px;resize:none;" placeholder="Περιγραφή"></textarea>
+                </div>
+                <div class="row mb-12">
+                    <div class="col-sm-6 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="asUniversity">
+                        <label class="form-check-label" for="asUniversity">Αποστολή ως Πανεπιστήμιο</label>
+                    </div>
+                </div>  
+                <div class="text-center" style="margin:5vh 0vh 0vh 0vh">
+                    <button type="button" class="btn btn-outline-primary" onclick="Submit()">Αποστολή</button> <!--ΑΛΛΑΓΗ ΣΕ type="submit"-->
+                    <button type="reset" class="btn btn-outline-secondary">Επαναφορά</button>
+                    <hr style="margin-top:5vh">
+                </div>
+            </form>
+        </div>
+        <!-- Vendor JS Files -->
+        <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/chart.js/chart.min.js"></script>
+        <script src="assets/vendor/echarts/echarts.min.js"></script>
+        <script src="assets/vendor/quill/quill.min.js"></script>
+        <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+        <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+    </body>
+</html>

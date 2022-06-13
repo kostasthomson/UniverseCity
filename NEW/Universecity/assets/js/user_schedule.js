@@ -112,6 +112,42 @@ const days = [
 let user = get('user');
 let subjects = get('subjects');
 let schedule = get('schedule');
-days.forEach(day => {
-    columnInitialization(day.id, schedule[day.name]);
-});
+if(schedule) {
+    days.forEach(day => {
+        columnInitialization(day.id, schedule[day.name]);
+    });    
+} else {
+    let department = JSON.parse(sessionStorage.getItem('user')).DEPARTMENT;
+    let semester= JSON.parse(sessionStorage.getItem('user')).SEMESTER;
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            let schedule_list = JSON.parse(dbResult);
+            const translate = {
+                'Δευτέρα': 'Monday',
+                'Τρίτη': 'Tuesday',
+                'Τετάρτη': 'Wednesday',
+                'Πέμπτη': 'Thursday',
+                'Παρασκευή': 'Friday',
+            }
+            let schedule = {
+                'Δευτέρα': [],
+                'Τρίτη': [],
+                'Τετάρτη': [],
+                'Πέμπτη': [],
+                'Παρασκευή': []
+            }
+
+            Object.keys(schedule).forEach(key => {
+                schedule_list.forEach(element => {
+                    schedule[key].push(element[translate[key]]);
+                });
+            });
+            sessionStorage.setItem('schedule', JSON.stringify(schedule));
+        }
+    };
+    xmlhttp.open("GET", "assets/backend/get_schedule.php?department="+department+"&semester="+semester, true);
+    xmlhttp.send();
+    window.location.reload();
+}

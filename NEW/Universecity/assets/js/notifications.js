@@ -19,6 +19,17 @@ var user = "teacher" // ΕΔΩ ΜΠΑΙΝΕΙ DB
 
 
 window.onload = (event) =>{
+    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            console.log(JSON.parse(dbResult));
+        }
+    };
+    xmlhttp.open("GET", "./assets/backend/get_announcements.php", true);
+    xmlhttp.send();
+
     Refresh();
     
     //Notification Creation Block Activate & Other
@@ -70,21 +81,6 @@ function Refresh() {
         if (notification.id > last_notification && !user_list.includes(notification.id)) new_notification_list.push(notification)
     });
     UpdateNotifications(new_notification_list);
-
-
-
-    // ΑΧΡHΣΤΟΣ ΚΩΔΙΚΑΣ ? ΔΙΕΓΡΑΨΕ ΤΟΝ ΑΜΑ ΔΕΝ ΤΟΝ ΧΡΕΙΑΖΕΣΑΙ
-    // var xmlhttp = new XMLHttpRequest();
-    // xmlhttp.onreadystatechange = function () {
-    //     if (this.readyState == 4 && this.status == 200) {
-    //         const dbResult = this.responseText;
-    //         const notifications = dbResult.split('/');
-    //         const secretariat_notifications = notifications[0].split('.');
-    //         const teacher_notifications = notifications[1].split('.');
-    //     }
-    // };
-    // xmlhttp.open("GET", "./assets/backend/get_announcement.php", true);
-    // xmlhttp.send();
 }
 
 let ul_ids = [];
@@ -148,21 +144,21 @@ function UpdateNotifications(announcements) {
 
         //Final Add Of Div
         if(!document.getElementById(announcement.id)) document.getElementById("container").appendChild(div);
-        document.getElementById(announcement.title + "-" + announcement.id).innerHTML = announcement.description
+        document.getElementById(announcement.title + "-" + announcement.id).innerHTML = announcement.description;
         
     });
 }
 
 function DeleteNotification(id) {
-    const notification = document.getElementById(id)
-    user_list.push(parseInt(notification.id))    
+    const notification = document.getElementById(id);
+    user_list.push(parseInt(notification.id));
 }
 
 
 function Submit(){ 
-    var toPh = ""
-    if (document.getElementById("checkbox2") == null) toPh = false
-    else toPh = document.getElementById("checkbox2").checked
+    var toPh = "";
+    if (document.getElementById("checkbox2") == null) toPh = false;
+    else toPh = document.getElementById("checkbox2").checked;
 
     const notification = {
     "title": `${document.getElementById("title").value}`,
@@ -171,14 +167,26 @@ function Submit(){
     "publish_time": `${document.getElementById("publish-time").value}`,
     "toStudents" : `${document.getElementById("checkbox1").checked}`,
     "toPh" : `${toPh}`,
-    "description" : `${tinymce.get("tiny").getContent()}`,
+    "description" : `${document.getElementById('tiny').value}`, //tinymce.get("tiny").getContent()
     "asUniversity" : `${document.getElementById("asUniversity").checked}`,
     "id" : `${2}`, //ΕΔΩ DB ΚΑΙ ΣΥΝ 1 
     "sender" : `${"ΧΑΤΖΗΜΠΡΟ"}`, //ΕΔΩ DB
     "sender_id" : `${"teacher"}`//ΕΔΩ DB
-    }
+    };
 
-    //NOTIFICATION ADD TO DB HERE 
-    notification_list.push(notification)
-    console.log(notification_list)
+    // NOTIFICATION ADD TO DB HERE 
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            console.log(dbResult);
+        }
+    };
+    xmlhttp.open("GET", "assets/backend/post_announcement.php?notification=" + JSON.stringify(notification), true);
+    xmlhttp.send();
+
+    console.log(JSON.stringify(notification));
+
+    notification_list.push(notification);
+    console.log(notification_list);
 }

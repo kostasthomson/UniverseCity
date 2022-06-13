@@ -23,7 +23,6 @@ const chooseElem = document.getElementById("choose");
 const searchForBorder = document.getElementById("searchField");
 let toggled = false;
 
-console.log(sidebar);
 temp1.shift(); //!remove the first element which contains the notify and Img Icon 
 
 

@@ -44,8 +44,8 @@
 <body>
 
 
-  <main id="main" class="main">
-
+  <main id="main" class="main" style="margin: 0;">
+<!-- 
     <div class="pagetitle">
       <h1>Profile</h1>
       <nav>
@@ -55,7 +55,7 @@
           <li class="breadcrumb-item active">Profile</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
+    </div>End Page Title -->
 
     <section class="section profile">
       <div class="row">
@@ -65,8 +65,8 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-              <h2>Χαρίσιος Σαμαράς</h2>
-              <h3>Προπτυχιακός Φοιτητής</h3>
+              <h2 id="uppercard_name"></h2>
+              <h3 id="uppercard_student_type">Προπτυχιακός Φοιτητής</h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -83,7 +83,7 @@
           <div class="card">
             <div class="card-body pt-3">
               <!-- Bordered Tabs -->
-              <ul class="nav nav-tabs nav-tabs-bordered">
+              <!-- <ul class="nav nav-tabs nav-tabs-bordered">
 
                 <li class="nav-item">
                   <button class="nav-link active" data-bs-toggle="tab"
@@ -103,7 +103,7 @@
                     Password</button>
                 </li>
 
-              </ul>
+              </ul> -->
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
@@ -113,7 +113,7 @@
                   <h5 class="card-title">Profile Details</h5>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                    <div class="col-lg-3 col-md-4 label">Full Name</div>
                     <div class="col-lg-9 col-md-8">Χαρίσιος Σαμαράς</div>
                   </div>
 
@@ -132,10 +132,10 @@
                     <div class="col-lg-9 col-md-8">Ελλάδα</div>
                   </div>
 
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-lg-3 col-md-4 label">Address</div>
                     <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
-                  </div>
+                  </div> -->
 
                   <!-- <div class="row">
                     <div class="col-lg-3 col-md-4 label">Phone</div>
@@ -144,7 +144,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">icsxxxxx.uom.edu.gr</div>
+                    <div class="col-lg-9 col-md-8"></div>
                   </div>
 
                 </div>
@@ -152,7 +152,7 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form>
+                  <!-- <form>
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
@@ -220,7 +220,7 @@
                       <div class="col-md-8 col-lg-9">
                         <input name="email" type="email" class="form-control" id="Email" value="">
                       </div>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="row mb-3">
                       <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
@@ -249,17 +249,17 @@
                         <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
                       </div>
                     </div> -->
-
+<!-- 
                     <div class="text-center">
                       <button type="button" class="btn btn-primary">Save Changes</button>
                     </div>
-                  </form><!-- End Profile Edit Form -->
+                  </form>End Profile Edit Form -->
 
-                </div>
+                <!-- </div>
 
                 <div class="tab-pane fade pt-3" id="profile-settings">
 
-                  <!-- Settings Form -->
+                  Settings Form
                   <form>
 
                     <div class="row mb-3">
@@ -295,12 +295,12 @@
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
-                  </form><!-- End settings Form -->
+                  </form> End settings Form
 
                 </div>
 
                 <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <!-- Change Password Form -->
+                  Change Password Form 
                   <form>
 
                     <div class="row mb-3">
@@ -328,9 +328,9 @@
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Change Password</button>
                     </div>
-                  </form><!-- End Change Password Form -->
+                  </form> End Change Password Form
 
-                </div>
+                </div> -->
 
               </div><!-- End Bordered Tabs -->
 
@@ -353,6 +353,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/profile.js"></script>
 
 </body>
 
