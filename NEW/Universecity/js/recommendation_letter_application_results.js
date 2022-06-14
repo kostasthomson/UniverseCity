@@ -1,14 +1,17 @@
 const user = JSON.parse(sessionStorage.getItem("user"));
-const subject = JSON.parse(sessionStorage.getItem("subjects"));
+const subjects = JSON.parse(sessionStorage.getItem("subjects"));
 
 let separatedArray = [[]];
 
+let subArray = [];
+
 let queryObject;
 
-
-
-
 let ol = document.createElement("ol");
+
+subjects.forEach(e => {
+    subArray.push(e.code);
+});
 
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
@@ -16,9 +19,6 @@ xmlhttp.onreadystatechange = function () {
         const dbResult = this.responseText;
         
         if (dbResult != "Query failed") {
-
-            console.log(subject);
-            console.log(subject);    
 
             const result_array = dbResult.split(",");
             
@@ -35,8 +35,10 @@ xmlhttp.onreadystatechange = function () {
         }
     };
 }
-xmlhttp.open("GET", "assets/backend/studentsGet.php?AM=" + user.AM + "&subjects=" + subject[0].code, true);
+xmlhttp.open("GET", "assets/backend/studentsGet.php?AM=" + user.AM + "&subjects=" + subArray, true);
 xmlhttp.send();
+
+
 
 function recFill(liItemId){
 
@@ -161,17 +163,21 @@ function tableCreator(liItemId){
 
                 let table = document.querySelector("#tableSubject");
                 let tbody = document.querySelector("#subjects");
-                let tdSubject = document.createElement("td");
-                let tdSemester = document.createElement("td");
-                let tdGrade = document.createElement("td");
-                let th = document.createElement("th");
+                
+                
                 
 
                 tbody.innerHTML = "";
 
-                let tr = document.createElement("tr");
+                
 
                 for(let i=0;i<validateSubArray.length;i++){
+
+                    let th = document.createElement("th");
+                    let tr = document.createElement("tr");
+                    let tdSubject = document.createElement("td");
+                    let tdSemester = document.createElement("td");
+                    let tdGrade = document.createElement("td");
 
                     th.setAttribute("scope", "row");
                     th.innerHTML = i+1;
