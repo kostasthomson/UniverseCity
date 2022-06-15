@@ -1,12 +1,11 @@
 let user = JSON.parse(sessionStorage.getItem('user'));
-let user_type = sessionStorage.getItem('user_type');
+let user_type = sessionStorage.getItem('user-type');
 
 document.getElementById('uppercard_name').innerHTML = user.FIRST_NAME + ' ' + user.LAST_NAME;
 
 let elements = document.querySelectorAll('.col-lg-9.col-md-8');
 elements[0].innerHTML = user.FIRST_NAME + ' ' + user.LAST_NAME;
 elements[elements.length - 1].innerHTML = user.AM+'@uom.edu.gr';
-
 
 if(user_type == 'student') {
     document.getElementById('uppercard_student_type').innerHTML = 'Προπτυχιακός Φοιτητής';
