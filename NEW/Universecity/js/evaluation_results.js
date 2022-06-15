@@ -19,7 +19,6 @@ let questions = ['Η συνολική απόδοση του διδάσκοντα
 
 let flag = false;
 
-
 window.onload = () => { //Συνάρτηση που τρέχει με την φόρτωση της σελίδας
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
@@ -143,7 +142,7 @@ function calcVotes() {
       };
       //---//
 
-      //Δημιουργία πεδίων όπου θα απικονίζονται οι αξιολογήσεις
+      //Δημιουργία πεδίων όπου θα απεικονίζονται οι αξιολογήσεις
       let divChart = document.createElement("div");
       divChart.setAttribute("class", "chart");
       divChart.setAttribute("id", "chart" + [i]);
