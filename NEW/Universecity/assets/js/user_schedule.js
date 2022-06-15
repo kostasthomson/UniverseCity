@@ -110,6 +110,7 @@ const days = [
 ];
 
 let user = get('user');
+let user_type = sessionStorage.getItem('user-type');
 let subjects = get('subjects');
 let schedule = get('schedule');
 if(schedule) {
@@ -147,7 +148,7 @@ if(schedule) {
             sessionStorage.setItem('schedule', JSON.stringify(schedule));
         }
     };
-    xmlhttp.open("GET", "assets/backend/get_schedule.php?department="+department+"&semester="+semester, true);
+    xmlhttp.open("GET", "assets/backend/get_schedule.php?user_type="+user_type+"&department="+department+"&semester="+semester, true);
     xmlhttp.send();
-    window.location.reload();
+
 }

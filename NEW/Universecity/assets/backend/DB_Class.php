@@ -86,7 +86,11 @@
         }
 
         function getQueryResults(): array {
-            return $this->QueryResults;
+            if($this->QueryResults) {
+                return $this->QueryResults;
+            } else {
+                return array();
+            }
         }
 
         function close(): void {

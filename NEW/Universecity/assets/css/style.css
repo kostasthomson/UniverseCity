@@ -11,6 +11,14 @@ body {
   color: #444444;
 }
 
+body {
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 a {
   color: #366C77;
   text-decoration: none;
