@@ -1,56 +1,35 @@
-
-const subject_id = [];
-const subject_title = [];
+//Δημιουργία element select και προσθήκη χαρακτηριστικών
 const select = document.createElement("select");
 select.setAttribute("name", "subjects");
 select.setAttribute("id", "subjs");
 select.setAttribute("class", "select");
+//---//
 
+//Δημιουργία element option και προσθήκη χαρακτηριστικών
 let options = document.createElement("option");
+options.setAttribute("disabled", "disabled");
+options.setAttribute("selected", "selected");
+options.setAttribute("class", "invalid");
+//---//
+
+//Δήλωση μεταβλητών για τα δεδομένα από το session storage
 let user = JSON.parse(sessionStorage.getItem("user"));
+let subjects = JSON.parse(sessionStorage.getItem("subjects"));
+//---//
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        const dbResult = this.responseText;
-        if (dbResult != "Query failed") {
+console.log(subjects);
 
-            const result_array = dbResult.split(",");
+for (let i = 0; i < subjects.length; i++) {
 
-            let j = 0, k = 0;
-
-            for (i = 0; i < result_array.length; i++) {
-                if (i % 2 == 0 && result_array[i] != " ") {
-                    subject_id[j] = result_array[i];
-                    j++;
-                }
-                else if (result_array[i] != " ") {
-                    subject_title[k] = result_array[i];
-                    k++;
-                }
-            }
-
-            options.setAttribute("disabled", "disabled");
-            options.setAttribute("selected", "selected");
-            options.setAttribute("class", "invalid");
-
-            for (let i = 0; i < subject_title.length; i++) {
-
-                let optionText = document.createTextNode(subject_title[i]);
-                options = document.createElement("option");
-                options.setAttribute("value", subject_id[i]);
-                options.setAttribute("name", subject_id[i]);
-                options.setAttribute("id", i + 1);
-                options.appendChild(optionText);
-
-                select.appendChild(options);    
-            }
-            document.getElementById("test").appendChild(select);
-        }
-    };
+    let optionText = document.createTextNode(subjects[i].title); //Τίτλος για τα option elements
+    options = document.createElement("option");
+    //Καταχώρηση περαιτέρω χαρακτηριστικών
+    options.setAttribute("value", subjects[i].code);
+    options.setAttribute("name", subjects[i].code);
+    options.setAttribute("id", i + 1);
+    options.appendChild(optionText);
+    //---//
+    select.appendChild(options); //Προσθήκη option στο select element
 }
-xmlhttp.open("GET", "assets/backend/subjectGet.php?semester=" + user.SEMESTER, true);
-xmlhttp.send();
 
-
-
+document.getElementById("optionSet").appendChild(select); //Προσθήκη select στο div element με id "optionSet"
