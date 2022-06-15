@@ -12,7 +12,6 @@ body {
   margin: 0;
 }
 
-
 h1,
 h2,
 h3,
@@ -85,9 +84,7 @@ h3 {
   background-color: #366c77;
 }
 
-
 .select:hover {
-
 
   background-color: #3996a9;
   cursor: pointer;
@@ -115,7 +112,6 @@ h3 {
   color: #ffffff;
 
 }
-
 
 .submitBtn:hover {
   background-color: #3996a9;
@@ -180,15 +176,9 @@ input[type='radio']:checked:before {
   padding: 0.5rem 0.3rem 0.1rem 0.3rem;
 }
 
-
-
-
-
-
 select option[disabled="disabled"][selected="selected"] {
   display: none;
 }
-
 
 /* Card */
 .card {

@@ -1,3 +1,4 @@
+//Δήλωση μετάβλητων 
 const selectedSub = document.querySelector(".select");
 const radioBtnsNodes = document.querySelectorAll(".styleRadio");
 const labelInput = document.querySelector("radio-inline");
@@ -8,6 +9,7 @@ const textarea = document.querySelector(".textarea");
 let radioCounter = 0;
 
 const RADIO_EACH_ROW = 6;
+//---//
 
 function fillOptions() {
 
@@ -37,8 +39,11 @@ function sendRequest() {
     let value = subject.options[subject.selectedIndex].value;
     const textArea = document.getElementById("floatingTextarea").value;
 
+    //Δήλωση μεταβλητών για τα δεδομένα από το session storage
     let user = JSON.parse(sessionStorage.getItem("user"));
+    //---//
 
+    //Δήλωση βοηθητικού object
     let queryObject = {
         "subject": value,
 
@@ -48,8 +53,9 @@ function sendRequest() {
 
         "AM": user.AM
     };
+    //---//
 
-    const jsonQueryObject = JSON.stringify(queryObject);
+    const jsonQueryObject = JSON.stringify(queryObject); //Μετατροπ΄΄η του object -> JSON
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -59,7 +65,6 @@ function sendRequest() {
 
                 alert("Η υποβολή σου έγινε επιτυχώς!");
                 window.location.reload(true);
-                const result_array = dbResult.split(",");
             }
         }
     };
