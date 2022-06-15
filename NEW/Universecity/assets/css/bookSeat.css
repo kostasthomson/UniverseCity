@@ -170,11 +170,11 @@ h3 {
 }
 
 .seat.selected {
-  background-color: #366c77 !important;
+  background-color: #09b470c7 !important;
 }
 
 .seat.forbidden {
-  background-color:#ffffff80 !important;
+  background-color:#666666 !important;
   cursor: default;
 }
 

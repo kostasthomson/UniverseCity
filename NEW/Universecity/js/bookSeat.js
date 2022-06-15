@@ -573,9 +573,10 @@ function makeSelectBtn() {
 
 
     let selectBtn = document.createElement('button');
+    selectBtn.setAttribute('class', 'btn btn-outline-secondary');
     selectBtn.setAttribute('id', 'selectBtn');
     selectBtn.setAttribute('onclick', 'modalToggle()');
-    selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
+    selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογη Θεσης');
     document.body.appendChild(selectBtn);
     selectBtn.style.display = "none";
 
