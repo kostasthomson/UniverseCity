@@ -27,7 +27,7 @@
             
             $query = "INSERT INTO covid_report (class_type, seat_id, date) VALUES ('$class', $seat, '$date')";
 
-            $db->makeDMLQuery($query);
+            $db->makeQuery($query);
         }
     }
 ?>

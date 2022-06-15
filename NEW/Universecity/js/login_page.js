@@ -110,8 +110,8 @@ function setUserNavListInit() {
                 'Αρχική': 'user_schedule.html',
                 'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
                 'Ανακοινώσεις': 'notification_view.html',
-                'Εξετάσεις-Βαθμολογίες': '',
-                'Στατιστικά': '',
+                'Εξετάσεις-Βαθμολογίες': 'coming_soon.html',
+                'Στατιστικά': 'coming_soon.html',
                 'Δήλωση Θέσης': 'bookSeat.html',
                 'Σάρωση QR': 'QrScanner.html',
                 'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
@@ -123,10 +123,10 @@ function setUserNavListInit() {
         case 'teacher':
             NavListElements = {
                 'Αρχική': 'user_schedule.html',
-                'Ωρολόγιο Πρόγραμμα': '',
+                'Ωρολόγιο Πρόγραμμα': 'coming_soon.html',
                 'Ανακοινώσεις': 'announcement_creation.html',
-                'Διαχείριση Μαθημάτων': '',
-                'Εξετάσεις-Βαθμολογίες': '',
+                'Διαχείριση Μαθημάτων': 'coming_soon.html',
+                'Εξετάσεις-Βαθμολογίες': 'coming_soon.html',
                 'Προβολή Προσωπικής Αξιολόγησης': 'evaluation_results.html',
                 'Συστατική Επιστολή': 'recommendation_letter.html'
             };
@@ -137,7 +137,7 @@ function setUserNavListInit() {
                 'Αρχική': 'secretariat_schedule.html',
                 'Ωρολόγιο Πρόγραμμα': 'secretariat_schedule.html',
                 'Ανακοινώσεις': 'announcement_creation.html',
-                'Διαχείριση Ενεργειών': ''
+                'Διαχείριση Ενεργειών': 'coming_soon.html'
             };
             break;
     }

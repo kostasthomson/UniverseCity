@@ -18,7 +18,7 @@
 
     $query = "SELECT DISTINCT GRADES.student_id, GRADES.subject_id, SUBJECTS.title, GRADES.grade FROM GRADES, SUBJECTS WHERE ('$stud_am' = GRADES.student_id) AND SUBJECTS.code = GRADES.subject_id;";
 
-    $db->makeDMLQuery($query);
+    $db->makeQuery($query);
 
     $result = $db->getQueryResults();
 
