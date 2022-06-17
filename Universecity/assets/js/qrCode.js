@@ -15,7 +15,7 @@ function onScanSuccess(qrCodeMessage) {
   let am = JSON.parse(sessionStorage.getItem("user")).AM;
   xmlhttp.open(
     "GET",
-    "assets/backend/qrCode.php?classroom_id=" + qrCodeMessage + "&am=" + am, true);
+    "../backend/qrCode.php?classroom_id=" + qrCodeMessage + "&am=" + am, true);
 
   xmlhttp.send();
 }

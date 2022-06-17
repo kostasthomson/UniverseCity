@@ -59,7 +59,7 @@ window.onload = () => { //Συνάρτηση που τρέχει με την φ�
       }
     }
   };
-  xmlhttp.open("GET", "assets/backend/evaluation_results.php?user=" + sessionStorage.getItem("user"), true);
+  xmlhttp.open("GET", "../backend/evaluation_results.php?user=" + sessionStorage.getItem("user"), true);
   xmlhttp.send();
 }
 

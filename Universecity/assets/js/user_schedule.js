@@ -149,7 +149,7 @@ if(schedule) {
             sessionStorage.setItem('schedule', JSON.stringify(schedule));
         }
     };
-    xmlhttp.open("GET", "assets/backend/get_schedule.php?user_type="+user_type+"&department="+department+"&semester="+semester, true);
+    xmlhttp.open("GET", "../backend/get_schedule.php?user_type="+user_type+"&department="+department+"&semester="+semester, true);
     xmlhttp.send();
 
 }

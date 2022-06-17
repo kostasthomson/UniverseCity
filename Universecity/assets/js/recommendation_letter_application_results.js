@@ -40,7 +40,7 @@ xmlhttp.onreadystatechange = function () {
         }
     };
 }
-xmlhttp.open("GET", "assets/backend/studentsGet.php?AM=" + user.AM + "&subjects=" + subArray, true);
+xmlhttp.open("GET", "../backend/studentsGet.php?AM=" + user.AM + "&subjects=" + subArray, true);
 xmlhttp.send();
 
 function listCreator(){
@@ -143,7 +143,7 @@ function tableCreator(liItemId){
             }
         };
     }
-    xmlhttpTableFill.open("GET", "assets/backend/validateSubAndTeacher.php?AM=" + user.AM + "&stud_am=" + queryObject.stud_am, true);
+    xmlhttpTableFill.open("GET", "../backend/validateSubAndTeacher.php?AM=" + user.AM + "&stud_am=" + queryObject.stud_am, true);
     xmlhttpTableFill.send();
 }
 
@@ -213,6 +213,6 @@ function recFill(liItemId){
             }
         };
     }
-    xmlhttpRecFill.open("GET", "assets/backend/recommendation_letter_application_results.php?results=" + jsonQueryObject, true);
+    xmlhttpRecFill.open("GET", "../backend/recommendation_letter_application_results.php?results=" + jsonQueryObject, true);
     xmlhttpRecFill.send();
 }
