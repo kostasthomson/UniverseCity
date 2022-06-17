@@ -128,7 +128,7 @@ function makeList() { // New Course List with buttons
 
 
 
-        document.querySelector('.selectCourse').appendChild(CourseListContainer)
+        document.querySelector('#selectCourse').appendChild(CourseListContainer)
         CourseListContainer.setAttribute("id", "SelectCourseList");
 
 
@@ -635,24 +635,36 @@ function makeModal() {
 
     let modalText = document.createElement('p')
     modalText.setAttribute('class', 'modalText');
+
+    let chooseBtnGroup = document.createElement('div');
+    chooseBtnGroup.setAttribute('class', 'btn-group');
+    chooseBtnGroup.setAttribute('role', 'group');
+
     modalText.insertAdjacentHTML('afterbegin', 'Έχετε επιλέξει μια θέση είστε σίγουρος ότι θέλετε να συνεχίσετε για την κράτησή της; ');
+
+
     let choosebtnYes = document.createElement('button');
-    choosebtnYes.setAttribute('class', 'chbtn');
+    choosebtnYes.setAttribute('class', 'btn btn-outline-secondary');
     choosebtnYes.setAttribute('value', 'yes');
     choosebtnYes.setAttribute('id', 'yesbtn');
     choosebtnYes.setAttribute('onclick', 'submitSeat()');
+
+
     let choosebtnNo = document.createElement('button');
-    choosebtnNo.setAttribute('class', 'chbtn');
+    choosebtnNo.setAttribute('class', 'btn btn-outline-secondary');
     choosebtnNo.setAttribute('value', 'no');
     choosebtnNo.setAttribute('id', 'nobtn');
+
     // choosebtnYes.value =("Ναι");
     // choosebtnNo.value=("Όχι");
     choosebtnYes.insertAdjacentHTML('afterbegin', 'Ναι');
     choosebtnNo.insertAdjacentHTML('afterbegin', 'Όχι');
-    modalContent.appendChild(modalText);
-    modalContent.appendChild(choosebtnYes);
-    modalContent.appendChild(choosebtnNo);
 
+
+    modalContent.appendChild(modalText);
+    chooseBtnGroup.appendChild(choosebtnYes);
+    chooseBtnGroup.appendChild(choosebtnNo);
+    modalContent.appendChild(chooseBtnGroup);
 
     selectModal.appendChild(modalContent);
     document.body.append(selectModal);
