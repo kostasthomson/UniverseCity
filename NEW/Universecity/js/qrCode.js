@@ -4,7 +4,7 @@ function onScanSuccess(qrCodeMessage) {
     if (this.readyState == 4 && this.status == 200) {
       const dbResult = this.responseText;
       console.log(dbResult);
-      if(dbResult.includes("Fail") || dbResult.includes("No results")){
+      if(!(dbResult.includes("Successful changes"))){
         location.replace("QrCodeFail.html")
       }else{
         location.replace("QrCodeCorrect.html");

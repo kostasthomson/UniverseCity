@@ -20,6 +20,7 @@
 
             $query = "UPDATE studentsArrive SET sum_arrived = sum_arrived + 1 WHERE students_id = '$student_am' AND subject_id IN (SELECT subject_id FROM teached_in WHERE class_id = $classroom_qrId)";
             $query_execute = $db->makeDMLQuery($query);
+            echo "Successful changes";
             
 
         }

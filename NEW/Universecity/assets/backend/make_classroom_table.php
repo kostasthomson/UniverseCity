@@ -6,7 +6,7 @@
     // $sql1 = "DROP TABLE studentsArrive";
     // $query_done = $db->makeQuery($sql1);
 
-    // $sql = "CREATE TABLE studentsArrive (students_id VARCHAR(30), subject_id VARCHAR(30), sum_arrived INT(4))";
+    // $sql = "CREATE TABLE studentsArrive (students_id VARCHAR(30), subject_id VARCHAR(30), sum_arrived INT(4), lessons_count INT(4))";
     // $query_done = $db->makeQuery($sql);
     
     // $sql1 = "SELECT am FROM STUDENTS WHERE semester IN (SELECT semester FROM SUBJECTS)";
@@ -30,6 +30,9 @@
     //     echo "fail";
     // }
 
+
+    // Meta tin dimiourgeia tou pinaka 
+
     $query = "DELETE FROM studentsArrive";
     $db->makeDMLQuery($query);
 
@@ -52,7 +55,8 @@
     }
 
     foreach($array as $r){
-        $query = "INSERT INTO studentsArrive (students_id, subject_id, sum_arrived) VALUES ('$r[0]', '$r[1]', 0)";
+        $random = rand(50,100);
+        $query = "INSERT INTO studentsArrive (students_id, subject_id, sum_arrived, lessons_count) VALUES ('$r[0]', '$r[1]', 0, $random)";
 
         $db->makeDMLQuery($query);
     }
