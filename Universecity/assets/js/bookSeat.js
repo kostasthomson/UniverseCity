@@ -128,7 +128,7 @@ function makeList() { // New Course List with buttons
 
 
 
-        document.querySelector('#selectCourse').appendChild(CourseListContainer)
+        document.querySelector('#SelectCourse').appendChild(CourseListContainer)
         CourseListContainer.setAttribute("id", "SelectCourseList");
 
 
@@ -314,7 +314,7 @@ function retrieveFromDB(courseCode) { // Find Classroom + Generate Seats
                         "id": parseInt(value[0]),
                         "number": parseInt(value[1]),
                         "lower_semester_state": (value[2]),
-                        "higher_semester_state": parseInt(value[3])
+                        "higher_semester_state": (value[3])
                     });
                 })
                 GLOBAL.currCapacity = seatArray.length;
@@ -567,7 +567,8 @@ function submitSeat() { //choosebtnYes 'onclick' attribute
         }
     };
     xmlhttp.open("GET", "assets/backend/SeatSelected.php?seat_id=" + dataSeatID
-        + "&student_id=" + GLOBAL.user.AM, true);
+                                                        + "&student_id=" + GLOBAL.user.AM
+                                                        + "&semester=" + GLOBAL.user.SEMESTER, true);
     xmlhttp.send();
 
 
