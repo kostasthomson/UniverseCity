@@ -140,7 +140,7 @@ input:checked+.box .box-close {
   font-size: 18pt;
   left: 20px;
   top: -2px;
-  transition: transform .15s ease-in-out;
+  transition: transform .50s ease-in-out;
   color: rgba(0, 0, 0, .54);
 }
 
@@ -166,7 +166,7 @@ section:hover {
 }
 
 section:focus {
-  transition: all 20ms;
+  transition: all 990ms;
 }
 
 header.box {
