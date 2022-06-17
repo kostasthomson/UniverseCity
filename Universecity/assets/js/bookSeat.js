@@ -165,14 +165,14 @@ function getSchedule() {
     GLOBAL.user.schedule = JSON.parse(sessionStorage.getItem("schedule"));
 
     const date = new Date(); //! zero-based for the month index
-    console.log(date);
+   // console.log(date);
 
     // 2022, 05, 08 --> year, month index, day --> 2022 June 8
-    console.log( //! temp
-        date.toLocaleDateString('el', {
-            weekday: 'long'
-        })
-    ); 
+    // console.log( //! temp
+    //     date.toLocaleDateString('el', {
+    //         weekday: 'long'
+    //     })
+    // ); 
 
     const currentWeekday = date.toLocaleDateString('el', {weekday: 'long'});
 
@@ -233,6 +233,7 @@ function retrieveClassroom(courseCode, callback) {
 
 function validate(courseCode) {
     // Find the course and return the classroom
+    generateSubjectInfo(courseCode);
     let selectBtn = document.getElementById("selectBtn");
     selectBtn.style.display = 'block';
     
@@ -263,6 +264,40 @@ function validate(courseCode) {
         // Generate Seats
         retrieveFromDB(courseCode);
     }
+}
+
+function generateSubjectInfo(courseCode) {
+    let subjectInfo = document.querySelector("#SubjectInfo");
+
+    //didaktor
+    //ora
+    //mera
+    //aithousa
+    let teacherName = getTeacher(courseCode); //prepei na ginei async
+
+    let teacher = document.createElement("li");
+    teacher.setAttribute("class" , "list-group-item");
+    teacher.innerHTML = teacherName;
+    subjectInfo.appendChild(teacher);    
+    
+}
+
+function getTeacher(courseCode){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            if (dbResult != "Wrong Subject ID") {
+                // let teacher = JSON.parse(dbResult);
+                return dbResult;
+           
+
+
+            }
+        }
+    };
+    xmlhttp.open("GET", "assets/backend/getTeacher.php?subject_id=" + courseCode, true);
+    xmlhttp.send();
 }
 
 //todo merge initSeatContainer() with initInsideContainers()
@@ -604,7 +639,7 @@ function getUserInfo(){ // Gets User Info from Session Storage
     GLOBAL.user = [];
     GLOBAL.user = JSON.parse(sessionStorage.getItem('user'));
     GLOBAL.user.CourseList = [];
-    console.log(GLOBAL.user);
+    //console.log(GLOBAL.user);
     retriveUserSeat(GLOBAL.user.AM, ()=>{});
     retrieveCourses();
 }
