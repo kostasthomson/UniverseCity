@@ -34,11 +34,11 @@
     // Meta tin dimiourgeia tou pinaka 
 
     $query = "DELETE FROM studentsArrive";
-    $db->makeDMLQuery($query);
+    $db->makeQuery($query);
 
     $query = "SELECT * FROM enrolled_in";
 
-    $db->makeDMLQuery($query);
+    $db->makeQuery($query);
 
     $resultId = $db->getQueryResults();
 
@@ -55,10 +55,10 @@
     }
 
     foreach($array as $r){
-        $random = rand(50,100);
-        $query = "INSERT INTO studentsArrive (students_id, subject_id, sum_arrived, lessons_count) VALUES ('$r[0]', '$r[1]', 0, $random)";
+        $random = rand(5,13);
+        $query = "INSERT INTO studentsArrive (students_id, subject_id, sum_arrived, lessons_count) VALUES ('$r[0]', '$r[1]', $random, 13)";
 
-        $db->makeDMLQuery($query);
+        $db->makeQuery($query);
     }
 
 

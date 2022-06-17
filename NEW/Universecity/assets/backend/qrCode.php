@@ -6,7 +6,7 @@
     $db = new DataBase("sqlite:DATABASES/STORAGE_fortesting.db");
 
     $query = "SELECT student_id FROM (SELECT student_id FROM is_sitting WHERE seat_id IN (SELECT seat_id FROM has WHERE class_id = $classroom_qrId)) WHERE student_id = '$student_am'";// ics21008 kai ics21001
-    $query_done = $db->makeDMLQuery($query);
+    $query_done = $db->makeQuery($query);
     
 
 
@@ -19,7 +19,7 @@
         } else {
 
             $query = "UPDATE studentsArrive SET sum_arrived = sum_arrived + 1 WHERE students_id = '$student_am' AND subject_id IN (SELECT subject_id FROM teached_in WHERE class_id = $classroom_qrId)";
-            $query_execute = $db->makeDMLQuery($query);
+            $query_execute = $db->makeQuery($query);
             echo "Successful changes";
             
 
