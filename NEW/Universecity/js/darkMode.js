@@ -21,30 +21,74 @@ const universecityText = document.querySelector(".logo-text");
 const sidebar = document.querySelector("aside ul.sidebar-nav");
 const chooseElem = document.getElementById("choose");
 const searchForBorder = document.getElementById("searchField");
+let asidelis = Array.from(document.querySelectorAll("aside ul li.nav-item"));
 let toggled = false;
 
 temp1.shift(); //!remove the first element which contains the notify and Img Icon 
 
 
 
+//!Push here iframes that need longer time to get data from database so as to apply darkmode
+let slowIframes = [];
+slowIframes.push(asidelis[2]) //*anakoinwseis
+
+
+//!Remove from the list iframes that are being put in the slowIframes
+asidelis = asidelis.filter(val => !slowIframes.includes(val));
+
+
 
 
 toggle.addEventListener("click", (e) => {
     //!Consistent dark mode through page changes,time out is necessecary to work
-    sidebar.onclick = function () {
-        setTimeout(function () {
-            toggle.click();
-
-        }, 3);
-        setTimeout(function () {
-            toggle.click();
-
-        }, 50);
 
 
+    slowIframes.forEach(item => {
+        item.onclick = function () {
+            setTimeout(function () {
+                toggle.click();
+
+            }, 1);
+            setTimeout(function () {
+                toggle.click();
+
+            }, 50);
+        }
+    });
 
 
-    };
+    asidelis.forEach(item1 => {
+        item1.onclick = function () {
+            setTimeout(function () {
+                toggle.click();
+
+            }, 20);
+            setTimeout(function () {
+                toggle.click();
+
+            }, 22);
+        }
+    });
+
+
+
+    //!Consistent dark mode through page changes,time out is necessecary to work
+    //  sidebar.onclick = function () {
+    //     setTimeout(function () {
+    //         toggle.click();
+
+    //     }, 20);
+    //     setTimeout(function () {
+    //         toggle.click();
+
+    //     }, 22);
+
+
+
+
+
+
+
 
     chooseElem.onclick = function () {
         setTimeout(function () {
@@ -161,6 +205,9 @@ toggle.addEventListener("click", (e) => {
         let socialLinks = otherPage.document.querySelectorAll("div a i");
         let colsx8 = otherPage.document.querySelectorAll(".col-xl-8");
         let colsx4 = otherPage.document.querySelectorAll(".col-xl-4");
+
+
+
 
         if (colsx8 = otherPage.document.querySelectorAll(".col-xl-8")) {
 
