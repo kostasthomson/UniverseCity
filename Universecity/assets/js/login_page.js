@@ -59,10 +59,10 @@ function setSubjects() {
     };
     const user_type = sessionStorage.getItem('user-type');
     if (user_type == 'student') {
-        xmlhttp_subjects.open("GET", "assets/backend/get_enrolled_subjects.php?student_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
+        xmlhttp_subjects.open("GET", "../backend/get_enrolled_subjects.php?student_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
         xmlhttp_subjects.send();
     } else if (user_type == 'teacher') {
-        xmlhttp_subjects.open("GET", "assets/backend/get_teachedby_subjects.php?teacher_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
+        xmlhttp_subjects.open("GET", "../backend/get_teachedby_subjects.php?teacher_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
         xmlhttp_subjects.send();
     }
 }
@@ -98,7 +98,7 @@ function setSchedule() {
             sessionStorage.setItem('schedule', JSON.stringify(schedule));
         }
     };
-    xmlhttp.open("GET", "assets/backend/get_schedule.php?user_type="+sessionStorage.getItem('user_type')+"&department="+department+"&semester="+semester, true);
+    xmlhttp.open("GET", "../backend/get_schedule.php?user_type="+sessionStorage.getItem('user_type')+"&department="+department+"&semester="+semester, true);
     xmlhttp.send();
 }
 
@@ -152,7 +152,7 @@ function setNotifications() {
             sessionStorage.setItem('notifications', dbResult);// [new_notification] //ΕΔΩ ΜΠΑΙΝΕΙ DB
         }
     };
-    xmlhttp.open("GET", "./assets/backend/get_announcements.php", true);
+    xmlhttp.open("GET", "../backend/get_announcements.php", true);
     xmlhttp.send();
 }
 
@@ -198,11 +198,11 @@ function LogIn() {
                     setSchedule();
                     setUserNavListInit();
                     setNotifications();
-                    window.location.href = "../loading.html";
+                    window.location.href = "../../loading.html";
                 }
             }
         };
-        xmlhttp.open("GET", "../assets/backend/login.php?am=" + USER_AM + "&pass=" + USER_PASS + "&tname=" + TABLE_NAME, true);
+        xmlhttp.open("GET", "../backend/login.php?am=" + USER_AM + "&pass=" + USER_PASS + "&tname=" + TABLE_NAME, true);
         xmlhttp.send();
     }
 }

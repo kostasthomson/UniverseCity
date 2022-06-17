@@ -47,7 +47,7 @@ function button_print() {
             }
         };
     }
-    xmlhttp.open("GET", "assets/backend/recommendation_letter_delete_application.php?stud_am=" + li_item_id + "&teac_am=" + user.AM, true);
+    xmlhttp.open("GET", "../backend/recommendation_letter_delete_application.php?stud_am=" + li_item_id + "&teac_am=" + user.AM, true);
     xmlhttp.send();
   }
   //---//

@@ -149,7 +149,7 @@ toggle.addEventListener("click", (e) => {
     } else {
         h1.style.color = "#366c77";
         icon.src = "../img/dark.png";
-        universecity.src = "../assets/img/Universecity.png";
+        universecity.src = "../img/Universecity.png";
         universecity.style.boxShadow = "none";
 
         for (e of asideElem) {

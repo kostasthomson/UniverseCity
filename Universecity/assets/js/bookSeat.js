@@ -130,7 +130,7 @@ function retriveUserSeat(am, callback){
                 
             }
         }
-    xmlhttp.open("GET", "assets/backend/get_student_seat.php?student_id=" + am, true);
+    xmlhttp.open("GET", "../backend/get_student_seat.php?student_id=" + am, true);
     xmlhttp.send();
 }
 
@@ -176,7 +176,7 @@ function retrieveCourses() {
                 
             }
         }
-    xmlhttp.open("GET", "assets/backend/get_subject_list.php?department=" + GLOBAL.user.DEPARTMENT 
+    xmlhttp.open("GET", "../backend/get_subject_list.php?department=" + GLOBAL.user.DEPARTMENT 
                                                             +"&semester=" + GLOBAL.user.SEMESTER
                                                             +"&direction=" + GLOBAL.user.STUDY_DIRECTION, true);
     xmlhttp.send();
@@ -257,7 +257,7 @@ function retrieveFromDB(courseCode) {
             }
         }
     };
-    xmlhttp.open("GET", "assets/backend/SeatReservation.php?subject_id=" + courseCode, true);
+    xmlhttp.open("GET", "../backend/SeatReservation.php?subject_id=" + courseCode, true);
     xmlhttp.send();
     //capacity = rows.length
     // end retrieve
@@ -282,7 +282,7 @@ function retrieveClassroom(courseCode, callback) {
             }
         }
     };
-    xmlhttp.open("GET", "assets/backend/get_classroom.php?subject_id=" + courseCode, true);
+    xmlhttp.open("GET", "../backend/get_classroom.php?subject_id=" + courseCode, true);
     xmlhttp.send();
 }
 
@@ -647,7 +647,7 @@ function submitSeat() {
             }
         }
     };
-    xmlhttp.open("GET", "assets/backend/SeatSelected.php?seat_id=" + dataSeatID
+    xmlhttp.open("GET", "../backend/SeatSelected.php?seat_id=" + dataSeatID
         + "&student_id=" + GLOBAL.user.AM, true);
     xmlhttp.send();
 

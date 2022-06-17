@@ -27,7 +27,7 @@ window.onload = (event) =>{
             console.log(JSON.parse(dbResult));
         }
     };
-    xmlhttp.open("GET", "./assets/backend/get_announcements.php", true);
+    xmlhttp.open("GET", "../backend/get_announcements.php", true);
     xmlhttp.send();
 
     Refresh();
@@ -182,7 +182,7 @@ function Submit(){
             console.log(dbResult);
         }
     };
-    xmlhttp.open("GET", "assets/backend/post_announcement.php?notification=" + JSON.stringify(notification), true);
+    xmlhttp.open("GET", "../backend/post_announcement.php?notification=" + JSON.stringify(notification), true);
     xmlhttp.send();
 
     console.log(JSON.stringify(notification));
