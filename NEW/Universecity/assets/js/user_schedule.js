@@ -1,5 +1,6 @@
 function columnInitialization(col, data) {
     for(let i = 0; i < data.length; i++) {
+        console.log(document.getElementById('row-'+i+'-data-'+col));
         document.getElementById('row-'+i+'-data-'+col).innerHTML = data[i];
     }
 }
