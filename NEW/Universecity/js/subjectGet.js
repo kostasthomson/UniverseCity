@@ -17,9 +17,9 @@ let user = JSON.parse(sessionStorage.getItem("user"));
 let subjects = JSON.parse(sessionStorage.getItem("subjects"));
 //---//
 
-console.log(subjects);
-
 for (let i = 0; i < subjects.length; i++) {
+
+    console.log(subjects[i].title);
 
     let optionText = document.createTextNode(subjects[i].title); //Τίτλος για τα option elements
     options = document.createElement("option");
@@ -33,3 +33,4 @@ for (let i = 0; i < subjects.length; i++) {
 }
 
 document.getElementById("optionSet").appendChild(select); //Προσθήκη select στο div element με id "optionSet"
+
