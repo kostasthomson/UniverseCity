@@ -67,7 +67,7 @@ function getUserInfo(){ // Gets User Info from Session Storage
 function getSchedule() {
     GLOBAL.user.schedule = JSON.parse(sessionStorage.getItem("schedule"));
 
-    const date = new Date(); //! zero-based for the month index
+    const date = new Date(2022, 05, 06); //! zero-based for the month index
 
     // 2022, 05, 08 --> year, month index, day --> 2022 June 8
     console.log( //! temp
@@ -125,9 +125,7 @@ function retriveUserSeat(am, callback){
                     GLOBAL.user.seatList.push(parseInt(value[1]));
                 })
                 callback();
-
-                }
-                
+                } 
             }
         }
     xmlhttp.open("GET", "assets/backend/get_student_seat.php?student_id=" + am, true);
@@ -166,14 +164,9 @@ function retrieveCourses() {
                     //     'DIRECTION': (value[5])
 
                     // })
-
                 });
                 makeList();
-        
-
-    
-                }
-                
+                } 
             }
         }
     xmlhttp.open("GET", "assets/backend/get_subject_list.php?department=" + GLOBAL.user.DEPARTMENT 
@@ -190,11 +183,7 @@ function makeList() { // New Course List with buttons
     if (getSchedule()) { 
         let CourseListContainer = document.createElement('div');
         CourseListContainer.setAttribute("class", "course_list");
-
-
-
-
-        document.querySelector('.selectCourse').appendChild(CourseListContainer)
+        document.querySelector('#SelectCourse').appendChild(CourseListContainer)
         CourseListContainer.setAttribute("id", "SelectCourseList");
 
 
@@ -675,16 +664,24 @@ function makeModal() {
     closeElement.insertAdjacentHTML('afterbegin', '&times;');
     modalContent.appendChild(closeElement);
 
-    let modalText = document.createElement('p')
+    let modalText = document.createElement('p');
     modalText.setAttribute('class', 'modalText');
+
+    let chooseBtnGroup = document.createElement('div');
+    chooseBtnGroup.setAttribute('class', 'btn-group')
+    chooseBtnGroup.setAttribute('role', 'group')
+
+
     modalText.insertAdjacentHTML('afterbegin', 'Έχετε επιλέξει μια θέση είστε σίγουρος ότι θέλετε να συνεχίσετε για την κράτησή της; ');
     let choosebtnYes = document.createElement('button');
-    choosebtnYes.setAttribute('class', 'chbtn');
+    choosebtnYes.setAttribute('class', 'btn btn-outline-secondary');
+    choosebtnYes.setAttribute('value', 'yes');
     choosebtnYes.setAttribute('value', 'yes');
     choosebtnYes.setAttribute('id', 'yesbtn');
     choosebtnYes.setAttribute('onclick', 'submitSeat()');
+    
     let choosebtnNo = document.createElement('button');
-    choosebtnNo.setAttribute('class', 'chbtn');
+    choosebtnNo.setAttribute('class', 'btn btn-outline-secondary');
     choosebtnNo.setAttribute('value', 'no');
     choosebtnNo.setAttribute('id', 'nobtn');
     // choosebtnYes.value =("Ναι");
@@ -692,8 +689,10 @@ function makeModal() {
     choosebtnYes.insertAdjacentHTML('afterbegin', 'Ναι');
     choosebtnNo.insertAdjacentHTML('afterbegin', 'Όχι');
     modalContent.appendChild(modalText);
-    modalContent.appendChild(choosebtnYes);
-    modalContent.appendChild(choosebtnNo);
+    chooseBtnGroup.appendChild(choosebtnYes);
+    chooseBtnGroup.appendChild(choosebtnNo);
+    modalContent.appendChild(chooseBtnGroup);
+
 
 
 
@@ -716,8 +715,6 @@ function makeDesk() {
     deskElement.appendChild(desk_text);
     desk_text.appendChild(document.createTextNode('ΕΔΡΑ')); //final text node?
 }
-
-// Dokimh01 12/05
 
 function seatEventListener(){ // Temporary implementation
     const container = document.querySelector('.seatContainer');
