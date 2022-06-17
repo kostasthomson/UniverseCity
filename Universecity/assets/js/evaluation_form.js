@@ -1,13 +1,15 @@
 //Δήλωση μετάβλητων 
 const selectedSub = document.querySelector(".select");
-const radioBtnsNodes = document.querySelectorAll(".styleRadio");
+const radioBtnsNodes = Array.from(document.querySelectorAll(".styleRadio"));
 const labelInput = document.querySelector("radio-inline");
 const text = document.querySelector(".form-control");
 const disabled = document.querySelector(".invalid");
 const submitBtn = document.querySelector(".submitBtn");
 const textarea = document.querySelector(".textarea");
+const optionsSelected = Array.from(document.querySelectorAll("select option.subject"));
 let radioCounter = 0;
-
+console.log(optionsSelected);
+console.log(radioBtnsNodes);
 const RADIO_EACH_ROW = 6;
 //---//
 
@@ -38,6 +40,9 @@ function sendRequest() {
     let subject = document.getElementById("subjs");
     let value = subject.options[subject.selectedIndex].value;
     const textArea = document.getElementById("floatingTextarea").value;
+    if (radioCounter < 12) {
+        radioCounter = 0;
+    }
 
     //Δήλωση μεταβλητών για τα δεδομένα από το session storage
     let user = JSON.parse(sessionStorage.getItem("user"));
@@ -65,6 +70,7 @@ function sendRequest() {
 
                 alert("Η υποβολή σου έγινε επιτυχώς!");
                 window.location.reload(true);
+
             }
         }
     };
@@ -76,6 +82,9 @@ window.onload = () => {
     radioCounter = 0;
     submitBtn.style.backgroundColor = "grey";
     submitBtn.style.boxShadow = "grey"
+    for (radio of radioBtnsNodes) {
+        radio.disabled = true;
+    }
 };
 
 document.addEventListener("change", (e) => {
@@ -93,8 +102,36 @@ document.addEventListener("change", (e) => {
     }
 });
 
-selectedSub.addEventListener('change', (e) => {
-    //clear text
+// optionsSelected.forEach(item => {
+//     item.addEventListener('', (e) => {
+//         //clear text
+//         console.log(e.target);
+//         text.value = "";
+//         let selectedValue = selectedSub.value;
+
+//         //clear buttons
+//         let size = radioBtnsNodes.length;
+//         for (let i = 0; i < size; i++) {
+//             radioBtnsNodes[i].checked = false;
+//         }
+
+//         //remove text decoration from disabled button
+//         disabled.className = "";
+
+//         radioCounter = 0;
+
+//         submitBtn.style.backgroundColor = "grey";
+//         submitBtn.style.boxShadow = "grey"
+//     })
+// });
+
+selectedSub.addEventListener("change", (e) => {
+
+    for (radio of radioBtnsNodes) {
+        radio.disabled = false;
+    }
+
+    console.log(e.target);
     text.value = "";
     let selectedValue = selectedSub.value;
 

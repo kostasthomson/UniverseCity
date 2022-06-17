@@ -12,7 +12,8 @@ let optionText = document.createTextNode("Επίλεξε μάθημα");
 
 options.setAttribute("disabled", "disabled");
 options.setAttribute("selected", "selected");
-options.setAttribute("class", "invalid");
+options.setAttribute("class", "subject");
+options.setAttribute("value", -1);
 options.appendChild(optionText);
 
 select.appendChild(options);
@@ -32,6 +33,7 @@ for (let i = 0; i < subjects.length; i++) {
     //Καταχώρηση περαιτέρω χαρακτηριστικών
     options.setAttribute("value", subjects[i].code);
     options.setAttribute("name", subjects[i].code);
+    options.setAttribute("class", "subject");
     options.setAttribute("id", i + 1);
     options.appendChild(optionText);
     //---//
