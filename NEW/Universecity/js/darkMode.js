@@ -48,7 +48,7 @@ toggle.addEventListener("click", (e) => {
             setTimeout(function () {
                 toggle.click();
 
-            }, 1);
+            }, 10);
             setTimeout(function () {
                 toggle.click();
 
@@ -62,11 +62,11 @@ toggle.addEventListener("click", (e) => {
             setTimeout(function () {
                 toggle.click();
 
-            }, 20);
+            }, 10);
             setTimeout(function () {
                 toggle.click();
 
-            }, 22);
+            }, 30);
         }
     });
 
