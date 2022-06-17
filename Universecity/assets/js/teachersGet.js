@@ -49,5 +49,5 @@ xmlhttp.onreadystatechange = function () {
         }
     };
 }
-xmlhttp.open("GET", "../backend/teachersGet.php?", true);
+xmlhttp.open("GET", "assets/backend/teachersGet.php?", true);
 xmlhttp.send();

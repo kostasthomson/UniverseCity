@@ -71,7 +71,7 @@ function Submit(){
             console.log(dbResult);
         }
     };
-    xmlhttp.open("GET", "../backend/post_announcement.php?notification=" + JSON.stringify(notification), true);
+    xmlhttp.open("GET", "assets/backend/post_announcement.php?notification=" + JSON.stringify(notification), true);
     xmlhttp.send();
     // notification_list.push(notification);
     document.querySelector('.btn-outline-secondary').click();

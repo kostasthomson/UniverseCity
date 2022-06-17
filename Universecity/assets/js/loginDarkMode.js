@@ -14,9 +14,9 @@ toggle.addEventListener("click", (e) => {
     toggle.classList.toggle("active");
     body.classList.toggle("active");
     if (body.classList.contains("active")) {
-        icon.src = "../img/white.png";
+        icon.src = "assets/img/white.png";
         icon.style.boxShadow = "none";
-        universecityAll.src = "../img/universityInverse.png";
+        universecityAll.src = "assets/img/universityInverse.png";
         universecityAll.style.boxShadow = "none";
 
 
@@ -35,8 +35,8 @@ toggle.addEventListener("click", (e) => {
 
     } else {
         //!Resetting beggins 
-        icon.src = "../img/dark.png";
-        universecityAll.src = "../img/Universecity.png";
+        icon.src = "assets/img/dark.png";
+        universecityAll.src = "assets/img/Universecity.png";
 
 
 

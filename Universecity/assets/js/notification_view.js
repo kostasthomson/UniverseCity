@@ -18,7 +18,7 @@ function updateStorageNotifications() {
             sessionStorage.setItem('notifications', dbResult);// [new_notification] //ΕΔΩ ΜΠΑΙΝΕΙ DB
         }
     };
-    xmlhttp.open("GET", "../backend/get_announcements.php", true);
+    xmlhttp.open("GET", "assets/backend/get_announcements.php", true);
     xmlhttp.send();
 }
 
@@ -56,7 +56,7 @@ function UpdateNotifications(announcements) {
                     const dbResult = this.responseText;
                 }
             };
-            xmlhttp.open("GET", "../backend/delete_past_announcement.php?announcement_id="+announcement.id, true);
+            xmlhttp.open("GET", "assets/backend/delete_past_announcement.php?announcement_id="+announcement.id, true);
             xmlhttp.send();
             return
         }

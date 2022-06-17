@@ -69,7 +69,7 @@ function CheckValues() {
                 console.log(subjects);
             }
         }; 
-        xmlhttp_subjects.open("GET","../backend/get_subjects.php?department="+department_element.options[selectedIndex].getAttribute('name')+"&semester="+semester,true);
+        xmlhttp_subjects.open("GET","assets/backend/get_subjects.php?department="+department_element.options[selectedIndex].getAttribute('name')+"&semester="+semester,true);
         xmlhttp_subjects.send();
 
         let xmlhttp_schedule = new XMLHttpRequest();
@@ -83,7 +83,7 @@ function CheckValues() {
                 });
             }
         }; 
-        xmlhttp_schedule.open("GET","../backend/get_schedule.php?department="+department_element.options[selectedIndex].getAttribute('name')+"&semester="+semester,true);
+        xmlhttp_schedule.open("GET","assets/backend/get_schedule.php?department="+department_element.options[selectedIndex].getAttribute('name')+"&semester="+semester,true);
         xmlhttp_schedule.send();
 
         let xmlhttp_classes = new XMLHttpRequest();
@@ -93,7 +93,7 @@ function CheckValues() {
                 sessionStorage.setItem('classes', dbResult);
             }
         }; 
-        xmlhttp_classes.open("GET","../backend/get_classrooms.php",true);
+        xmlhttp_classes.open("GET","assets/backend/get_classrooms.php",true);
         xmlhttp_classes.send();
     }
 }
@@ -120,7 +120,7 @@ function updateDBSchedule() {
             console.log(dbResult);
         }
     }; 
-    xmlhttp.open("GET","../backend/set_schedule.php?department="+sessionStorage.getItem('department')+"&semester="+sessionStorage.getItem('semester')+"&data="+JSON.stringify(data),true);
+    xmlhttp.open("GET","assets/backend/set_schedule.php?department="+sessionStorage.getItem('department')+"&semester="+sessionStorage.getItem('semester')+"&data="+JSON.stringify(data),true);
     xmlhttp.send();
 }
 

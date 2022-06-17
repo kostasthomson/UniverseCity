@@ -198,11 +198,11 @@ function LogIn() {
                     setSchedule();
                     setUserNavListInit();
                     setNotifications();
-                    window.location.href = "../../loading.html";
+                    window.location.href = "loading.html";
                 }
             }
         };
-        xmlhttp.open("GET", "../backend/login.php?am=" + USER_AM + "&pass=" + USER_PASS + "&tname=" + TABLE_NAME, true);
+        xmlhttp.open("GET", "assets/backend/login.php?am=" + USER_AM + "&pass=" + USER_PASS + "&tname=" + TABLE_NAME, true);
         xmlhttp.send();
     }
 }

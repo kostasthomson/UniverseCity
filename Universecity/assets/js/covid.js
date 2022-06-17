@@ -116,7 +116,7 @@ submitBtn.addEventListener("click", (e) => {
       }
     };
   }
-  xmlhttp.open("GET", "../backend/covid.php?results=" + jsonQueryObject, true);
+  xmlhttp.open("GET", "assets/backend/covid.php?results=" + jsonQueryObject, true);
   xmlhttp.send();
 });
 

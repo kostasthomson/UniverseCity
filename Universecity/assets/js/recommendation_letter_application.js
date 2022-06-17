@@ -47,7 +47,7 @@ function queryCreator() {
             }
         };
     }
-    xmlhttp.open("GET", "../backend/recommendation_letter_application.php?results=" + jsonQueryObject, true);
+    xmlhttp.open("GET", "assets/backend/recommendation_letter_application.php?results=" + jsonQueryObject, true);
     xmlhttp.send();
 }
 
