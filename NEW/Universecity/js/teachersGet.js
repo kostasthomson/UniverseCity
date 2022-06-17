@@ -25,9 +25,14 @@ xmlhttp.onreadystatechange = function () {
             separatedArray.shift();
             separatedArray.pop();
 
+            let optionText = document.createTextNode("Επίλεξε καθηγητή");
+
             options.setAttribute("disabled", "disabled");
             options.setAttribute("selected", "selected");
             options.setAttribute("class", "invalid");
+            options.appendChild(optionText);
+
+            select.appendChild(options);   
 
             for (let i = 0; i < separatedArray.length; i++) {
 

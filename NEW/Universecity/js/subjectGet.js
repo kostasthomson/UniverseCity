@@ -7,9 +7,15 @@ select.setAttribute("class", "select");
 
 //Δημιουργία element option και προσθήκη χαρακτηριστικών
 let options = document.createElement("option");
+
+let optionText = document.createTextNode("Επίλεξε μάθημα");
+
 options.setAttribute("disabled", "disabled");
 options.setAttribute("selected", "selected");
 options.setAttribute("class", "invalid");
+options.appendChild(optionText);
+
+select.appendChild(options);
 //---//
 
 //Δήλωση μεταβλητών για τα δεδομένα από το session storage
