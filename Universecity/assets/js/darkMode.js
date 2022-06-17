@@ -48,11 +48,11 @@ toggle.addEventListener("click", (e) => {
             setTimeout(function () {
                 toggle.click();
 
-            }, 1);
+            }, 10);
             setTimeout(function () {
                 toggle.click();
 
-            }, 50);
+            }, 100);
         }
     });
 
@@ -62,11 +62,11 @@ toggle.addEventListener("click", (e) => {
             setTimeout(function () {
                 toggle.click();
 
-            }, 20);
+            }, 5);
             setTimeout(function () {
                 toggle.click();
 
-            }, 22);
+            }, 15);
         }
     });
 
@@ -120,7 +120,7 @@ toggle.addEventListener("click", (e) => {
 
 
     if (aside.classList.contains("active")) {
-        icon.src = "assets/img/Logo-white.png";
+        icon.src = "assets/img/white.png";
         icon.style.boxShadow = "none";
         universecityText.src = "assets/img/Universecity - textInverse.png";
         universecityPlanet.src = "assets/img/logo-white.png";
@@ -456,7 +456,7 @@ toggle.addEventListener("click", (e) => {
 
     } else {
         h1.style.color = "#366c77";
-        icon.src = "assets/img/Logo.png";
+        icon.src = "assets/img/dark.png";
         universecityPlanet.src = "assets/img/Logo.png";
         universecityText.src = "assets/img/Universecity - text.png";
         searchBar.style.backgroundColor = "";
