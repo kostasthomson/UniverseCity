@@ -111,7 +111,7 @@ function setUserNavListInit() {
                 'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
                 'Ανακοινώσεις': 'notification_view.html',
                 'Εξετάσεις-Βαθμολογίες': 'coming_soon.html',
-                'Στατιστικά': 'coming_soon.html',
+                'Στατιστικά': 'student_statistics.html',
                 'Δήλωση Θέσης': 'bookSeat.html',
                 'Σάρωση QR': 'QrScanner.html',
                 'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
