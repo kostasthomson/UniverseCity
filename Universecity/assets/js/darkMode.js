@@ -233,7 +233,7 @@ toggle.addEventListener("click", (e) => {
                     setTimeout(function () {
                         toggle.click();
 
-                    }, 20);
+                    }, 15);
                 }
             });
         }
@@ -252,11 +252,11 @@ toggle.addEventListener("click", (e) => {
                     setTimeout(function () {
                         toggle.click();
 
-                    }, 5);
+                    }, 1);
                     setTimeout(function () {
                         toggle.click();
 
-                    }, 100);
+                    }, 10);
                 }
             });
         }
@@ -621,7 +621,7 @@ toggle.addEventListener("click", (e) => {
                     setTimeout(function () {
                         toggle.click();
 
-                    }, 20);
+                    }, 15);
                 }
             });
         }
