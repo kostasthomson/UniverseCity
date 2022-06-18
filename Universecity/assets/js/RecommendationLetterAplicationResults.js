@@ -40,7 +40,7 @@ xmlhttp.onreadystatechange = function () {
         }
     };
 }
-xmlhttp.open("GET", "assets/backend/studentsGet.php?AM=" + user.AM + "&subjects=" + subArray, true);
+xmlhttp.open("GET", "assets/backend/studentsGet.php?AM=" + user.am + "&subjects=" + subArray, true);
 xmlhttp.send();
 
 function listCreator(){
@@ -104,6 +104,8 @@ function tableCreator(liItemId){
                 validateSubArray.shift();
                 validateSubArray.pop();
 
+                console.log(validateSubArray);
+
                 //Επιλογή των element με id "tableSubject" & "subjects"
                 let table = document.querySelector("#tableSubject"); 
                 let tbody = document.querySelector("#subjects");
@@ -143,7 +145,7 @@ function tableCreator(liItemId){
             }
         };
     }
-    xmlhttpTableFill.open("GET", "assets/backend/validateSubAndTeacher.php?AM=" + user.AM + "&stud_am=" + queryObject.stud_am, true);
+    xmlhttpTableFill.open("GET", "assets/backend/validateSubAndTeacher.php?AM=" + user.am + "&stud_am=" + queryObject.stud_am, true);
     xmlhttpTableFill.send();
 }
 

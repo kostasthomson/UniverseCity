@@ -28,7 +28,7 @@ function queryCreator() {
 
     //Δήλωση βοηθητικού object
     let queryObject = {
-        "stud_am": user.AM, 
+        "stud_am": user.am, 
         "teacher_id": value
     };
     //---//
