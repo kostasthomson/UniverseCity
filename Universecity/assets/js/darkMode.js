@@ -31,6 +31,8 @@ temp1.shift(); //!remove the first element which contains the notify and Img Ico
 //!Push here iframes that need longer time to get data from database so as to apply darkmode
 let slowIframes = [];
 slowIframes.push(asidelis[2]) //*anakoinwseis
+slowIframes.push(asidelis[4]) //*systatika
+slowIframes.push(asidelis[5]) //*bookseat
 
 
 //!Remove from the list iframes that are being put in the slowIframes
@@ -52,7 +54,7 @@ toggle.addEventListener("click", (e) => {
             setTimeout(function () {
                 toggle.click();
 
-            }, 100);
+            }, 50);
         }
     });
 
