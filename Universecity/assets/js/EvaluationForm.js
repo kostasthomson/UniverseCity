@@ -129,7 +129,6 @@ selectedSub.addEventListener("change", (e) => {
         radio.disabled = false;
     }
 
-    console.log(e.target);
     text.value = "";
     let selectedValue = selectedSub.value;
 

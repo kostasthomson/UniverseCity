@@ -93,8 +93,6 @@ submitBtn.addEventListener("click", (e) => {
     seatText[index] = commaSeperatedString.toString().split(",");
     index++;
   }
-  console.log(classText);
-  console.log(seatText);
 
   let queryObject = {
     "covidList": classText,
@@ -102,7 +100,6 @@ submitBtn.addEventListener("click", (e) => {
     "dateList": dates
   };
 
-  console.log(dates);
 
   const jsonQueryObject = JSON.stringify(queryObject);
 
@@ -180,8 +177,6 @@ window.onload = () => {
 
   }
   classroom = classroom.filter(obj => !seats.includes(obj)); //? remove duplicates,so we only have the classroom not the seats)
-  console.log(seats);
-  console.log(classroom);
 
   makeDate();
 };

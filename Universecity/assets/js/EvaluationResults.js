@@ -182,7 +182,6 @@ function calcVotes() {
 
       divGet.appendChild(divChartContainer);
 
-      console.log(options.series[i]);
 
       var chart = new ApexCharts(document.querySelector("#chart" + [i]), options);
       chart.render();

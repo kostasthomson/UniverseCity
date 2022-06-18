@@ -66,7 +66,6 @@ function CheckValues() {
             if (this.readyState == 4 && this.status == 200) {
                 const dbResult = this.responseText;
                 subjects = dbResult.split(",");
-                console.log(subjects);
             }
         }; 
         xmlhttp_subjects.open("GET","assets/backend/get_subjects.php?department="+department_element.options[selectedIndex].getAttribute('name')+"&semester="+semester,true);
@@ -117,7 +116,6 @@ function updateDBSchedule() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
-            console.log(dbResult);
         }
     }; 
     xmlhttp.open("GET","assets/backend/set_schedule.php?department="+sessionStorage.getItem('department')+"&semester="+sessionStorage.getItem('semester')+"&data="+JSON.stringify(data),true);

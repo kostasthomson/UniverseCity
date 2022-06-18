@@ -68,7 +68,6 @@ function Submit(){
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
-            console.log(dbResult);
         }
     };
     xmlhttp.open("GET", "assets/backend/post_announcement.php?notification=" + JSON.stringify(notification), true);
