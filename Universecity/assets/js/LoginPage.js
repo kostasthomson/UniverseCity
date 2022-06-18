@@ -111,36 +111,36 @@ function setUserNavListInit() {
     switch (sessionStorage.getItem('user-type')) {
         case 'student':
             NavListElements = {
-                'Αρχική': 'user_schedule.html',
-                'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
+                'Αρχική': 'UserSchedule.html',
+                'Ωρολόγιο Πρόγραμμα': 'UserSchedule.html',
                 'Ανακοινώσεις': 'NotificationView.html',
                 'Εξετάσεις-Βαθμολογίες': 'coming_soon.html',
-                'Στατιστικά': 'student_statistics.html',
-                'Δήλωση Θέσης': 'bookSeat.html',
+                'Στατιστικά': 'StudentStatistics.html',
+                'Δήλωση Θέσης': 'BookSeat.html',
                 'Σάρωση QR': 'QrScanner.html',
-                'Αξιολόγηση Καθηγητών': 'evaluation_form.html',
-                'Συστατική Επιστολή': 'recommendation_letter_application.html',
-                'Δήλωση Κρούσματος': 'covid_report.html',
-                'Βοήθεια': 'help.html'
+                'Αξιολόγηση Καθηγητών': 'EvaluationForm.html',
+                'Συστατική Επιστολή': 'RecommendationLetterApplication.html',
+                'Δήλωση Κρούσματος': 'CovidReport.html',
+                'Βοήθεια': 'HelpPage.html'
             };
             break;
         case 'teacher':
             NavListElements = {
-                'Αρχική': 'user_schedule.html',
+                'Αρχική': 'UserSchedule.html',
                 'Ωρολόγιο Πρόγραμμα': 'coming_soon.html',
-                'Ανακοινώσεις': 'announcement_creation.html',
+                'Ανακοινώσεις': 'AnnouncementCreation.html',
                 'Διαχείριση Μαθημάτων': 'coming_soon.html',
                 'Εξετάσεις-Βαθμολογίες': 'coming_soon.html',
-                'Προβολή Προσωπικής Αξιολόγησης': 'evaluation_results.html',
-                'Συστατική Επιστολή': 'recommendation_letter.html'
+                'Προβολή Προσωπικής Αξιολόγησης': 'EvaluationResults.html',
+                'Συστατική Επιστολή': 'RecommendationLetter.html'
             };
             break;
         case 'secretariat':
             // document.getElementById('page-content').src = 'secretariat_schedule.html';
             NavListElements = {
-                'Αρχική': 'secretariat_set_schedule.html',
-                'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
-                'Ανακοινώσεις': 'announcement_creation.html',
+                'Αρχική': 'SecretariatSetSchedule.html',
+                'Ωρολόγιο Πρόγραμμα': 'SecretariatSetSchedule.html',
+                'Ανακοινώσεις': 'AnnouncementCreation.html',
                 'Διαχείριση Ενεργειών': 'coming_soon.html'
             };
             break;

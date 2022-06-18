@@ -43,7 +43,7 @@ window.onload = (event) =>{
 
     }
 };
-
+// Function for submitting announcement
 function Submit(){ 
     var toPh = "";
     if (document.getElementById("checkbox2") == null) toPh = false;
