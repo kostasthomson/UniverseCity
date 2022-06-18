@@ -7,6 +7,8 @@ function updateFrameProfile() {
 function checkSource(frame) {
     if(frame.getAttribute('data-content-name') == 'Ωρολόγιο Πρόγραμμα') {
         updateScheduleButton(true);
+    } else if (frame.getAttribute('data-content-name') == 'Προφίλ') {
+        updateContentTitle();
     }
 }
 
@@ -65,6 +67,10 @@ function updateScheduleButton(value){
 function createListElement(element_name) {
     const li = document.createElement('li');
     li.setAttribute('class', 'nav-item');
+    li.setAttribute('data-toggle', 'tooltip');
+    li.setAttribute('data-placement', 'right');
+    li.setAttribute('title', 'Tooltip on right');
+    // data-toggle="tooltip" data-placement="right" title="Tooltip on right" 
 
     const a = document.createElement('a');
     a.setAttribute('class', 'nav-link');
@@ -174,108 +180,83 @@ function updateContentTitle() {
     }
 }
 
-// function TimeDifference(current, record) {
-//     const diffMms = (current - record);
-//     const diffMins = Math.round(((diffMms % 86400000) % 3600000) / 60000);
-//     const diffHrs = Math.floor((diffMms % 86400000) / 3600000);
-//     const diffDays = Math.floor(diffMms / 86400000);
-//     return `${(diffDays != 0) ? diffDays + "d. " : ""} ${(diffHrs != 0) ? diffHrs + "h." : ""} ${(diffMins != 0) ? diffMins + "m." : ""}`;
-// }
+function createNotification(notification) {
+    // Creating Basic Elements
+    console.log(notification)
+    const li = document.createElement('li');
+    li.setAttribute('id', notification.id);
+    li.setAttribute('class', 'notification-item');
+    const div = document.createElement('div');
+    const title = document.createElement('span');
+    title.setAttribute('class', 'bi bi-info-circle')
+    title.innerHTML = " " + notification.title;
+    const description = document.createElement('p');
+    description.innerHTML = notification.description;
+    const sender = document.createElement('p');
+    sender.innerHTML = `${notification.publish_day} - ${notification.sender}`;
+    div.append(title, description, sender);
+    li.append(div);
+    return li;
+}
 
-// function createLifromNotification(notification) {
-//     const li = document.createElement('li');
-//     const hr = document.createElement('hr');
-//     li.setAttribute('id', notification.id);
-//     li.setAttribute('class', 'notification-item');
-//     hr.setAttribute('class', 'dropdown-divider');
-//     li.appendChild(hr);
-//     const div = document.createElement('div');
-//     const h4 = document.createElement('h4');
-//     h4.innerHTML = notification.title;
-//     const p1 = document.createElement('p');
-//     p1.innerHTML = notification.description;
-//     const p2 = document.createElement('p');
 
-//     const year = parseInt(notification.date.split('-')[0]);
-//     const month = parseInt(notification.date.split('-')[1]) - 1;
-//     const day = parseInt(notification.date.split('-')[2]);
-//     const hour = parseInt(notification.time.split(':')[0]);
-//     const minute = parseInt(notification.time.split(':')[1]);
-//     const currTime = new Date();
-//     const recordTime = new Date(year, month, day, hour, minute);
+function fillUlElement(announcements) {
+    const ul = document.querySelector('.notifications')
+    const hr = document.createElement('hr');
+    hr.setAttribute('class', 'dropdown-divider');
+    announcements.forEach(announcement => {
+        ul.append(createNotification(announcement));
+        ul.append(hr);
+    });
+    // Show All
+    const footer = document.createElement('li');
+    footer.setAttribute('class', 'dropdown-footer');
+    const anchor = document.createElement('a');
+    anchor.setAttribute('href', 'NotificationView.html');
+    anchor.setAttribute('target', 'main_iframe');
+    anchor.innerHTML = 'Εμφάνηση Όλων';
+    footer.append(anchor);
+    ul.append(footer);
+}
 
-//     p2.innerHTML = TimeDifference(currTime, recordTime);
-//     div.append(h4, p1, p2);
-//     li.append(div);
-//     return li;
-// }
+function updateNotifications() {
+    // DB Import
+    const notifications = document.querySelectorAll('.nav-link.nav-icon')[1];
+    if (sessionStorage.getItem('user-type') == 'secretariat') {
+        notifications.style.display = 'hidden';
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const dbResult = this.responseText;
+  
+                // Update Budge
+                var notificationCount = JSON.parse(dbResult).length;
+                if(notificationCount) document.getElementById('notificationCount').innerHTML = notificationCount;
 
-// function fillUlElement(ul, announcements) {
-//     const divider = document.createElement('li');
-//     const hr = document.createElement('hr');
-//     divider.setAttribute('class', 'notification-item');
-//     hr.setAttribute('class', 'dropdown-divider');
-//     divider.appendChild(hr);
-//     announcements.forEach(announcement => {
-//         const details = announcement.split(',');
-//         notification = {
-//             'id': details[0],
-//             'title': details[1],
-//             'description': details[2],
-//             'time': details[3],
-//             'date': details[4],
-//             'sender': details[5]
-//         };
-//         ul.append(createLifromNotification(notification));
-//         ul.append(divider);
-//     });
-//     const footer = document.createElement('li');
-//     footer.setAttribute('class', 'dropdown-footer');
-//     const anchor = document.createElement('a');
-//     anchor.setAttribute('href', '#');
-//     anchor.innerHTML = 'Show all notifications';
-//     footer.append(anchor);
-//     ul.append(footer);
-// }
-
-// function UpdateUlElements(notifications) {
-//     let notification_list = document.querySelector('.notifications');
-//     fillUlElement(notification_list, notifications.slice(-4).reverse());
-// }
-
-// function updateNotifications() {
-//     const notifications = document.querySelectorAll('.nav-link.nav-icon')[1];
-//     if (sessionStorage.getItem('user-type') == 'secretariat') {
-//         notifications.style.display = 'hidden';
-//     } else {
-//         var xmlhttp = new XMLHttpRequest();
-//         xmlhttp.onreadystatechange = function () {
-//             if (this.readyState == 4 && this.status == 200) {
-//                 const dbResult = this.responseText;
-//                 const notifications = dbResult.split('/');
-//                 UpdateUlElements(notifications);
-//             }
-//         };
-//         xmlhttp.open("GET", "./assets/backend/get_announcement.php", true);
-//         xmlhttp.send();
-//     }
-// }
+                fillUlElement(JSON.parse(dbResult).slice(-3).reverse());
+            }
+        };
+        xmlhttp.open("GET", "assets/backend/get_announcements.php", true);
+        xmlhttp.send();
+    }
+}
 
 function updateProfile() {
     const USER = JSON.parse(sessionStorage.getItem('user'));
-    document.querySelector('.d-none.d-md-block.dropdown-toggle.ps-2').innerHTML = USER.FIRST_NAME[0] + '. ' + USER.LAST_NAME;
-    document.querySelector('.profile > .dropdown-header > h6').innerHTML = USER.FIRST_NAME + ' ' + USER.LAST_NAME;
-    document.querySelector('.profile > .dropdown-header > span').innerHTML = USER.DEPARTMENT;
+    document.querySelector('.d-none.d-md-block.dropdown-toggle.ps-2').innerHTML = USER.first_name[0] + '. ' + USER.last_name;
+    document.querySelector('.profile > .dropdown-header > h6').innerHTML = USER.first_name + ' ' + USER.last_name;
+    document.querySelector('.profile > .dropdown-header > span').innerHTML = USER.department;
 }
 
 if (!sessionStorage.getItem('user') && !sessionStorage.getItem('user-type')) {
     window.location.href = 'Login_Page.html';
 } else {
     if(sessionStorage.getItem('user-type') == 'secretariat') {
-        document.getElementById('page-content').src = 'secretariat_schedule.html';
+        document.getElementById('page-content').src = 'secretariat_set_schedule.html';
     }
     setUserNavList();
     updateContentTitle();
-    // updateNotifications();
+    updateNotifications();
     updateProfile();
 }

@@ -3,9 +3,8 @@
     require "./DB_Class.php";
 
     $department = htmlspecialchars($_GET['department']);
-    $user_type = htmlspecialchars($_GET['user_type']);
-    if($user_type == 'student') {
-        $semester = htmlspecialchars($_GET['semester']);
+    $semester = htmlspecialchars($_GET['semester']);
+    if($semester != 0) {
         $query = "SELECT time, Monday, Tuesday, Wednesday, Thursday, Friday FROM SCHEDULE WHERE department='$department' and semester=$semester;";
     } else {
         $query = "SELECT time, Monday, Tuesday, Wednesday, Thursday, Friday FROM SCHEDULE WHERE department='$department';";
