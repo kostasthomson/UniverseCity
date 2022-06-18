@@ -73,7 +73,7 @@ function fillSelectionElement(drop, text) {
         } else {
             //LESSONS
             const lesson = subjects[i];
-            if(lesson.semester == user.SEMESTER) {
+            if(lesson.semester == user.semester) {
                 option.setAttribute('value', lesson.code);
                 option.innerHTML = lesson.title;
                 if(lesson.title == text) {
@@ -119,8 +119,8 @@ if(schedule) {
         columnInitialization(day.id, schedule[day.name]);
     });    
 } else {
-    let department = JSON.parse(sessionStorage.getItem('user')).DEPARTMENT;
-    let semester= JSON.parse(sessionStorage.getItem('user')).SEMESTER;
+    let department = JSON.parse(sessionStorage.getItem('user')).department;
+    let semester= JSON.parse(sessionStorage.getItem('user')).semester;
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
