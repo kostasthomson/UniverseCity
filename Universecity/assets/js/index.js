@@ -1,6 +1,6 @@
 function updateFrameProfile() {
     const frame = document.getElementById('page-content');
-    frame.src = 'users-profile.html';
+    frame.src = 'UsersProfile.html';
     frame.setAttribute('data-content-name', "Προφίλ");
 }
 
