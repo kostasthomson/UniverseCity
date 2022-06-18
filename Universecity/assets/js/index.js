@@ -182,7 +182,6 @@ function updateContentTitle() {
 
 function createNotification(notification) {
     // Creating Basic Elements
-    console.log(notification)
     const li = document.createElement('li');
     li.setAttribute('id', notification.id);
     li.setAttribute('class', 'notification-item');
@@ -250,7 +249,7 @@ function updateProfile() {
 }
 
 if (!sessionStorage.getItem('user') && !sessionStorage.getItem('user-type')) {
-    window.location.href = 'Login_Page.html';
+    window.location.href = 'LoginPage.html';
 } else {
     if(sessionStorage.getItem('user-type') == 'secretariat') {
         document.getElementById('page-content').src = 'secretariat_set_schedule.html';

@@ -15462,11 +15462,12 @@ var Html5QrcodeScanner = (function () {
           var f = document.createElement("div");
           f.style.textAlign = "center";
           var g = document.createElement("button");
-          (g.innerHTML = "Request Camera Permissions"),
+          g.setAttribute(`class`, `btn btn-outline-primary`);
+          (g.innerHTML = "Άνοιγμα Κάμερας"),
             g.addEventListener("click", function () {
               (g.disabled = !0),
                 b.__setStatus("PERMISSION"),
-                b.__setHeaderMessage("Requesting camera permissions..."),
+                b.__setHeaderMessage("Αίτημα άδειας κάμερας..."),
                 Html5Qrcode.getCameras()
                   .then(function (c) {
                     b.__setStatus("IDLE"),
@@ -15493,10 +15494,9 @@ var Html5QrcodeScanner = (function () {
           (i.id = this.__getFileScanInputId()),
             (i.accept = "image/*"),
             (i.type = "file"),
-            (i.style.width = "200px"),
             (i.disabled = this.currentScanType == a.SCAN_TYPE_CAMERA);
           var j = document.createElement("span");
-          (j.innerHTML = "&nbsp; <b style='color: #366C77;'>Select Image</b>"),
+          (j.innerHTML = "&nbsp; "),
             h.appendChild(i),
             h.appendChild(j),
             i.addEventListener("change", function (c) {
@@ -15596,8 +15596,8 @@ var Html5QrcodeScanner = (function () {
         key: "__createSectionSwap",
         value: function () {
           var b = this,
-            c = "Scan an Image File",
-            d = "Scan using camera directly",
+            c = "Σάρωση αρχείου",
+            d = "Σάρωση μέσω κάμερας",
             e = document.getElementById(this.__getDashboardSectionId()),
             f = document.createElement("div");
           f.style.textAlign = "center";
