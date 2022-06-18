@@ -326,7 +326,7 @@ function generateSubjectInfo(courseCode, teacherName) {
     
 
 
-    // appends happend here to preserve order
+    // appends happen here to preserve order
     if (flag) {
         subjectInfo.appendChild(title); // 00
     }
