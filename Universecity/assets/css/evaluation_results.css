@@ -2,9 +2,9 @@
   font-family: "Open Sans", sans-serif;
 }
 
-
 .chart {
-
+  
+  margin-left: 5rem;
   padding-right: 3rem;
   padding-left: 3rem;
   display: inline-block;
@@ -26,95 +26,90 @@
   margin: 35px auto;
 }
 
-/* Card */
-.card {
-  margin-bottom: 30px;
-  margin-left: 15rem;
-  border: none;
-  width: 150%;
-  border-radius: 5px;
-  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
-}
-
-
-
-.card-header,
-.card-footer {
-  border-color: #ebeef4;
-  background-color: #fff;
-  color: #798eb3;
-  padding: 15px;
-}
-
-.card-title {
-  padding: 20px 0 15px 0;
-  font-size: 30px;
-  font-weight: 600;
-  color: #366c77;
-  font-family: "Poppins", sans-serif;
-}
-
-.card-title span {
-  color: #899bbd;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.card-body {
-  padding: 0 20px 20px 20px;
-}
-
-.card-img-overlay {
-  background-color: rgba(255, 255, 255, 0.6);
-}
-
-.btn.btn-primary {
-  border-radius: 1rem;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  font-weight: 500;
-  border: none;
-  text-decoration: none;
-  padding: 0.5rem 2rem;
-  background: rgb(168, 168, 165);
-  margin-top: 1.5rem;
-  color: white;
-  border-radius: 4rem;
-  cursor: pointer;
-  outline: none;
-  transition: all 0.3s ease 0s;
-  box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  background: #366c77;
-  color: #ffffff;
-
-}
-
-
-.btn.btn-primary:hover {
-  background-color: #3996a9;
-  box-shadow: 0rem 0.6rem 1.2rem #3fa8bd9d;
-  color: rgb(255, 255, 255);
-  transform: translateY(-0.30rem);
-}
-
-.btn.btn-primary:active {
-  transform: translateY(-0.1rem);
-  background-color: #2da8c0;
-}
-
 h1,
 h2,
 h3,
 h4,
 h5{
   font-family: "Nunito", sans-serif;
-  text-align: center;
 }
 
 h5 {
-  text-align: center;
+  text-align: center !important; 
   font-size: 24px;
   font-weight: 700;
   color: #366c77;
+}
+
+#select-card-body{
+  display: flex;
+  justify-content: center;
+}
+
+#card-div{
+  left: 25%;
+}
+
+.subject {
+  border-radius: 0.6rem;
+  display: block;
+  text-align: center;
+}
+
+.select {
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: .25rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-weight: 500;
+  border: none;
+  text-decoration: none;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  padding-right: 4rem;
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+  margin-left: 1.5rem;
+  border-radius: 4rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease 0s;
+  box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
+
+  color: #ffffff;
+  background-color: #366c77;
+}
+
+.select:hover {
+
+  background-color: #3996a9;
+  cursor: pointer;
+
+  transition: 0.50s all ease;
+}
+
+select option[disabled="disabled"][selected="selected"] {
+  display: none;
+}
+
+.select {
+
+  border-radius: 0.5rem;
+  margin-top: 0.1px;
+
+}
+
+#main {
+  position: relative;
+  left: 15%;
+  margin: auto;
+
+  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.2);
 }

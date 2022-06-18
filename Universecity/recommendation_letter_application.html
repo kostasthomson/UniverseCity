@@ -18,6 +18,7 @@
     <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/recommendation_letter_application.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <script src="assets/js/recommendation_letter_application.js" defer></script>
 
@@ -25,30 +26,25 @@
 </head>
 
 <body>
-    <div class="col-lg-6">
-        <form>
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title"">Αίτηση συστατικής επιστολής</h2>
-                    <label for=" subjects" class="subject">Διάλεξε το μάθημα που θέλεις να κάνεις αίτηση:</label>
-                        <div id="test">
-                        </div>
+    <div class="card-body" id="card_id">
+        <div class="row g-12">
+            <div class="col-lg-8">
+                <div class="row mb-4">
+                    <div class="main" id="main">
+                        <label for=" subjects" class="subject">Διάλεξε το μάθημα που θέλεις να κάνεις αίτηση:</label>
+                        <div id="test"></div>
                         <br>
-                        <div class="row mb-3">
-                            <div class="col-sm-10">
-                                <div class="form-check form-switch">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault" id="label-check">Δηλώνω
-                                        υπεύθυνα ότι ζήτησα συστατική επιστολή</label>
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                    <button type="button" class="btn btn-primary" onclick=queryCreator()>Υποβολη
-                                        αιτησης</button>
-                                </div>
-                            </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault" id="label-check">Δηλώνω
+                                υπεύθυνα ότι ζήτησα συστατική επιστολή</label>
                         </div>
+                        <button type="button" class="btn btn-primary" id="btn" onclick=queryCreator()>Υποβολη
+                            αιτησης</button>
+                    </div>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
 </body>
 
 <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

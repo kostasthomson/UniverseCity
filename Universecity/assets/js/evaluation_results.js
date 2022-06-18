@@ -1,4 +1,3 @@
-
 let result_array = []; // Πίνακας όπου τα στοιχεία του είναι τα δεδομένα από την Database (όλα τα results είναι σε ένα string)
 let array = []; //Πίνακας όπου τα δεδομένα του result_array, χωρίζονται σε κελιά
 let button; 
@@ -64,21 +63,44 @@ window.onload = () => { //Συνάρτηση που τρέχει με την φ�
 }
 
 function buttonCreator() {
+  //Δημιουργία element select και προσθήκη χαρακτηριστικών
+  const select = document.createElement("select");
+  select.setAttribute("name", "subjects");
+  select.setAttribute("id", "subjs");
+  select.setAttribute("class", "select");
+  select.setAttribute("onchange", "calcVotes()");
+  //---//
 
-  var div = document.getElementById("card_id");
+  //Δημιουργία element option και προσθήκη χαρακτηριστικών
+  let options = document.createElement("option");
+
+  let optionText = document.createTextNode("Επιλεξε μαθημα");
+
+  options.setAttribute("disabled", "disabled");
+  options.setAttribute("selected", "selected");
+  options.setAttribute("class", "invalid");
+  options.appendChild(optionText);
+
+  select.appendChild(options);
+  //---//
 
   //Δημιουργία των κουμπίων μαθημάτων για αξιολόγηση
   subjects.forEach(r => {
 
-    button = document.createElement("button");
-    button.setAttribute("idSubject", r.id);
-    button.setAttribute("id", "btn");
-    button.setAttribute("class", "btn btn-primary");
-    button.setAttribute("onclick", "calcVotes()");
-    button.innerHTML = r.title;
-    div.appendChild(button);
+    let optionText = document.createTextNode(subjects[i].title); //Τίτλος για τα option elements
+    options = document.createElement("option");
+    //Καταχώρηση περαιτέρω χαρακτηριστικών
+    options.setAttribute("value", subjects[i].id);
+    options.setAttribute("name", subjects[i].id);
+    options.setAttribute("id", i + 1);
+    options.appendChild(optionText);
+    //---//
+    select.appendChild(options); //Προσθήκη option στο select element
 
   });
+
+  document.getElementById("select-card-body").appendChild(select); //Προσθήκη select στο div element με id "select-card-body"
+
   //---//
 }
 

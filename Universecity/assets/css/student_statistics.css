@@ -1,0 +1,51 @@
+.chart {
+
+  margin-left: 6rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  display: inline-block;
+}
+
+.chartContainer {
+  margin: auto;
+
+  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.2);
+}
+
+  
+#chartContainerSum {
+  margin: auto;
+  
+  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+  
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.2);
+}
+
+#chartSum {
+  margin-left: 18rem;
+    display: flex;
+    justify-content: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5{
+  font-family: "Nunito", sans-serif;
+}
+
+h5 {
+  text-align: center !important; 
+  font-size: 30px;
+  font-weight: 700;
+  color: #366c77;
+}
