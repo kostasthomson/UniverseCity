@@ -69,7 +69,6 @@ function createListElement(element_name) {
     li.setAttribute('class', 'nav-item');
     li.setAttribute('data-toggle', 'tooltip');
     li.setAttribute('data-placement', 'right');
-    li.setAttribute('title', 'Tooltip on right');
     // data-toggle="tooltip" data-placement="right" title="Tooltip on right" 
 
     const a = document.createElement('a');
@@ -125,6 +124,7 @@ function createListElement(element_name) {
             break;
         case 'Εξετάσεις-Βαθμολογίες':
             i.setAttribute('class', 'bi bi-journal-bookmark-fill');
+            li.setAttribute('title', 'Έρχεται Σύντομα');
             break;
         case 'Συστατική Επιστολή':
             i.setAttribute('class', 'bi bi-envelope-check');
