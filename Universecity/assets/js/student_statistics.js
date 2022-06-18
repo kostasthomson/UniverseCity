@@ -1,9 +1,6 @@
 let user = JSON.parse(sessionStorage.getItem("user"));
 let subjects = JSON.parse(sessionStorage.getItem("subjects"));
 
-console.log(user);
-console.log(subjects);
-
 let separatedArray = [[]];
 
 var xmlhttp = new XMLHttpRequest();
@@ -23,12 +20,11 @@ xmlhttp.onreadystatechange = function () {
             separatedArray.pop();
 
             chartCreator();
-            console.log(separatedArray);
 
         }
     };
 }
-xmlhttp.open("GET", "assets/backend/student_statistics.php?AM=" + user.AM, true);
+xmlhttp.open("GET", "assets/backend/student_statistics.php?AM=" + user.am, true);
 xmlhttp.send();
 
 function chartCreator(){
@@ -108,8 +104,6 @@ function chartSumCreator(){
 
     let result = (parseInt(sumArrival) / parseInt(sumLessons)) * 100;
     result = parseFloat(result.toFixed(2)); 
-
-    console.log(result);
 
     var options = {
         series: [result, 100 - result],

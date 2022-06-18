@@ -39,11 +39,12 @@ form.forEach((item, i) => {
     }, i * 250);
 });
 
+sessionStorage.clear();
 
 for(let element of document.getElementsByTagName('input')) {
     element.addEventListener('keypress', (event) => {
         if(event.keyCode === 13) {
-            LogIn();
+            ValidateInput();
         }
     })
 }
@@ -59,17 +60,17 @@ function setSubjects() {
     };
     const user_type = sessionStorage.getItem('user-type');
     if (user_type == 'student') {
-        xmlhttp_subjects.open("GET", "assets/backend/get_enrolled_subjects.php?student_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
+        xmlhttp_subjects.open("GET", "assets/backend/get_enrolled_subjects.php?student_id=" + JSON.parse(sessionStorage.getItem('user')).am, true);
         xmlhttp_subjects.send();
     } else if (user_type == 'teacher') {
-        xmlhttp_subjects.open("GET", "assets/backend/get_teachedby_subjects.php?teacher_id=" + JSON.parse(sessionStorage.getItem('user')).AM, true);
+        xmlhttp_subjects.open("GET", "assets/backend/get_teachedby_subjects.php?teacher_id=" + JSON.parse(sessionStorage.getItem('user')).am, true);
         xmlhttp_subjects.send();
     }
 }
 
 function setSchedule() {
-    let department = JSON.parse(sessionStorage.getItem('user')).DEPARTMENT;
-    let semester= JSON.parse(sessionStorage.getItem('user')).SEMESTER;
+    let department = JSON.parse(sessionStorage.getItem('user')).department;
+    let semester= JSON.parse(sessionStorage.getItem('user')).semester;
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -98,7 +99,10 @@ function setSchedule() {
             sessionStorage.setItem('schedule', JSON.stringify(schedule));
         }
     };
-    xmlhttp.open("GET", "assets/backend/get_schedule.php?user_type="+sessionStorage.getItem('user_type')+"&department="+department+"&semester="+semester, true);
+    if(JSON.parse(sessionStorage.getItem('user')).type == 'student')
+        xmlhttp.open("GET", "assets/backend/get_schedule.php?department="+department+"&semester="+ semester, true);
+    else
+    xmlhttp.open("GET", "assets/backend/get_schedule.php?department="+department+"&semester=0", true);
     xmlhttp.send();
 }
 
@@ -109,7 +113,7 @@ function setUserNavListInit() {
             NavListElements = {
                 'Αρχική': 'user_schedule.html',
                 'Ωρολόγιο Πρόγραμμα': 'user_schedule.html',
-                'Ανακοινώσεις': 'notification_view.html',
+                'Ανακοινώσεις': 'NotificationView.html',
                 'Εξετάσεις-Βαθμολογίες': 'coming_soon.html',
                 'Στατιστικά': 'student_statistics.html',
                 'Δήλωση Θέσης': 'bookSeat.html',
@@ -134,8 +138,8 @@ function setUserNavListInit() {
         case 'secretariat':
             // document.getElementById('page-content').src = 'secretariat_schedule.html';
             NavListElements = {
-                'Αρχική': 'secretariat_schedule.html',
-                'Ωρολόγιο Πρόγραμμα': 'secretariat_schedule.html',
+                'Αρχική': 'secretariat_set_schedule.html',
+                'Ωρολόγιο Πρόγραμμα': 'secretariat_set_schedule.html',
                 'Ανακοινώσεις': 'announcement_creation.html',
                 'Διαχείριση Ενεργειών': 'coming_soon.html'
             };
@@ -156,55 +160,71 @@ function setNotifications() {
     xmlhttp.send();
 }
 
+function PrintInvalid() {
+    console.log('invalid');
+    const div = document.createElement("div");
+    div.setAttribute('class', 'Invalid-div');
+    const p = document.createElement('p');
+    p.setAttribute('class', 'Invalid-text');
+    p.setAttribute('style', 'color: red');
+    p.innerHTML = 'Αποτυχία σύνδεσης! Μη έγκυρα διαπιστευτήρια.'
+    div.appendChild(p);
+    document.body.insertBefore(div, document.querySelector('.toggle'));
+}
 
-const ValidAm_TableNames = {
-    'ics': 'STUDENTS',
-    'ait': 'TEACHERS',
-    'aid': 'SECRETARIATS'
-};
-
-function LogIn() {
-    const USER_AM = document.querySelector('.form > .am').value;
-    if (ValidAm_TableNames[USER_AM.slice(0, 3)]) {
-        const TABLE_NAME = ValidAm_TableNames[USER_AM.slice(0, 3)];
-        const USER_PASS = document.querySelector('.form > .password').value;
+function checkDataBase(credentials) {
+    return new Promise(resolve => {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 const dbResult = this.responseText;
-                if (dbResult != "Fail" && dbResult != "Unrecorded") {
-                    const data = dbResult.split(",");
-                    const AM = data[0];
-                    const FIRST_NAME = data[1];
-                    const LAST_NAME = data[2];
-                    const EMAIL = data[3];
-                    const DEPARTMENT = data[4];
-                    let USER;
-                    if (TABLE_NAME == 'STUDENTS') {
-                        const SEMESTER = data[5];
-                        const STUDY_DIRECTION = data[6];
-                        USER = new Student(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT, SEMESTER, STUDY_DIRECTION);
-                    } else if (TABLE_NAME == 'TEACHERS') {
-                        const OFFICE = data[5];
-                        const TITLE = data[6];
-                        const BIOLINK = data[7];
-                        USER = new Teacher(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT, OFFICE, TITLE, BIOLINK);
-                    } else {
-                        USER = new Secretariat(AM, FIRST_NAME, LAST_NAME, EMAIL, DEPARTMENT);
-                    }
-                    sessionStorage.setItem('user', JSON.stringify(USER));
-                    sessionStorage.setItem('user-type', USER.constructor.name.toLowerCase());
-                    setSubjects();
-                    setSchedule();
-                    setUserNavListInit();
-                    setNotifications();
-                    window.location.href = "loading.html";
-                }
+                if(dbResult) 
+                    resolve(JSON.parse(dbResult));
+                else
+                    resolve(null);    
             }
         };
-        xmlhttp.open("GET", "assets/backend/login.php?am=" + USER_AM + "&pass=" + USER_PASS + "&tname=" + TABLE_NAME, true);
+        xmlhttp.open("GET", "assets/backend/login.php?am=" + credentials.am + "&password=" + credentials.password + "&table=" + credentials.table, true);
         xmlhttp.send();
+    });
+}
+
+async function ValidateInput() {
+    const am_to_table = {
+        'ics': 'STUDENTS',
+        'ait': 'TEACHERS',
+        'aid': 'SECRETARIATS'
+    };
+    const am = document.querySelector('.form > .am').value;
+    const password = document.querySelector('.form > .password').value; 
+    const credentials = {
+        'am': am, 
+        'password': password,
+        'table': am_to_table[am.slice(0, 3)]
+    };
+    if(credentials.table) {
+        let dbData = await checkDataBase(credentials);
+        if(dbData) {
+            dbData.type = credentials.table.slice(0,-1).toLowerCase();
+            delete dbData.password;
+            LogIn(dbData);
+        } else {
+            PrintInvalid();
+        }
+    } else {
+        PrintInvalid();
     }
+}
+
+function LogIn(data) {
+    console.log(data);
+    sessionStorage.setItem('user', JSON.stringify(data));
+    sessionStorage.setItem('user-type', data.type);
+    setSubjects();
+    setSchedule();
+    setUserNavListInit();
+    setNotifications();
+    window.location.href = "loading.html";
 }
 
 

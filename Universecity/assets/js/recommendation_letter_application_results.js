@@ -27,6 +27,8 @@ xmlhttp.onreadystatechange = function () {
 
             const result_array = dbResult.split(","); //Τμηματοποίηση των αποτελεσμάτων του πίνακα dbresult στον πίνακα result_array, χωρισμένα σε ","
             
+            console.log(result_array);
+
             for(let i=0; i<result_array.length; i++){
                 let temp = result_array[i].split(".")
                 separatedArray.push(temp);

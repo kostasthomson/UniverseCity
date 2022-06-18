@@ -9,7 +9,22 @@
   text-transform: uppercase;
 }
 
+.btn-primary{
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+.btn:hover, .btn:focus {
+  background-color: #49909e !important;
+}
 
+.accordion-button:not(.collapsed) {
+  background-color: white !important;
+}
+
+.accordion-button:focus {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
 
 
 .subjectBtns {
@@ -174,7 +189,7 @@ h3 {
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px;
   position: absolute;
   z-index: 1;
   bottom: 150%;
@@ -431,6 +446,7 @@ h3 {
 .message-box {
   color:rgb(0, 0, 0);
   text-transform: none;
+  margin: 1rem;
 }
 
 #floatingTextarea {
