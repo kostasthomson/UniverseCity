@@ -24,7 +24,6 @@ window.onload = (event) =>{
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
-            console.log(JSON.parse(dbResult));
         }
     };
     xmlhttp.open("GET", "assets/backend/get_announcements.php", true);
@@ -103,7 +102,6 @@ function UpdateNotifications(announcements) {
             //NA ΒΓΑΙΝΕΙ ΚΑΙ ΑΠΟ DB
             return
         }
-        console.log(announcement)
         
 
         //Creating Main Notification Div
@@ -179,14 +177,11 @@ function Submit(){
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
-            console.log(dbResult);
         }
     };
     xmlhttp.open("GET", "assets/backend/post_announcement.php?notification=" + JSON.stringify(notification), true);
     xmlhttp.send();
 
-    console.log(JSON.stringify(notification));
 
     notification_list.push(notification);
-    console.log(notification_list);
 }

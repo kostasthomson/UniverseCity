@@ -3,7 +3,6 @@ function onScanSuccess(qrCodeMessage) {
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const dbResult = this.responseText;
-      console.log(dbResult);
       if(!(dbResult.includes("Successful changes"))){
         location.replace("QrCodeFail.html")
       }else{

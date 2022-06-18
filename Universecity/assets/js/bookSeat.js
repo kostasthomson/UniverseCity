@@ -189,7 +189,6 @@ function getSchedule() {
     GLOBAL.user.List = [];
     GLOBAL.user.ListCode = [];
 
-    console.log(GLOBAL.user.schedule);
 
     if (currentWeekday != ("Σάββατο" || "Κυριακή")) {
         today = GLOBAL.user.schedule[currentWeekday];

@@ -26,7 +26,6 @@ let subjects = JSON.parse(sessionStorage.getItem("subjects"));
 
 for (let i = 0; i < subjects.length; i++) {
 
-    console.log(subjects[i].title);
 
     let optionText = document.createTextNode(subjects[i].title); //Τίτλος για τα option elements
     options = document.createElement("option");

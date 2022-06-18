@@ -161,7 +161,6 @@ function setNotifications() {
 }
 
 function PrintInvalid() {
-    console.log('invalid');
     const div = document.createElement("div");
     div.setAttribute('class', 'Invalid-div');
     const p = document.createElement('p');
@@ -217,7 +216,6 @@ async function ValidateInput() {
 }
 
 function LogIn(data) {
-    console.log(data);
     sessionStorage.setItem('user', JSON.stringify(data));
     sessionStorage.setItem('user-type', data.type);
     setSubjects();
