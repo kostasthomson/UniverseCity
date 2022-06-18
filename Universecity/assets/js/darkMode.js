@@ -188,7 +188,7 @@ toggle.addEventListener("click", (e) => {
         let accordionBody = otherPage.document.querySelectorAll(".accordion-body");
         let inputs = otherPage.document.querySelectorAll("input");
         let buttons = otherPage.document.querySelectorAll("button");
-        let seatbox = otherPage.document.querySelectorAll(".seatBoxContainer");
+
         let selectBox = otherPage.document.querySelectorAll("selectCourse");
         let cards = otherPage.document.querySelectorAll(".card");
         let liList = otherPage.document.querySelector("li");
@@ -207,8 +207,68 @@ toggle.addEventListener("click", (e) => {
         let socialLinks = otherPage.document.querySelectorAll("div a i");
         let colsx8 = otherPage.document.querySelectorAll(".col-xl-8");
         let colsx4 = otherPage.document.querySelectorAll(".col-xl-4");
+        let divAccordion = otherPage.document.querySelectorAll("div.accordion.accordion-flush");
+        let chooseAmphitheater = otherPage.document.querySelectorAll("btn.btn-primary.btn-lg");
+        let buttonAccordion = otherPage.document.querySelectorAll("accordion-button.active.collapsed");
+        let seatbox = otherPage.document.querySelectorAll("div.seatBoxContainer.filled");
 
 
+        if (seatbox = otherPage.document.querySelectorAll("div.seatBoxContainer.filled")) {
+
+            for (e of seatbox) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "#2e3435";
+
+            }
+        }
+
+
+        if (buttonAccordion = otherPage.document.querySelectorAll("div.accordion-item")) {
+            buttonAccordion.forEach(item1 => {
+                item1.onclick = function () {
+                    setTimeout(function () {
+                        toggle.click();
+
+                    }, 5);
+                    setTimeout(function () {
+                        toggle.click();
+
+                    }, 20);
+                }
+            });
+        }
+        if (buttonAccordion = otherPage.document.querySelectorAll("div.accordion-item")) {
+
+            for (e of buttonAccordion) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(27, 29, 30)";
+
+            }
+        }
+
+        if (chooseAmphitheater = otherPage.document.querySelectorAll("btn.btn-primary.btn-lg")) {
+            chooseAmphitheater.forEach(item1 => {
+                item1.onclick = function () {
+                    setTimeout(function () {
+                        toggle.click();
+
+                    }, 5);
+                    setTimeout(function () {
+                        toggle.click();
+
+                    }, 100);
+                }
+            });
+        }
+
+
+        if (divAccordion = otherPage.document.querySelectorAll("div.accordion-item")) {
+
+            for (e of divAccordion) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "rgb(27, 29, 30)";
+            }
+        }
 
 
         if (colsx8 = otherPage.document.querySelectorAll(".col-xl-8")) {
@@ -354,12 +414,6 @@ toggle.addEventListener("click", (e) => {
             }
         }
 
-        if (seatbox = otherPage.document.querySelectorAll(".seatBoxContainer")) {
-            for (e of seatbox) {
-                e.classList.toggle("active");
-                e.style.backgroundColor = "rgb(27, 29, 30)";
-            }
-        }
 
         if (selectBox = otherPage.document.querySelectorAll(".selectCourse")) {
             for (e of selectBox) {
@@ -370,9 +424,16 @@ toggle.addEventListener("click", (e) => {
 
         if (buttons = otherPage.document.querySelectorAll("button")) {
             for (e of buttons) {
-                e.classList.toggle("active");
-                e.style.setProperty('background-color', 'rgb(34, 37, 38) ', 'important');
-                e.style.setProperty("color", "#5ab6c9", "important");
+                if (e.classList.contains("seat")) {
+                    continue;
+                }
+                else {
+                    e.classList.toggle("active");
+                    // e.style.setProperty('background-color', 'rgb(34, 37, 38) ', 'important');
+                    // e.style.setProperty("color", "#5ab6c9", "important");
+                    e.style.backgroundColor = "rgb(34, 37, 38)";
+                    e.style.color = "#5ab6c9";
+                }
             }
         }
 
@@ -517,7 +578,7 @@ toggle.addEventListener("click", (e) => {
         let accordionBody = otherPage.document.querySelectorAll(".accordion-body");
         let inputs = otherPage.document.querySelectorAll("input");
         let buttons = otherPage.document.querySelectorAll("button");
-        let seatbox = otherPage.document.querySelectorAll(".seatBoxContainer");
+
         let selectBox = otherPage.document.querySelectorAll("selectCourse");
         let liList = otherPage.document.querySelectorAll("li");
         let nav = otherPage.document.querySelector("nav");
@@ -536,6 +597,52 @@ toggle.addEventListener("click", (e) => {
         let colsx8 = otherPage.document.querySelectorAll(".col-xl-8");
         let colsx4 = otherPage.document.querySelectorAll(".col-xl-4");
         let socialLinks = otherPage.document.querySelectorAll("div a i");
+        let divAccordion = otherPage.document.querySelectorAll("div.accordion-item");
+        let buttonAccordion = otherPage.document.querySelectorAll("accordion-button.active.collapsed");
+        let seatbox = otherPage.document.querySelectorAll("div.seatBoxContainer.filled");
+
+
+        if (seatbox = otherPage.document.querySelectorAll("div.seatBoxContainer.filled")) {
+
+            for (e of seatbox) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "";
+
+            }
+        }
+
+        if (buttonAccordion = otherPage.document.querySelectorAll("div.accordion-item")) {
+            buttonAccordion.forEach(item1 => {
+                item1.onclick = function () {
+                    setTimeout(function () {
+                        toggle.click();
+
+                    }, 5);
+                    setTimeout(function () {
+                        toggle.click();
+
+                    }, 20);
+                }
+            });
+        }
+        if (buttonAccordion = otherPage.document.querySelectorAll("div.accordion-item")) {
+
+            for (e of buttonAccordion) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "#f6f9ff";
+
+            }
+        }
+
+
+        if (divAccordion = otherPage.document.querySelectorAll("div.accordion.accordion-flush")) {
+
+            for (e of divAccordion) {
+                e.classList.toggle("active");
+                e.style.backgroundColor = "#f6f9ff";
+
+            }
+        }
 
 
         if (socialLinks = otherPage.document.querySelectorAll("div a i")) {
@@ -695,13 +802,7 @@ toggle.addEventListener("click", (e) => {
             }
         }
 
-        if (seatbox = otherPage.document.querySelectorAll(".seatBoxContainer")) {
-            for (e of seatbox) {
-                e.classList.toggle("active");
-                e.style.backgroundColor = "";
-                e.style.color = "";
-            }
-        }
+
 
         if (buttons = otherPage.document.querySelectorAll("button")) {
             for (e of buttons) {
@@ -724,7 +825,7 @@ toggle.addEventListener("click", (e) => {
             for (e of accordionBody) {
                 e.classList.toggle("active");
                 e.style.backgroundColor = "";
-                e.style.color = "";
+                e.style.color = "#5ab6c9";
             }
         };
 
