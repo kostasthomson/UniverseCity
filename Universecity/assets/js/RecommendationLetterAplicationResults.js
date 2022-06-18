@@ -1,11 +1,11 @@
 //Δήλωση μεταβλητών για τα δεδομένα από το session storage
 const user = JSON.parse(sessionStorage.getItem("user"));
-const subjects = JSON.parse(sessionStorage.getItem("subjects"));
 //---//
 
 //Δήλωση βοηθητικών array
 let separatedArray = [[]];
-let subArray = [];
+let separatedSubjects = [[]];
+let separatedSubjectsId = [];
 //---//
 
 //Δήλωση βοηθητικού Object
@@ -14,12 +14,8 @@ let queryObject;
 
 let ol = document.createElement("ol"); //Δημιουργία ordered list element
 
-subjects.forEach(e => {
-    subArray.push(e.code);
-});
-
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
+var xmlhttpSubjectGet = new XMLHttpRequest();
+xmlhttpSubjectGet.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
         const dbResult = this.responseText;
         
@@ -27,21 +23,53 @@ xmlhttp.onreadystatechange = function () {
 
             const result_array = dbResult.split(","); //Τμηματοποίηση των αποτελεσμάτων του πίνακα dbresult στον πίνακα result_array, χωρισμένα σε ","
             
+
             for(let i=0; i<result_array.length; i++){
                 let temp = result_array[i].split(".")
-                separatedArray.push(temp);
-                separatedArray[i].splice(3, 1);
+                separatedSubjects.push(temp);
+                separatedSubjects[i].splice(2, 1);
+                if(!separatedSubjects[i][0] == "")
+                    separatedSubjectsId.push(separatedSubjects[i][0]);
             }
 
-            separatedArray.shift();
-            separatedArray.pop();
+            separatedSubjects.shift();
+            separatedSubjects.pop();
 
-            listCreator(); //Κλήση συνάρτησης ListCreator
+            studentsGet();
+
         }
     };
 }
-xmlhttp.open("GET", "assets/backend/studentsGet.php?AM=" + user.am + "&subjects=" + subArray, true);
-xmlhttp.send();
+xmlhttpSubjectGet.open("GET", "assets/backend/validateTeacherSubject.php?AM=" + user.am, true);
+xmlhttpSubjectGet.send();
+
+function studentsGet(){
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const dbResult = this.responseText;
+            
+            if (dbResult != "Query failed") {
+
+                const result_array = dbResult.split(","); //Τμηματοποίηση των αποτελεσμάτων του πίνακα dbresult στον πίνακα result_array, χωρισμένα σε ","
+
+                for(let i=0; i<result_array.length; i++){
+                    let temp = result_array[i].split(".")
+                    separatedArray.push(temp);
+                    separatedArray[i].splice(3, 1);
+                }
+
+                separatedArray.shift();
+                separatedArray.pop();
+
+                listCreator(); //Κλήση συνάρτησης ListCreator
+            }
+        };
+    }
+    xmlhttp.open("GET", "assets/backend/studentsGet.php?AM=" + user.am + "&subjects=" + separatedSubjectsId, true);
+    xmlhttp.send();
+}
+
 
 function listCreator(){
 
@@ -50,7 +78,6 @@ function listCreator(){
     ol.setAttribute("class", "list-group list-group-numbered");
     //---//
 
-    
     document.getElementById("li-card-body").appendChild(ol); //Προσθήκη ordered List στο div element με id "li-card-body"
 
     for(let i=0;i<separatedArray.length;i++){
