@@ -32,25 +32,25 @@ function updateScheduleButton(value){
     if(value) {
         if(!frame.querySelector('.group')) {
             let div = document.createElement("div");
-            div.setAttribute('class', 'group');
+            div.setAttribute('class', 'btn-group');
             div.setAttribute('role', 'group');
             div.setAttribute('aria-label', 'Basic outlined example');
     
             let cancel = document.createElement('button');
             cancel.setAttribute('type', 'button');
-            cancel.setAttribute('class', 'myButtons');
+            cancel.setAttribute('class', 'btn btn-outline-primary myButtons');
             cancel.setAttribute('onclick', 'cancel()');
             cancel.innerHTML = 'Ακύρωση';
     
             let edit = document.createElement('button');
             edit.setAttribute('type', 'button');
-            edit.setAttribute('class', 'myButtons');
+            edit.setAttribute('class', 'btn btn-outline-primary myButtons');
             edit.setAttribute('onclick', 'edit()');
             edit.innerHTML = 'Επεξεργασία';
     
             let save = document.createElement('button');
             save.setAttribute('type', 'button');
-            save.setAttribute('class', 'myButtons');
+            save.setAttribute('class', 'btn btn-outline-primary myButtons');
             save.setAttribute('onclick', 'save()');
             save.innerHTML = 'Αποθήκευση';
     
