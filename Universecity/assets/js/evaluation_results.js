@@ -27,6 +27,7 @@ window.onload = () => { //Συνάρτηση που τρέχει με την φ�
       if (dbResult != "Query failed") {
         result_array = dbResult.split("."); //χωρίζονται τα δεδομένα του dbResult στην '.' και καταχωρούνται στον πίνακα result_array
 
+        console.log(result_array);
         //Εισαγωγή των βαθμολογιών, id-μαθήματος και τίτλος μαθήματος 
         result_array.forEach(r => {
           let temp = r.split(","); //Χωρίζονται τα δεδομένα του result_array στο ',' και καταχωρούνται σε ένα προσωρινό πίνακα temp
@@ -59,7 +60,7 @@ window.onload = () => { //Συνάρτηση που τρέχει με την φ�
       }
     }
   };
-  xmlhttp.open("GET", "assets/backend/evaluation_results.php?am=" + user.am, true);
+  xmlhttp.open("GET", "assets/backend/evaluation_results.php?AM=" + user.am, true);
   xmlhttp.send();
 }
 

@@ -18,17 +18,14 @@
 
         $result = $db->getQueryResults();
 
+        
+
         foreach($result as $r){
-            if(!in_array($checkID, $r)){
                 foreach($r as $c){
                     echo $c. "."; 
-                    if($count === 0){
-                        $checkID = $c;
-                        $count++;
-                    }
                 }
                 echo ",";
-            }
+            
         }    
     }
 ?>
