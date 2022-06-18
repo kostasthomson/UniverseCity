@@ -8,8 +8,6 @@ const submitBtn = document.querySelector(".submitBtn");
 const textarea = document.querySelector(".textarea");
 const optionsSelected = Array.from(document.querySelectorAll("select option.subject"));
 let radioCounter = 0;
-console.log(optionsSelected);
-console.log(radioBtnsNodes);
 const RADIO_EACH_ROW = 6;
 //---//
 
@@ -56,7 +54,7 @@ function sendRequest() {
 
         "text": textArea,
 
-        "AM": user.AM
+        "AM": user.am
     };
     //---//
 

@@ -201,40 +201,6 @@ body {
 
 }
 
-.btn.btn-primary {
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    font-weight: 500;
-    border: none;
-    text-decoration: none;
-    padding: 0.5rem 2rem;
-    margin-left: -0.8rem;
-    margin-top: 1.5rem;
-    color: white;
-    border-radius: 0.8rem;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.3s ease 0s;
-    box-shadow: 0rem 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    background: #366c77;
-    color: #ffffff;
-    margin-left: 24rem;
-
-}
-
-.btn.btn-primary:hover {
-    background-color: #3996a9;
-    box-shadow: 0rem 0.5rem 0.7rem #3996a9;
-    color: rgb(255, 255, 255);
-    transform: translateY(-0.3rem);
-}
-
-.btn.btn-primary:active {
-    transform: translateY(-0.1rem);
-    background-color: #2da8c0;
-}
-
 .form-control {
     resize: none;
     border-radius: 0.7rem;
@@ -303,3 +269,11 @@ label {
     margin-top: 2rem;
 }
  
+.buttonCenter {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding-top: 1.5rem;
+}

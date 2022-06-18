@@ -25,7 +25,7 @@ xmlhttp.onreadystatechange = function () {
             separatedArray.shift();
             separatedArray.pop();
 
-            let optionText = document.createTextNode("Επίλεξε καθηγητή");
+            let optionText = document.createTextNode("Επιλεξε καθηγητη");
 
             options.setAttribute("disabled", "disabled");
             options.setAttribute("selected", "selected");
