@@ -431,6 +431,7 @@ h3 {
 .message-box {
   color:rgb(0, 0, 0);
   text-transform: none;
+  margin: 1rem;
 }
 
 #floatingTextarea {
