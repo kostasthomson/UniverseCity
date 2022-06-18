@@ -1,7 +1,7 @@
-var user_type = sessionStorage.getItem('user-type'); // ΕΔΩ ΜΠΑΙΝΕΙ DB
-var user_id = JSON.parse(sessionStorage.getItem('user')).AM;
-var user_name = JSON.parse(sessionStorage.getItem('user')).FIRST_NAME + ' ' + JSON.parse(sessionStorage.getItem('user')).LAST_NAME;
-var department = JSON.parse(sessionStorage.getItem('user')).DEPARTMENT;
+var user_type = sessionStorage.getItem('user-type'); 
+var user_id = JSON.parse(sessionStorage.getItem('user')).am;
+var user_name = JSON.parse(sessionStorage.getItem('user')).first_name + ' ' + JSON.parse(sessionStorage.getItem('user')).last_name;
+var department = JSON.parse(sessionStorage.getItem('user')).department;
 window.onload = (event) =>{    
     document.querySelector('#Checkboxes>.col-form-label').innerHTML += ` (Τμήμα: ${department})`;
 
@@ -15,7 +15,7 @@ window.onload = (event) =>{
     const label = document.createElement("label");
     label.setAttribute("class", "form-check-label");
     label.setAttribute("for", "checkbox1");
-    const textNode = document.createTextNode(`Φοιτητές`); // (Τμήμα: ${department})ΕΔΩ ΝΑ ΜΠΕΙ ΤΟ ΤΜΗΜΑ
+    const textNode = document.createTextNode(`Φοιτητές`); 
     label.appendChild(textNode);
     
 
@@ -23,7 +23,7 @@ window.onload = (event) =>{
     document.getElementById("Checkboxes").appendChild(label)
     document.getElementById("Checkboxes").appendChild(document.createElement("br"))
 
-    if(user_type == "secretariat") { //ΑΛΛΑΓΗ ΕΔΩ
+    if(user_type == "secretariat") {
 
         const checkbox = document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
@@ -34,7 +34,7 @@ window.onload = (event) =>{
         const label = document.createElement("label");
         label.setAttribute("class", "form-check-label");
         label.setAttribute("for", "checkbox1");
-        const textNode = document.createTextNode(`Διδάσκοντες`); // (Τμήμα: ${department})ΕΔΩ ΝΑ ΜΠΕΙ ΤΟ ΤΜΗΜΑ
+        const textNode = document.createTextNode(` Διδάσκοντες`); 
         label.appendChild(textNode);
         
 
@@ -49,6 +49,8 @@ function Submit(){
     if (document.getElementById("checkbox2") == null) toPh = false;
     else toPh = document.getElementById("checkbox2").checked;
 
+    console.log((tinymce.get("tiny").getContent()).replace(`'`,''))
+
     const notification = {
     "title": `${document.getElementById("title").value}`,
     "publish_day": `${document.getElementById("publish-day").value}`,
@@ -56,11 +58,10 @@ function Submit(){
     "publish_time": `${document.getElementById("publish-time").value}`,
     "toStudents" : `${document.getElementById("checkbox1").checked}`,
     "toPh" : `${toPh}`,
-    "description" : `${document.getElementById('tiny').value}`, //tinymce.get("tiny").getContent()
+    "description" : `${(tinymce.get("tiny").getContent())}`, 
     "asUniversity" : `${document.getElementById("asUniversity").checked}`,
-    "sender_id" : `${user_id}`, //ΕΔΩ DB
-    "sender" : `${user_name}` //ΕΔΩ DB
-    // "id" : `${2}`, //ΕΔΩ DB ΚΑΙ ΣΥΝ 1 
+    "sender_id" : `${user_id}`, 
+    "sender" : `${user_name}`  
     };
 
     // NOTIFICATION ADD TO DB HERE 
@@ -68,10 +69,11 @@ function Submit(){
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
+            console.log(dbResult)
         }
     };
+
     xmlhttp.open("GET", "assets/backend/post_announcement.php?notification=" + JSON.stringify(notification), true);
     xmlhttp.send();
-    // notification_list.push(notification);
     document.querySelector('.btn-outline-secondary').click();
 }

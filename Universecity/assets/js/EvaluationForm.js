@@ -78,8 +78,6 @@ function sendRequest() {
 
 window.onload = () => {
     radioCounter = 0;
-    submitBtn.style.backgroundColor = "grey";
-    submitBtn.style.boxShadow = "grey"
     for (radio of radioBtnsNodes) {
         radio.disabled = true;
     }

@@ -188,9 +188,9 @@ function createNotification(notification) {
     const div = document.createElement('div');
     const title = document.createElement('span');
     title.setAttribute('class', 'bi bi-info-circle')
-    title.innerHTML = " " + notification.title;
+    title.innerHTML = " " + (notification.title).slice(0, 30) + "...";
     const description = document.createElement('p');
-    description.innerHTML = notification.description;
+    description.innerHTML = (notification.description).slice(0, 50) + "...";
     const sender = document.createElement('p');
     sender.innerHTML = `${notification.publish_day} - ${notification.sender}`;
     div.append(title, description, sender);
@@ -252,7 +252,7 @@ if (!sessionStorage.getItem('user') && !sessionStorage.getItem('user-type')) {
     window.location.href = 'LoginPage.html';
 } else {
     if(sessionStorage.getItem('user-type') == 'secretariat') {
-        document.getElementById('page-content').src = 'secretariat_set_schedule.html';
+        document.getElementById('page-content').src = 'SecretariatSetSchedule.html';
     }
     setUserNavList();
     updateContentTitle();

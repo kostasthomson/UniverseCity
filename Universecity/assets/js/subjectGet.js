@@ -15,7 +15,6 @@ options.setAttribute("selected", "selected");
 options.setAttribute("class", "subject");
 options.setAttribute("value", -1);
 options.appendChild(optionText);
-
 select.appendChild(options);
 //---//
 
