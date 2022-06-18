@@ -110,9 +110,9 @@ function retrieveCourses() {
                 
             }
         }
-    xmlhttp.open("GET", "assets/backend/get_subject_list.php?department=" + GLOBAL.user.DEPARTMENT 
-                                                            +"&semester=" + GLOBAL.user.SEMESTER
-                                                            +"&direction=" + GLOBAL.user.STUDY_DIRECTION, true);
+    xmlhttp.open("GET", "assets/backend/get_subject_list.php?department=" + GLOBAL.user.department 
+                                                            +"&semester=" + GLOBAL.user.semester
+                                                            +"&direction=" + GLOBAL.user.study_direction, true);
     xmlhttp.send();
     // end retrieve
     
@@ -188,6 +188,8 @@ function getSchedule() {
     //todo change array names
     GLOBAL.user.List = [];
     GLOBAL.user.ListCode = [];
+
+    console.log(GLOBAL.user.schedule);
 
     if (currentWeekday != ("Σάββατο" || "Κυριακή")) {
         today = GLOBAL.user.schedule[currentWeekday];
@@ -314,7 +316,7 @@ function generateSubjectInfo(courseCode, teacherName) {
      // Subject Title
      let title = document.createElement("li");
      title.setAttribute("class", "list-group-item");
-     title.innerHTML = "<strong>Τίτλος: </strong>" + courseTitle;
+     title.innerHTML = "<strong>Μάθημα: </strong>" + courseTitle;
 
 
     // Classroom of the subject
@@ -542,12 +544,12 @@ function markSeats(capacity, seatArray) {
 
         // temp conditions
         //todo make conditions broad to include every possibility
-        if (GLOBAL.user.SEMESTER == 4) {
+        if (GLOBAL.user.semester == 4) {
             if (seatArray[i].higher_semester_state == 'T') {
                 document.querySelector("button[data-seatid='" + seatArray[i].id + "']").classList.add("occupied");
             }
         }
-        else if (GLOBAL.user.SEMESTER == 2) {
+        else if (GLOBAL.user.semester == 2) {
             if (seatArray[i].lower_semester_state == 'T') {
                 document.querySelector("button[data-seatid='" + seatArray[i].id + "']").classList.add("occupied");
             }
@@ -647,7 +649,7 @@ function submitSeat() { //choosebtnYes 'onclick' attribute
                     alert("Η κράτηση σας ολοκληρώθηκε με επιτύχια");
                     selectedSeat.classList.remove("selected");
                     selectedSeat.classList.add("granted");
-                    retriveUserSeat(GLOBAL.user.AM, markGranted);
+                    retriveUserSeat(GLOBAL.user.am, markGranted);
             }
             else {
                 alert(dbResult);
@@ -655,8 +657,8 @@ function submitSeat() { //choosebtnYes 'onclick' attribute
         }
     };
     xmlhttp.open("GET", "assets/backend/SeatSelected.php?seat_id=" + dataSeatID
-                                                        + "&student_id=" + GLOBAL.user.AM
-                                                        + "&semester=" + GLOBAL.user.SEMESTER, true);
+                                                        + "&student_id=" + GLOBAL.user.am
+                                                        + "&semester=" + GLOBAL.user.semester, true);
     xmlhttp.send();
 
 
@@ -692,9 +694,9 @@ function getUserInfo(){ // Gets User Info from Session Storage
     GLOBAL.user = [];
     GLOBAL.user = JSON.parse(sessionStorage.getItem('user'));
     GLOBAL.user.CourseList = [];
-    retriveUserSeat(GLOBAL.user.AM, ()=>{});
+    retriveUserSeat(GLOBAL.user.am, ()=>{});
     retrieveCourses();
-    const date = new Date(); //2022,05,17  <---- test value
+    const date = new Date(2022,05,17); //2022,05,17  <---- test value
     GLOBAL.user.date = date;
 }
 
