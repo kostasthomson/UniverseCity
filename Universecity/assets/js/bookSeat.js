@@ -120,7 +120,6 @@ function retrieveCourses() {
 }
 
 function makeList() { // New Course List with buttons
-    console.log(GLOBAL);
     document.querySelector('#List2').style.display = "none"; // Make the Subject Info panel hidden
     if (getSchedule()) { 
         let CourseListContainer = document.createElement('div');
@@ -129,33 +128,47 @@ function makeList() { // New Course List with buttons
 
 
 
-        document.querySelector('#SelectCourse').appendChild(CourseListContainer)
+        document.querySelector('#flush-collapseOne').appendChild(CourseListContainer)
         CourseListContainer.setAttribute("id", "SelectCourseList");
 
 
         // Dynamic list initialization
         for (i = 0; i < GLOBAL.user.List.length; ++i) {
+            //Create bootstrap d-grid
+            dgrid = document.createElement('div');
+            dgrid.setAttribute('class', 'd-grid gap-2 mt-3');
+
             // Create listItem
             listItem = document.createElement('button');
 
             // The value of the option is the Course's code
             listItem.setAttribute('value', GLOBAL.user.ListCode[i]);
-            listItem.setAttribute('class', "subjectBtns");
+            // Bootstrap button
+            listItem.setAttribute('class', 'btn btn-primary btn-lg');
             // The name of the Course is displayed to the user
             listItem.innerHTML = GLOBAL.user.List[i];
 
             // validate() starts the generation of the seats with capacity and type 
             listItem.setAttribute('onclick', 'retrieveClassroom(this.value, validate)');
 
-            // Add listItem to the selectElement
-            CourseListContainer.appendChild(listItem);
+            // Add listItem to dgrid
+            dgrid.appendChild(listItem);
+            // Add dgrid to the selectElement
+            CourseListContainer.appendChild(dgrid);
         }
     }
     else {
-        let message = document.createElement('div');
-        message.setAttribute('class', 'message-box');
+        //Create bootstrap d-grid
+        dgrid = document.createElement('div');
+        dgrid.setAttribute('class', 'd-grid gap-2 mt-3');
+        // Create message as disabled button
+        let message = document.createElement('button');
+        message.setAttribute('class', 'btn btn-secondary btn-lg');
+        message.setAttribute('disabled', 'true');
         message.innerHTML = "Δεν υπάρχει κάποιο μάθημα για να κάνεις κράτηση σήμερα.";
-        document.querySelector('#SelectCourse').appendChild(message);
+
+        dgrid.appendChild(message);
+        document.querySelector('#flush-collapseOne').appendChild(dgrid);
     }
 
     
@@ -163,16 +176,6 @@ function makeList() { // New Course List with buttons
 
 function getSchedule() {
     GLOBAL.user.schedule = JSON.parse(sessionStorage.getItem("schedule"));
-
-    // const date = new Date(2022,05,17); //! zero-based for the month index
-   // console.log(date);
-
-    // 2022, 05, 08 --> year, month index, day --> 2022 June 8
-    // console.log( //! temp
-    //     date.toLocaleDateString('el', {
-    //         weekday: 'long'
-    //     })
-    // ); 
 
     const currentWeekday = GLOBAL.user.date.toLocaleDateString('el', {weekday: 'long'});
 
@@ -275,39 +278,62 @@ function generateSubjectInfo(courseCode, teacherName) {
     const currentWeekday = GLOBAL.user.date.toLocaleDateString('el', {weekday: 'long'});
 
 
+   
+
     // Teacher Name
-    teacherNameArr = teacherName.split(",")
+    teacherNameArr = teacherName.split(",");
     let teacher = document.createElement("li");
     teacher.setAttribute("class" , "list-group-item");
     teacher.innerHTML = "<strong>Διδάσκων: </strong>" + teacherNameArr[0] + " " + teacherNameArr[1];
-    subjectInfo.appendChild(teacher);   
+      
     
     
     // Day of the week
     let day = document.createElement("li");
     day.setAttribute("class", "list-group-item");
     day.innerHTML = "<strong>Ημέρα: </strong>" + currentWeekday;
-    subjectInfo.appendChild(day); 
+    
 
 
     // Hour that the subject will take place
+    let hour = document.createElement("li");
+    hour.setAttribute("class", "list-group-item");
+
+    let flag = false;
+    let courseTitle = "";
     for (let i=0; i<GLOBAL.user.CourseList.length; i++) {
         if (GLOBAL.user.CourseList[i].CODE == courseCode) { // find the subject's name using the subject's id/code
-            let hourof = 9 + GLOBAL.user.schedule[currentWeekday].indexOf(GLOBAL.user.CourseList[i].TITLE);
-            let hour = document.createElement("li");
-            hour.setAttribute("class", "list-group-item");
+            courseTitle = GLOBAL.user.CourseList[i].TITLE;
+            let hourof = 9 + GLOBAL.user.schedule[currentWeekday].indexOf(courseTitle);
             hour.innerHTML = "<strong>Ώρα: </strong>" + hourof + ":00";
-            subjectInfo.appendChild(hour); 
+            flag = true;
             break;
         }
     }
+
+     // Subject Title
+     let title = document.createElement("li");
+     title.setAttribute("class", "list-group-item");
+     title.innerHTML = "<strong>Τίτλος: </strong>" + courseTitle;
 
 
     // Classroom of the subject
     let classroom = document.createElement("li");
     classroom.setAttribute("class", "list-group-item");
     classroom.innerHTML = "<strong>Αίθουσα: </strong>" + GLOBAL.Classroom.NAME;
-    subjectInfo.appendChild(classroom);
+    
+
+
+    // appends happend here to preserve order
+    if (flag) {
+        subjectInfo.appendChild(title); // 00
+    }
+    subjectInfo.appendChild(teacher);   // 01
+    subjectInfo.appendChild(day);       // 02
+    if (flag) {
+        subjectInfo.appendChild(hour);  // 03
+    }
+    subjectInfo.appendChild(classroom); // 04
 }
 
 function getTeacher(courseCode, callback){
@@ -666,10 +692,9 @@ function getUserInfo(){ // Gets User Info from Session Storage
     GLOBAL.user = [];
     GLOBAL.user = JSON.parse(sessionStorage.getItem('user'));
     GLOBAL.user.CourseList = [];
-    //console.log(GLOBAL.user);
     retriveUserSeat(GLOBAL.user.AM, ()=>{});
     retrieveCourses();
-    const date = new Date(2022,05,17); //2022,05,17
+    const date = new Date(); //2022,05,17  <---- test value
     GLOBAL.user.date = date;
 }
 
@@ -678,7 +703,8 @@ function makeSelectBtn() { // Make select button
     let selectBtn = document.createElement('button');
     selectBtn.setAttribute('id', 'selectBtn');
     selectBtn.setAttribute('onclick', 'modalToggle()');
-    selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογή Θέσης');
+    selectBtn.setAttribute('class', 'btn btn-outline-secondary')
+    selectBtn.insertAdjacentHTML('afterbegin', 'Επιλογη Θεσης');
     document.body.appendChild(selectBtn);
     selectBtn.style.display = "none";
 }
