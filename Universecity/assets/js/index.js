@@ -200,13 +200,28 @@ function createNotification(notification) {
 
 
 function fillUlElement(announcements) {
+
+    var notificationCount = 0;
+    var today = new Date();
     const ul = document.querySelector('.notifications')
     const hr = document.createElement('hr');
     hr.setAttribute('class', 'dropdown-divider');
     announcements.forEach(announcement => {
+
+        //Check If Notification Is Published
+        if(new Date((announcement.publish_day)).getTime() > today.getTime()) return;
+        if((new Date((announcement.publish_day)).getTime() > today.getTime()) && announcement.publish_time > today.getHours() + ":" + today.getMinutes()) return;
+        if (announcement.toStudents == "false" && user_type == "student") return
+        if (announcement.toPh == "false" && user_type == "teacher") return;
+
+        notificationCount +=1
         ul.append(createNotification(announcement));
         ul.append(hr);
     });
+
+
+    if(notificationCount) document.getElementById('notificationCount').innerHTML = notificationCount;
+
     // Show All
     const footer = document.createElement('li');
     footer.setAttribute('class', 'dropdown-footer');
@@ -228,10 +243,6 @@ function updateNotifications() {
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 const dbResult = this.responseText;
-  
-                // Update Budge
-                var notificationCount = JSON.parse(dbResult).length;
-                if(notificationCount) document.getElementById('notificationCount').innerHTML = notificationCount;
 
                 fillUlElement(JSON.parse(dbResult).slice(-3).reverse());
             }

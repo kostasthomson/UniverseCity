@@ -1,8 +1,8 @@
-var user_type = sessionStorage.getItem('user-type'); // ΕΔΩ ΜΠΑΙΝΕΙ DB
+var user_type = sessionStorage.getItem('user-type');
 var user_id = JSON.parse(sessionStorage.getItem('user')).AM;
 var department = JSON.parse(sessionStorage.getItem('user')).DEPARTMENT;
 
-var removed_list = [] //ΕΔΩ ΜΠΑΙΝΕΙ DB
+var removed_list = [] 
 var last_notification = 0;
 
 
@@ -15,7 +15,7 @@ function updateStorageNotifications() {
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             const dbResult = this.responseText;
-            sessionStorage.setItem('notifications', dbResult);// [new_notification] //ΕΔΩ ΜΠΑΙΝΕΙ DB
+            sessionStorage.setItem('notifications', dbResult);// [new_notification] 
         }
     };
     xmlhttp.open("GET", "assets/backend/get_announcements.php", true);
@@ -40,9 +40,8 @@ function UpdateNotifications(announcements) {
 
         //Check If Valid
         const today = new Date();
-
         if(new Date((announcement.publish_day)).getTime() > today.getTime()) return;
-        if((new Date((announcement.publish_day)).getTime() < today.getTime()) && announcement.publish_time > today.getHours() + ":" + today.getMinutes()) return;
+        if((new Date((announcement.publish_day)).getTime() > today.getTime()) && announcement.publish_time > today.getHours() + ":" + today.getMinutes()) return;
         if (announcement.toStudents == "false" && user_type == "student") return
         if (announcement.toPh == "false" && user_type == "teacher") return;
 
