@@ -1,6 +1,7 @@
 let result_array = []; // Πίνακας όπου τα στοιχεία του είναι τα δεδομένα από την Database (όλα τα results είναι σε ένα string)
 let array = []; //Πίνακας όπου τα δεδομένα του result_array, χωρίζονται σε κελιά
 let button; 
+let user = JSON.parse(sessionStorage.getItem("user"));
 let subjects = []; //Πίνακας για αποφυγή διπλοτύπων στα ονόματα των μαθημάτων
 let questions = ['Η συνολική απόδοση του διδάσκοντα ήταν καλή;', 
                   'Η ποιότητα του μαθήματος ήταν υψηλή;', 
@@ -58,7 +59,7 @@ window.onload = () => { //Συνάρτηση που τρέχει με την φ�
       }
     }
   };
-  xmlhttp.open("GET", "assets/backend/evaluation_results.php?user=" + sessionStorage.getItem("user"), true);
+  xmlhttp.open("GET", "assets/backend/evaluation_results.php?am=" + user.am, true);
   xmlhttp.send();
 }
 
