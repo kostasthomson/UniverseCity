@@ -12,10 +12,10 @@
 }
 
 #selections-div {
+  margin-top: 1em;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background-color: white;
 }
 
 .btn-group{
@@ -70,10 +70,6 @@ table thead tr {
   padding: 1rem 1rem !important;
   padding-right: 0rem !important;
   height: 3.5rem;
-}
-
-#main-div {
-  background-color: rgb(26, 28, 29);
 }
 
 .dropdown-selection {
